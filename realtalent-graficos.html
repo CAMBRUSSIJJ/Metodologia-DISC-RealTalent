@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RealTalent — Gráficos do Perfil</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg:       #0f0d1a;
+    --surface:  #1a1630;
+    --surface2: #231e40;
+    --border:   rgba(160,140,255,0.15);
+    --border2:  rgba(160,140,255,0.30);
+    --purple:   #a08cff;
+    --purple2:  #7b5fff;
+    --purple3:  #4f35cc;
+    --gold:     #f0c14a;
+    --text:     #f0ecff;
+    --muted:    #9b93c0;
+    --D: #e05c6a; --I: #f0a047; --S: #3ec98a; --C: #5aabf5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+  header {
+    width: 100%; padding: 1.25rem 2rem; border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; gap: 10px; position: sticky; top: 0;
+    background: rgba(15,13,26,0.85); backdrop-filter: blur(12px); z-index: 10;
+  }
+  .logo-mark {
+    width: 30px; height: 30px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--gold), var(--purple2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 14px; color: #14101f; font-weight: 800;
+  }
+  header span { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+  header small { font-size: 11px; color: var(--muted); }
+
+  main { width: 100%; max-width: 760px; padding: 2.5rem 1.5rem 4rem; flex: 1; }
+
+  .page-title { text-align: center; margin-bottom: 2.5rem; }
+  .eyebrow {
+    display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+  .page-title h1 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+  .page-title p { font-size: 14px; color: var(--muted); }
+
+  .chart-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px;
+    padding: 1.75rem; margin-bottom: 1.5rem;
+  }
+  .chart-card-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .chart-card-sub { font-size: 12px; color: var(--muted); margin-bottom: 1.25rem; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 1rem; font-size: 12px; color: var(--muted); }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .dot-sq { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 640px) { .charts-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
+  .stat-card {
+    background: var(--surface2); border-radius: 10px; padding: 12px; text-align: center;
+  }
+  .stat-card .v { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 2px; }
+  .stat-card .l { font-size: 11px; color: var(--muted); }
+
+  .back-row { text-align: center; margin-top: 2rem; }
+  .btn {
+    background: transparent; border: 0.5px solid var(--border2); border-radius: 8px;
+    padding: 10px 22px; cursor: pointer; font-size: 14px; color: var(--muted);
+    font-family: 'Inter', sans-serif; transition: all 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: var(--surface2); color: var(--text); }
+
+  .empty-state {
+    text-align: center; padding: 4rem 1rem; color: var(--muted); font-size: 14px;
+  }
+
+  footer {
+    text-align: center; padding: 1.5rem; font-size: 12px; color: var(--muted);
+    border-top: 0.5px solid var(--border); width: 100%; opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">R</div>
+  <span>RealTalent<small> · Gráficos do perfil</small></span>
+</header>
+
+<main id="main-content">
+  <!-- preenchido via JS -->
+</main>
+
+<footer>RealTalent · Mapeamento Comportamental · Powered by Claude (Anthropic)</footer>
+
+<script>
+const profileNames = { D:"Dominância", I:"Influência", S:"Estabilidade", C:"Conformidade" };
+const profileHex   = { D:"#e05c6a", I:"#f0a047", S:"#3ec98a", C:"#5aabf5" };
+
+function getScoresFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const D = parseInt(params.get('D'));
+  const I = parseInt(params.get('I'));
+  const S = parseInt(params.get('S'));
+  const C = parseInt(params.get('C'));
+  let total = parseInt(params.get('total'));
+  if (!Number.isFinite(total) || total <= 0) total = 20;
+  if ([D,I,S,C].some(v => isNaN(v))) return null;
+  return { D, I, S, C, total };
+}
+
+function pct(value, total) { return total > 0 ? Math.round((value / total) * 100) : 0; }
+
+function buildPage(scores) {
+  const { D, I, S, C, total } = scores;
+  const ranked = Object.entries({D,I,S,C}).sort((a,b) => b[1]-a[1]).map(e => e[0]);
+  const primary = ranked[0], secondary = ranked[1];
+
+  document.getElementById('main-content').innerHTML = `
+    <div class="page-title">
+      <div class="eyebrow">Visualização completa</div>
+      <h1>Seus gráficos comportamentais</h1>
+      <p>Perfil dominante: ${profileNames[primary]} (${primary}) · Secundário: ${profileNames[secondary]} (${secondary})</p>
+    </div>
+
+    <div class="stat-row">
+      ${ranked.map(d => `
+        <div class="stat-card">
+          <div class="v" style="color:${profileHex[d]}">${pct(scores[d], total)}%</div>
+          <div class="l">${profileNames[d]} (${d})</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-title">Mapa radar do perfil</div>
+      <div class="chart-card-sub">Visualização do equilíbrio entre as 4 dimensões comportamentais</div>
+      <div style="position: relative; width: 100%; height: 320px;">
+        <canvas id="radarChart" role="img" aria-label="Gráfico radar do perfil DISC"></canvas>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-card-title">Distribuição em barras</div>
+        <div class="chart-card-sub">Pontuação de cada dimensão</div>
+        <div style="position: relative; width: 100%; height: 260px;">
+          <canvas id="barChart" role="img" aria-label="Gráfico de barras do perfil DISC"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-title">Proporção do perfil</div>
+        <div class="chart-card-sub">Peso relativo de cada dimensão</div>
+        <div class="legend" id="donutLegend"></div>
+        <div style="position: relative; width: 100%; height: 220px;">
+          <canvas id="donutChart" role="img" aria-label="Gráfico de pizza do perfil DISC"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-row">
+      <a class="btn" href="javascript:history.length > 1 ? history.back() : window.close()">← Voltar ao resultado</a>
+    </div>
+  `;
+
+  renderCharts(scores, ranked);
+}
+
+function renderCharts(scores, ranked) {
+  const { D, I, S, C, total } = scores;
+  const labels = ['Dominância (D)', 'Influência (I)', 'Estabilidade (S)', 'Conformidade (C)'];
+  const dataPct = [pct(D,total), pct(I,total), pct(S,total), pct(C,total)];
+  const colors = [profileHex.D, profileHex.I, profileHex.S, profileHex.C];
+
+  new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Perfil',
+        data: dataPct,
+        backgroundColor: 'rgba(123,95,255,0.18)',
+        borderColor: '#a08cff',
+        borderWidth: 2,
+        pointBackgroundColor: colors,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        r: {
+          beginAtZero: true, max: 100,
+          ticks: { stepSize: 25, backdropColor: 'transparent', color: '#9b93c0', font: { size: 10 } },
+          grid: { color: 'rgba(155,147,192,0.2)' },
+          angleLines: { color: 'rgba(155,147,192,0.2)' },
+          pointLabels: { color: '#f0ecff', font: { size: 12, weight: '500' } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['D', 'I', 'S', 'C'],
+      datasets: [{ label: 'Pontuação (%)', data: dataPct, backgroundColor: colors, borderRadius: 6, maxBarThickness: 56 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: '#9b93c0', font: { size: 11 } }, grid: { color: 'rgba(155,147,192,0.12)' } },
+        x: { ticks: { color: '#f0ecff', font: { size: 12, weight: '500' } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  document.getElementById('donutLegend').innerHTML = ranked.map(d =>
+    `<span><span class="dot-sq" style="background:${profileHex[d]}"></span>${profileNames[d]} ${pct(scores[d],total)}%</span>`
+  ).join('');
+
+  new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['D','I','S','C'],
+      datasets: [{ data: [D,I,S,C], backgroundColor: [profileHex.D, profileHex.I, profileHex.S, profileHex.C], borderColor: '#1a1630', borderWidth: 2 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '62%',
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+const scores = getScoresFromURL();
+
+function init() {
+  if (!scores) {
+    document.getElementById('main-content').innerHTML = `
+      <div class="empty-state">
+        Nenhum dado de perfil foi encontrado.<br>
+        Acesse esta página a partir do botão "Ver gráficos detalhados" no resultado do seu mapeamento.
+      </div>`;
+    return;
+  }
+  if (typeof Chart === 'undefined') {
+    document.getElementById('main-content').innerHTML = `
+      <div class="empty-state">
+        Não foi possível carregar a biblioteca de gráficos.<br>
+        Verifique sua conexão com a internet e atualize a página.
+      </div>`;
+    return;
+  }
+  buildPage(scores);
+}
+
+init();
+</script>
+</body>
+</html>

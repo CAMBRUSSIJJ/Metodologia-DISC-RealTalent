@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RealTalent — Painel Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root {
+    --bg:       #0f0d1a;
+    --surface:  #1a1630;
+    --surface2: #231e40;
+    --border:   rgba(160,140,255,0.15);
+    --border2:  rgba(160,140,255,0.30);
+    --purple:   #a08cff;
+    --purple2:  #7b5fff;
+    --purple3:  #4f35cc;
+    --gold:     #f0c14a;
+    --text:     #f0ecff;
+    --muted:    #b8b0d8;
+    --D:        #e05c6a;
+    --I:        #f0a047;
+    --S:        #3ec98a;
+    --C:        #5aabf5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    width: 100%;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky; top: 0;
+    background: rgba(10,8,20,0.96);
+    backdrop-filter: blur(20px);
+    z-index: 10;
+    box-shadow: 0 1px 0 rgba(160,140,255,0.08), 0 4px 24px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px;
+  }
+  .header-title span { color: var(--purple); font-style: italic; }
+  #logout-btn {
+    background: var(--surface2); border: 0.5px solid var(--border);
+    color: var(--muted); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 8px 16px; border-radius: 8px; cursor: pointer;
+    font-family: 'Lato', sans-serif; transition: all .15s;
+    display: none;
+  }
+  #logout-btn:hover { color: var(--text); border-color: var(--border2); }
+
+  main { width: 100%; max-width: 1100px; padding: 2.5rem 1.5rem 5rem; flex: 1; }
+
+  /* ── Login ── */
+  #login-screen {
+    max-width: 380px; margin: 4rem auto 0; text-align: center;
+  }
+  .login-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 1rem;
+  }
+  .login-title {
+    font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .login-sub { font-size: 14px; color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+  .field { text-align: left; margin-bottom: 14px; }
+  .field label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; }
+  .field input {
+    width: 100%; background: var(--surface2); border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: 14px;
+    font-family: 'Lato', sans-serif;
+  }
+  .field input:focus { outline: none; border-color: var(--purple2); }
+  .btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--purple2), var(--purple3));
+    border: none; border-radius: 10px;
+    padding: 13px; font-size: 14px; font-weight: 700;
+    color: #fff; cursor: pointer; font-family: 'Lato', sans-serif;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 8px 24px rgba(123,95,255,0.25);
+    margin-top: 6px;
+  }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: .6; cursor: default; transform: none; }
+  #login-error {
+    color: var(--D); font-size: 13px; margin-top: 12px; min-height: 18px;
+  }
+
+  /* ── Dashboard ── */
+  #dash-screen { display: none; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 12px; margin-bottom: 2rem; }
+  .kpi-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px;
+    padding: 1.2rem; text-align: center;
+  }
+  .kpi-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--purple); }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 4px; }
+
+  .panel {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px;
+    padding: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .panel-title {
+    font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .chart-box { position: relative; height: 280px; }
+
+  .controls-row { display: flex; gap: 10px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .controls-row input, .controls-row select {
+    background: var(--surface2); border: 0.5px solid var(--border); border-radius: 8px;
+    padding: 9px 12px; color: var(--text); font-size: 13px; font-family: 'Lato', sans-serif;
+  }
+  .controls-row input { flex: 1; min-width: 180px; }
+  #refresh-btn, #export-btn {
+    background: var(--surface2); border: 0.5px solid var(--border); border-radius: 8px;
+    padding: 9px 14px; color: var(--muted); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+    font-family: 'Lato', sans-serif; transition: all .15s;
+  }
+  #refresh-btn:hover, #export-btn:hover { color: var(--text); border-color: var(--border2); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    text-align: left; padding: 10px 12px; color: var(--muted);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    border-bottom: 0.5px solid var(--border2); font-weight: 700;
+  }
+  tbody td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); color: var(--text); }
+  tbody tr:hover { background: rgba(160,140,255,0.04); }
+  .badge-mini {
+    display: inline-block; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  }
+  .table-wrap { overflow-x: auto; }
+  .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
+  .row-del {
+    cursor: pointer; color: var(--muted); font-size: 13px;
+  }
+  .row-del:hover { color: var(--D); }
+
+  footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--muted); border-top: 0.5px solid var(--border); width: 100%; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-title">RealTalent <span>Admin</span></div>
+    <button id="logout-btn" onclick="handleLogout()">Sair</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ VERIFICANDO ACESSO ═══ -->
+  <section id="login-screen">
+    <div class="login-eyebrow">Acesso restrito</div>
+    <div class="login-title">Verificando acesso...</div>
+    <p class="login-sub">Se você não for redirecionado em alguns segundos, <a href="login.html" style="color:var(--purple);">clique aqui para entrar</a>.</p>
+  </section>
+
+  <!-- ═══ DASHBOARD ═══ -->
+  <section id="dash-screen">
+
+    <div class="kpi-row" id="kpi-row"></div>
+
+    <div class="panel">
+      <div class="panel-title">Distribuição de perfis dominantes</div>
+      <div class="chart-box"><canvas id="chart-distribution"></canvas></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Médias gerais por perfil (D · I · S · C)</div>
+      <div class="chart-box"><canvas id="chart-averages"></canvas></div>
+    </div>
+
+    <div class="panel">
+      <div class="controls-row">
+        <input type="text" id="search-input" placeholder="Buscar por nome ou e-mail..." oninput="renderTable()" />
+        <select id="sort-select" onchange="renderTable()">
+          <option value="recent">Mais recentes</option>
+          <option value="oldest">Mais antigos</option>
+          <option value="name">Nome (A-Z)</option>
+        </select>
+        <button id="refresh-btn" onclick="loadResults()">↻ Atualizar</button>
+        <button id="export-btn" onclick="exportCsv()">⤓ Exportar CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Empresa</th>
+              <th>Perfil</th>
+              <th>D</th><th>I</th><th>S</th><th>C</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none;">Nenhum resultado encontrado ainda.</div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>RealTalent · Painel Admin · Powered by Claude (Anthropic)</footer>
+
+<script>
+const SUPABASE_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf';
+let supabaseClient = null;
+let allResults = [];
+
+const profileNames = { D:"Dominância", I:"Influência", S:"Estabilidade", C:"Conformidade" };
+const profileHex   = { D:"#e05c6a", I:"#f0a047", S:"#3ec98a", C:"#5aabf5" };
+
+function initSupabase() {
+  if (window.supabase && !supabaseClient) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+}
+
+async function checkSession() {
+  initSupabase();
+  if (!supabaseClient) { setTimeout(checkSession, 150); return; }
+  const { data } = await supabaseClient.auth.getSession();
+  if (!data || !data.session) {
+    window.location.href = 'login.html';
+    return;
+  }
+  // Confirma que o usuário logado é admin; caso contrário, manda para a área correta
+  const { data: perfil, error } = await supabaseClient
+    .from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle();
+  if (error || !perfil || perfil.papel !== 'admin') {
+    const destino = perfil && perfil.papel === 'lider' ? 'lider.html' : 'colaborador.html';
+    window.location.href = destino;
+    return;
+  }
+  showDashboard();
+}
+
+function showLogin() {
+  window.location.href = 'login.html';
+}
+
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dash-screen').style.display = 'block';
+  document.getElementById('logout-btn').style.display = 'inline-block';
+  loadResults();
+}
+
+async function handleLogout() {
+  try { await supabaseClient.auth.signOut(); } catch(e) {}
+  showLogin();
+}
+
+async function loadResults() {
+  const tbody = document.getElementById('results-tbody');
+  tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--muted);padding:2rem;">Carregando...</td></tr>';
+  try {
+    const { data, error } = await supabaseClient
+      .from('resultados')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    allResults = data || [];
+  } catch (e) {
+    allResults = [];
+    console.warn('Erro ao carregar resultados:', e);
+  }
+  renderKpis();
+  renderCharts();
+  renderTable();
+}
+
+function pct(scores, key) {
+  const total = ['D','I','S','C'].reduce((a,k)=>a+(scores[k]||0),0) || 1;
+  return Math.round(((scores[key]||0) / total) * 100);
+}
+
+function primaryProfile(scores) {
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+}
+
+function renderKpis() {
+  const row = document.getElementById('kpi-row');
+  const total = allResults.length;
+  const counts = { D:0, I:0, S:0, C:0 };
+  allResults.forEach(r => { if (r.scores) counts[primaryProfile(r.scores)]++; });
+  const topProfile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+  const last7 = allResults.filter(r => (Date.now() - new Date(r.created_at).getTime()) < 7*24*60*60*1000).length;
+
+  row.innerHTML = `
+    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">Mapeamentos totais</div></div>
+    <div class="kpi-card"><div class="kpi-value">${last7}</div><div class="kpi-label">Últimos 7 dias</div></div>
+    <div class="kpi-card"><div class="kpi-value" style="color:${profileHex[topProfile ? topProfile[0] : 'D']}">${topProfile ? profileNames[topProfile[0]] : '—'}</div><div class="kpi-label">Perfil mais comum</div></div>
+  `;
+}
+
+let distChart, avgChart;
+
+function renderCharts() {
+  const counts = { D:0, I:0, S:0, C:0 };
+  const sums = { D:0, I:0, S:0, C:0 };
+  allResults.forEach(r => {
+    if (!r.scores) return;
+    counts[primaryProfile(r.scores)]++;
+    ['D','I','S','C'].forEach(k => sums[k] += pct(r.scores, k));
+  });
+  const n = allResults.length || 1;
+
+  const distCtx = document.getElementById('chart-distribution');
+  if (distChart) distChart.destroy();
+  distChart = new Chart(distCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['D','I','S','C'].map(k => `${profileNames[k]} (${k})`),
+      datasets: [{
+        data: ['D','I','S','C'].map(k => counts[k]),
+        backgroundColor: ['D','I','S','C'].map(k => profileHex[k]),
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#b8b0d8', font: { size: 11 } } } }
+    }
+  });
+
+  const avgCtx = document.getElementById('chart-averages');
+  if (avgChart) avgChart.destroy();
+  avgChart = new Chart(avgCtx, {
+    type: 'bar',
+    data: {
+      labels: ['D','I','S','C'].map(k => `${profileNames[k]} (${k})`),
+      datasets: [{
+        label: 'Média (%)',
+        data: ['D','I','S','C'].map(k => Math.round(sums[k]/n)),
+        backgroundColor: ['D','I','S','C'].map(k => profileHex[k] + 'aa'),
+        borderColor: ['D','I','S','C'].map(k => profileHex[k]),
+        borderWidth: 1.5, borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: '#9b93c0' }, grid: { color: 'rgba(155,147,192,0.12)' } },
+        x: { ticks: { color: '#f0ecff' }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+function renderTable() {
+  const tbody = document.getElementById('results-tbody');
+  const empty = document.getElementById('empty-state');
+  const search = document.getElementById('search-input').value.trim().toLowerCase();
+  const sort = document.getElementById('sort-select').value;
+
+  let list = allResults.filter(r => {
+    if (!search) return true;
+    const hay = `${r.nome || ''} ${r.email || ''}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (sort === 'oldest') list = list.slice().reverse();
+  if (sort === 'name') list = list.slice().sort((a,b) => (a.nome||'').localeCompare(b.nome||''));
+
+  if (list.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = list.map(r => {
+    const date = new Date(r.created_at).toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    const prim = r.scores ? primaryProfile(r.scores) : null;
+    const profileCell = prim
+      ? `<span class="badge-mini" style="background:${profileHex[prim]}22;color:${profileHex[prim]};">${profileNames[prim]} (${prim})</span>`
+      : '—';
+    const cell = (k) => r.scores ? pct(r.scores, k) + '%' : '—';
+    return `<tr>
+      <td>${date}</td>
+      <td>${r.nome || '—'}</td>
+      <td>${r.email || '—'}</td>
+      <td>${r.company || '—'}</td>
+      <td>${profileCell}</td>
+      <td>${cell('D')}</td><td>${cell('I')}</td><td>${cell('S')}</td><td>${cell('C')}</td>
+      <td><span class="row-del" onclick="deleteResult('${r.id}')" title="Excluir">✕</span></td>
+    </tr>`;
+  }).join('');
+}
+
+async function deleteResult(id) {
+  if (!confirm('Excluir este mapeamento permanentemente?')) return;
+  try {
+    await supabaseClient.from('resultados').delete().eq('id', id);
+    allResults = allResults.filter(r => r.id !== id);
+    renderKpis(); renderCharts(); renderTable();
+  } catch (e) {
+    alert('Erro ao excluir. Tente novamente.');
+  }
+}
+
+function exportCsv() {
+  if (allResults.length === 0) return;
+  const header = ['Data','Nome','Email','Empresa','Perfil principal','D (%)','I (%)','S (%)','C (%)'];
+  const rows = allResults.map(r => {
+    const date = new Date(r.created_at).toLocaleDateString('pt-BR');
+    const prim = r.scores ? profileNames[primaryProfile(r.scores)] : '';
+    const cell = (k) => r.scores ? pct(r.scores, k) : '';
+    return [date, r.nome||'', r.email||'', r.company||'', prim, cell('D'), cell('I'), cell('S'), cell('C')];
+  });
+  const csv = [header, ...rows].map(row => row.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'realtalent_resultados.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+checkSession();
+</script>
+</body>
+</html>

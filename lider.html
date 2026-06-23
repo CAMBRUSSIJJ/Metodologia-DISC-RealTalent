@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RealTalent — Painel do Líder</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root {
+    --bg: #0f0d1a; --surface: #1a1630; --surface2: #231e40;
+    --border: rgba(160,140,255,0.15); --border2: rgba(160,140,255,0.30);
+    --purple: #a08cff; --purple2: #7b5fff; --purple3: #4f35cc; --gold: #f0c14a;
+    --text: #f0ecff; --muted: #b8b0d8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text); font-family: 'Lato', sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+  header {
+    width: 100%; border-bottom: 0.5px solid var(--border); position: sticky; top: 0;
+    background: rgba(10,8,20,0.96); backdrop-filter: blur(20px); z-index: 10;
+  }
+  .header-inner { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; width: 100%; }
+  .header-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; }
+  .header-title span { color: var(--purple); font-style: italic; }
+  #logout-btn {
+    background: var(--surface2); border: 0.5px solid var(--border); color: var(--muted);
+    font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  }
+  main { width: 100%; max-width: 600px; padding: 4rem 1.5rem; text-align: center; flex: 1; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 14px; }
+  p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 440px; margin: 0 auto; }
+  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px; padding: 2rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-title">RealTalent <span>Líder</span></div>
+    <button id="logout-btn" onclick="handleLogout()">Sair</button>
+  </div>
+</header>
+
+<main>
+  <div class="eyebrow">Painel do líder</div>
+  <h1 id="greeting">Olá!</h1>
+  <div class="card">
+    <p>Esta área vai reunir a visão da sua equipe: matriz DISC do time, manual de comunicação por pessoa, gestão de conflitos e mapeamento de talentos.</p>
+    <p style="margin-top:14px;">Essas ferramentas chegam na próxima etapa de construção do RealTalent — por enquanto, seu acesso já está corretamente identificado como líder.</p>
+  </div>
+</main>
+
+<script>
+const SUPABASE_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf';
+let supabaseClient = null;
+
+function initSupabase() {
+  if (window.supabase && !supabaseClient) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+}
+
+async function checkSession() {
+  initSupabase();
+  if (!supabaseClient) { setTimeout(checkSession, 150); return; }
+  const { data } = await supabaseClient.auth.getSession();
+  if (!data || !data.session) { window.location.href = 'login.html'; return; }
+
+  const { data: perfil, error } = await supabaseClient
+    .from('perfis').select('nome, papel').eq('id', data.session.user.id).maybeSingle();
+  if (error || !perfil || perfil.papel !== 'lider') {
+    const destino = perfil && perfil.papel === 'admin' ? 'admin.html' : 'colaborador.html';
+    window.location.href = destino;
+    return;
+  }
+  document.getElementById('greeting').textContent = `Olá, ${perfil.nome || ''}!`;
+}
+
+async function handleLogout() {
+  try { await supabaseClient.auth.signOut(); } catch(e) {}
+  window.location.href = 'login.html';
+}
+
+checkSession();
+</script>
+</body>
+</html>

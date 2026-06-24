@@ -1011,7 +1011,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Aguarda o Supabase carregar e verifica sessão com retry
+  let attempts = 0;
   function checkAuth() {
+    attempts++;
     if (window.supabase) {
       const client = window.supabase.createClient(
         'https://bxdmwdifgpmfybebhxnf.supabase.co',
@@ -1019,14 +1022,23 @@ window.addEventListener('DOMContentLoaded', () => {
       );
       client.auth.getSession().then(({ data }) => {
         if (!data || !data.session) {
-          window.location.href = 'login.html';
+          // Dá mais uma chance antes de redirecionar (sessão pode estar inicializando)
+          if (attempts < 3) {
+            setTimeout(checkAuth, 500);
+          } else {
+            window.location.href = 'login.html';
+          }
         } else {
           maybeResumeProgress();
           maybeOpenSharedResult();
         }
+      }).catch(() => {
+        if (attempts < 3) setTimeout(checkAuth, 500);
+        else window.location.href = 'login.html';
       });
     } else {
-      setTimeout(checkAuth, 150);
+      if (attempts < 20) setTimeout(checkAuth, 150);
+      else window.location.href = 'login.html';
     }
   }
   checkAuth();

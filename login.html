@@ -212,3 +212,57 @@ async function handleSubmit() {
       const { data, error } = await supabaseClient.auth.signUp({ email, password: pass });
       if (error) {
         errEl.textContent = error.message.includes('already registered')
+          ? 'Já existe uma conta com este e-mail. Tente entrar.'
+          : 'Não foi possível criar a conta. Tente novamente.';
+        return;
+      }
+      const userId = data.user ? data.user.id : (data.session ? data.session.user.id : null);
+      if (!userId) {
+        okEl.textContent = 'Conta criada. Confirme seu e-mail antes de entrar.';
+        return;
+      }
+      // Cria o perfil vinculado, como colaborador
+      const { error: profileError } = await supabaseClient.from('perfis').insert([{
+        id: userId, nome, email, papel: 'colaborador', time_id: timeId
+      }]);
+      if (profileError) {
+        console.warn('Erro ao criar perfil:', profileError);
+      }
+      if (data.session) {
+        await routeByRole(userId);
+      } else {
+        okEl.textContent = 'Conta criada! Verifique seu e-mail para confirmar antes de entrar.';
+      }
+    } catch (e) {
+      errEl.textContent = 'Erro ao conectar. Tente novamente.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Criar conta';
+    }
+  }
+}
+
+async function routeByRole(userId) {
+  try {
+    const { data: perfil, error } = await supabaseClient
+      .from('perfis').select('papel').eq('id', userId).maybeSingle();
+    
+    if (error || !perfil) {
+      window.location.href = 'index.html';
+      return;
+    }
+    
+    // Todos os papéis redirecionam para o index por enquanto para evitar erro 404
+    if (perfil.papel === 'admin') window.location.href = 'index.html';
+    else if (perfil.papel === 'lider') window.location.href = 'index.html';
+    else window.location.href = 'index.html';
+  } catch (e) {
+    window.location.href = 'index.html';
+  }
+}
+
+document.getElementById('f-pass').addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+
+boot();
+</script>
+</body>
+</html>

@@ -142,13 +142,7 @@ async function boot() {
   initSupabase();
   if (!supabaseClient) { setTimeout(boot, 150); return; }
 
-  // Se já está logado, redireciona direto
-  const { data } = await supabaseClient.auth.getSession();
-  if (data && data.session) {
-    await routeByRole(data.session.user.id);
-    return;
-  }
-
+  // Não redireciona automaticamente — usuário precisa fazer login
   loadTimes();
 }
 

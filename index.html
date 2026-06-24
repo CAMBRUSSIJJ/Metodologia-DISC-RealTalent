@@ -1153,7 +1153,36 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  window.location.href = 'login.html';
+  if (window.supabase) {
+    const client = window.supabase.createClient(
+      'https://bxdmwdifgpmfybebhxnf.supabase.co',
+      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+    );
+    client.auth.getSession().then(({ data }) => {
+      if (data && data.session) {
+        const user = data.session.user;
+        // Preenche os campos automaticamente com dados do usuário logado
+        client.from('perfis').select('nome, email').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
+          if (perfil) {
+            document.getElementById('id-name').value = perfil.nome || '';
+            document.getElementById('id-email').value = perfil.email || user.email || '';
+          } else {
+            document.getElementById('id-email').value = user.email || '';
+          }
+        });
+        document.getElementById('intro-section').style.display = 'none';
+        const id = document.getElementById('identify-section');
+        id.style.display = 'block';
+        id.classList.add('screen-fade');
+        setTimeout(() => id.classList.remove('screen-fade'), 400);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+  } else {
+    window.location.href = 'login.html';
+  }
 }
 
 function isValidEmail(email) {

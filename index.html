@@ -1153,7 +1153,13 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  window.location.href = 'login.html';
+  document.getElementById('intro-section').style.display = 'none';
+  const id = document.getElementById('identify-section');
+  id.style.display = 'block';
+  id.classList.add('screen-fade');
+  setTimeout(() => id.classList.remove('screen-fade'), 400);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 }
 }
 

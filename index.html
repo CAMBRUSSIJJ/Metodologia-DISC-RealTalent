@@ -1011,8 +1011,25 @@ document.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  maybeResumeProgress();
-  maybeOpenSharedResult();
+  function checkAuth() {
+    if (window.supabase) {
+      const client = window.supabase.createClient(
+        'https://bxdmwdifgpmfybebhxnf.supabase.co',
+        'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+      );
+      client.auth.getSession().then(({ data }) => {
+        if (!data || !data.session) {
+          window.location.href = 'login.html';
+        } else {
+          maybeResumeProgress();
+          maybeOpenSharedResult();
+        }
+      });
+    } else {
+      setTimeout(checkAuth, 150);
+    }
+  }
+  checkAuth();
 });
 
 /* ───────────── Compartilhamento: link via hash ───────────── */

@@ -495,6 +495,10 @@
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
       Evolução
     </button>
+    <button class="nav-tab" id="tab-admin" role="tab" aria-label="Administração" onclick="switchTab('admin')" style="display:none;">
+      <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Admin
+    </button>
   </nav>
 </header>
 
@@ -852,6 +856,79 @@
     </div>
   </div>
 
+  <!-- ══ ABA: ADMIN ══ -->
+  <div id="tab-content-admin" style="display:none;">
+    <div style="max-width:900px;margin:0 auto;">
+
+      <!-- KPIs -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.5rem;">
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-total">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Mapeamentos</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-colaboradores">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Colaboradores</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-times">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Times</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-dominante">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Perfil Dominante</div>
+        </div>
+      </div>
+
+      <!-- Sub-abas Admin -->
+      <div style="display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;">
+        <button onclick="admTab('resultados')" id="adm-tab-resultados" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Resultados</button>
+        <button onclick="admTab('colaboradores')" id="adm-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Colaboradores</button>
+        <button onclick="admTab('times')" id="adm-tab-times" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Times</button>
+      </div>
+
+      <!-- Resultados -->
+      <div id="adm-content-resultados">
+        <div class="section-card">
+          <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
+            <input type="text" id="adm-search" placeholder="Buscar nome, e-mail..." oninput="admRenderResultados()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
+            <button onclick="admLoadAll()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">↻ Atualizar</button>
+            <button onclick="admExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ CSV</button>
+          </div>
+          <div id="adm-table-resultados" style="overflow-x:auto;"></div>
+        </div>
+      </div>
+
+      <!-- Colaboradores -->
+      <div id="adm-content-colaboradores" style="display:none;">
+        <div class="section-card">
+          <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
+            <input type="text" id="adm-search-col" placeholder="Buscar colaborador..." oninput="admRenderColaboradores()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
+            <select id="adm-filter-papel" onchange="admRenderColaboradores()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+              <option value="">Todos os papéis</option>
+              <option value="colaborador">Colaborador</option>
+              <option value="lider">Líder</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div id="adm-table-colaboradores" style="overflow-x:auto;"></div>
+        </div>
+      </div>
+
+      <!-- Times -->
+      <div id="adm-content-times" style="display:none;">
+        <div class="section-card">
+          <div style="display:flex;gap:10px;margin-bottom:1rem;">
+            <input type="text" id="adm-novo-time" placeholder="Nome do novo time..." style="flex:1;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
+            <button onclick="admCriarTime()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:12px;font-weight:700;padding:9px 18px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Criar Time</button>
+          </div>
+          <div id="adm-table-times" style="overflow-x:auto;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </main>
 
 <footer>RealTalent · Mapeamento Comportamental · Powered by Claude (Anthropic)</footer>
@@ -1010,9 +1087,218 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+
+// ══════════════════════════════════════════════
+// ADMIN PANEL
+// ══════════════════════════════════════════════
+const ADM_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
+const ADM_KEY = 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf';
+let admSb = null;
+let admResultados = [], admColaboradores = [], admTimes = [];
+
+function getAdmSb() {
+  if (!admSb && window.supabase) admSb = window.supabase.createClient(ADM_URL, ADM_KEY);
+  return admSb;
+}
+
+async function checkAdminRole() {
+  try {
+    const sb = getAdmSb();
+    if (!sb) return;
+    const { data: sess } = await sb.auth.getSession();
+    if (!sess?.session) return;
+    const { data: perfil } = await sb.from('perfis').select('papel').eq('id', sess.session.user.id).maybeSingle();
+    if (perfil?.papel === 'admin') {
+      document.getElementById('tab-admin').style.display = '';
+    }
+  } catch(e) {}
+}
+
+async function admLoadAll() {
+  const sb = getAdmSb();
+  if (!sb) return;
+  const [r, c, t] = await Promise.all([
+    sb.from('resultados').select('*').order('created_at', {ascending:false}),
+    sb.from('perfis').select('id,nome,email,papel,time_id').order('nome'),
+    sb.from('times').select('id,nome').order('nome')
+  ]);
+  admResultados = r.data || [];
+  admColaboradores = c.data || [];
+  admTimes = t.data || [];
+  admRenderKpis();
+  admRenderResultados();
+  admRenderColaboradores();
+  admRenderTimes();
+}
+
+function admPrimaryProfile(scores) {
+  if (!scores) return null;
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0]?.[0];
+}
+function admPct(scores, key) {
+  if (!scores) return 0;
+  const t = Object.values(scores).reduce((a,b)=>a+b,0);
+  return t > 0 ? Math.round((scores[key]/t)*100) : 0;
+}
+function admNomeTime(id) {
+  return admTimes.find(t=>t.id===id)?.nome || '—';
+}
+
+function admRenderKpis() {
+  const cnt = {D:0,I:0,S:0,C:0};
+  admResultados.forEach(r => { const p=admPrimaryProfile(r.scores); if(p) cnt[p]++; });
+  const dom = Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('adm-kpi-total').textContent = admResultados.length;
+  document.getElementById('adm-kpi-colaboradores').textContent = admColaboradores.filter(c=>c.papel==='colaborador').length;
+  document.getElementById('adm-kpi-times').textContent = admTimes.length;
+  document.getElementById('adm-kpi-dominante').textContent = dom?.[1]>0 ? dom[0] : '—';
+}
+
+function admRenderResultados() {
+  const q = (document.getElementById('adm-search')?.value || '').toLowerCase();
+  const data = admResultados.filter(r =>
+    !q || r.nome?.toLowerCase().includes(q) || r.email?.toLowerCase().includes(q) || r.empresa?.toLowerCase().includes(q)
+  );
+  const wrap = document.getElementById('adm-table-resultados');
+  if (!data.length) { wrap.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:1rem;">Nenhum resultado.</p>'; return; }
+  const profileColors = {D:'#e05c6a',I:'#f0a047',S:'#3ec98a',C:'#5aabf5'};
+  const rows = data.map(r => {
+    const p = admPrimaryProfile(r.scores);
+    const col = admColaboradores.find(c=>c.email===r.email);
+    const time = col ? admNomeTime(col.time_id) : '—';
+    const dt = new Date(r.created_at).toLocaleDateString('pt-BR');
+    const badge = p ? `<span style="background:${profileColors[p]}22;color:${profileColors[p]};padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;">${p}</span>` : '—';
+    return `<tr>
+      <td style="padding:10px 8px;font-size:12px;color:var(--muted);">${dt}</td>
+      <td style="padding:10px 8px;"><strong style="font-size:13px;">${r.nome||'—'}</strong><br><span style="font-size:11px;color:var(--muted);">${r.email||''}</span></td>
+      <td style="padding:10px 8px;font-size:12px;color:var(--muted);">${r.empresa||'—'}</td>
+      <td style="padding:10px 8px;font-size:12px;color:var(--muted);">${time}</td>
+      <td style="padding:10px 8px;">${badge}</td>
+      <td style="padding:10px 8px;font-size:11px;color:var(--muted);">D:${admPct(r.scores,'D')}% I:${admPct(r.scores,'I')}% S:${admPct(r.scores,'S')}% C:${admPct(r.scores,'C')}%</td>
+      <td style="padding:10px 8px;"><button onclick="admDeletarResultado('${r.id}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">✕</button></td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+    <thead><tr>${['Data','Colaborador','Empresa','Time','Perfil','Scores',''].map(h=>`<th style="text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0 8px 10px;font-weight:700;">${h}</th>`).join('')}</tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function admRenderColaboradores() {
+  const q = (document.getElementById('adm-search-col')?.value || '').toLowerCase();
+  const papelF = document.getElementById('adm-filter-papel')?.value || '';
+  const data = admColaboradores.filter(c =>
+    (!q || c.nome?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q)) &&
+    (!papelF || c.papel === papelF)
+  );
+  const wrap = document.getElementById('adm-table-colaboradores');
+  if (!data.length) { wrap.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:1rem;">Nenhum colaborador.</p>'; return; }
+  const papelColors = {colaborador:'var(--purple)',lider:'var(--gold)',admin:'#e05c6a'};
+  const rows = data.map(c => {
+    const temResult = admResultados.some(r=>r.email===c.email);
+    const pColor = papelColors[c.papel] || 'var(--muted)';
+    return `<tr style="border-top:0.5px solid var(--border);">
+      <td style="padding:12px 8px;"><strong style="font-size:13px;">${c.nome||'—'}</strong><br><span style="font-size:11px;color:var(--muted);">${c.email}</span></td>
+      <td style="padding:12px 8px;"><span style="background:${pColor}22;color:${pColor};padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;">${c.papel}</span></td>
+      <td style="padding:12px 8px;font-size:13px;color:var(--muted);">${admNomeTime(c.time_id)}</td>
+      <td style="padding:12px 8px;font-size:12px;color:${temResult?'var(--S)':'var(--muted)'};">${temResult?'✓ Mapeado':'Pendente'}</td>
+      <td style="padding:12px 8px;">
+        <select onchange="admAlterarPapel('${c.id}', this.value)" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:6px;padding:4px 8px;color:var(--text);font-size:12px;font-family:'Lato',sans-serif;outline:none;">
+          <option value="colaborador" ${c.papel==='colaborador'?'selected':''}>Colaborador</option>
+          <option value="lider" ${c.papel==='lider'?'selected':''}>Líder</option>
+          <option value="admin" ${c.papel==='admin'?'selected':''}>Admin</option>
+        </select>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+    <thead><tr>${['Colaborador','Papel','Time','Status','Alterar Papel'].map(h=>`<th style="text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0 8px 10px;font-weight:700;">${h}</th>`).join('')}</tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function admRenderTimes() {
+  const wrap = document.getElementById('adm-table-times');
+  if (!admTimes.length) { wrap.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:1rem;">Nenhum time cadastrado.</p>'; return; }
+  const rows = admTimes.map(t => {
+    const membros = admColaboradores.filter(c=>c.time_id===t.id).length;
+    const mapeados = admColaboradores.filter(c=>c.time_id===t.id && admResultados.some(r=>r.email===c.email)).length;
+    return `<tr style="border-top:0.5px solid var(--border);">
+      <td style="padding:12px 8px;"><strong style="font-size:13px;">${t.nome}</strong></td>
+      <td style="padding:12px 8px;font-size:13px;color:var(--muted);">${membros} membro${membros!==1?'s':''}</td>
+      <td style="padding:12px 8px;font-size:13px;color:var(--muted);">${mapeados} mapeado${mapeados!==1?'s':''}</td>
+      <td style="padding:12px 8px;"><button onclick="admDeletarTime('${t.id}','${t.nome}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">✕ Remover</button></td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+    <thead><tr>${['Time','Membros','Mapeados',''].map(h=>`<th style="text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0 8px 10px;font-weight:700;">${h}</th>`).join('')}</tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+async function admAlterarPapel(userId, papel) {
+  const sb = getAdmSb();
+  if (!sb) return;
+  await sb.from('perfis').update({ papel }).eq('id', userId);
+  await admLoadAll();
+}
+
+async function admCriarTime() {
+  const sb = getAdmSb();
+  const nome = document.getElementById('adm-novo-time').value.trim();
+  if (!nome) { alert('Digite um nome para o time.'); return; }
+  await sb.from('times').insert([{ nome }]);
+  document.getElementById('adm-novo-time').value = '';
+  await admLoadAll();
+}
+
+async function admDeletarTime(id, nome) {
+  if (!confirm(`Remover o time "${nome}"?`)) return;
+  const sb = getAdmSb();
+  await sb.from('times').delete().eq('id', id);
+  await admLoadAll();
+}
+
+async function admDeletarResultado(id) {
+  if (!confirm('Remover este mapeamento?')) return;
+  const sb = getAdmSb();
+  await sb.from('resultados').delete().eq('id', id);
+  await admLoadAll();
+}
+
+function admExportCsv() {
+  const rows = [['Data','Nome','Email','Empresa','Perfil','D%','I%','S%','C%']];
+  admResultados.forEach(r => {
+    const p = admPrimaryProfile(r.scores);
+    rows.push([new Date(r.created_at).toLocaleDateString('pt-BR'), r.nome||'', r.email||'', r.empresa||'', p||'', admPct(r.scores,'D'), admPct(r.scores,'I'), admPct(r.scores,'S'), admPct(r.scores,'C')]);
+  });
+  const csv = rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8;'}));
+  a.download = 'realtalent_resultados.csv';
+  a.click();
+}
+
+function admTab(tab) {
+  ['resultados','colaboradores','times'].forEach(t => {
+    document.getElementById('adm-content-' + t).style.display = t === tab ? 'block' : 'none';
+    const btn = document.getElementById('adm-tab-' + t);
+    if (btn) {
+      btn.style.borderBottomColor = t === tab ? 'var(--purple)' : 'transparent';
+      btn.style.color = t === tab ? 'var(--purple)' : 'var(--muted)';
+    }
+  });
+  if (tab === 'resultados') admRenderResultados();
+  if (tab === 'colaboradores') admRenderColaboradores();
+  if (tab === 'times') admRenderTimes();
+}
+
+// ══════════════════════════════════════════════
+
 window.addEventListener('DOMContentLoaded', () => {
   maybeResumeProgress();
   maybeOpenSharedResult();
+  checkAdminRole();
 
   // Se veio do login (sessão ativa), vai direto para as perguntas
   const veioDoLogin = document.referrer.includes('login.html') ||
@@ -1990,7 +2276,7 @@ function goHome() {
 
 function switchTab(tab) {
   // Atualiza botões de aba
-  ['mapeamento','graficos','sobre','dashboard'].forEach(t => {
+  ['mapeamento','graficos','sobre','dashboard','admin'].forEach(t => {
     document.getElementById('tab-' + t)?.classList.toggle('active', t === tab);
     const el = document.getElementById('tab-content-' + t);
     if (el) {
@@ -2005,6 +2291,10 @@ function switchTab(tab) {
   });
 
   // Aba de gráficos
+  if (tab === 'admin') {
+    admLoadAll();
+  }
+
   if (tab === 'graficos') {
     if (lastScores) {
       renderInlineCharts();

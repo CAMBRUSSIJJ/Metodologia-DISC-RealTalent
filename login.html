@@ -362,17 +362,19 @@ async function routeByRole(userId) {
   try {
     const { data: perfil, error } = await supabaseClient
       .from('perfis').select('papel').eq('id', userId).maybeSingle();
-    
+
+    sessionStorage.setItem('logado_agora', '1');
+
     if (error || !perfil) {
       window.location.href = 'index.html';
       return;
     }
-    
-    // Todos os papéis redirecionam para o index por enquanto para evitar erro 404
-    if (perfil.papel === 'admin') window.location.href = 'index.html';
-    else if (perfil.papel === 'lider') window.location.href = 'index.html';
+
+    if (perfil.papel === 'admin') window.location.href = 'admin.html';
+    else if (perfil.papel === 'lider') window.location.href = 'lider.html';
     else window.location.href = 'index.html';
   } catch (e) {
+    sessionStorage.setItem('logado_agora', '1');
     window.location.href = 'index.html';
   }
 }

@@ -1013,6 +1013,41 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('DOMContentLoaded', () => {
   maybeResumeProgress();
   maybeOpenSharedResult();
+
+  // Se veio do login (sessão ativa), vai direto para as perguntas
+  const veioDoLogin = document.referrer.includes('login.html') ||
+                      sessionStorage.getItem('logado_agora') === '1';
+
+  if (veioDoLogin) {
+    sessionStorage.removeItem('logado_agora');
+    function tentarAbrir() {
+      if (!window.supabase) { setTimeout(tentarAbrir, 150); return; }
+      const client = window.supabase.createClient(
+        'https://bxdmwdifgpmfybebhxnf.supabase.co',
+        'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+      );
+      client.auth.getSession().then(({ data }) => {
+        if (data && data.session) {
+          const user = data.session.user;
+          client.from('perfis').select('nome, email').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
+            if (perfil) {
+              document.getElementById('id-name').value = perfil.nome || '';
+              document.getElementById('id-email').value = perfil.email || user.email || '';
+            } else {
+              document.getElementById('id-email').value = user.email || '';
+            }
+            document.getElementById('intro-section').style.display = 'none';
+            const id = document.getElementById('identify-section');
+            id.style.display = 'block';
+            id.classList.add('screen-fade');
+            setTimeout(() => id.classList.remove('screen-fade'), 400);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+      });
+    }
+    tentarAbrir();
+  }
 });
 
 /* ───────────── Compartilhamento: link via hash ───────────── */

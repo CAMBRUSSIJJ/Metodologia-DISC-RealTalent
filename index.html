@@ -1474,10 +1474,8 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  if (window.supabase) {
-    const client = window.supabase.createClient(
-      'https://bxdmwdifgpmfybebhxnf.supabase.co',
-      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+  window.location.href = 'login.html';
+}
     );
     client.auth.getSession().then(({ data }) => {
       if (data && data.session) {

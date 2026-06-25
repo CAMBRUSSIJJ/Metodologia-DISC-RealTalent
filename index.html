@@ -721,7 +721,7 @@
     </div>
     <div id="graficos-placeholder" style="text-align:center; padding: 3rem 0; color: var(--muted); font-size:14px;">
       Você ainda não fez nenhum mapeamento nesta sessão.<br>
-      <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="switchTab('mapeamento')">Fazer meu mapeamento →</button>
+      <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="goToIdentify()">Fazer meu mapeamento →</button>
     </div>
     <div id="graficos-content" style="display:none;"></div>
   </div>
@@ -776,7 +776,7 @@
     </div>
 
     <div style="text-align:center; margin-top: 2rem;">
-      <button class="btn-start" onclick="switchTab('mapeamento')">Fazer meu mapeamento agora →</button>
+      <button class="btn-start" onclick="goToIdentify()">Fazer meu mapeamento agora →</button>
     </div>
   </div>
 
@@ -793,7 +793,7 @@
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:0.35;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;"><path d="M3 3v18h18"/><polyline points="7 16 11 12 15 14 21 8"/></svg>
       Você ainda não tem mapeamentos salvos.<br>
       <span style="font-size:12px;opacity:0.7;">Complete um mapeamento para ver sua evolução aqui.</span><br>
-      <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="switchTab('mapeamento')">Fazer meu primeiro mapeamento →</button>
+      <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="goToIdentify()">Fazer meu primeiro mapeamento →</button>
     </div>
 
     <div id="dashboard-content" style="display:none;">
@@ -854,7 +854,7 @@
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:0.5rem;">
         <button class="btn" onclick="clearDashboard()" style="color:var(--D);border-color:rgba(224,92,106,0.4);">🗑 Limpar histórico</button>
-        <button class="btn btn-primary" onclick="switchTab('mapeamento')">+ Novo mapeamento</button>
+        <button class="btn btn-primary" onclick="goToIdentify()">+ Novo mapeamento</button>
       </div>
     </div>
   </div>
@@ -1497,43 +1497,7 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  function abrir() {
-    if (!window.supabase) { setTimeout(abrir, 150); return; }
-    const client = window.supabase.createClient(
-      'https://bxdmwdifgpmfybebhxnf.supabase.co',
-      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
-    );
-    client.auth.getSession().then(({ data }) => {
-      if (!data || !data.session) {
-        // Não logado — vai para o login
-        window.location.href = 'login.html';
-        return;
-      }
-      const user = data.session.user;
-      client.from('perfis').select('nome, email, papel').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
-        if (perfil?.papel === 'admin') {
-          // Admin vai para a aba Admin
-          document.getElementById('tab-admin').style.display = '';
-          switchTab('admin');
-        } else {
-          // Colaborador vai para as perguntas
-          if (perfil) {
-            document.getElementById('id-name').value = perfil.nome || '';
-            document.getElementById('id-email').value = perfil.email || user.email || '';
-          } else {
-            document.getElementById('id-email').value = user.email || '';
-          }
-          document.getElementById('intro-section').style.display = 'none';
-          const id = document.getElementById('identify-section');
-          id.style.display = 'block';
-          id.classList.add('screen-fade');
-          setTimeout(() => id.classList.remove('screen-fade'), 400);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
-    });
-  }
-  abrir();
+  window.location.href = 'login.html';
 }
 
 function isValidEmail(email) {

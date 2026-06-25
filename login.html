@@ -370,9 +370,9 @@ async function routeByRole(userId) {
       return;
     }
 
-    if (perfil.papel === 'admin') window.location.href = 'admin.html';
-    else if (perfil.papel === 'lider') window.location.href = 'lider.html';
-    else window.location.href = 'index.html';
+    sessionStorage.setItem('logado_agora', '1');
+    if (perfil.papel === 'lider') window.location.href = 'lider.html';
+    else window.location.href = 'index.html'; // admin e colaborador vão para index
   } catch (e) {
     sessionStorage.setItem('logado_agora', '1');
     window.location.href = 'index.html';

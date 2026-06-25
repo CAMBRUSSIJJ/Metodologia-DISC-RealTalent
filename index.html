@@ -1104,7 +1104,7 @@ function getAdmSb() {
   return admSb;
 }
 
-async async function handleSair() {
+async function handleSair() {
   try {
     if (window.supabase) {
       const client = window.supabase.createClient(
@@ -1119,19 +1119,22 @@ async async function handleSair() {
 }
 
 function checkAdminRole() {
-  try {
+  function tentar(n) {
+    if (n <= 0) return;
     const sb = getAdmSb();
-    if (!sb) return;
-    const { data: sess } = await sb.auth.getSession();
-    if (!sess?.session) return;
-    const { data: perfil } = await sb.from('perfis').select('papel').eq('id', sess.session.user.id).maybeSingle();
-    // Mostrar botão sair para quem está logado
-    const btnSair = document.getElementById('btn-sair');
-    if (btnSair) btnSair.style.display = '';
-    if (perfil?.papel === 'admin') {
-      document.getElementById('tab-admin').style.display = '';
-    }
-  } catch(e) {}
+    if (!sb) { setTimeout(() => tentar(n-1), 300); return; }
+    sb.auth.getSession().then(({ data: sess }) => {
+      if (!sess?.session) return;
+      sb.from('perfis').select('papel').eq('id', sess.session.user.id).maybeSingle().then(({ data: perfil }) => {
+        const btnSair = document.getElementById('btn-sair');
+        if (btnSair) btnSair.style.display = '';
+        if (perfil?.papel === 'admin') {
+          document.getElementById('tab-admin').style.display = '';
+        }
+      });
+    }).catch(() => setTimeout(() => tentar(n-1), 300));
+  }
+  setTimeout(() => tentar(10), 500);
 }
 
 async function admLoadAll() {
@@ -1494,7 +1497,43 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  window.location.href = 'login.html';
+  function abrir() {
+    if (!window.supabase) { setTimeout(abrir, 150); return; }
+    const client = window.supabase.createClient(
+      'https://bxdmwdifgpmfybebhxnf.supabase.co',
+      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+    );
+    client.auth.getSession().then(({ data }) => {
+      if (!data || !data.session) {
+        // Não logado — vai para o login
+        window.location.href = 'login.html';
+        return;
+      }
+      const user = data.session.user;
+      client.from('perfis').select('nome, email, papel').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
+        if (perfil?.papel === 'admin') {
+          // Admin vai para a aba Admin
+          document.getElementById('tab-admin').style.display = '';
+          switchTab('admin');
+        } else {
+          // Colaborador vai para as perguntas
+          if (perfil) {
+            document.getElementById('id-name').value = perfil.nome || '';
+            document.getElementById('id-email').value = perfil.email || user.email || '';
+          } else {
+            document.getElementById('id-email').value = user.email || '';
+          }
+          document.getElementById('intro-section').style.display = 'none';
+          const id = document.getElementById('identify-section');
+          id.style.display = 'block';
+          id.classList.add('screen-fade');
+          setTimeout(() => id.classList.remove('screen-fade'), 400);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+  abrir();
 }
 
 function isValidEmail(email) {

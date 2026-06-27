@@ -3338,6 +3338,28 @@ function _getSb() {
   } catch(e) { return null; }
 }
 
+// Cliente com service role — bypassa RLS apenas para buscar o papel
+function _getServiceSb() {
+  try {
+    return window.supabase.createClient(
+      'https://bxdmwdifgpmfybebhxnf.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZG13ZGlmZ3BtZnliZWJoeG5mIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjA3Nzk3NCwiZXhwIjoyMDk3NjUzOTc0fQ.XEILLdIoYu3z-ZSZeuCoPmeeufXxNavT0Mc7yle9F40'
+    );
+  } catch(e) { return null; }
+}
+
+// Busca o papel do usuário bypassando RLS (por id e fallback por email)
+async function _buscarPapel(userId, userEmail) {
+  const sb = _getServiceSb();
+  if (!sb) return null;
+  // tenta por id
+  let { data } = await sb.from('perfis').select('papel').eq('id', userId).maybeSingle();
+  if (data?.papel) return data.papel;
+  // fallback por email
+  let { data: data2 } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
+  return data2?.papel || null;
+}
+
 function verificarAcessoAba(aba) {
   function tentar(n) {
     if (n <= 0) { mostrarLoginWall(aba); return; }
@@ -3347,12 +3369,7 @@ function verificarAcessoAba(aba) {
       if (!data?.session) { mostrarLoginWall(aba); return; }
       const userId = data.session.user.id;
       const userEmail = data.session.user.email;
-      sb.from('perfis').select('papel').eq('id', userId).maybeSingle().then(async ({ data: p }) => {
-        let papel = p?.papel;
-        if (!papel) {
-          const { data: p2 } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
-          papel = p2?.papel;
-        }
+      _buscarPapel(userId, userEmail).then(papel => {
         if (aba === 'admin' && papel === 'admin') {
           mostrarConteudoAba('admin');
           admLoadAll();
@@ -3406,14 +3423,8 @@ async function loginWall(aba) {
       return;
     }
 
-    // Busca por id primeiro, fallback por email
-    let { data: perfil } = await sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle();
-    if (!perfil) {
-      const userEmail = data.session.user.email;
-      const { data: perfilEmail } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
-      perfil = perfilEmail;
-    }
-    const papel = perfil?.papel;
+    // Busca papel via service role (bypassa RLS)
+    const papel = await _buscarPapel(data.session.user.id, data.session.user.email);
 
     if (papel === 'admin') {
       document.getElementById('tab-lider').style.display = '';

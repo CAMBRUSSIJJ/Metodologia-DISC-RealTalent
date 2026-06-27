@@ -912,24 +912,24 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;">
         <div class="section-card" style="text-align:center;padding:1.25rem;">
           <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-equipes">—</div>
-          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Equipes</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Equipes</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
           <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-total">—</div>
-          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Colaboradores</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Colaboradores</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-mapeados">—</div>
-          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Mapeados</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--S);" id="lid-kpi-mapeados">—</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Mapeados</div>
         </div>
-        <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-pendentes">—</div>
-          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Pendentes</div>
+        <div class="section-card" id="lid-kpi-pendentes-card" style="text-align:center;padding:1.25rem;transition:border 0.3s,box-shadow 0.3s;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);" id="lid-kpi-pendentes">—</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Pendentes</div>
         </div>
       </div>
 
       <!-- Sub-abas -->
-      <div style="display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;overflow-x:auto;">
+      <div style="display:flex;gap:4px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
         <button onclick="lidTab('equipes')" id="lid-tab-equipes" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🏷️ Equipes</button>
         <button onclick="lidTab('colaboradores')" id="lid-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">👥 Colaboradores</button>
         <button onclick="lidTab('comunicacao')" id="lid-tab-comunicacao" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">💬 Comunicação</button>
@@ -1322,16 +1322,32 @@ function lidNomeTime(id){ return lidTimes.find(t=>t.id===id)?.nome||'—'; }
 
 function lidRenderKpis() {
   const mapeados = lidColabs.filter(c=>lidGetResult(c.email)).length;
+  const pendentes = lidColabs.length - mapeados;
   document.getElementById('lid-kpi-equipes').textContent = lidTimes.length;
   document.getElementById('lid-kpi-total').textContent = lidColabs.length;
   document.getElementById('lid-kpi-mapeados').textContent = mapeados;
-  document.getElementById('lid-kpi-pendentes').textContent = lidColabs.length - mapeados;
+  document.getElementById('lid-kpi-pendentes').textContent = pendentes;
+  // Destaca card de pendentes quando há ação necessária
+  const cardPend = document.getElementById('lid-kpi-pendentes-card');
+  if(cardPend) {
+    if(pendentes > 0) {
+      cardPend.style.borderColor = 'rgba(240,193,74,0.5)';
+      cardPend.style.boxShadow = '0 0 0 3px rgba(240,193,74,0.1)';
+    } else {
+      cardPend.style.borderColor = '';
+      cardPend.style.boxShadow = '';
+    }
+  }
 }
 
 function lidRenderEquipes() {
   const wrap = document.getElementById('lid-lista-equipes');
   if(!wrap) return;
-  if(!lidTimes.length){ wrap.innerHTML='<p style="color:var(--muted);font-size:13px;">Nenhuma equipe cadastrada.</p>'; return; }
+  if(!lidTimes.length){ wrap.innerHTML=`<div style="text-align:center;padding:3rem 1rem;">
+    <div style="font-size:40px;margin-bottom:1rem;">🏷️</div>
+    <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;">Nenhuma equipe cadastrada</div>
+    <div style="font-size:13px;color:var(--muted);max-width:320px;margin:0 auto 1.5rem;">Sua equipe ainda não possui membros mapeados. Peça ao administrador para adicionar colaboradores.</div>
+  </div>`; return; }
   wrap.innerHTML = lidTimes.map(t => {
     const membros = lidColabs.filter(c=>c.time_id===t.id);
     const mapeados = membros.filter(c=>lidGetResult(c.email));
@@ -1340,24 +1356,33 @@ function lidRenderEquipes() {
     mapeados.forEach(c=>{ const p=lidPrimary(lidGetResult(c.email).scores); if(p) cnt[p]++; });
     const dom=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
     const domP=dom?.[1]>0?dom[0]:null;
-    return `<div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:10px;cursor:pointer;" onclick="lidFiltrarEquipe('${t.id}')">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
-        <div>
-          <div style="font-size:14px;font-weight:700;">${t.nome}</div>
-          ${domP?`<span style="background:${LID_DISC_CORES[domP]}22;color:${LID_DISC_CORES[domP]};padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px;display:inline-block;">${domP} · ${LID_DISC_NOMES[domP]}</span>`:''}
+    // mini DISC distribution bars
+    const discTotal = Object.values(cnt).reduce((a,b)=>a+b,0);
+    const discBars = discTotal > 0 ? ['D','I','S','C'].map(k => cnt[k]>0 ? `<div title="${k}·${LID_DISC_NOMES[k]}: ${cnt[k]}" style="flex:${cnt[k]};height:4px;background:${LID_DISC_CORES[k]};border-radius:2px;"></div>` : '').join('') : '';
+    return `<div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:10px;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(160,140,255,0.5)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)'" onmouseout="this.style.borderColor='';this.style.boxShadow=''" onclick="lidFiltrarEquipe('${t.id}')">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.nome}</div>
+          ${domP?`<span style="background:${LID_DISC_CORES[domP]}22;color:${LID_DISC_CORES[domP]};padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px;display:inline-block;">${domP} · ${LID_DISC_NOMES[domP]}</span>`:'<span style="font-size:11px;color:var(--muted);margin-top:4px;display:inline-block;">Sem mapeamentos</span>'}
         </div>
-        <div style="display:flex;gap:16px;">
-          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--purple);">${membros.length}</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">membros</div></div>
-          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--S);">${mapeados.length}</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">mapeados</div></div>
-          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--gold);">${pctVal}%</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">cobertura</div></div>
+        <!-- avatares membros -->
+        <div style="display:flex;gap:-4px;flex-shrink:0;">
+          ${membros.slice(0,5).map(c=>{ const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):null; const cor=p?LID_DISC_CORES[p]:'#4a4270'; const ini=(c.nome||'?').charAt(0).toUpperCase(); return `<div title="${c.nome}" style="width:30px;height:30px;border-radius:50%;background:${cor}33;border:2px solid ${cor}88;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${cor};margin-left:-6px;first-child:margin-left:0;">${ini}</div>`; }).join('')}
+          ${membros.length>5?`<div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);margin-left:-6px;">+${membros.length-5}</div>`:''}
+        </div>
+        <!-- stats -->
+        <div style="display:flex;gap:14px;flex-shrink:0;">
+          <div style="text-align:center;"><div style="font-size:17px;font-weight:700;color:var(--purple);">${membros.length}</div><div style="font-size:10px;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700;">membros</div></div>
+          <div style="text-align:center;"><div style="font-size:17px;font-weight:700;color:var(--S);">${mapeados.length}</div><div style="font-size:10px;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700;">mapeados</div></div>
+          <div style="text-align:center;"><div style="font-size:17px;font-weight:700;color:var(--gold);">${pctVal}%</div><div style="font-size:10px;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700;">cobertura</div></div>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:10px;height:6px;overflow:hidden;">
-        <div style="height:6px;border-radius:10px;background:linear-gradient(90deg,var(--purple2),var(--purple3));width:${pctVal}%;"></div>
+      <!-- progress bar -->
+      <div style="background:rgba(255,255,255,0.06);border-radius:10px;height:5px;overflow:hidden;margin-bottom:${discTotal>0?'6px':'0'};">
+        <div style="height:5px;border-radius:10px;background:linear-gradient(90deg,var(--purple2),var(--purple3));width:${pctVal}%;transition:width 0.6s ease;"></div>
       </div>
-      <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
-        ${membros.map(c=>{ const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):null; const cor=p?LID_DISC_CORES[p]:'#4a4270'; const ini=(c.nome||'?').charAt(0).toUpperCase(); return `<div title="${c.nome}" style="width:28px;height:28px;border-radius:50%;background:${cor}33;border:1.5px solid ${cor}66;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${cor};">${ini}</div>`; }).join('')}
-      </div>
+      <!-- DISC micro distribution -->
+      ${discTotal>0?`<div style="display:flex;gap:3px;height:4px;border-radius:2px;overflow:hidden;">${discBars}</div>`:''}
     </div>`;
   }).join('');
 }

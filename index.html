@@ -3350,14 +3350,34 @@ function _getServiceSb() {
 
 // Busca o papel do usuário bypassando RLS (por id e fallback por email)
 async function _buscarPapel(userId, userEmail) {
-  const sb = _getServiceSb();
-  if (!sb) return null;
-  // tenta por id
-  let { data } = await sb.from('perfis').select('papel').eq('id', userId).maybeSingle();
-  if (data?.papel) return data.papel;
-  // fallback por email
-  let { data: data2 } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
-  return data2?.papel || null;
+  const SURL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
+  const SKEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZG13ZGlmZ3BtZnliZWJoeG5mIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjA3Nzk3NCwiZXhwIjoyMDk3NjUzOTc0fQ.XEILLdIoYu3z-ZSZeuCoPmeeufXxNavT0Mc7yle9F40';
+  const headers = {
+    'apikey': SKEY,
+    'Authorization': 'Bearer ' + SKEY,
+    'Content-Type': 'application/json'
+  };
+  try {
+    // busca por id
+    const r1 = await fetch(SURL + '/rest/v1/perfis?select=papel&id=eq.' + encodeURIComponent(userId) + '&limit=1', { headers });
+    console.log('[RealTalent] busca id status:', r1.status);
+    if (r1.ok) {
+      const d1 = await r1.json();
+      console.log('[RealTalent] busca id resultado:', d1);
+      if (d1?.[0]?.papel) return d1[0].papel;
+    }
+    // fallback por email
+    const r2 = await fetch(SURL + '/rest/v1/perfis?select=papel&email=eq.' + encodeURIComponent(userEmail) + '&limit=1', { headers });
+    console.log('[RealTalent] busca email status:', r2.status);
+    if (r2.ok) {
+      const d2 = await r2.json();
+      console.log('[RealTalent] busca email resultado:', d2);
+      if (d2?.[0]?.papel) return d2[0].papel;
+    }
+  } catch(e) {
+    console.log('[RealTalent] erro fetch:', e);
+  }
+  return null;
 }
 
 function verificarAcessoAba(aba) {
@@ -3425,6 +3445,9 @@ async function loginWall(aba) {
 
     // Busca papel via service role (bypassa RLS)
     const papel = await _buscarPapel(data.session.user.id, data.session.user.email);
+    console.log('[RealTalent] user id:', data.session.user.id);
+    console.log('[RealTalent] user email:', data.session.user.email);
+    console.log('[RealTalent] papel encontrado:', papel);
 
     if (papel === 'admin') {
       document.getElementById('tab-lider').style.display = '';

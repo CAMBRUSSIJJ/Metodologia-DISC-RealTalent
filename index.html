@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RealTalent — Mapeamento Comportamental</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -32,7 +32,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: 0.01em;
@@ -89,7 +89,7 @@
     padding: 12px 18px; font-size: 11px; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--muted); cursor: pointer; border: none;
-    background: transparent; font-family: 'Lato', sans-serif;
+    background: transparent; font-family: 'Inter', sans-serif;
     border-bottom: 2px solid transparent; margin-bottom: -0.5px;
     transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
   }
@@ -143,10 +143,10 @@
     display: inline-block;
     font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--gold); font-weight: 700; margin-bottom: 1rem;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   .intro-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 36px; font-weight: 700; line-height: 1.2;
     letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 16px;
@@ -178,7 +178,7 @@
     background: linear-gradient(135deg, var(--purple2), var(--purple3));
     border: none; border-radius: 10px;
     padding: 14px 32px; font-size: 15px; font-weight: 600;
-    color: #fff; cursor: pointer; font-family: 'Lato', sans-serif;
+    color: #fff; cursor: pointer; font-family: 'Inter', sans-serif;
     transition: transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 8px 24px rgba(123,95,255,0.25);
   }
@@ -188,7 +188,7 @@
   .field label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; }
   .field input {
     width: 100%; background: var(--surface2); border: 0.5px solid var(--border);
-    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Lato', sans-serif;
+    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif;
   }
   .field input:focus { outline: none; border-color: var(--purple2); }
 
@@ -210,7 +210,7 @@
     color: var(--muted);
     font-size: 11px; font-weight: 700;
     padding: 6px 12px; border-radius: 8px;
-    cursor: pointer; font-family: 'Lato', sans-serif;
+    cursor: pointer; font-family: 'Inter', sans-serif;
     transition: all 0.15s; white-space: nowrap;
   }
   .dash-period-btn:hover { color: var(--text); border-color: var(--border2); }
@@ -225,7 +225,7 @@
     padding: 10px 14px; font-size: 11px; font-weight: 700;
     letter-spacing: 0.07em; text-transform: uppercase;
     color: var(--muted); cursor: pointer; border: none;
-    background: transparent; font-family: 'Lato', sans-serif;
+    background: transparent; font-family: 'Inter', sans-serif;
     border-bottom: 2px solid transparent; margin-bottom: -0.5px;
     transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
   }
@@ -259,7 +259,7 @@
   .timeline-note-input {
     width: 100%; background: transparent; border: none;
     border-bottom: 0.5px solid var(--border); color: var(--muted);
-    font-size: 11px; font-family: 'Lato', sans-serif;
+    font-size: 11px; font-family: 'Inter', sans-serif;
     padding: 4px 0; margin-top: 5px; outline: none;
     transition: border-color 0.15s;
   }
@@ -280,7 +280,7 @@
   }
 
   /* ── Tema claro/escuro ── */
-  .theme-toggle { position:fixed; top:16px; right:16px; z-index:999; background:var(--surface2); border:0.5px solid var(--border); border-radius:20px; padding:6px 12px; font-size:11px; font-weight:700; cursor:pointer; color:var(--muted); font-family:'Lato',sans-serif; transition: all 0.2s; }
+  .theme-toggle { position:fixed; top:16px; right:16px; z-index:999; background:var(--surface2); border:0.5px solid var(--border); border-radius:20px; padding:6px 12px; font-size:11px; font-weight:700; cursor:pointer; color:var(--muted); font-family:'Inter', sans-serif; transition: all 0.2s; }
   .theme-toggle:hover { color:var(--text); }
 
   /* ── Modo claro ── */
@@ -296,7 +296,7 @@
   #share-card { background:linear-gradient(135deg,#1a1030,#2a1f5a); border-radius:24px; padding:2.5rem 2rem; width:100%; max-width:360px; text-align:center; color:#fff; }
   .quiz-header { margin-bottom: 2.5rem; }
   .quiz-header h1 {
-    font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 700;
     letter-spacing: -0.01em; line-height: 1.2;
     color: var(--text); margin-bottom: 10px;
   }
@@ -309,12 +309,12 @@
 
   .question-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 1rem; }
   .question-num { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--purple); margin-bottom: 12px; font-weight: 700; }
-  .question-text { font-size: 17px; font-weight: 400; line-height: 1.65; color: var(--text); margin-bottom: 1.5rem; font-family: 'Lato', sans-serif; }
+  .question-text { font-size: 17px; font-weight: 400; line-height: 1.65; color: var(--text); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; }
   .options { display: grid; gap: 8px; }
   .option-btn {
     background: var(--surface2); border: 0.5px solid var(--border); border-radius: 10px;
     padding: 12px 16px; text-align: left; cursor: pointer; font-size: 14px;
-    color: var(--muted); line-height: 1.5; transition: all 0.15s; font-family: 'Lato', sans-serif;
+    color: var(--muted); line-height: 1.5; transition: all 0.15s; font-family: 'Inter', sans-serif;
   }
   .option-btn:hover { border-color: var(--border2); color: var(--text); background: #2a2450; }
   .option-btn.selected { background: rgba(123,95,255,0.15); border-color: var(--purple2); color: var(--text); }
@@ -323,7 +323,7 @@
   .btn {
     background: transparent; border: 0.5px solid var(--border2); border-radius: 8px;
     padding: 9px 20px; cursor: pointer; font-size: 14px; color: var(--muted);
-    font-family: 'Lato', sans-serif; transition: all 0.15s;
+    font-family: 'Inter', sans-serif; transition: all 0.15s;
   }
   .btn:hover { background: var(--surface2); color: var(--text); }
   .btn:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -334,7 +334,7 @@
   #result-section { display: none; }
   .result-hero { text-align: center; margin-bottom: 2.5rem; }
   .result-hero .intro-eyebrow { margin-bottom: 10px; }
-  .result-hero h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .result-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
   .result-hero p { font-size: 14px; color: var(--muted); }
 
   .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 2rem; }
@@ -357,7 +357,7 @@
     width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center; font-size: 15px;
   }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+  .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
   .section-sub { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; font-weight: 700; }
 
   .ico-competencias { background: rgba(62,201,138,0.15); color: var(--S); }
@@ -408,7 +408,7 @@
   .adj-extra-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .adj-extra-input {
     background: var(--surface2); border: 0.5px solid var(--border); border-radius: 8px;
-    padding: 9px 12px; color: var(--text); font-size: 13px; font-family: 'Lato', sans-serif;
+    padding: 9px 12px; color: var(--text); font-size: 13px; font-family: 'Inter', sans-serif;
   }
   .adj-extra-input:focus { outline: none; border-color: var(--purple2); }
   .adj-extra-input::placeholder { color: var(--muted); opacity: 0.7; }
@@ -587,8 +587,8 @@
 <div id="share-card-overlay">
   <div id="share-card">
     <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;opacity:0.6;margin-bottom:1.5rem;">Meu Perfil DISC</div>
-    <div id="sc-avatar" style="width:72px;height:72px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:700;"></div>
-    <div id="sc-tipo" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:4px;"></div>
+    <div id="sc-avatar" style="width:72px;height:72px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:28px;font-weight:700;"></div>
+    <div id="sc-tipo" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:26px;font-weight:700;margin-bottom:4px;"></div>
     <div id="sc-perfil" style="font-size:13px;opacity:0.7;margin-bottom:1.5rem;"></div>
     <div id="sc-bars" style="margin-bottom:1.5rem;"></div>
     <div style="font-size:11px;opacity:0.5;margin-bottom:1rem;">RealTalent · Mapeamento Comportamental</div>
@@ -604,7 +604,7 @@
 <a class="logo-link" role="button" aria-label="Voltar para a página inicial" onclick="goHome()" tabindex="0">
       <img src="data:image/png;base64,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" alt="RealTalent" class="logo-img" />
     </a>
-    <button id="btn-sair" onclick="handleSair()" style="display:none;background:rgba(255,255,255,0.06);border:0.5px solid rgba(160,140,255,0.2);color:#b8b0d8;font-size:12px;font-weight:700;padding:7px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;white-space:nowrap;" onmouseover="this.style.color='#f0ecff'" onmouseout="this.style.color='#b8b0d8'">
+    <button id="btn-sair" onclick="handleSair()" style="display:none;background:rgba(255,255,255,0.06);border:0.5px solid rgba(160,140,255,0.2);color:#b8b0d8;font-size:12px;font-weight:700;padding:7px 16px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;transition:all .15s;white-space:nowrap;" onmouseover="this.style.color='#f0ecff'" onmouseout="this.style.color='#b8b0d8'">
       ← Sair
     </button>
   </div>
@@ -669,12 +669,12 @@
         <!-- Círculo central branco -->
         <circle cx="110" cy="110" r="34" fill="var(--surface)" />
         <!-- Letras nos quadrantes -->
-        <text x="72" y="84" text-anchor="middle" font-family="Playfair Display,serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">D</text>
-        <text x="148" y="84" text-anchor="middle" font-family="Playfair Display,serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">I</text>
-        <text x="148" y="148" text-anchor="middle" font-family="Playfair Display,serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">S</text>
-        <text x="72" y="148" text-anchor="middle" font-family="Playfair Display,serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">C</text>
+        <text x="72" y="84" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">D</text>
+        <text x="148" y="84" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">I</text>
+        <text x="148" y="148" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">S</text>
+        <text x="72" y="148" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800" fill="#fff" opacity="0.95">C</text>
         <!-- Logo central -->
-        <text x="110" y="116" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="var(--purple)" opacity="0.9">DISC</text>
+        <text x="110" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="var(--purple)" opacity="0.9">DISC</text>
       </svg>
     </div>
 
@@ -780,7 +780,7 @@
       <div style="position:relative;width:180px;height:180px;">
         <canvas id="result-donut" width="180" height="180"></canvas>
         <div id="result-donut-label" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
-          <div id="result-donut-letra" style="font-family:'Playfair Display',serif;font-size:38px;font-weight:800;line-height:1;"></div>
+          <div id="result-donut-letra" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:38px;font-weight:800;line-height:1;"></div>
           <div id="result-donut-pct" style="font-size:13px;font-weight:700;color:var(--muted);margin-top:2px;"></div>
         </div>
       </div>
@@ -893,7 +893,7 @@
   <!-- ══ ABA: GRÁFICOS ══ -->
   <div id="tab-content-graficos" style="display:none;">
     <div class="quiz-header" style="text-align:center; margin-bottom: 2rem;">
-      <h1 style="font-family:'Playfair Display',sans-serif; font-size:26px; font-weight:800;">Meus gráficos</h1>
+      <h1 style="font-family:'Plus Jakarta Sans', sans-serif; font-size:26px; font-weight:800;">Meus gráficos</h1>
       <p style="color:var(--muted); font-size:14px;">Conclua um mapeamento para visualizar seus gráficos aqui.</p>
     </div>
     <div id="graficos-placeholder" style="text-align:center; padding: 3rem 0; color: var(--muted); font-size:14px;">
@@ -909,7 +909,7 @@
     <!-- ── Hero ── -->
     <div style="text-align:center;padding:2rem 0 2.5rem;position:relative;">
       <div class="intro-eyebrow">Conheça o método</div>
-      <h1 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:800;margin-bottom:12px;line-height:1.2;">O que é o <span style="color:var(--purple);font-style:italic;">RealTalent</span>?</h1>
+      <h1 style="font-family:'Plus Jakarta Sans', sans-serif;font-size:30px;font-weight:800;margin-bottom:12px;line-height:1.2;">O que é o <span style="color:var(--purple);font-style:italic;">RealTalent</span>?</h1>
       <p style="color:var(--muted);font-size:15px;line-height:1.8;max-width:520px;margin:0 auto 2rem;">Uma plataforma de mapeamento comportamental baseada na metodologia DISC — criada para revelar talentos reais, potencial oculto e caminhos de desenvolvimento.</p>
       <!-- 3 pilares -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:520px;margin:0 auto 2rem;">
@@ -946,12 +946,12 @@
             <path d="M40,40 L40,76 A36,36 0 0,0 76,40 Z" fill="#3ec98a" opacity="0.9"/>
             <path d="M40,40 L4,40 A36,36 0 0,0 40,76 Z" fill="#5aabf5" opacity="0.9"/>
             <circle cx="40" cy="40" r="14" fill="var(--surface)"/>
-            <text x="40" y="44.5" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="800" fill="var(--purple)">DISC</text>
+            <text x="40" y="44.5" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="800" fill="var(--purple)">DISC</text>
           </svg>
         </div>
         <div>
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:4px;">A Metodologia</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">O que é o DISC?</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;">O que é o DISC?</div>
         </div>
       </div>
       <p style="font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:1rem;">O DISC é um modelo comportamental criado pelo psicólogo <strong style="color:var(--text)">William Moulton Marston</strong> nos anos 1920 e amplamente utilizado no mundo corporativo. Ele identifica quatro tendências principais de comportamento humano — nenhuma melhor que outra, cada uma com forças únicas e complementares.</p>
@@ -959,28 +959,28 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div style="background:rgba(224,92,106,0.07);border:1px solid rgba(224,92,106,0.25);border-radius:12px;padding:1rem;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#e05c6a;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#fff;">D</div>
+            <div style="width:32px;height:32px;border-radius:8px;background:#e05c6a;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:800;color:#fff;">D</div>
             <div style="font-size:13px;font-weight:700;color:#e05c6a;">Dominância</div>
           </div>
           <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0;">Direto, decisivo, orientado a resultados. Prospera em ambientes de desafio e toma iniciativa naturalmente.</p>
         </div>
         <div style="background:rgba(240,160,71,0.07);border:1px solid rgba(240,160,71,0.25);border-radius:12px;padding:1rem;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#f0a047;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#fff;">I</div>
+            <div style="width:32px;height:32px;border-radius:8px;background:#f0a047;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:800;color:#fff;">I</div>
             <div style="font-size:13px;font-weight:700;color:#f0a047;">Influência</div>
           </div>
           <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0;">Comunicativo, entusiasta, persuasivo. Conecta pessoas e gera energia positiva onde quer que esteja.</p>
         </div>
         <div style="background:rgba(62,201,138,0.07);border:1px solid rgba(62,201,138,0.25);border-radius:12px;padding:1rem;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#3ec98a;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#fff;">S</div>
+            <div style="width:32px;height:32px;border-radius:8px;background:#3ec98a;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:800;color:#fff;">S</div>
             <div style="font-size:13px;font-weight:700;color:#3ec98a;">Estabilidade</div>
           </div>
           <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0;">Paciente, leal, cooperativo. Sustenta a harmonia do grupo e conclui o que começa com consistência.</p>
         </div>
         <div style="background:rgba(90,171,245,0.07);border:1px solid rgba(90,171,245,0.25);border-radius:12px;padding:1rem;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#5aabf5;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:#fff;">C</div>
+            <div style="width:32px;height:32px;border-radius:8px;background:#5aabf5;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:800;color:#fff;">C</div>
             <div style="font-size:13px;font-weight:700;color:#5aabf5;">Conformidade</div>
           </div>
           <p style="font-size:12px;color:var(--muted);line-height:1.6;margin:0;">Analítico, preciso, organizado. Garante qualidade e rigor técnico em tudo que produz.</p>
@@ -991,7 +991,7 @@
     <!-- ── Como funciona ── -->
     <div class="section-card" style="margin-bottom:1.25rem;">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:4px;">O Processo</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;">Como funciona o mapeamento?</div>
+      <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;">Como funciona o mapeamento?</div>
       <div style="display:flex;flex-direction:column;gap:0;">
         <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:1.25rem;position:relative;">
           <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--purple2),var(--purple3));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;">1</div>
@@ -1019,7 +1019,7 @@
 
     <!-- ── CTA final ── -->
     <div style="background:linear-gradient(135deg,rgba(123,95,255,0.12),rgba(168,85,247,0.08));border:1px solid rgba(123,95,255,0.2);border-radius:16px;padding:2rem;text-align:center;margin-bottom:1rem;">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Pronto para descobrir seus talentos?</div>
+      <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;">Pronto para descobrir seus talentos?</div>
       <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;">O mapeamento leva cerca de 5 minutos e o resultado é gerado na hora.</p>
       <button class="btn-start" style="display:inline-block;width:auto;padding:14px 32px;" onclick="goToIdentify()">Fazer meu mapeamento →</button>
     </div>
@@ -1035,7 +1035,7 @@
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;">
         <div style="width:32px;height:32px;border-radius:9px;background:rgba(224,92,106,0.15);color:#e05c6a;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🛡</div>
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);">Acesso restrito</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:17px;font-weight:700;color:var(--text);">Acesso restrito</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;font-weight:700;">Admin · Líder</div>
         </div>
       </div>
@@ -1051,7 +1051,7 @@
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:2rem;flex-wrap:wrap;">
       <div>
         <div class="intro-eyebrow" style="text-align:left;">Histórico pessoal</div>
-        <h1 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:800;margin:6px 0 8px;line-height:1.2;">Evolução dos mapeamentos</h1>
+        <h1 style="font-family:'Plus Jakarta Sans', sans-serif;font-size:26px;font-weight:800;margin:6px 0 8px;line-height:1.2;">Evolução dos mapeamentos</h1>
         <p style="color:var(--muted);font-size:13px;line-height:1.6;max-width:420px;">Acompanhe como seu perfil DISC mudou ao longo do tempo e identifique padrões no seu comportamento.</p>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
@@ -1066,7 +1066,7 @@
         <div style="width:64px;height:64px;border-radius:16px;background:rgba(123,95,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><path d="M3 3v18h18"/><polyline points="7 16 11 12 15 14 21 8"/></svg>
         </div>
-        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Nenhum mapeamento ainda</div>
+        <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;">Nenhum mapeamento ainda</div>
         <p style="font-size:13px;color:var(--muted);line-height:1.6;max-width:320px;margin:0 auto 1.5rem;">Complete seu primeiro mapeamento DISC para começar a acompanhar sua evolução comportamental.</p>
         <button class="btn-start" style="display:inline-block;width:auto;padding:13px 28px;" onclick="goToIdentify()">Fazer meu primeiro mapeamento →</button>
       </div>
@@ -1145,8 +1145,8 @@
             </div>
             <!-- Toggle de visualização -->
             <div style="display:flex;gap:4px;">
-              <button onclick="dashToggleChartType('line')" id="dash-chart-line" style="background:rgba(160,140,255,0.2);border:0.5px solid var(--purple);color:var(--purple);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">Linha</button>
-              <button onclick="dashToggleChartType('bar')" id="dash-chart-bar" style="background:transparent;border:0.5px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">Barras</button>
+              <button onclick="dashToggleChartType('line')" id="dash-chart-line" style="background:rgba(160,140,255,0.2);border:0.5px solid var(--purple);color:var(--purple);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Inter', sans-serif;">Linha</button>
+              <button onclick="dashToggleChartType('bar')" id="dash-chart-bar" style="background:transparent;border:0.5px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Inter', sans-serif;">Barras</button>
             </div>
           </div>
           <div style="position:relative;width:100%;height:280px;"><canvas id="dashboard-evolution-chart"></canvas></div>
@@ -1177,8 +1177,8 @@
         <div class="section-card" style="margin-bottom:1.25rem;">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;">🔍 Comparar dois mapeamentos específicos</div>
           <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
-            <select id="dash-comp-a" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"></select>
-            <select id="dash-comp-b" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"></select>
+            <select id="dash-comp-a" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"></select>
+            <select id="dash-comp-b" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"></select>
           </div>
           <div id="dash-custom-compare-result"></div>
         </div>
@@ -1212,14 +1212,14 @@
         <div class="section-card" style="margin-bottom:1.25rem;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px;">
             <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);">🎯 Metas de desenvolvimento</div>
-            <button onclick="dashAddMeta()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Adicionar</button>
+            <button onclick="dashAddMeta()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">+ Adicionar</button>
           </div>
           <div id="dash-metas-list"></div>
           <!-- Form de meta (oculto por padrão) -->
           <div id="dash-meta-form" style="display:none;margin-top:1rem;background:rgba(160,140,255,0.06);border-radius:12px;padding:1rem;">
             <div style="margin-bottom:10px;">
               <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px;">Dimensão alvo</label>
-              <select id="dash-meta-dim" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+              <select id="dash-meta-dim" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;">
                 <option value="D">D — Dominância</option>
                 <option value="I">I — Influência</option>
                 <option value="S">S — Estabilidade</option>
@@ -1228,7 +1228,7 @@
             </div>
             <div style="margin-bottom:10px;">
               <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px;">Descrição da meta</label>
-              <input type="text" id="dash-meta-desc" placeholder="Ex: Aumentar influência nas reuniões" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
+              <input type="text" id="dash-meta-desc" placeholder="Ex: Aumentar influência nas reuniões" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;" />
             </div>
             <div style="display:flex;gap:8px;">
               <button onclick="dashSalvarMeta()" class="btn btn-primary" style="flex:1;font-size:12px;padding:9px 14px;">Salvar meta</button>
@@ -1247,7 +1247,7 @@
     <div id="login-wall-lider" style="display:none;max-width:400px;margin:2rem auto;">
       <div style="text-align:center;margin-bottom:1.5rem;">
         <div style="width:48px;height:48px;border-radius:14px;background:rgba(240,193,74,0.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 1rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Painel do Líder</h2>
+        <h2 style="font-family:'Plus Jakarta Sans', sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Painel do Líder</h2>
         <p style="font-size:13px;color:var(--muted);">Entre com sua conta para acessar.</p>
       </div>
       <div class="field"><label>E-mail</label><input type="email" id="wall-lider-email" placeholder="seu@email.com" /></div>
@@ -1261,31 +1261,31 @@
       <!-- KPIs -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;">
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-equipes">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-equipes">—</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Equipes</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-total">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-total">—</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Colaboradores</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--S);" id="lid-kpi-mapeados">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--S);" id="lid-kpi-mapeados">—</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Mapeados</div>
         </div>
         <div class="section-card" id="lid-kpi-pendentes-card" style="text-align:center;padding:1.25rem;transition:border 0.3s,box-shadow 0.3s;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);" id="lid-kpi-pendentes">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--gold);" id="lid-kpi-pendentes">—</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:700;">Pendentes</div>
         </div>
       </div>
 
       <!-- Sub-abas -->
       <div style="display:flex;gap:4px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
-        <button onclick="lidTab('equipes')" id="lid-tab-equipes" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🏷️ Equipes</button>
-        <button onclick="lidTab('colaboradores')" id="lid-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">👥 Colaboradores</button>
-        <button onclick="lidTab('comunicacao')" id="lid-tab-comunicacao" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">💬 Comunicação</button>
-        <button onclick="lidTab('conflitos')" id="lid-tab-conflitos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">⚡ Conflitos</button>
-        <button onclick="lidTab('talentos')" id="lid-tab-talentos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🌟 Talentos</button>
-        <button onclick="lidTab('comparar')" id="lid-tab-comparar" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">⚖️ Comparar</button>
+        <button onclick="lidTab('equipes')" id="lid-tab-equipes" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">🏷️ Equipes</button>
+        <button onclick="lidTab('colaboradores')" id="lid-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">👥 Colaboradores</button>
+        <button onclick="lidTab('comunicacao')" id="lid-tab-comunicacao" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">💬 Comunicação</button>
+        <button onclick="lidTab('conflitos')" id="lid-tab-conflitos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">⚡ Conflitos</button>
+        <button onclick="lidTab('talentos')" id="lid-tab-talentos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">🌟 Talentos</button>
+        <button onclick="lidTab('comparar')" id="lid-tab-comparar" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;white-space:nowrap;">⚖️ Comparar</button>
       </div>
 
       <!-- Banner pendentes -->
@@ -1295,7 +1295,7 @@
           <div style="font-size:13px;font-weight:700;color:var(--gold);" id="lid-banner-texto">Você tem colaboradores sem mapeamento.</div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px;">Envie o link de acesso para que eles realizem o questionário DISC.</div>
         </div>
-        <button onclick="lidAbrirConvite()" style="background:var(--gold);border:none;color:#1a1030;font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:'Lato',sans-serif;">✉️ Convidar</button>
+        <button onclick="lidAbrirConvite()" style="background:var(--gold);border:none;color:#1a1030;font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:'Inter', sans-serif;">✉️ Convidar</button>
       </div>
 
       <!-- Equipes -->
@@ -1303,7 +1303,7 @@
         <div class="section-card" style="margin-bottom:16px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
             <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);">Visão Geral por Equipe</div>
-            <button onclick="lidAbrirConvite()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Convidar Colaborador</button>
+            <button onclick="lidAbrirConvite()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">+ Convidar Colaborador</button>
           </div>
           <div id="lid-lista-equipes"><p style="color:var(--muted);font-size:13px;">Carregando...</p></div>
         </div>
@@ -1319,9 +1319,9 @@
         <div class="section-card">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">Todos os Colaboradores</div>
           <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
-            <input type="text" id="lid-search" placeholder="Buscar nome ou e-mail..." oninput="lidRenderColabs()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"/>
-            <select id="lid-filter-equipe" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Todas as equipes</option></select>
-            <select id="lid-filter-perfil" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+            <input type="text" id="lid-search" placeholder="Buscar nome ou e-mail..." oninput="lidRenderColabs()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"/>
+            <select id="lid-filter-equipe" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"><option value="">Todas as equipes</option></select>
+            <select id="lid-filter-perfil" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;">
               <option value="">Todos os perfis</option>
               <option value="D">D — Dominância</option>
               <option value="I">I — Influência</option>
@@ -1329,7 +1329,7 @@
               <option value="C">C — Conformidade</option>
               <option value="pendente">Pendentes</option>
             </select>
-            <button onclick="lidExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ CSV</button>
+            <button onclick="lidExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 14px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">⤓ CSV</button>
           </div>
           <div id="lid-table-colabs" style="overflow-x:auto;"></div>
         </div>
@@ -1368,8 +1368,8 @@
         <div class="section-card">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1.25rem;">⚖️ Comparar Dois Colaboradores</div>
           <div style="display:flex;gap:12px;margin-bottom:1.25rem;flex-wrap:wrap;">
-            <select id="lid-comp-a" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Selecione o 1º colaborador</option></select>
-            <select id="lid-comp-b" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Selecione o 2º colaborador</option></select>
+            <select id="lid-comp-a" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"><option value="">Selecione o 1º colaborador</option></select>
+            <select id="lid-comp-b" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;"><option value="">Selecione o 2º colaborador</option></select>
           </div>
           <div id="lid-comparar-resultado"></div>
         </div>
@@ -1385,7 +1385,7 @@
     <div id="login-wall-admin" style="display:none;max-width:400px;margin:2rem auto;">
       <div style="text-align:center;margin-bottom:1.5rem;">
         <div style="width:48px;height:48px;border-radius:14px;background:rgba(224,92,106,0.15);color:#e05c6a;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 1rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Administração</h2>
+        <h2 style="font-family:'Plus Jakarta Sans', sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Administração</h2>
         <p style="font-size:13px;color:var(--muted);">Entre com sua conta de Admin para acessar.</p>
       </div>
       <div class="field"><label>E-mail</label><input type="email" id="wall-admin-email" placeholder="seu@email.com" /></div>
@@ -1399,37 +1399,37 @@
       <!-- KPIs -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.5rem;">
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-total">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-total">—</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Mapeamentos</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-colaboradores">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-colaboradores">—</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Colaboradores</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-times">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-times">—</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Times</div>
         </div>
         <div class="section-card" style="text-align:center;padding:1.25rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-dominante">—</div>
+          <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:32px;font-weight:700;color:var(--purple);" id="adm-kpi-dominante">—</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Perfil Dominante</div>
         </div>
       </div>
 
       <!-- Sub-abas Admin -->
       <div style="display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;">
-        <button onclick="admTab('resultados')" id="adm-tab-resultados" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Resultados</button>
-        <button onclick="admTab('colaboradores')" id="adm-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Colaboradores</button>
-        <button onclick="admTab('times')" id="adm-tab-times" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;">Times</button>
+        <button onclick="admTab('resultados')" id="adm-tab-resultados" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;">Resultados</button>
+        <button onclick="admTab('colaboradores')" id="adm-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;">Colaboradores</button>
+        <button onclick="admTab('times')" id="adm-tab-times" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Inter', sans-serif;">Times</button>
       </div>
 
       <!-- Resultados -->
       <div id="adm-content-resultados">
         <div class="section-card">
           <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
-            <input type="text" id="adm-search" placeholder="Buscar nome, e-mail..." oninput="admRenderResultados()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
-            <button onclick="admLoadAll()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">↻ Atualizar</button>
-            <button onclick="admExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ CSV</button>
+            <input type="text" id="adm-search" placeholder="Buscar nome, e-mail..." oninput="admRenderResultados()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;" />
+            <button onclick="admLoadAll()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">↻ Atualizar</button>
+            <button onclick="admExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">⤓ CSV</button>
           </div>
           <div id="adm-table-resultados" style="overflow-x:auto;"></div>
         </div>
@@ -1439,8 +1439,8 @@
       <div id="adm-content-colaboradores" style="display:none;">
         <div class="section-card">
           <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
-            <input type="text" id="adm-search-col" placeholder="Buscar colaborador..." oninput="admRenderColaboradores()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
-            <select id="adm-filter-papel" onchange="admRenderColaboradores()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+            <input type="text" id="adm-search-col" placeholder="Buscar colaborador..." oninput="admRenderColaboradores()" style="flex:1;min-width:180px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;" />
+            <select id="adm-filter-papel" onchange="admRenderColaboradores()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;">
               <option value="">Todos os papéis</option>
               <option value="colaborador">Colaborador</option>
               <option value="lider">Líder</option>
@@ -1455,8 +1455,8 @@
       <div id="adm-content-times" style="display:none;">
         <div class="section-card">
           <div style="display:flex;gap:10px;margin-bottom:1rem;">
-            <input type="text" id="adm-novo-time" placeholder="Nome do novo time..." style="flex:1;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
-            <button onclick="admCriarTime()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:12px;font-weight:700;padding:9px 18px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Criar Time</button>
+            <input type="text" id="adm-novo-time" placeholder="Nome do novo time..." style="flex:1;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter', sans-serif;outline:none;" />
+            <button onclick="admCriarTime()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:12px;font-weight:700;padding:9px 18px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">+ Criar Time</button>
           </div>
           <div id="adm-table-times" style="overflow-x:auto;"></div>
         </div>
@@ -1471,13 +1471,13 @@
 <!-- MODAL ADMIN: Editar Colaborador -->
 <div id="adm-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;padding:1rem;">
   <div style="background:#1a1630;border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:440px;">
-    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;">Editar Colaborador</div>
+    <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;margin-bottom:6px;">Editar Colaborador</div>
     <div style="font-size:14px;font-weight:700;margin-bottom:2px;" id="adm-modal-nome">—</div>
     <div style="font-size:12px;color:#b8b0d8;margin-bottom:1.5rem;" id="adm-modal-email">—</div>
     <input type="hidden" id="adm-modal-id"/>
     <div style="margin-bottom:14px;">
       <label style="font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#b8b0d8;font-weight:700;display:block;margin-bottom:7px;">Papel</label>
-      <select id="adm-modal-papel" style="width:100%;background:#231e40;border:0.5px solid rgba(160,140,255,0.15);border-radius:10px;padding:12px 14px;color:#f0ecff;font-size:14px;font-family:'Lato',sans-serif;outline:none;">
+      <select id="adm-modal-papel" style="width:100%;background:#231e40;border:0.5px solid rgba(160,140,255,0.15);border-radius:10px;padding:12px 14px;color:#f0ecff;font-size:14px;font-family:'Inter', sans-serif;outline:none;">
         <option value="colaborador">Colaborador — faz o mapeamento DISC</option>
         <option value="lider">Líder — vê o painel da equipe</option>
         <option value="admin">Admin — acesso total</option>
@@ -1485,14 +1485,14 @@
     </div>
     <div style="margin-bottom:1.5rem;">
       <label style="font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#b8b0d8;font-weight:700;display:block;margin-bottom:7px;">Time</label>
-      <select id="adm-modal-time" style="width:100%;background:#231e40;border:0.5px solid rgba(160,140,255,0.15);border-radius:10px;padding:12px 14px;color:#f0ecff;font-size:14px;font-family:'Lato',sans-serif;outline:none;">
+      <select id="adm-modal-time" style="width:100%;background:#231e40;border:0.5px solid rgba(160,140,255,0.15);border-radius:10px;padding:12px 14px;color:#f0ecff;font-size:14px;font-family:'Inter', sans-serif;outline:none;">
         <option value="">Sem time</option>
       </select>
       <div style="font-size:11px;color:#b8b0d8;margin-top:5px;opacity:0.7;">Para líderes, o time determina quais colaboradores eles visualizam.</div>
     </div>
     <div style="display:flex;gap:10px;justify-content:flex-end;">
-      <button onclick="admFecharModal()" style="background:#231e40;border:0.5px solid rgba(160,140,255,0.15);color:#b8b0d8;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Cancelar</button>
-      <button id="adm-modal-btn" onclick="admSalvarEditar()" style="background:linear-gradient(135deg,#7b5fff,#4f35cc);border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 24px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Salvar</button>
+      <button onclick="admFecharModal()" style="background:#231e40;border:0.5px solid rgba(160,140,255,0.15);color:#b8b0d8;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">Cancelar</button>
+      <button id="adm-modal-btn" onclick="admSalvarEditar()" style="background:linear-gradient(135deg,#7b5fff,#4f35cc);border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 24px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">Salvar</button>
     </div>
   </div>
 </div>
@@ -1847,7 +1847,7 @@ function lidRenderColabs() {
       <td style="padding:12px 8px;">${bars}</td>
       <td style="padding:12px 8px;font-size:12px;color:var(--muted);">${dt}</td>
       <td style="padding:12px 8px;">
-        <button onclick="lidAbrirRelatorio('${c.email}')" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">📄 Relatório</button>
+        <button onclick="lidAbrirRelatorio('${c.email}')" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">📄 Relatório</button>
       </td>
     </tr>`;
   }).join('');
@@ -1862,7 +1862,7 @@ function lidAbrirRelatorio(email) {
 
   let html=`<div style="background:var(--surface2);border:0.5px solid var(--border2);border-radius:16px;padding:1.5rem;margin-bottom:1rem;">`;
   html+=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;">`;
-  html+=`<div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,${cor},${cor}88);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;">${(c?.nome||'?').charAt(0).toUpperCase()}</div>`;
+  html+=`<div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,${cor},${cor}88);display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;color:#fff;">${(c?.nome||'?').charAt(0).toUpperCase()}</div>`;
   html+=`<div><div style="font-size:17px;font-weight:700;">${c?.nome||'—'}</div><div style="font-size:12px;color:var(--muted);">${email}</div><div style="font-size:12px;color:var(--muted);">Equipe: ${lidNomeTime(c?.time_id)}</div></div></div>`;
 
   if(p){
@@ -1888,8 +1888,8 @@ function lidAbrirRelatorio(email) {
   modal.innerHTML=`<div style="background:var(--surface);border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;">
     ${html}
     <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:1rem;flex-wrap:wrap;">
-      <button onclick="lidExportarRelatorio('${email}')" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ Exportar PDF</button>
-      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
+      <button onclick="lidExportarRelatorio('${email}')" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">⤓ Exportar PDF</button>
+      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">Fechar</button>
     </div>
   </div>`;
   modal.addEventListener('click', function(e){ if(e.target===this) this.remove(); }); modal.style.animation='fadeIn 0.2s ease';
@@ -2092,7 +2092,7 @@ function admRenderResultados() {
       <td style="padding:10px 8px;font-size:12px;color:var(--muted);">${time}</td>
       <td style="padding:10px 8px;">${badge}</td>
       <td style="padding:10px 8px;font-size:11px;color:var(--muted);">D:${admPct(r.scores,'D')}% I:${admPct(r.scores,'I')}% S:${admPct(r.scores,'S')}% C:${admPct(r.scores,'C')}%</td>
-      <td style="padding:10px 8px;"><button onclick="admDeletarResultado('${r.id}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">✕</button></td>
+      <td style="padding:10px 8px;"><button onclick="admDeletarResultado('${r.id}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Inter', sans-serif;">✕</button></td>
     </tr>`;
   }).join('');
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;">
@@ -2130,7 +2130,7 @@ function admRenderColaboradores() {
       <td style="padding:12px 8px;"><span style="font-size:12px;color:${temResult?'var(--S)':'var(--muted)'};">${temResult?'✓ Mapeado':'Pendente'}</span></td>
       <td style="padding:12px 8px;">
         <button onclick="admAbrirEditar('${c.id}','${c.nome}','${c.email}','${c.papel}','${c.time_id||''}')"
-          style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">
+          style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Inter', sans-serif;">
           ✏️ Editar
         </button>
       </td>
@@ -2183,7 +2183,7 @@ function admRenderTimes() {
       <td style="padding:12px 8px;"><strong style="font-size:13px;">${t.nome}</strong></td>
       <td style="padding:12px 8px;font-size:13px;color:var(--muted);">${membros} membro${membros!==1?'s':''}</td>
       <td style="padding:12px 8px;font-size:13px;color:var(--muted);">${mapeados} mapeado${mapeados!==1?'s':''}</td>
-      <td style="padding:12px 8px;"><button onclick="admDeletarTime('${t.id}','${t.nome}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">✕ Remover</button></td>
+      <td style="padding:12px 8px;"><button onclick="admDeletarTime('${t.id}','${t.nome}')" style="background:transparent;border:0.5px solid rgba(224,92,106,0.3);color:#e05c6a;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Inter', sans-serif;">✕ Remover</button></td>
     </tr>`;
   }).join('');
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;">
@@ -3299,11 +3299,11 @@ function renderInlineCharts() {
   container.innerHTML = `
     <div class="result-hero" style="text-align:center; margin-bottom:2rem;">
       <div class="intro-eyebrow">Resultado do mapeamento</div>
-      <h1 style="font-family:'Playfair Display',sans-serif;font-size:22px;font-weight:800;">${names[primary]} (${primary}) + ${names[secondary]} (${secondary})</h1>
+      <h1 style="font-family:'Plus Jakarta Sans', sans-serif;font-size:22px;font-weight:800;">${names[primary]} (${primary}) + ${names[secondary]} (${secondary})</h1>
     </div>
 
     <div class="section-card" style="margin-bottom:1.25rem;">
-      <div class="chart-card-title" style="font-family:'Playfair Display',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px;">Mapa radar do perfil</div>
+      <div class="chart-card-title" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:700;margin-bottom:4px;">Mapa radar do perfil</div>
       <div class="chart-card-sub" style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;">Equilíbrio entre as 4 dimensões comportamentais</div>
       <div style="position:relative;width:100%;height:300px;">
         <canvas id="inline-radar"></canvas>
@@ -3312,14 +3312,14 @@ function renderInlineCharts() {
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
       <div class="section-card">
-        <div class="chart-card-title" style="font-family:'Playfair Display',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;">Barras</div>
+        <div class="chart-card-title" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;">Barras</div>
         <div style="font-size:12px;color:var(--muted);margin-bottom:1rem;">Pontuação por dimensão</div>
         <div style="position:relative;width:100%;height:220px;">
           <canvas id="inline-bar"></canvas>
         </div>
       </div>
       <div class="section-card">
-        <div class="chart-card-title" style="font-family:'Playfair Display',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;">Proporção</div>
+        <div class="chart-card-title" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;">Proporção</div>
         <div style="font-size:12px;color:var(--muted);margin-bottom:1rem;">Peso relativo de cada perfil</div>
         <div id="donut-legend" style="display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--muted);margin-bottom:8px;"></div>
         <div style="position:relative;width:100%;height:180px;">
@@ -3329,7 +3329,7 @@ function renderInlineCharts() {
     </div>
 
     <div class="section-card" style="margin-bottom:1.25rem;">
-      <div class="chart-card-title" style="font-family:'Playfair Display',sans-serif;font-size:16px;font-weight:700;margin-bottom:1rem;">Distribuição detalhada</div>
+      <div class="chart-card-title" style="font-family:'Plus Jakarta Sans', sans-serif;font-size:16px;font-weight:700;margin-bottom:1rem;">Distribuição detalhada</div>
       ${ranked.map(d => {
         const p = pct(s[d]);
         return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
@@ -3745,7 +3745,7 @@ function renderDashboard() {
       { label: 'Consistência', value: consistency + '%', color: consistency >= 70 ? '#3ec98a' : consistency >= 40 ? '#f0c14a' : '#e05c6a', sub: 'mesmo perfil primário' },
     ].map(k => `
       <div class="section-card" style="text-align:center;padding:1rem 0.75rem;">
-        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:${k.color};line-height:1.1;margin-bottom:3px;">${k.value}</div>
+        <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:26px;font-weight:700;color:${k.color};line-height:1.1;margin-bottom:3px;">${k.value}</div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:2px;">${k.label}</div>
         <div style="font-size:10px;color:var(--muted);">${k.sub}</div>
       </div>`).join('');
@@ -4346,13 +4346,13 @@ function lidAbrirConvite() {
   modal.innerHTML = `<div style="background:var(--surface);border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:480px;">
     <div style="text-align:center;margin-bottom:1.5rem;">
       <div style="font-size:36px;margin-bottom:10px;">✉️</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">Convidar Colaborador</div>
+      <div style="font-family:'Plus Jakarta Sans', sans-serif;font-size:20px;font-weight:700;">Convidar Colaborador</div>
       <p style="font-size:13px;color:var(--muted);margin-top:6px;">Compartilhe o link abaixo para que o colaborador acesse e realize o mapeamento DISC.</p>
     </div>
     <div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text);word-break:break-all;margin-bottom:1rem;">${url}</div>
     <div style="display:flex;gap:10px;">
-      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✓ Copiado!';setTimeout(()=>this.textContent='📋 Copiar Link',2000)})" style="flex:1;background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">📋 Copiar Link</button>
-      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:11px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
+      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✓ Copiado!';setTimeout(()=>this.textContent='📋 Copiar Link',2000)})" style="flex:1;background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">📋 Copiar Link</button>
+      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:11px 20px;border-radius:10px;cursor:pointer;font-family:'Inter', sans-serif;">Fechar</button>
     </div>
   </div>`;
   modal.addEventListener('click', e => { if(e.target===modal) modal.remove(); });

@@ -787,6 +787,34 @@
 
   <!-- ══ ABA: DASHBOARD / EVOLUÇÃO ══ -->
   <div id="tab-content-dashboard" style="display:none;">
+
+    <!-- ══ CARD DE LOGIN ADMIN/LÍDER ══ -->
+    <div id="login-card" style="background:var(--surface);border:0.5px solid var(--border2);border-radius:16px;padding:1.75rem;margin-bottom:2rem;display:none;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;">
+        <div style="width:32px;height:32px;border-radius:9px;background:rgba(224,92,106,0.15);color:#e05c6a;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🛡</div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);">Acesso restrito</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;font-weight:700;">Admin · Líder</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com" />
+      </div>
+      <div class="field">
+        <label>Senha</label>
+        <input type="password" id="login-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()" />
+      </div>
+      <div id="login-erro" style="display:none;color:#e05c6a;font-size:12px;margin-bottom:12px;background:rgba(224,92,106,0.08);border-radius:8px;padding:8px 12px;"></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="fazerLogin()">
+        <span id="login-btn-text">Entrar →</span>
+      </button>
+      <div id="login-loading" style="display:none;text-align:center;margin-top:12px;">
+        <div class="dots" style="justify-content:center;"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:1rem;text-align:center;opacity:0.7;">Apenas usuários com papel de Admin ou Líder têm acesso.</p>
+    </div>
+
     <div style="text-align:center; margin-bottom:2rem;">
       <div class="intro-eyebrow">Histórico pessoal</div>
       <h1 style="font-family:'Playfair Display',sans-serif;font-size:26px;font-weight:800;margin-bottom:10px;">Evolução dos mapeamentos</h1>
@@ -2733,6 +2761,8 @@ function switchTab(tab) {
   // Aba de dashboard/evolução
   if (tab === 'dashboard') {
     renderDashboard();
+    // Mostra card de login se não há sessão ativa de admin/lider
+    verificarSessaoLoginCard();
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3159,6 +3189,111 @@ function renderDashboard() {
     });
   } else if (radarCtx && hist.length < 2) {
     radarCtx.parentElement.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem 0;">Complete ao menos 2 mapeamentos para ver a comparação.</p>';
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   LOGIN ADMIN/LÍDER — card embutido na aba Evolução
+   ═══════════════════════════════════════════════════════════ */
+function verificarSessaoLoginCard() {
+  const card = document.getElementById('login-card');
+  if (!card) return;
+  // Se já tem aba admin ou lider visível, não mostra o card
+  const tabAdmin = document.getElementById('tab-admin');
+  const tabLider = document.getElementById('tab-lider');
+  const adminVisivel = tabAdmin && tabAdmin.style.display !== 'none';
+  const liderVisivel = tabLider && tabLider.style.display !== 'none';
+  if (adminVisivel || liderVisivel) {
+    card.style.display = 'none';
+    return;
+  }
+  // Verifica se há sessão ativa
+  function tentar() {
+    const sb = window.supabase?.createClient
+      ? window.supabase.createClient('https://bxdmwdifgpmfybebhxnf.supabase.co', 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf')
+      : null;
+    if (!sb) { setTimeout(tentar, 200); return; }
+    sb.auth.getSession().then(({ data }) => {
+      if (data?.session) {
+        sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle().then(({ data: p }) => {
+          if (p?.papel === 'admin' || p?.papel === 'lider') {
+            card.style.display = 'none';
+          } else {
+            card.style.display = 'block';
+          }
+        });
+      } else {
+        card.style.display = 'block';
+      }
+    }).catch(() => { card.style.display = 'block'; });
+  }
+  tentar();
+}
+
+async function fazerLogin() {
+  const email = document.getElementById('login-email')?.value?.trim();
+  const senha = document.getElementById('login-senha')?.value;
+  const erro = document.getElementById('login-erro');
+  const btnText = document.getElementById('login-btn-text');
+  const loading = document.getElementById('login-loading');
+
+  if (!email || !senha) {
+    erro.textContent = 'Preencha e-mail e senha.';
+    erro.style.display = 'block';
+    return;
+  }
+
+  erro.style.display = 'none';
+  if (btnText) btnText.textContent = 'Entrando...';
+  if (loading) loading.style.display = 'block';
+
+  try {
+    const sb = window.supabase.createClient(
+      'https://bxdmwdifgpmfybebhxnf.supabase.co',
+      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+    );
+    const { data, error: authErr } = await sb.auth.signInWithPassword({ email, password: senha });
+
+    if (authErr || !data?.session) {
+      erro.textContent = authErr?.message === 'Invalid login credentials'
+        ? 'E-mail ou senha incorretos.'
+        : (authErr?.message || 'Erro ao autenticar. Tente novamente.');
+      erro.style.display = 'block';
+      if (btnText) btnText.textContent = 'Entrar →';
+      if (loading) loading.style.display = 'none';
+      return;
+    }
+
+    // Busca papel do usuário
+    const { data: perfil } = await sb.from('perfis').select('papel, nome, email').eq('id', data.session.user.id).maybeSingle();
+
+    if (btnText) btnText.textContent = 'Entrar →';
+    if (loading) loading.style.display = 'none';
+
+    if (perfil?.papel === 'admin') {
+      document.getElementById('tab-admin').style.display = '';
+      document.getElementById('tab-lider').style.display = '';
+      const btnSair = document.getElementById('btn-sair');
+      if (btnSair) btnSair.style.display = '';
+      document.getElementById('login-card').style.display = 'none';
+      switchTab('admin');
+    } else if (perfil?.papel === 'lider') {
+      document.getElementById('tab-lider').style.display = '';
+      const btnSair = document.getElementById('btn-sair');
+      if (btnSair) btnSair.style.display = '';
+      document.getElementById('login-card').style.display = 'none';
+      switchTab('lider');
+    } else {
+      erro.textContent = 'Sua conta não tem permissão de Admin ou Líder.';
+      erro.style.display = 'block';
+      await sb.auth.signOut();
+    }
+  } catch (e) {
+    erro.textContent = 'Erro inesperado. Verifique sua conexão.';
+    erro.style.display = 'block';
+    if (btnText) btnText.textContent = 'Entrar →';
+    if (loading) loading.style.display = 'none';
   }
 }
 

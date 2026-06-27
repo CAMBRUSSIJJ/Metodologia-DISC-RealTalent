@@ -2194,7 +2194,12 @@ ${d.relatorio.comparacao}`;
 
 
 function goToIdentify() {
-  window.location.href = 'login.html';
+  document.getElementById('intro-section').style.display = 'none';
+  const id = document.getElementById('identify-section');
+  id.style.display = 'block';
+  id.classList.add('screen-fade');
+  setTimeout(() => id.classList.remove('screen-fade'), 400);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function isValidEmail(email) {
@@ -3951,15 +3956,7 @@ function copiarResultado() {
   const total = Object.values(scores).reduce((a,b)=>a+b,0);
   const titulo = document.getElementById('profile-title')?.textContent || '';
   const linhas = ['D','I','S','C'].map(k => `${k} (${NOMES[k]}): ${total>0?Math.round((scores[k]/total)*100):0}%`);
-  const texto = `🧠 Meu Perfil DISC — RealTalent
-
-${perfil} · ${NOMES[perfil]}
-${titulo}
-
-${linhas.join('
-')}
-
-Descubra o seu em: ${window.location.href}`;
+  const texto = '\ud83e\udde0 Meu Perfil DISC \u2014 RealTalent\n\n' + perfil + ' \u00b7 ' + NOMES[perfil] + '\n' + titulo + '\n\n' + linhas.join('\n') + '\n\nDescubra o seu em: ' + window.location.href;
   navigator.clipboard.writeText(texto).then(() => {
     const btn = document.getElementById('sc-copy-btn');
     if(btn) { btn.textContent = '✓ Copiado!'; setTimeout(()=>btn.textContent='📋 Copiar', 2000); }

@@ -935,13 +935,32 @@
         <button onclick="lidTab('comunicacao')" id="lid-tab-comunicacao" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">💬 Comunicação</button>
         <button onclick="lidTab('conflitos')" id="lid-tab-conflitos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">⚡ Conflitos</button>
         <button onclick="lidTab('talentos')" id="lid-tab-talentos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🌟 Talentos</button>
+        <button onclick="lidTab('comparar')" id="lid-tab-comparar" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">⚖️ Comparar</button>
+      </div>
+
+      <!-- Banner pendentes -->
+      <div id="lid-banner-pendentes" style="display:none;background:rgba(240,193,74,0.08);border:1px solid rgba(240,193,74,0.3);border-radius:12px;padding:14px 18px;margin-bottom:1rem;display:none;align-items:center;gap:12px;">
+        <span style="font-size:20px;">⏳</span>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);" id="lid-banner-texto">Você tem colaboradores sem mapeamento.</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Envie o link de acesso para que eles realizem o questionário DISC.</div>
+        </div>
+        <button onclick="lidAbrirConvite()" style="background:var(--gold);border:none;color:#1a1030;font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:'Lato',sans-serif;">✉️ Convidar</button>
       </div>
 
       <!-- Equipes -->
       <div id="lid-content-equipes">
         <div class="section-card" style="margin-bottom:16px;">
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">Visão Geral por Equipe</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);">Visão Geral por Equipe</div>
+            <button onclick="lidAbrirConvite()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Convidar Colaborador</button>
+          </div>
           <div id="lid-lista-equipes"><p style="color:var(--muted);font-size:13px;">Carregando...</p></div>
+        </div>
+        <!-- Ranking de cobertura -->
+        <div class="section-card" id="lid-card-ranking" style="margin-bottom:16px;display:none;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">📊 Ranking de Cobertura</div>
+          <div id="lid-ranking-equipes"></div>
         </div>
       </div>
 
@@ -991,6 +1010,18 @@
         <div class="section-card">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">🌟 Mapa de Talentos</div>
           <div id="lid-lista-talentos"></div>
+        </div>
+      </div>
+
+      <!-- Comparar -->
+      <div id="lid-content-comparar" style="display:none;">
+        <div class="section-card">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1.25rem;">⚖️ Comparar Dois Colaboradores</div>
+          <div style="display:flex;gap:12px;margin-bottom:1.25rem;flex-wrap:wrap;">
+            <select id="lid-comp-a" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Selecione o 1º colaborador</option></select>
+            <select id="lid-comp-b" onchange="lidRenderComparar()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Selecione o 2º colaborador</option></select>
+          </div>
+          <div id="lid-comparar-resultado"></div>
         </div>
       </div>
 
@@ -1313,6 +1344,12 @@ async function lidLoadAll() {
   lidRenderComunicacao();
   lidRenderConflitos();
   lidRenderTalentos();
+  lidPopularComparar();
+  // Animar entrada dos cards
+  setTimeout(lidAnimarEntrada, 80);
+  // Mostrar ranking se há equipes
+  const rankCard = document.getElementById('lid-card-ranking');
+  if(rankCard && lidTimes.length > 1) rankCard.style.display = 'block';
 }
 
 function lidGetResult(email){ return lidResultados.find(r=>r.email===email); }
@@ -1327,7 +1364,6 @@ function lidRenderKpis() {
   document.getElementById('lid-kpi-total').textContent = lidColabs.length;
   document.getElementById('lid-kpi-mapeados').textContent = mapeados;
   document.getElementById('lid-kpi-pendentes').textContent = pendentes;
-  // Destaca card de pendentes quando há ação necessária
   const cardPend = document.getElementById('lid-kpi-pendentes-card');
   if(cardPend) {
     if(pendentes > 0) {
@@ -1338,6 +1374,43 @@ function lidRenderKpis() {
       cardPend.style.boxShadow = '';
     }
   }
+  // Banner de pendentes
+  const banner = document.getElementById('lid-banner-pendentes');
+  if(banner) {
+    if(pendentes > 0) {
+      banner.style.display = 'flex';
+      const txt = document.getElementById('lid-banner-texto');
+      if(txt) txt.textContent = `Você tem ${pendentes} colaborador${pendentes>1?'es':''} sem mapeamento.`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+  // Ranking de cobertura nas equipes
+  lidRenderRankingEquipes();
+}
+
+function lidRenderRankingEquipes() {
+  // Ordena equipes por % cobertura (crescente = precisa atenção primeiro)
+  if(!lidTimes.length) return;
+  const ranked = lidTimes.map(t => {
+    const membros = lidColabs.filter(c=>c.time_id===t.id);
+    const mapeados = membros.filter(c=>lidGetResult(c.email));
+    const pct = membros.length>0 ? Math.round((mapeados.length/membros.length)*100) : 0;
+    return { nome: t.nome, pct, membros: membros.length, mapeados: mapeados.length };
+  }).sort((a,b)=>a.pct-b.pct);
+  // atualiza se elemento existir
+  const el = document.getElementById('lid-ranking-equipes');
+  if(!el) return;
+  el.innerHTML = ranked.map(t => {
+    const cor = t.pct===100?'var(--S)':t.pct>=50?'var(--gold)':'#e05c6a';
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="width:120px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.nome}</div>
+      <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:6px;height:8px;overflow:hidden;">
+        <div style="height:8px;border-radius:6px;background:${cor};width:${t.pct}%;transition:width 0.6s;"></div>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:${cor};width:38px;text-align:right;">${t.pct}%</div>
+    </div>`;
+  }).join('');
 }
 
 function lidRenderEquipes() {
@@ -1461,14 +1534,15 @@ function lidAbrirRelatorio(email) {
   html+=`</div>`;
 
   const modal = document.createElement('div');
-  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;';
+  modal.className='lid-modal-overlay'; modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;';
   modal.innerHTML=`<div style="background:var(--surface);border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;">
     ${html}
-    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:1rem;">
-      <button onclick="this.closest('[style]').remove()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:1rem;flex-wrap:wrap;">
+      <button onclick="lidExportarRelatorio('${email}')" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ Exportar PDF</button>
+      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
     </div>
   </div>`;
-  modal.addEventListener('click', function(e){ if(e.target===this) this.remove(); });
+  modal.addEventListener('click', function(e){ if(e.target===this) this.remove(); }); modal.style.animation='fadeIn 0.2s ease';
   document.body.appendChild(modal);
 }
 
@@ -1543,12 +1617,15 @@ function lidExportCsv() {
 }
 
 function lidTab(tab) {
-  ['equipes','colaboradores','comunicacao','conflitos','talentos'].forEach(t=>{
+  ['equipes','colaboradores','comunicacao','conflitos','talentos','comparar'].forEach(t=>{
     const el=document.getElementById('lid-content-'+t);
     const btn=document.getElementById('lid-tab-'+t);
     if(el) el.style.display=t===tab?'block':'none';
     if(btn){ btn.style.borderBottomColor=t===tab?'var(--purple)':'transparent'; btn.style.color=t===tab?'var(--purple)':'var(--muted)'; }
   });
+  // Animação de entrada
+  const active = document.getElementById('lid-content-'+tab);
+  if(active){ active.style.opacity='0'; active.style.transform='translateY(8px)'; requestAnimationFrame(()=>{ active.style.transition='opacity 0.22s ease,transform 0.22s ease'; active.style.opacity='1'; active.style.transform='translateY(0)'; }); }
 }
 
 // ══════════════════════════════════════════════
@@ -3498,6 +3575,170 @@ async function loginWall(aba) {
   }
   if (btnEl) btnEl.textContent = 'Entrar →';
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   NOVAS FUNÇÕES DO PAINEL LÍDER
+   ═══════════════════════════════════════════════════════════ */
+
+// ── Animação de entrada dos cards ──
+function lidAnimarEntrada() {
+  const cards = document.querySelectorAll('#lider-content-real .section-card, #lid-lista-equipes > div');
+  cards.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(14px)';
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, i * 60);
+  });
+}
+
+// ── Modal de convite ──
+function lidAbrirConvite() {
+  const url = window.location.origin + window.location.pathname;
+  const modal = document.createElement('div');
+  modal.className = 'lid-modal-overlay';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:300;display:flex;align-items:center;justify-content:center;padding:1rem;';
+  modal.innerHTML = `<div style="background:var(--surface);border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:480px;">
+    <div style="text-align:center;margin-bottom:1.5rem;">
+      <div style="font-size:36px;margin-bottom:10px;">✉️</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">Convidar Colaborador</div>
+      <p style="font-size:13px;color:var(--muted);margin-top:6px;">Compartilhe o link abaixo para que o colaborador acesse e realize o mapeamento DISC.</p>
+    </div>
+    <div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text);word-break:break-all;margin-bottom:1rem;">${url}</div>
+    <div style="display:flex;gap:10px;">
+      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✓ Copiado!';setTimeout(()=>this.textContent='📋 Copiar Link',2000)})" style="flex:1;background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">📋 Copiar Link</button>
+      <button onclick="this.closest('.lid-modal-overlay').remove()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:11px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
+    </div>
+  </div>`;
+  modal.addEventListener('click', e => { if(e.target===modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
+
+// ── Popular selects do comparador ──
+function lidPopularComparar() {
+  const mapeados = lidColabs.filter(c => lidGetResult(c.email));
+  const opts = '<option value="">Selecione...</option>' + mapeados.map(c => `<option value="${c.email}">${c.nome||c.email}</option>`).join('');
+  const a = document.getElementById('lid-comp-a');
+  const b = document.getElementById('lid-comp-b');
+  if(a) a.innerHTML = opts;
+  if(b) b.innerHTML = opts;
+}
+
+// ── Renderizar comparação ──
+function lidRenderComparar() {
+  const ea = document.getElementById('lid-comp-a')?.value;
+  const eb = document.getElementById('lid-comp-b')?.value;
+  const wrap = document.getElementById('lid-comparar-resultado');
+  if(!wrap) return;
+  if(!ea || !eb || ea===eb) {
+    wrap.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem;">Selecione dois colaboradores diferentes.</p>';
+    return;
+  }
+  const ca = lidColabs.find(c=>c.email===ea);
+  const cb = lidColabs.find(c=>c.email===eb);
+  const ra = lidGetResult(ea);
+  const rb = lidGetResult(eb);
+  const pa = ra ? lidPrimary(ra.scores) : null;
+  const pb = rb ? lidPrimary(rb.scores) : null;
+  const cora = pa ? LID_DISC_CORES[pa] : '#7b5fff';
+  const corb = pb ? LID_DISC_CORES[pb] : '#7b5fff';
+
+  // Compatibilidade — verificar tensões e complementos
+  const tensao = LID_TENSOES.find(t=>(t.a===pa&&t.b===pb)||(t.a===pb&&t.b===pa));
+  const compl = LID_COMPLEMENTOS.find(t=>(t.a===pa&&t.b===pb)||(t.a===pb&&t.b===pa));
+
+  const barras = (r, cor) => ['D','I','S','C'].map(k=>{
+    const v = lidPct(r?.scores, k);
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+      <div style="width:22px;font-size:11px;font-weight:700;color:${LID_DISC_CORES[k]};">${k}</div>
+      <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:6px;height:8px;overflow:hidden;">
+        <div style="height:8px;border-radius:6px;background:${LID_DISC_CORES[k]};width:${v}%;"></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);width:30px;text-align:right;">${v}%</div>
+    </div>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <!-- Perfis lado a lado -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+      <div style="background:var(--surface2);border:0.5px solid ${cora}44;border-radius:12px;padding:1rem;text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${cora}33;border:2px solid ${cora}88;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:${cora};margin:0 auto 8px;">${(ca?.nome||'?').charAt(0).toUpperCase()}</div>
+        <div style="font-size:13px;font-weight:700;">${ca?.nome||ea}</div>
+        ${pa?`<div style="margin-top:6px;"><span style="background:${cora}22;color:${cora};padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">${pa} · ${LID_DISC_NOMES[pa]}</span></div>`:'<div style="font-size:11px;color:var(--muted);margin-top:6px;">Sem mapeamento</div>'}
+      </div>
+      <div style="background:var(--surface2);border:0.5px solid ${corb}44;border-radius:12px;padding:1rem;text-align:center;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${corb}33;border:2px solid ${corb}88;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:${corb};margin:0 auto 8px;">${(cb?.nome||'?').charAt(0).toUpperCase()}</div>
+        <div style="font-size:13px;font-weight:700;">${cb?.nome||eb}</div>
+        ${pb?`<div style="margin-top:6px;"><span style="background:${corb}22;color:${corb};padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">${pb} · ${LID_DISC_NOMES[pb]}</span></div>`:'<div style="font-size:11px;color:var(--muted);margin-top:6px;">Sem mapeamento</div>'}
+      </div>
+    </div>
+    <!-- Barras DISC comparativas -->
+    ${pa&&pb?`<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+      <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">${ca?.nome||'A'}</div>${barras(ra,cora)}</div>
+      <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">${cb?.nome||'B'}</div>${barras(rb,corb)}</div>
+    </div>`:''}
+    <!-- Análise de compatibilidade -->
+    ${tensao?`<div style="background:rgba(224,92,106,0.08);border:1px solid rgba(224,92,106,0.25);border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:18px;">⚡</span>
+      <div><div style="font-size:12px;font-weight:700;color:#e05c6a;margin-bottom:4px;">Ponto de Tensão</div><div style="font-size:12px;color:var(--muted);">${tensao.m}</div></div>
+    </div>`:''}
+    ${compl?`<div style="background:rgba(62,201,138,0.08);border:1px solid rgba(62,201,138,0.25);border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:18px;">🤝</span>
+      <div><div style="font-size:12px;font-weight:700;color:var(--S);margin-bottom:4px;">Combinação Complementar</div><div style="font-size:12px;color:var(--muted);">${compl.m}</div></div>
+    </div>`:''}
+    ${!tensao&&!compl&&pa&&pb?`<div style="background:rgba(160,140,255,0.08);border:1px solid rgba(160,140,255,0.2);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--muted);">✨ Esses perfis tendem a se relacionar de forma neutra — sem tensões fortes nem sinergias especiais.</div>`:''}
+  `;
+}
+
+// ── Exportar relatório como PDF (via print) ──
+function lidExportarRelatorio(email) {
+  const c = lidColabs.find(x=>x.email===email);
+  const r = lidGetResult(email);
+  const p = r ? lidPrimary(r.scores) : null;
+  const cor = p ? LID_DISC_CORES[p] : '#7b5fff';
+  const nome = c?.nome || email;
+
+  const win = window.open('','_blank','width=700,height=900');
+  const barras = p ? ['D','I','S','C'].map(k=>{
+    const v = lidPct(r.scores, k);
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="width:110px;font-size:12px;font-weight:700;color:${LID_DISC_CORES[k]};">${k} · ${LID_DISC_NOMES[k]}</div>
+      <div style="flex:1;background:#f0eaff;border-radius:6px;height:10px;overflow:hidden;">
+        <div style="height:10px;border-radius:6px;background:${LID_DISC_CORES[k]};width:${v}%;"></div>
+      </div>
+      <div style="font-size:12px;color:#666;width:35px;text-align:right;">${v}%</div>
+    </div>`;
+  }).join('') : '';
+
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatório DISC — ${nome}</title>
+  <style>body{font-family:'Segoe UI',sans-serif;color:#1a1030;background:#fff;padding:2rem;max-width:620px;margin:0 auto;}
+  h1{font-size:24px;margin-bottom:4px;}h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:1.5rem;}
+  .badge{display:inline-block;background:${cor}22;color:${cor};padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:1.5rem;}
+  .card{background:#f9f7ff;border-radius:10px;padding:1rem;margin-bottom:1rem;}
+  .tag{display:inline-block;background:${cor}15;border-radius:6px;padding:5px 10px;font-size:11px;margin:3px;}
+  .tip{background:#f0eaff;border-left:3px solid ${cor};border-radius:0 6px 6px 0;padding:8px 12px;font-size:12px;color:#555;margin-bottom:5px;}
+  @media print{button{display:none}}</style></head><body>
+  <button onclick="window.print()" style="background:${cor};border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:1.5rem;">🖨️ Imprimir / Salvar PDF</button>
+  <h1>${nome}</h1><h2>Relatório DISC · ${new Date().toLocaleDateString('pt-BR')}</h2>
+  ${p?`<div class="badge">${p} · ${LID_DISC_NOMES[p]}</div>
+  <div class="card">${barras}</div>
+  <div class="card"><div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:10px;">Como se Comunicar</div>${LID_DICAS[p].comunicar.map(d=>`<div class="tip">→ ${d}</div>`).join('')}</div>
+  <div class="card"><div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:10px;">Talentos Naturais</div>${LID_DICAS[p].talentos.map(t=>`<span class="tag">⭐ ${t}</span>`).join('')}</div>`
+  :'<p style="color:#888;">Este colaborador ainda não realizou o mapeamento DISC.</p>'}
+  <div style="font-size:11px;color:#aaa;margin-top:2rem;border-top:1px solid #eee;padding-top:1rem;">Gerado por RealTalent · ${email}</div>
+  </body></html>`);
+  win.document.close();
+}
+
+// ── CSS: animação fadeIn ──
+(function(){
+  const s = document.createElement('style');
+  s.textContent = '@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}';
+  document.head.appendChild(s);
+})();
 
 
 </script>

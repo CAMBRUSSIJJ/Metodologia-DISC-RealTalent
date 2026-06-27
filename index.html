@@ -202,6 +202,69 @@
 
   /* ── Micro-feedback nas opções ── */
   .option-btn { transition: background 0.15s, border-color 0.15s, transform 0.1s; position: relative; }
+
+  /* ── Dashboard: botões de período ── */
+  .dash-period-btn {
+    background: transparent;
+    border: 0.5px solid var(--border);
+    color: var(--muted);
+    font-size: 11px; font-weight: 700;
+    padding: 6px 12px; border-radius: 8px;
+    cursor: pointer; font-family: 'Lato', sans-serif;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .dash-period-btn:hover { color: var(--text); border-color: var(--border2); }
+  .dash-period-active {
+    background: rgba(160,140,255,0.15) !important;
+    border-color: var(--purple) !important;
+    color: var(--purple) !important;
+  }
+
+  /* ── Dashboard: sub-abas internas ── */
+  .dash-sub-tab {
+    padding: 10px 14px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer; border: none;
+    background: transparent; font-family: 'Lato', sans-serif;
+    border-bottom: 2px solid transparent; margin-bottom: -0.5px;
+    transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+  }
+  .dash-sub-tab:hover { color: var(--text); }
+  .dash-sub-active { color: var(--purple) !important; border-bottom-color: var(--purple) !important; }
+
+  /* ── Dashboard: delta badge ── */
+  .dash-delta-pos { color: #3ec98a; font-size: 11px; font-weight: 700; }
+  .dash-delta-neg { color: #e05c6a; font-size: 11px; font-weight: 700; }
+  .dash-delta-neu { color: var(--muted); font-size: 11px; font-weight: 700; }
+
+  /* ── Dashboard: meta item ── */
+  .dash-meta-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(160,140,255,0.06);
+    border: 0.5px solid var(--border);
+    margin-bottom: 8px; transition: background 0.15s;
+  }
+  .dash-meta-item:hover { background: rgba(160,140,255,0.1); }
+  .dash-meta-check {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 1.5px solid var(--border2);
+    background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.15s;
+  }
+  .dash-meta-check.done { background: #3ec98a; border-color: #3ec98a; color: #fff; font-size: 12px; }
+
+  /* ── Anotação no timeline ── */
+  .timeline-note-input {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 0.5px solid var(--border); color: var(--muted);
+    font-size: 11px; font-family: 'Lato', sans-serif;
+    padding: 4px 0; margin-top: 5px; outline: none;
+    transition: border-color 0.15s;
+  }
+  .timeline-note-input:focus { border-bottom-color: var(--purple); color: var(--text); }
+  .timeline-note-input::placeholder { color: rgba(184,176,216,0.4); }
   .option-btn:active { transform: scale(0.98); }
   .option-btn.just-selected { animation: pulse-select 0.35s ease; border-color: var(--purple2) !important; background: rgba(123,95,255,0.18) !important; }
   .option-btn.just-selected::after { content: '✓'; position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:15px; font-weight:800; color:var(--purple); animation: check-pop 0.25s ease; }
@@ -976,97 +1039,205 @@
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;font-weight:700;">Admin · Líder</div>
         </div>
       </div>
-      <div class="field">
-        <label>E-mail</label>
-        <input type="email" id="login-email" placeholder="seu@email.com" />
-      </div>
-      <div class="field">
-        <label>Senha</label>
-        <input type="password" id="login-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()" />
-      </div>
+      <div class="field"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com" /></div>
+      <div class="field"><label>Senha</label><input type="password" id="login-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()" /></div>
       <div id="login-erro" style="display:none;color:#e05c6a;font-size:12px;margin-bottom:12px;background:rgba(224,92,106,0.08);border-radius:8px;padding:8px 12px;"></div>
-      <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="fazerLogin()">
-        <span id="login-btn-text">Entrar →</span>
-      </button>
-      <div id="login-loading" style="display:none;text-align:center;margin-top:12px;">
-        <div class="dots" style="justify-content:center;"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      </div>
+      <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="fazerLogin()"><span id="login-btn-text">Entrar →</span></button>
+      <div id="login-loading" style="display:none;text-align:center;margin-top:12px;"><div class="dots" style="justify-content:center;"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
       <p style="font-size:11px;color:var(--muted);margin-top:1rem;text-align:center;opacity:0.7;">Apenas usuários com papel de Admin ou Líder têm acesso.</p>
     </div>
 
-    <div style="text-align:center; margin-bottom:2rem;">
-      <div class="intro-eyebrow">Histórico pessoal</div>
-      <h1 style="font-family:'Playfair Display',sans-serif;font-size:26px;font-weight:800;margin-bottom:10px;">Evolução dos mapeamentos</h1>
-      <p style="color:var(--muted);font-size:14px;line-height:1.7;">Acompanhe como seu perfil DISC mudou ao longo do tempo e veja se sua autoimagem se aproximou da imagem percebida.</p>
+    <!-- ── Hero da aba ── -->
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="intro-eyebrow" style="text-align:left;">Histórico pessoal</div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:800;margin:6px 0 8px;line-height:1.2;">Evolução dos mapeamentos</h1>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;max-width:420px;">Acompanhe como seu perfil DISC mudou ao longo do tempo e identifique padrões no seu comportamento.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
+        <button class="btn" onclick="dashExportJSON()" style="font-size:12px;padding:9px 16px;" title="Exportar dados">⬇ Exportar</button>
+        <button class="btn btn-primary" onclick="goToIdentify()" style="white-space:nowrap;">+ Novo mapeamento</button>
+      </div>
     </div>
 
-    <div id="dashboard-empty" style="text-align:center;padding:3rem 0;color:var(--muted);font-size:14px;">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:0.35;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;"><path d="M3 3v18h18"/><polyline points="7 16 11 12 15 14 21 8"/></svg>
-      Você ainda não tem mapeamentos salvos.<br>
-      <span style="font-size:12px;opacity:0.7;">Complete um mapeamento para ver sua evolução aqui.</span><br>
-      <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="goToIdentify()">Fazer meu primeiro mapeamento →</button>
+    <!-- ── Empty state ── -->
+    <div id="dashboard-empty" style="display:none;">
+      <div style="background:linear-gradient(135deg,rgba(123,95,255,0.08),rgba(168,85,247,0.04));border:1px dashed rgba(123,95,255,0.25);border-radius:20px;padding:3.5rem 2rem;text-align:center;">
+        <div style="width:64px;height:64px;border-radius:16px;background:rgba(123,95,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><path d="M3 3v18h18"/><polyline points="7 16 11 12 15 14 21 8"/></svg>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Nenhum mapeamento ainda</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;max-width:320px;margin:0 auto 1.5rem;">Complete seu primeiro mapeamento DISC para começar a acompanhar sua evolução comportamental.</p>
+        <button class="btn-start" style="display:inline-block;width:auto;padding:13px 28px;" onclick="goToIdentify()">Fazer meu primeiro mapeamento →</button>
+      </div>
     </div>
 
+    <!-- ── Conteúdo com dados ── -->
     <div id="dashboard-content" style="display:none;">
-      <!-- Timeline de mapeamentos -->
-      <div class="section-card" style="margin-bottom:1.25rem;">
-        <div class="section-head">
-          <div class="section-ico" style="background:rgba(160,140,255,0.15);color:var(--purple);">⊕</div>
-          <div>
-            <div class="section-title">Linha do tempo</div>
-            <div class="section-sub">Todos os seus mapeamentos salvos</div>
-          </div>
-        </div>
-        <div id="dashboard-timeline"></div>
-      </div>
 
-      <!-- Gráfico de evolução DISC -->
-      <div class="section-card" style="margin-bottom:1.25rem;">
-        <div class="section-head">
-          <div class="section-ico" style="background:rgba(62,201,138,0.15);color:var(--S);">⟲</div>
-          <div>
-            <div class="section-title">Evolução do perfil DISC</div>
-            <div class="section-sub">Como cada dimensão mudou entre mapeamentos</div>
+      <!-- KPIs rápidos -->
+      <div id="dash-kpis" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem;"></div>
+
+      <!-- Insight card de tendência -->
+      <div id="dash-insight-card" style="display:none;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(160,140,255,0.1),rgba(79,53,204,0.08));border:0.5px solid rgba(160,140,255,0.3);border-radius:16px;padding:1.25rem 1.5rem;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="font-size:24px;flex-shrink:0;" id="dash-insight-icon">💡</div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:4px;">Análise de tendência</div>
+            <div id="dash-insight-text" style="font-size:13px;color:var(--muted);line-height:1.7;"></div>
           </div>
-        </div>
-        <div style="position:relative;width:100%;height:280px;">
-          <canvas id="dashboard-evolution-chart"></canvas>
         </div>
       </div>
 
-      <!-- Autoimagem vs Percebida ao longo do tempo -->
-      <div class="section-card" style="margin-bottom:1.25rem;">
-        <div class="section-head">
-          <div class="section-ico" style="background:rgba(240,193,74,0.15);color:var(--gold);">⇄</div>
-          <div>
-            <div class="section-title">Autoimagem × Imagem percebida</div>
-            <div class="section-sub">Convergência ao longo dos mapeamentos</div>
-          </div>
-        </div>
-        <div style="position:relative;width:100%;height:260px;">
-          <canvas id="dashboard-gap-chart"></canvas>
-        </div>
-        <div id="dashboard-gap-insight" style="margin-top:1rem;font-size:13px;color:var(--muted);line-height:1.7;background:rgba(160,140,255,0.07);border-radius:10px;padding:12px 14px;"></div>
-      </div>
-
-      <!-- Radar comparativo (último vs primeiro) -->
-      <div class="section-card" style="margin-bottom:1.25rem;">
-        <div class="section-head">
-          <div class="section-ico" style="background:rgba(224,92,106,0.15);color:var(--D);">◎</div>
-          <div>
-            <div class="section-title">Antes × Agora</div>
-            <div class="section-sub">Comparativo entre o primeiro e o último mapeamento</div>
-          </div>
-        </div>
-        <div style="position:relative;width:100%;height:300px;">
-          <canvas id="dashboard-radar-compare"></canvas>
+      <!-- Filtro de período -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap;">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Período:</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button onclick="dashSetPeriod('all')" id="dash-period-all" class="dash-period-btn dash-period-active">Todos</button>
+          <button onclick="dashSetPeriod(3)" id="dash-period-3" class="dash-period-btn">Último trimestre</button>
+          <button onclick="dashSetPeriod(6)" id="dash-period-6" class="dash-period-btn">Últimos 6 meses</button>
+          <button onclick="dashSetPeriod(12)" id="dash-period-12" class="dash-period-btn">Último ano</button>
         </div>
       </div>
 
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:0.5rem;">
-        <button class="btn" onclick="clearDashboard()" style="color:var(--D);border-color:rgba(224,92,106,0.4);">🗑 Limpar histórico</button>
-        <button class="btn btn-primary" onclick="goToIdentify()">+ Novo mapeamento</button>
+      <!-- Sub-abas da Evolução -->
+      <div style="display:flex;gap:2px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);overflow-x:auto;scrollbar-width:none;">
+        <button onclick="dashTab('timeline')" id="dash-tab-timeline" class="dash-sub-tab dash-sub-active">📅 Histórico</button>
+        <button onclick="dashTab('evolucao')" id="dash-tab-evolucao" class="dash-sub-tab">📈 Evolução</button>
+        <button onclick="dashTab('radar')" id="dash-tab-radar" class="dash-sub-tab">◎ Antes × Agora</button>
+        <button onclick="dashTab('autoimage')" id="dash-tab-autoimage" class="dash-sub-tab">⇄ Autoimagem</button>
+        <button onclick="dashTab('dominante')" id="dash-tab-dominante" class="dash-sub-tab">🏆 Dimensões</button>
       </div>
+
+      <!-- SUB-ABA: TIMELINE / HISTÓRICO -->
+      <div id="dash-content-timeline">
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:34px;height:34px;border-radius:10px;background:rgba(160,140,255,0.12);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:16px;">📅</div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--text);">Linha do tempo</div>
+                <div style="font-size:11px;color:var(--muted);">Todos os seus mapeamentos salvos</div>
+              </div>
+            </div>
+            <button class="btn" onclick="clearDashboard()" style="font-size:11px;color:var(--D);border-color:rgba(224,92,106,0.3);padding:6px 12px;">🗑 Limpar histórico</button>
+          </div>
+          <div id="dashboard-timeline"></div>
+        </div>
+
+        <!-- Card: perfil mais frequente -->
+        <div id="dash-card-frequente" class="section-card" style="margin-bottom:1.25rem;display:none;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;">🏅 Perfil dominante histórico</div>
+          <div id="dash-frequente-content"></div>
+        </div>
+      </div>
+
+      <!-- SUB-ABA: EVOLUÇÃO -->
+      <div id="dash-content-evolucao" style="display:none;">
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:34px;height:34px;border-radius:10px;background:rgba(62,201,138,0.12);color:var(--S);display:flex;align-items:center;justify-content:center;font-size:16px;">📈</div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--text);">Evolução do perfil DISC</div>
+                <div style="font-size:11px;color:var(--muted);">Como cada dimensão mudou entre mapeamentos</div>
+              </div>
+            </div>
+            <!-- Toggle de visualização -->
+            <div style="display:flex;gap:4px;">
+              <button onclick="dashToggleChartType('line')" id="dash-chart-line" style="background:rgba(160,140,255,0.2);border:0.5px solid var(--purple);color:var(--purple);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">Linha</button>
+              <button onclick="dashToggleChartType('bar')" id="dash-chart-bar" style="background:transparent;border:0.5px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;">Barras</button>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;height:280px;"><canvas id="dashboard-evolution-chart"></canvas></div>
+        </div>
+
+        <!-- Variação por dimensão -->
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;">📊 Variação total por dimensão</div>
+          <div id="dash-delta-bars"></div>
+        </div>
+      </div>
+
+      <!-- SUB-ABA: RADAR ANTES x AGORA -->
+      <div id="dash-content-radar" style="display:none;">
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;">
+            <div style="width:34px;height:34px;border-radius:10px;background:rgba(224,92,106,0.12);color:var(--D);display:flex;align-items:center;justify-content:center;font-size:16px;">◎</div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--text);">Antes × Agora</div>
+              <div style="font-size:11px;color:var(--muted);">Comparativo entre o primeiro e o último mapeamento</div>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;height:300px;"><canvas id="dashboard-radar-compare"></canvas></div>
+          <div id="dash-radar-delta" style="margin-top:1.25rem;display:grid;grid-template-columns:repeat(2,1fr);gap:8px;"></div>
+        </div>
+
+        <!-- Seletor de mapeamentos para comparar -->
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;">🔍 Comparar dois mapeamentos específicos</div>
+          <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
+            <select id="dash-comp-a" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"></select>
+            <select id="dash-comp-b" onchange="dashRenderCustomCompare()" style="flex:1;min-width:140px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"></select>
+          </div>
+          <div id="dash-custom-compare-result"></div>
+        </div>
+      </div>
+
+      <!-- SUB-ABA: AUTOIMAGEM -->
+      <div id="dash-content-autoimage" style="display:none;">
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;">
+            <div style="width:34px;height:34px;border-radius:10px;background:rgba(240,193,74,0.12);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;">⇄</div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--text);">Autoimagem × Imagem percebida</div>
+              <div style="font-size:11px;color:var(--muted);">Convergência ao longo dos mapeamentos</div>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;height:260px;"><canvas id="dashboard-gap-chart"></canvas></div>
+          <div id="dashboard-gap-insight" style="margin-top:1rem;font-size:13px;color:var(--muted);line-height:1.7;background:rgba(160,140,255,0.07);border-radius:10px;padding:12px 14px;display:none;"></div>
+        </div>
+      </div>
+
+      <!-- SUB-ABA: DIMENSÕES DOMINANTES -->
+      <div id="dash-content-dominante" style="display:none;">
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;">🏆 Pontuação média histórica</div>
+          <div id="dash-media-dims" style="margin-bottom:1.5rem;"></div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:1rem;margin-top:0.5rem;">📅 Perfil por período</div>
+          <div style="position:relative;width:100%;height:240px;"><canvas id="dash-polar-chart"></canvas></div>
+        </div>
+
+        <!-- Metas de desenvolvimento -->
+        <div class="section-card" style="margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);">🎯 Metas de desenvolvimento</div>
+            <button onclick="dashAddMeta()" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">+ Adicionar</button>
+          </div>
+          <div id="dash-metas-list"></div>
+          <!-- Form de meta (oculto por padrão) -->
+          <div id="dash-meta-form" style="display:none;margin-top:1rem;background:rgba(160,140,255,0.06);border-radius:12px;padding:1rem;">
+            <div style="margin-bottom:10px;">
+              <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px;">Dimensão alvo</label>
+              <select id="dash-meta-dim" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+                <option value="D">D — Dominância</option>
+                <option value="I">I — Influência</option>
+                <option value="S">S — Estabilidade</option>
+                <option value="C">C — Conformidade</option>
+              </select>
+            </div>
+            <div style="margin-bottom:10px;">
+              <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px;">Descrição da meta</label>
+              <input type="text" id="dash-meta-desc" placeholder="Ex: Aumentar influência nas reuniões" style="width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;" />
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button onclick="dashSalvarMeta()" class="btn btn-primary" style="flex:1;font-size:12px;padding:9px 14px;">Salvar meta</button>
+              <button onclick="document.getElementById('dash-meta-form').style.display='none'" class="btn" style="font-size:12px;padding:9px 14px;">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -3332,28 +3503,86 @@ let _lastQDir = 1; // 1 = forward, -1 = back
 const _origRenderQuestion = window.renderQuestion;
 
 /* ═══════════════════════════════════════════════════════════
-   DASHBOARD / HISTÓRICO
+   DASHBOARD / HISTÓRICO — versão aprimorada
    ═══════════════════════════════════════════════════════════ */
-const HIST_KEY = 'realtalent.history.v1';
+const HIST_KEY    = 'realtalent.history.v1';
+const METAS_KEY   = 'realtalent.metas.v1';
+const NOTES_KEY   = 'realtalent.notes.v1';
 
+let _dashPeriod   = 'all';   // filtro de período ativo
+let _dashChartType = 'line'; // tipo do gráfico de evolução
+let _dashSubTab   = 'timeline'; // sub-aba ativa
+
+/* ─── Utilitários de storage ─── */
 function loadHistory() {
-  try {
-    const raw = localStorage.getItem(HIST_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw) || [];
-  } catch(e) { return []; }
+  try { return JSON.parse(localStorage.getItem(HIST_KEY)) || []; } catch(e) { return []; }
 }
-
 function saveToHistory(data) {
   try {
     const hist = loadHistory();
     hist.push(data);
-    // Keep last 20
     if (hist.length > 20) hist.splice(0, hist.length - 20);
     localStorage.setItem(HIST_KEY, JSON.stringify(hist));
   } catch(e) {}
 }
+function loadMetas() {
+  try { return JSON.parse(localStorage.getItem(METAS_KEY)) || []; } catch(e) { return []; }
+}
+function saveMetas(metas) {
+  try { localStorage.setItem(METAS_KEY, JSON.stringify(metas)); } catch(e) {}
+}
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveNotes(notes) {
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch(e) {}
+}
 
+/* ─── Filtro de período ─── */
+function dashSetPeriod(p) {
+  _dashPeriod = p;
+  ['all','3','6','12'].forEach(k => {
+    const btn = document.getElementById('dash-period-' + k);
+    if (btn) { btn.classList.remove('dash-period-active'); }
+  });
+  const active = document.getElementById('dash-period-' + p);
+  if (active) active.classList.add('dash-period-active');
+  renderDashboard();
+}
+
+function dashFilteredHistory() {
+  const hist = loadHistory();
+  if (_dashPeriod === 'all') return hist;
+  const months = Number(_dashPeriod);
+  const cutoff = Date.now() - months * 30 * 24 * 60 * 60 * 1000;
+  return hist.filter(h => h.ts >= cutoff);
+}
+
+/* ─── Sub-abas internas ─── */
+function dashTab(tab) {
+  _dashSubTab = tab;
+  ['timeline','evolucao','radar','autoimage','dominante'].forEach(t => {
+    const btn = document.getElementById('dash-tab-' + t);
+    const content = document.getElementById('dash-content-' + t);
+    if (btn) btn.classList.toggle('dash-sub-active', t === tab);
+    if (content) content.style.display = t === tab ? 'block' : 'none';
+  });
+  renderDashboard();
+}
+
+/* ─── Toggle tipo de gráfico ─── */
+function dashToggleChartType(type) {
+  _dashChartType = type;
+  document.getElementById('dash-chart-line').style.background = type === 'line' ? 'rgba(160,140,255,0.2)' : 'transparent';
+  document.getElementById('dash-chart-line').style.borderColor = type === 'line' ? 'var(--purple)' : 'var(--border)';
+  document.getElementById('dash-chart-line').style.color = type === 'line' ? 'var(--purple)' : 'var(--muted)';
+  document.getElementById('dash-chart-bar').style.background = type === 'bar' ? 'rgba(160,140,255,0.2)' : 'transparent';
+  document.getElementById('dash-chart-bar').style.borderColor = type === 'bar' ? 'var(--purple)' : 'var(--border)';
+  document.getElementById('dash-chart-bar').style.color = type === 'bar' ? 'var(--purple)' : 'var(--muted)';
+  renderDashboard();
+}
+
+/* ─── Limpar histórico ─── */
 function clearDashboard() {
   if (!confirm('Apagar todo o histórico de mapeamentos? Esta ação não pode ser desfeita.')) return;
   try { localStorage.removeItem(HIST_KEY); } catch(e) {}
@@ -3367,11 +3596,111 @@ function deleteHistoryItem(idx) {
   renderDashboard();
 }
 
-function renderDashboard() {
+/* ─── Exportar dados como JSON ─── */
+function dashExportJSON() {
   const hist = loadHistory();
+  if (!hist.length) return alert('Nenhum mapeamento para exportar.');
+  const blob = new Blob([JSON.stringify(hist, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'realtalent-evolucao-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+}
+
+/* ─── Metas ─── */
+function dashAddMeta() {
+  document.getElementById('dash-meta-form').style.display = 'block';
+  document.getElementById('dash-meta-desc').focus();
+}
+function dashSalvarMeta() {
+  const dim  = document.getElementById('dash-meta-dim').value;
+  const desc = document.getElementById('dash-meta-desc').value.trim();
+  if (!desc) return;
+  const metas = loadMetas();
+  metas.push({ id: Date.now(), dim, desc, done: false, ts: Date.now() });
+  saveMetas(metas);
+  document.getElementById('dash-meta-desc').value = '';
+  document.getElementById('dash-meta-form').style.display = 'none';
+  dashRenderMetas();
+}
+function dashToggleMeta(id) {
+  const metas = loadMetas();
+  const m = metas.find(x => x.id === id);
+  if (m) m.done = !m.done;
+  saveMetas(metas);
+  dashRenderMetas();
+}
+function dashDeleteMeta(id) {
+  const metas = loadMetas().filter(x => x.id !== id);
+  saveMetas(metas);
+  dashRenderMetas();
+}
+function dashRenderMetas() {
+  const el = document.getElementById('dash-metas-list');
+  if (!el) return;
+  const hex = { D:'#e05c6a', I:'#f0a047', S:'#3ec98a', C:'#5aabf5' };
+  const metas = loadMetas();
+  if (!metas.length) {
+    el.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:1rem 0;opacity:0.7;">Nenhuma meta criada. Adicione metas de desenvolvimento pessoal.</p>';
+    return;
+  }
+  el.innerHTML = metas.map(m => `
+    <div class="dash-meta-item" style="${m.done ? 'opacity:0.55;' : ''}">
+      <div class="dash-meta-check ${m.done ? 'done' : ''}" onclick="dashToggleMeta(${m.id})">${m.done ? '✓' : ''}</div>
+      <div style="width:24px;height:24px;border-radius:6px;background:${hex[m.dim]}22;color:${hex[m.dim]};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${m.dim}</div>
+      <div style="flex:1;font-size:13px;color:${m.done ? 'var(--muted)' : 'var(--text)'};${m.done ? 'text-decoration:line-through;' : ''}">${m.desc}</div>
+      <button onclick="dashDeleteMeta(${m.id})" style="background:none;border:none;color:rgba(224,92,106,0.5);cursor:pointer;font-size:14px;padding:2px 4px;line-height:1;" title="Remover">✕</button>
+    </div>`).join('');
+}
+
+/* ─── Anotações no timeline ─── */
+function dashSaveNote(idx, val) {
+  const notes = loadNotes();
+  notes[idx] = val;
+  saveNotes(notes);
+}
+
+/* ─── Comparação customizada ─── */
+function dashRenderCustomCompare() {
+  const hist = loadHistory();
+  const idxA = document.getElementById('dash-comp-a')?.value;
+  const idxB = document.getElementById('dash-comp-b')?.value;
+  const result = document.getElementById('dash-custom-compare-result');
+  if (!result || idxA === '' || idxB === '' || idxA === idxB) {
+    if (result) result.innerHTML = '';
+    return;
+  }
+  const a = hist[idxA], b = hist[idxB];
+  if (!a || !b) return;
+  const hex = { D:'#e05c6a', I:'#f0a047', S:'#3ec98a', C:'#5aabf5' };
+  const names = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
+  const total = questions.length;
+  const pct = v => Math.round((v / total) * 100);
+  result.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem;">` +
+    ['D','I','S','C'].map(d => {
+      const va = pct(a.scores[d]), vb = pct(b.scores[d]);
+      const diff = vb - va;
+      const arrow = diff > 0 ? '▲' : diff < 0 ? '▼' : '─';
+      const color = diff > 0 ? '#3ec98a' : diff < 0 ? '#e05c6a' : 'var(--muted)';
+      return `<div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;border:0.5px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:${hex[d]};margin-bottom:6px;">${d} · ${names[d]}</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:18px;font-weight:700;color:var(--text);">${va}%</span>
+          <span style="color:${color};font-size:13px;font-weight:700;">${arrow} ${Math.abs(diff)}pp</span>
+          <span style="font-size:18px;font-weight:700;color:var(--text);">${vb}%</span>
+        </div>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+/* ─── RENDER PRINCIPAL ─── */
+function renderDashboard() {
+  const hist = dashFilteredHistory();
+  const fullHist = loadHistory();
   const empty = document.getElementById('dashboard-empty');
   const dashContent = document.getElementById('dashboard-content');
-  if (!hist || hist.length === 0) {
+
+  if (!fullHist || fullHist.length === 0) {
     if (empty) empty.style.display = 'block';
     if (dashContent) dashContent.style.display = 'none';
     return;
@@ -3381,152 +3710,357 @@ function renderDashboard() {
 
   const hex = { D:'#e05c6a', I:'#f0a047', S:'#3ec98a', C:'#5aabf5' };
   const names = { D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade' };
+  const emojis = { D:'🔥', I:'⭐', S:'🌿', C:'💎' };
   const total = questions.length;
   const pct = (v) => Math.round((v / total) * 100);
 
-  // Timeline
-  const timeline = document.getElementById('dashboard-timeline');
-  if (timeline) {
-    timeline.innerHTML = hist.slice().reverse().map((item, ri) => {
-      const idx = hist.length - 1 - ri;
-      const ranked = Object.entries(item.scores).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
-      const primary = ranked[0];
-      const date = new Date(item.ts).toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
-      const scoreStr = ranked.map(d => d + ': ' + pct(item.scores[d]) + '%').join(' · ');
-      return `<div class="timeline-item">
-        <div class="timeline-dot" style="background:${hex[primary]}22;color:${hex[primary]};">${primary}</div>
-        <div class="timeline-info">
-          <div class="timeline-date">${date}</div>
-          <div class="timeline-profile">${names[primary]} + ${names[ranked[1]]} · ${item.name || 'Anônimo'}</div>
-          <div class="timeline-scores">${scoreStr}</div>
-        </div>
-        <div class="timeline-delete" onclick="deleteHistoryItem(${idx})" title="Remover">✕</div>
-      </div>`;
-    }).join('');
+  // ── KPIs ──
+  const kpiEl = document.getElementById('dash-kpis');
+  if (kpiEl) {
+    const primaries = fullHist.map(h => Object.entries(h.scores).sort((a,b)=>b[1]-a[1])[0][0]);
+    const maisFreq = ['D','I','S','C'].reduce((best, d) => {
+      const count = primaries.filter(p => p === d).length;
+      return count > (primaries.filter(p => p === best).length) ? d : best;
+    }, primaries[0]);
+    const last = fullHist[fullHist.length - 1];
+    const prev = fullHist.length >= 2 ? fullHist[fullHist.length - 2] : null;
+    const lastPrimary = Object.entries(last.scores).sort((a,b)=>b[1]-a[1])[0][0];
+    const consistency = fullHist.length >= 2
+      ? Math.round((primaries.filter(p => p === lastPrimary).length / fullHist.length) * 100)
+      : 100;
+
+    let trend = '─';
+    let trendColor = 'var(--muted)';
+    if (prev) {
+      const lastTop = pct(last.scores[lastPrimary]);
+      const prevTop = pct(prev.scores[lastPrimary]);
+      if (lastTop > prevTop) { trend = '▲'; trendColor = '#3ec98a'; }
+      else if (lastTop < prevTop) { trend = '▼'; trendColor = '#e05c6a'; }
+    }
+
+    kpiEl.innerHTML = [
+      { label: 'Mapeamentos', value: fullHist.length, color: 'var(--purple)', sub: `${hist.length} no período` },
+      { label: 'Perfil atual', value: emojis[lastPrimary] + ' ' + lastPrimary, color: hex[lastPrimary], sub: names[lastPrimary] },
+      { label: 'Tendência', value: trend, color: trendColor, sub: 'vs. anterior' },
+      { label: 'Consistência', value: consistency + '%', color: consistency >= 70 ? '#3ec98a' : consistency >= 40 ? '#f0c14a' : '#e05c6a', sub: 'mesmo perfil primário' },
+    ].map(k => `
+      <div class="section-card" style="text-align:center;padding:1rem 0.75rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:${k.color};line-height:1.1;margin-bottom:3px;">${k.value}</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:2px;">${k.label}</div>
+        <div style="font-size:10px;color:var(--muted);">${k.sub}</div>
+      </div>`).join('');
   }
 
-  // Labels for charts
+  // ── Insight card ──
+  const insightCard = document.getElementById('dash-insight-card');
+  const insightText = document.getElementById('dash-insight-text');
+  const insightIcon = document.getElementById('dash-insight-icon');
+  if (insightCard && insightText && fullHist.length >= 2) {
+    const first = fullHist[0], last = fullHist[fullHist.length - 1];
+    const primaries = fullHist.map(h => Object.entries(h.scores).sort((a,b)=>b[1]-a[1])[0][0]);
+    const lastPrimary = primaries[primaries.length - 1];
+    const consistCount = primaries.filter(p => p === lastPrimary).length;
+    let msg = '';
+    let icon = '💡';
+    if (consistCount === fullHist.length) {
+      msg = `Seu perfil <strong style="color:${hex[lastPrimary]}">${lastPrimary} — ${names[lastPrimary]}</strong> é altamente consistente em todos os seus mapeamentos. Isso indica traços comportamentais muito estáveis.`;
+      icon = '🎯';
+    } else {
+      const diffs = ['D','I','S','C'].map(d => ({ d, delta: pct(last.scores[d]) - pct(first.scores[d]) }));
+      const maior = diffs.reduce((a, b) => Math.abs(b.delta) > Math.abs(a.delta) ? b : a);
+      const dir = maior.delta > 0 ? 'cresceu' : 'diminuiu';
+      msg = `A dimensão <strong style="color:${hex[maior.d]}">${maior.d} — ${names[maior.d]}</strong> ${dir} <strong>${Math.abs(maior.delta)} pontos percentuais</strong> entre seu primeiro e último mapeamento. ${maior.delta > 0 ? 'Você está desenvolvendo essa dimensão.' : 'Esse traço se tornou menos predominante.'}`;
+      icon = maior.delta > 0 ? '📈' : '📉';
+    }
+    insightCard.style.display = 'block';
+    insightIcon.textContent = icon;
+    insightText.innerHTML = msg;
+  }
+
+  if (!hist.length) return; // período pode ter filtrado tudo
+
   const labels = hist.map((h, i) => {
     const d = new Date(h.ts);
     return (i+1) + 'º · ' + d.toLocaleDateString('pt-BR', {day:'2-digit', month:'short'});
   });
 
-  // Evolution line chart
-  const evCtx = document.getElementById('dashboard-evolution-chart');
-  if (evCtx) {
-    const existing = Chart.getChart(evCtx);
-    if (existing) existing.destroy();
-    new Chart(evCtx, {
-      type: 'line',
-      data: {
-        labels,
-        datasets: ['D','I','S','C'].map(d => ({
-          label: names[d] + ' (' + d + ')',
-          data: hist.map(h => pct(h.scores[d])),
-          borderColor: hex[d],
-          backgroundColor: hex[d] + '22',
-          tension: 0.4, fill: false, pointRadius: 5, pointHoverRadius: 7,
-          borderWidth: 2
-        }))
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        scales: {
-          y: { beginAtZero: true, max: 100, ticks: { color: '#9b93c0', font: { size: 11 } }, grid: { color: 'rgba(155,147,192,0.12)' } },
-          x: { ticks: { color: '#f0ecff', font: { size: 11 } }, grid: { display: false } }
-        },
-        plugins: { legend: { labels: { color: '#b8b0d8', font: { size: 11 } }, position: 'bottom' } }
-      }
-    });
+  // ─── SUB-ABA: TIMELINE ───
+  if (_dashSubTab === 'timeline') {
+    const timeline = document.getElementById('dashboard-timeline');
+    const notes = loadNotes();
+    if (timeline) {
+      timeline.innerHTML = fullHist.slice().reverse().map((item, ri) => {
+        const idx = fullHist.length - 1 - ri;
+        const ranked = Object.entries(item.scores).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+        const primary = ranked[0];
+        const date = new Date(item.ts).toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
+        const scoreStr = ranked.map(d => `<span style="background:${hex[d]}18;color:${hex[d]};padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;margin-right:3px;">${d} ${pct(item.scores[d])}%</span>`).join('');
+        const noteVal = notes[idx] || '';
+        return `<div class="timeline-item" style="flex-direction:column;align-items:flex-start;padding:14px 16px;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;width:100%;">
+            <div class="timeline-dot" style="background:${hex[primary]}22;color:${hex[primary]};width:36px;height:36px;border-radius:10px;font-size:15px;font-weight:800;">${primary}</div>
+            <div style="flex:1;">
+              <div class="timeline-date">${date}</div>
+              <div class="timeline-profile" style="font-size:13px;">${names[primary]} + ${names[ranked[1]]} · <span style="opacity:0.6;">${item.name || 'Anônimo'}</span></div>
+            </div>
+            <div class="timeline-delete" onclick="deleteHistoryItem(${idx})" title="Remover" style="align-self:flex-start;">✕</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;padding-left:46px;">${scoreStr}</div>
+          <div style="padding-left:46px;width:100%;">
+            <input class="timeline-note-input" placeholder="✏️ Adicionar anotação sobre este mapeamento..." value="${noteVal.replace(/"/g,'&quot;')}"
+              onblur="dashSaveNote(${idx}, this.value)" onchange="dashSaveNote(${idx}, this.value)" />
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // Card perfil mais frequente
+    const freqCard = document.getElementById('dash-card-frequente');
+    const freqContent = document.getElementById('dash-frequente-content');
+    if (freqCard && freqContent && fullHist.length >= 2) {
+      freqCard.style.display = 'block';
+      const primaries = fullHist.map(h => Object.entries(h.scores).sort((a,b)=>b[1]-a[1])[0][0]);
+      const counts = { D:0, I:0, S:0, C:0 };
+      primaries.forEach(p => counts[p]++);
+      const total_count = primaries.length;
+      freqContent.innerHTML = ['D','I','S','C'].map(d => {
+        const pctVal = Math.round((counts[d] / total_count) * 100);
+        return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:28px;height:28px;border-radius:8px;background:${hex[d]}22;color:${hex[d]};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;">${d}</div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px;">
+              <span style="color:var(--muted);">${names[d]}</span>
+              <span style="color:${hex[d]};font-weight:700;">${counts[d]}x (${pctVal}%)</span>
+            </div>
+            <div style="height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;">
+              <div style="height:6px;background:${hex[d]};border-radius:3px;width:${pctVal}%;transition:width 0.6s ease;"></div>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
   }
 
-  // Gap chart: autoimagem vs percebida convergence
-  const gapCtx = document.getElementById('dashboard-gap-chart');
-  if (gapCtx) {
-    const existing = Chart.getChart(gapCtx);
-    if (existing) existing.destroy();
-
-    // Calculate gap per mapping: sum of absolute diffs across DISC
-    const selfData = hist.map(h => {
-      if (!h.selfScores) return null;
-      return ['D','I','S','C'].reduce((acc, d) => acc + Math.abs((h.selfScores[d]||0) - (h.perceivedScores[d]||0)), 0);
-    }).filter(v => v !== null);
-
-    const gapLabels = hist.filter(h => h.selfScores).map((h, i) => {
-      const d = new Date(h.ts);
-      return (i+1) + 'º · ' + d.toLocaleDateString('pt-BR', {day:'2-digit', month:'short'});
-    });
-
-    if (selfData.length >= 2) {
-      new Chart(gapCtx, {
-        type: 'bar',
+  // ─── SUB-ABA: EVOLUÇÃO ───
+  if (_dashSubTab === 'evolucao') {
+    const evCtx = document.getElementById('dashboard-evolution-chart');
+    if (evCtx) {
+      const existing = Chart.getChart(evCtx);
+      if (existing) existing.destroy();
+      new Chart(evCtx, {
+        type: _dashChartType,
         data: {
-          labels: gapLabels,
-          datasets: [{
-            label: 'Distância autoimagem × percebida',
-            data: selfData,
-            backgroundColor: selfData.map(v => v > 10 ? 'rgba(224,92,106,0.5)' : v > 5 ? 'rgba(240,193,74,0.5)' : 'rgba(62,201,138,0.5)'),
-            borderColor: selfData.map(v => v > 10 ? '#e05c6a' : v > 5 ? '#f0c14a' : '#3ec98a'),
-            borderWidth: 1.5, borderRadius: 6
-          }]
+          labels,
+          datasets: ['D','I','S','C'].map(d => ({
+            label: names[d] + ' (' + d + ')',
+            data: hist.map(h => pct(h.scores[d])),
+            borderColor: hex[d],
+            backgroundColor: hex[d] + (_dashChartType === 'bar' ? '88' : '22'),
+            tension: 0.4, fill: _dashChartType !== 'bar', pointRadius: 5, pointHoverRadius: 7,
+            borderWidth: 2, borderRadius: _dashChartType === 'bar' ? 6 : 0,
+            maxBarThickness: 40
+          }))
         },
         options: {
           responsive: true, maintainAspectRatio: false,
           scales: {
-            y: { beginAtZero: true, ticks: { color: '#9b93c0', font: { size: 11 } }, grid: { color: 'rgba(155,147,192,0.12)' } },
+            y: { beginAtZero: true, max: 100, ticks: { color: '#9b93c0', font: { size: 11 } }, grid: { color: 'rgba(155,147,192,0.12)' } },
             x: { ticks: { color: '#f0ecff', font: { size: 11 } }, grid: { display: false } }
           },
-          plugins: { legend: { display: false } }
+          plugins: { legend: { labels: { color: '#b8b0d8', font: { size: 11 } }, position: 'bottom' } }
         }
       });
-      // Insight text
-      const last = selfData[selfData.length - 1];
-      const first = selfData[0];
-      const trend = last < first ? 'diminuiu' : last > first ? 'aumentou' : 'permaneceu igual';
-      const ins = document.getElementById('dashboard-gap-insight');
-      if (ins) {
-        ins.innerHTML = `A distância entre sua autoimagem e a imagem percebida <strong style="color:var(--text)">${trend}</strong> desde o primeiro mapeamento. ${last <= 3 ? '🟢 Excelente alinhamento atual!' : last <= 7 ? '🟡 Há espaço para aproximar as percepções.' : '🔴 Considere buscar feedbacks externos para alinhar as visões.'}`;
-      }
-    } else {
-      gapCtx.parentElement.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem 0;">Complete ao menos 2 mapeamentos com seleção de adjetivos para ver este gráfico.</p>';
+    }
+
+    // Delta bars
+    const deltaEl = document.getElementById('dash-delta-bars');
+    if (deltaEl && hist.length >= 2) {
+      const first = hist[0], last = hist[hist.length - 1];
+      deltaEl.innerHTML = ['D','I','S','C'].map(d => {
+        const delta = pct(last.scores[d]) - pct(first.scores[d]);
+        const color = delta > 0 ? '#3ec98a' : delta < 0 ? '#e05c6a' : 'var(--muted)';
+        const arrow = delta > 0 ? '▲' : delta < 0 ? '▼' : '─';
+        const absPct = Math.min(100, Math.abs(delta) * 2);
+        return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div style="width:28px;height:28px;border-radius:8px;background:${hex[d]}22;color:${hex[d]};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;">${d}</div>
+          <div style="width:100px;font-size:12px;color:var(--muted);">${names[d]}</div>
+          <div style="flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;">
+            <div style="height:8px;background:${color};border-radius:4px;width:${absPct}%;transition:width 0.6s ease;"></div>
+          </div>
+          <div style="width:60px;text-align:right;font-size:12px;font-weight:700;color:${color};">${arrow} ${Math.abs(delta)}pp</div>
+        </div>`;
+      }).join('');
+    } else if (deltaEl) {
+      deltaEl.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:1rem 0;">Faça ao menos 2 mapeamentos para ver a variação.</p>';
     }
   }
 
-  // Radar: first vs last
-  const radarCtx = document.getElementById('dashboard-radar-compare');
-  if (radarCtx && hist.length >= 2) {
-    const existing = Chart.getChart(radarCtx);
-    if (existing) existing.destroy();
-    const first = hist[0];
-    const last = hist[hist.length - 1];
-    const rLabels = ['Dominância (D)', 'Influência (I)', 'Estabilidade (S)', 'Conformidade (C)'];
-    new Chart(radarCtx, {
-      type: 'radar',
-      data: {
-        labels: rLabels,
-        datasets: [
-          {
-            label: '1º mapeamento',
-            data: [pct(first.scores.D), pct(first.scores.I), pct(first.scores.S), pct(first.scores.C)],
-            backgroundColor: 'rgba(90,171,245,0.1)', borderColor: '#5aabf5', borderWidth: 2,
-            pointBackgroundColor: '#5aabf5', pointRadius: 3
-          },
-          {
-            label: 'Último mapeamento',
-            data: [pct(last.scores.D), pct(last.scores.I), pct(last.scores.S), pct(last.scores.C)],
-            backgroundColor: 'rgba(160,140,255,0.15)', borderColor: '#a08cff', borderWidth: 2,
-            pointBackgroundColor: '#a08cff', pointRadius: 4
-          }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        scales: { r: { beginAtZero: true, max: 100, ticks: { stepSize: 25, backdropColor: 'transparent', color: '#9b93c0', font: { size: 10 } }, grid: { color: 'rgba(155,147,192,0.2)' }, angleLines: { color: 'rgba(155,147,192,0.2)' }, pointLabels: { color: '#f0ecff', font: { size: 12 } } } },
-        plugins: { legend: { labels: { color: '#b8b0d8', font: { size: 11 } }, position: 'bottom' } }
+  // ─── SUB-ABA: RADAR ───
+  if (_dashSubTab === 'radar') {
+    const radarCtx = document.getElementById('dashboard-radar-compare');
+    if (radarCtx && hist.length >= 2) {
+      const existing = Chart.getChart(radarCtx);
+      if (existing) existing.destroy();
+      const first = hist[0], last = hist[hist.length - 1];
+      const rLabels = ['Dominância (D)', 'Influência (I)', 'Estabilidade (S)', 'Conformidade (C)'];
+      new Chart(radarCtx, {
+        type: 'radar',
+        data: {
+          labels: rLabels,
+          datasets: [
+            {
+              label: '1º mapeamento',
+              data: [pct(first.scores.D), pct(first.scores.I), pct(first.scores.S), pct(first.scores.C)],
+              backgroundColor: 'rgba(90,171,245,0.1)', borderColor: '#5aabf5', borderWidth: 2,
+              pointBackgroundColor: '#5aabf5', pointRadius: 4
+            },
+            {
+              label: 'Último mapeamento',
+              data: [pct(last.scores.D), pct(last.scores.I), pct(last.scores.S), pct(last.scores.C)],
+              backgroundColor: 'rgba(160,140,255,0.15)', borderColor: '#a08cff', borderWidth: 2,
+              pointBackgroundColor: '#a08cff', pointRadius: 5
+            }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: { r: { beginAtZero: true, max: 100, ticks: { stepSize: 25, backdropColor: 'transparent', color: '#9b93c0', font: { size: 10 } }, grid: { color: 'rgba(155,147,192,0.2)' }, angleLines: { color: 'rgba(155,147,192,0.2)' }, pointLabels: { color: '#f0ecff', font: { size: 12 } } } },
+          plugins: { legend: { labels: { color: '#b8b0d8', font: { size: 11 } }, position: 'bottom' } }
+        }
+      });
+
+      // Delta cards embaixo do radar
+      const deltaRadar = document.getElementById('dash-radar-delta');
+      if (deltaRadar) {
+        deltaRadar.innerHTML = ['D','I','S','C'].map(d => {
+          const va = pct(first.scores[d]), vb = pct(last.scores[d]);
+          const diff = vb - va;
+          const color = diff > 0 ? '#3ec98a' : diff < 0 ? '#e05c6a' : 'var(--muted)';
+          const arrow = diff > 0 ? '▲' : diff < 0 ? '▼' : '─';
+          return `<div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:10px 12px;border:0.5px solid var(--border);text-align:center;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:${hex[d]};letter-spacing:0.08em;">${d}</div>
+            <div style="font-size:11px;color:var(--muted);margin:2px 0;">${va}% → ${vb}%</div>
+            <div style="font-size:14px;font-weight:700;color:${color};">${arrow} ${Math.abs(diff)}pp</div>
+          </div>`;
+        }).join('');
       }
-    });
-  } else if (radarCtx && hist.length < 2) {
-    radarCtx.parentElement.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem 0;">Complete ao menos 2 mapeamentos para ver a comparação.</p>';
+    } else if (radarCtx && hist.length < 2) {
+      radarCtx.parentElement.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem 0;">Complete ao menos 2 mapeamentos para ver a comparação.</p>';
+    }
+
+    // Selectores de comparação customizada
+    const selA = document.getElementById('dash-comp-a');
+    const selB = document.getElementById('dash-comp-b');
+    const fullH = loadHistory();
+    if (selA && selB) {
+      const opts = fullH.map((h, i) => {
+        const ranked = Object.entries(h.scores).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+        const date = new Date(h.ts).toLocaleDateString('pt-BR', {day:'2-digit', month:'short', year:'numeric'});
+        return `<option value="${i}">${i+1}º · ${date} · ${ranked[0]}</option>`;
+      }).join('');
+      selA.innerHTML = '<option value="">Selecione o mapeamento A</option>' + opts;
+      selB.innerHTML = '<option value="">Selecione o mapeamento B</option>' + opts;
+    }
+  }
+
+  // ─── SUB-ABA: AUTOIMAGEM ───
+  if (_dashSubTab === 'autoimage') {
+    const gapCtx = document.getElementById('dashboard-gap-chart');
+    if (gapCtx) {
+      const existing = Chart.getChart(gapCtx);
+      if (existing) existing.destroy();
+      const selfData = hist.map(h => {
+        if (!h.selfScores) return null;
+        return ['D','I','S','C'].reduce((acc, d) => acc + Math.abs((h.selfScores[d]||0) - (h.perceivedScores[d]||0)), 0);
+      }).filter(v => v !== null);
+      const gapLabels = hist.filter(h => h.selfScores).map((h, i) => {
+        const d = new Date(h.ts);
+        return (i+1) + 'º · ' + d.toLocaleDateString('pt-BR', {day:'2-digit', month:'short'});
+      });
+      if (selfData.length >= 2) {
+        new Chart(gapCtx, {
+          type: 'bar',
+          data: {
+            labels: gapLabels,
+            datasets: [{
+              label: 'Distância autoimagem × percebida',
+              data: selfData,
+              backgroundColor: selfData.map(v => v > 10 ? 'rgba(224,92,106,0.5)' : v > 5 ? 'rgba(240,193,74,0.5)' : 'rgba(62,201,138,0.5)'),
+              borderColor: selfData.map(v => v > 10 ? '#e05c6a' : v > 5 ? '#f0c14a' : '#3ec98a'),
+              borderWidth: 1.5, borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true, ticks: { color: '#9b93c0', font: { size: 11 } }, grid: { color: 'rgba(155,147,192,0.12)' } },
+              x: { ticks: { color: '#f0ecff', font: { size: 11 } }, grid: { display: false } }
+            },
+            plugins: { legend: { display: false } }
+          }
+        });
+        const last = selfData[selfData.length - 1];
+        const first = selfData[0];
+        const trend = last < first ? 'diminuiu' : last > first ? 'aumentou' : 'permaneceu igual';
+        const ins = document.getElementById('dashboard-gap-insight');
+        if (ins) {
+          ins.style.display = 'block';
+          ins.innerHTML = `A distância entre sua autoimagem e a imagem percebida <strong style="color:var(--text)">${trend}</strong> desde o primeiro mapeamento. ${last <= 3 ? '🟢 Excelente alinhamento atual!' : last <= 7 ? '🟡 Há espaço para aproximar as percepções.' : '🔴 Considere buscar feedbacks externos para alinhar as visões.'}`;
+        }
+      } else {
+        gapCtx.parentElement.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:2rem 0;">Complete ao menos 2 mapeamentos com seleção de adjetivos para ver este gráfico.</p>';
+      }
+    }
+  }
+
+  // ─── SUB-ABA: DIMENSÕES DOMINANTES ───
+  if (_dashSubTab === 'dominante') {
+    // Média por dimensão
+    const mediaEl = document.getElementById('dash-media-dims');
+    if (mediaEl) {
+      const medias = ['D','I','S','C'].map(d => ({
+        d,
+        avg: Math.round(hist.reduce((acc, h) => acc + pct(h.scores[d]), 0) / hist.length),
+        max: Math.max(...hist.map(h => pct(h.scores[d]))),
+        min: Math.min(...hist.map(h => pct(h.scores[d])))
+      })).sort((a, b) => b.avg - a.avg);
+      mediaEl.innerHTML = medias.map(m => `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <div style="width:32px;height:32px;border-radius:9px;background:${hex[m.d]}22;color:${hex[m.d]};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;">${m.d}</div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px;">
+              <span style="color:var(--muted);">${names[m.d]}</span>
+              <span style="color:${hex[m.d]};font-weight:700;">Média: ${m.avg}% <span style="color:var(--muted);font-weight:400;">(${m.min}–${m.max}%)</span></span>
+            </div>
+            <div style="height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;">
+              <div style="height:8px;background:${hex[m.d]};border-radius:4px;width:${m.avg}%;transition:width 0.6s ease;"></div>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    // Polar chart
+    const polarCtx = document.getElementById('dash-polar-chart');
+    if (polarCtx) {
+      const existing = Chart.getChart(polarCtx);
+      if (existing) existing.destroy();
+      const avgs = ['D','I','S','C'].map(d => Math.round(hist.reduce((acc, h) => acc + pct(h.scores[d]), 0) / hist.length));
+      new Chart(polarCtx, {
+        type: 'polarArea',
+        data: {
+          labels: ['Dominância (D)', 'Influência (I)', 'Estabilidade (S)', 'Conformidade (C)'],
+          datasets: [{ data: avgs, backgroundColor: ['rgba(224,92,106,0.55)','rgba(240,160,71,0.55)','rgba(62,201,138,0.55)','rgba(90,171,245,0.55)'], borderColor: [hex.D, hex.I, hex.S, hex.C], borderWidth: 1.5 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: { r: { beginAtZero: true, max: 100, ticks: { display: false }, grid: { color: 'rgba(155,147,192,0.2)' } } },
+          plugins: { legend: { labels: { color: '#b8b0d8', font: { size: 11 } }, position: 'bottom' } }
+        }
+      });
+    }
+
+    // Metas
+    dashRenderMetas();
   }
 }
 

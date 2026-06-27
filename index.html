@@ -1455,8 +1455,7 @@ function lidExportCsv() {
     const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):'';
     rows.push([c.nome||'',c.email,lidNomeTime(c.time_id),p,r?lidPct(r.scores,'D'):'',r?lidPct(r.scores,'I'):'',r?lidPct(r.scores,'S'):'',r?lidPct(r.scores,'C'):'',r?new Date(r.created_at).toLocaleDateString('pt-BR'):'']);
   });
-  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('
-');
+  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
   a.download='relatorio_equipes.csv'; a.click();

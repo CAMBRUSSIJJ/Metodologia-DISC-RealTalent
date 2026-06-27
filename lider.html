@@ -1,92 +1,638 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>RealTalent — Painel do Líder</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-  :root {
-    --bg: #0f0d1a; --surface: #1a1630; --surface2: #231e40;
-    --border: rgba(160,140,255,0.15); --border2: rgba(160,140,255,0.30);
-    --purple: #a08cff; --purple2: #7b5fff; --purple3: #4f35cc; --gold: #f0c14a;
-    --text: #f0ecff; --muted: #b8b0d8;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg); color: var(--text); font-family: 'Lato', sans-serif;
-    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
-  }
-  header {
-    width: 100%; border-bottom: 0.5px solid var(--border); position: sticky; top: 0;
-    background: rgba(10,8,20,0.96); backdrop-filter: blur(20px); z-index: 10;
-  }
-  .header-inner { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; width: 100%; }
-  .header-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; }
-  .header-title span { color: var(--purple); font-style: italic; }
-  #logout-btn {
-    background: var(--surface2); border: 0.5px solid var(--border); color: var(--muted);
-    font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer;
-  }
-  main { width: 100%; max-width: 600px; padding: 4rem 1.5rem; text-align: center; flex: 1; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
-  h1 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 14px; }
-  p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 440px; margin: 0 auto; }
-  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px; padding: 2rem; margin-top: 2rem; }
+:root{--bg:#0f0d1a;--surface:#1a1630;--surface2:#231e40;--border:rgba(160,140,255,0.15);--border2:rgba(160,140,255,0.30);--purple:#a08cff;--purple2:#7b5fff;--purple3:#4f35cc;--gold:#f0c14a;--text:#f0ecff;--muted:#b8b0d8;--D:#e05c6a;--I:#f0a047;--S:#3ec98a;--C:#5aabf5;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+header{width:100%;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(10,8,20,0.96);backdrop-filter:blur(20px);z-index:10;}
+.header-inner{padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;width:100%;}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;}
+.logo span{color:var(--purple);font-style:italic;}
+.badge-lider{background:rgba(160,140,255,0.15);color:var(--purple);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:0.5px solid var(--border2);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.user-name{font-size:13px;font-weight:700;}
+.btn-logout{background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;}
+.btn-logout:hover{color:var(--text);}
+.nav-bar{border-top:0.5px solid var(--border);}
+.nav-tabs{display:flex;max-width:1100px;margin:0 auto;padding:0 2rem;overflow-x:auto;}
+.nav-tab{padding:12px 18px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all .15s;white-space:nowrap;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--purple);border-bottom-color:var(--purple);}
+main{width:100%;max-width:1100px;margin:0 auto;padding:2rem 1.5rem 5rem;flex:1;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.panel{background:var(--surface);border:0.5px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:16px;}
+.panel-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1.25rem;}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;}
+.kpi{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;text-align:center;}
+.kpi-value{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);}
+.kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:680px){.grid-2{grid-template-columns:1fr;}}
+.chart-box{height:220px;position:relative;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0 12px 12px;font-weight:700;}
+tbody tr{border-top:0.5px solid var(--border);transition:background .1s;}
+tbody tr:hover{background:rgba(160,140,255,0.04);}
+tbody td{padding:12px;vertical-align:middle;}
+.disc-badge{display:inline-flex;align-items:center;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge-D{background:rgba(224,92,106,0.15);color:var(--D);}
+.badge-I{background:rgba(240,160,71,0.15);color:var(--I);}
+.badge-S{background:rgba(62,201,138,0.15);color:var(--S);}
+.badge-C{background:rgba(90,171,245,0.15);color:var(--C);}
+.badge-pendente{background:rgba(184,176,216,0.1);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700;}
+.search-row{display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
+.search-row input,.search-row select{background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;}
+.search-row input{flex:1;min-width:180px;}
+.search-row input:focus,.search-row select:focus{border-color:var(--purple2);}
+.btn{background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;}
+.btn:hover{color:var(--text);border-color:var(--border2);}
+.btn-purple{background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;}
+.btn-purple:hover{opacity:.9;color:#fff;}
+.team-card{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:12px;cursor:pointer;transition:border-color .2s;}
+.team-card:hover{border-color:var(--border2);}
+.team-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.team-name{font-size:15px;font-weight:700;}
+.team-stats{display:flex;gap:16px;}
+.team-stat{font-size:12px;color:var(--muted);}
+.team-stat strong{color:var(--text);}
+.disc-bars{display:flex;gap:3px;align-items:flex-end;height:28px;}
+.disc-bar{border-radius:3px 3px 0 0;width:12px;}
+.progress-wrap{background:rgba(255,255,255,0.06);border-radius:10px;height:6px;overflow:hidden;margin-top:8px;}
+.progress-bar{height:6px;border-radius:10px;background:linear-gradient(90deg,var(--purple2),var(--purple3));}
+.empty{text-align:center;padding:3rem;color:var(--muted);font-size:13px;}
+.disc-tip{background:var(--surface2);border-left:3px solid var(--purple);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:6px;line-height:1.6;}
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.score-bar-wrap{flex:1;background:rgba(255,255,255,0.06);border-radius:10px;height:10px;overflow:hidden;}
+.score-bar{height:10px;border-radius:10px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border:0.5px solid var(--border2);border-radius:20px;padding:2rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;}
+.modal h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:1.5rem;}
+.modal-actions{display:flex;gap:10px;margin-top:1.5rem;justify-content:flex-end;flex-wrap:wrap;}
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
-    <div class="header-title">RealTalent <span>Líder</span></div>
-    <button id="logout-btn" onclick="handleLogout()">Sair</button>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo">Real<span>Talent</span></div>
+      <div class="badge-lider">Líder</div>
+    </div>
+    <div class="header-right">
+      <span class="user-name" id="user-name"></span>
+      <button class="btn-logout" onclick="handleLogout()">Sair</button>
+    </div>
+  </div>
+  <div class="nav-bar">
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('equipes',this)">🏷️ Todas as Equipes</button>
+      <button class="nav-tab" onclick="showTab('colaboradores',this)">👥 Colaboradores</button>
+      <button class="nav-tab" onclick="showTab('comunicacao',this)">💬 Comunicação</button>
+      <button class="nav-tab" onclick="showTab('conflitos',this)">⚡ Conflitos</button>
+      <button class="nav-tab" onclick="showTab('talentos',this)">🌟 Talentos</button>
+    </div>
   </div>
 </header>
 
 <main>
-  <div class="eyebrow">Painel do líder</div>
-  <h1 id="greeting">Olá!</h1>
-  <div class="card">
-    <p>Esta área vai reunir a visão da sua equipe: matriz DISC do time, manual de comunicação por pessoa, gestão de conflitos e mapeamento de talentos.</p>
-    <p style="margin-top:14px;">Essas ferramentas chegam na próxima etapa de construção do RealTalent — por enquanto, seu acesso já está corretamente identificado como líder.</p>
+
+  <!-- ABA: TODAS AS EQUIPES -->
+  <div class="tab-content active" id="tab-equipes">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-value" id="kpi-equipes">—</div><div class="kpi-label">Equipes</div></div>
+      <div class="kpi"><div class="kpi-value" id="kpi-total">—</div><div class="kpi-label">Colaboradores</div></div>
+      <div class="kpi"><div class="kpi-value" id="kpi-mapeados">—</div><div class="kpi-label">Mapeados</div></div>
+      <div class="kpi"><div class="kpi-value" id="kpi-pendentes">—</div><div class="kpi-label">Pendentes</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Distribuição Geral DISC</div>
+        <div class="chart-box"><canvas id="chart-dist"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Médias por Fator</div>
+        <div class="chart-box"><canvas id="chart-avg"></canvas></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Equipes</div>
+      <div id="lista-equipes"><div class="empty">Carregando...</div></div>
+    </div>
   </div>
+
+  <!-- ABA: COLABORADORES -->
+  <div class="tab-content" id="tab-colaboradores">
+    <div class="panel">
+      <div class="panel-title">Todos os Colaboradores</div>
+      <div class="search-row">
+        <input type="text" id="search-col" placeholder="Buscar nome ou e-mail..." oninput="renderColaboradores()"/>
+        <select id="filter-equipe" onchange="renderColaboradores()"><option value="">Todas as equipes</option></select>
+        <select id="filter-perfil" onchange="renderColaboradores()">
+          <option value="">Todos os perfis</option>
+          <option value="D">D — Dominância</option>
+          <option value="I">I — Influência</option>
+          <option value="S">S — Estabilidade</option>
+          <option value="C">C — Conformidade</option>
+          <option value="pendente">Pendentes</option>
+        </select>
+        <button class="btn" onclick="loadData()">↻ Atualizar</button>
+        <button class="btn btn-purple" onclick="exportarTodosCsv()">⤓ CSV</button>
+      </div>
+      <div id="table-colaboradores" style="overflow-x:auto;"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+  <!-- ABA: COMUNICAÇÃO -->
+  <div class="tab-content" id="tab-comunicacao">
+    <div class="panel">
+      <div class="panel-title">Manual de Comunicação por Colaborador</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;">Como adaptar sua comunicação com cada pessoa baseado no perfil DISC.</p>
+      <div id="lista-comunicacao"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+  <!-- ABA: CONFLITOS -->
+  <div class="tab-content" id="tab-conflitos">
+    <div class="panel" style="margin-bottom:16px;">
+      <div class="panel-title">⚡ Pontos de Tensão</div>
+      <div id="lista-tensao"><div class="empty">Carregando...</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">🤝 Combinações Complementares</div>
+      <div id="lista-complemento"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+  <!-- ABA: TALENTOS -->
+  <div class="tab-content" id="tab-talentos">
+    <div class="panel">
+      <div class="panel-title">Mapa de Talentos por Perfil</div>
+      <div id="lista-talentos"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
 </main>
 
-<script>
-const SUPABASE_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf';
-let supabaseClient = null;
+<!-- MODAL: Relatório do Colaborador -->
+<div class="modal-overlay" id="modal-relatorio">
+  <div class="modal">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:1.5rem;">
+      <div id="modal-avatar" style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;flex-shrink:0;"></div>
+      <div>
+        <h3 style="margin-bottom:2px;" id="modal-nome">—</h3>
+        <div style="font-size:12px;color:var(--muted);" id="modal-email">—</div>
+        <div style="font-size:12px;color:var(--muted);" id="modal-time">—</div>
+      </div>
+    </div>
 
-function initSupabase() {
-  if (window.supabase && !supabaseClient) {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  }
+    <div style="margin-bottom:1.25rem;" id="modal-perfil-wrap">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:8px;">Perfil DISC</div>
+      <div id="modal-perfil-badge"></div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;" id="modal-scores-wrap">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:10px;">Scores Detalhados</div>
+      <div id="modal-scores"></div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;" id="modal-empresa-wrap">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:6px;">Empresa / Equipe</div>
+      <div style="font-size:13px;" id="modal-empresa">—</div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:6px;">Data do Mapeamento</div>
+      <div style="font-size:13px;" id="modal-data">—</div>
+    </div>
+
+    <div style="margin-bottom:1.25rem;" id="modal-dicas-wrap">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:10px;">Como se comunicar com este perfil</div>
+      <div id="modal-dicas"></div>
+    </div>
+
+    <div id="modal-talentos-wrap" style="margin-bottom:1.25rem;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;margin-bottom:10px;">Talentos Naturais</div>
+      <div id="modal-talentos"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="fecharModal()">Fechar</button>
+      <button class="btn btn-purple" id="btn-pdf" onclick="gerarPdf()">⤓ Baixar Relatório PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SB_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
+const SB_KEY = 'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf';
+const DISC_NOMES = {D:'Dominância',I:'Influência',S:'Estabilidade',C:'Conformidade'};
+const DISC_CORES = {D:'#e05c6a',I:'#f0a047',S:'#3ec98a',C:'#5aabf5'};
+const DISC_DICAS = {
+  D:{comunicar:['Seja direto e objetivo — vá ao ponto rapidamente.','Apresente desafios e metas ambiciosas.','Dê autonomia para decidir e executar.','Evite excesso de detalhes ou reuniões longas.'],talentos:['Liderança natural sob pressão','Tomada de decisão rápida','Orientação para resultados','Resolução de problemas complexos']},
+  I:{comunicar:['Use entusiasmo e energia na comunicação.','Dê espaço para compartilhar ideias.','Reconheça publicamente as contribuições.','Evite críticas em público ou tom muito formal.'],talentos:['Engajamento e motivação da equipe','Criatividade e geração de ideias','Networking e relacionamento','Capacidade de influenciar e persuadir']},
+  S:{comunicar:['Seja paciente e escute com atenção.','Dê tempo para processar mudanças.','Valorize a lealdade e consistência.','Evite pressão excessiva ou mudanças bruscas.'],talentos:['Estabilidade e confiabilidade','Habilidade de ouvir e apoiar','Execução consistente de processos','Mediação de conflitos']},
+  C:{comunicar:['Apresente dados, fatos e argumentos lógicos.','Dê tempo suficiente para análise.','Respeite os processos estabelecidos.','Evite decisões precipitadas sem embasamento.'],talentos:['Análise crítica e atenção a detalhes','Garantia de qualidade e precisão','Organização e estrutura','Pensamento sistemático']}
+};
+const TENSOES = [{a:'D',b:'I',m:'O D pode achar o I disperso; o I pode achar o D frio e impaciente.'},{a:'I',b:'C',m:'O I pode achar o C excessivamente detalhista; o C pode achar o I impreciso.'},{a:'S',b:'D',m:'O S pode se sentir pressionado pelo D; o D pode achar o S lento para decidir.'},{a:'C',b:'I',m:'O C pode achar o I superficial; o I pode achar o C inflexível.'}];
+const COMPLEMENTOS = [{a:'D',b:'S',m:'O D traz velocidade e decisão; o S traz estabilidade e cuidado com as pessoas.'},{a:'I',b:'D',m:'O I traz energia e criatividade; o D traz foco e direcionamento.'},{a:'S',b:'I',m:'O S traz consistência e cuidado; o I traz energia e inovação.'},{a:'C',b:'S',m:'O C traz precisão e análise; o S traz calor humano e colaboração.'}];
+
+let sb = null;
+let todosColabs = [], todosResultados = [], todosTimes = [];
+let modalAtual = null;
+
+function getSb() {
+  if (!sb && window.supabase) sb = window.supabase.createClient(SB_URL, SB_KEY);
+  return sb;
 }
 
-async function checkSession() {
-  initSupabase();
-  if (!supabaseClient) { setTimeout(checkSession, 150); return; }
-  const { data } = await supabaseClient.auth.getSession();
-  if (!data || !data.session) { window.location.href = 'login.html'; return; }
-
-  const { data: perfil, error } = await supabaseClient
-    .from('perfis').select('nome, papel').eq('id', data.session.user.id).maybeSingle();
-  if (error || !perfil || perfil.papel !== 'lider') {
-    const destino = perfil && perfil.papel === 'admin' ? 'admin.html' : 'colaborador.html';
-    window.location.href = destino;
+async function boot() {
+  if (!getSb()) { setTimeout(boot, 150); return; }
+  const { data: sess } = await getSb().auth.getSession();
+  if (!sess?.session) { window.location.href = 'login.html'; return; }
+  const { data: perfil } = await getSb().from('perfis').select('nome,papel').eq('id', sess.session.user.id).maybeSingle();
+  if (!perfil || perfil.papel !== 'lider') {
+    window.location.href = perfil?.papel === 'admin' ? 'index.html' : 'index.html';
     return;
   }
-  document.getElementById('greeting').textContent = `Olá, ${perfil.nome || ''}!`;
+  document.getElementById('user-name').textContent = perfil.nome || '';
+  await loadData();
+}
+
+async function loadData() {
+  const [colRes, resRes, timRes] = await Promise.all([
+    getSb().from('perfis').select('id,nome,email,time_id').eq('papel','colaborador').order('nome'),
+    getSb().from('resultados').select('*').order('created_at',{ascending:false}),
+    getSb().from('times').select('id,nome').order('nome')
+  ]);
+  todosColabs = colRes.data || [];
+  todosResultados = resRes.data || [];
+  todosTimes = timRes.data || [];
+
+  // Popular filtro de equipe
+  const sel = document.getElementById('filter-equipe');
+  sel.innerHTML = '<option value="">Todas as equipes</option>' + todosTimes.map(t => `<option value="${t.id}">${t.nome}</option>`).join('');
+
+  renderKpis();
+  renderCharts();
+  renderEquipes();
+  renderColaboradores();
+  renderComunicacao();
+  renderConflitos();
+  renderTalentos();
+}
+
+function getResult(email) { return todosResultados.find(r => r.email === email); }
+function primaryProfile(scores) { if (!scores) return null; return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0]?.[0]; }
+function pct(scores, key) { if (!scores) return 0; const t = Object.values(scores).reduce((a,b)=>a+b,0); return t>0?Math.round((scores[key]/t)*100):0; }
+function nomeTime(id) { return todosTimes.find(t=>t.id===id)?.nome || '—'; }
+
+function renderKpis() {
+  const mapeados = todosColabs.filter(c => getResult(c.email)).length;
+  document.getElementById('kpi-equipes').textContent = todosTimes.length;
+  document.getElementById('kpi-total').textContent = todosColabs.length;
+  document.getElementById('kpi-mapeados').textContent = mapeados;
+  document.getElementById('kpi-pendentes').textContent = todosColabs.length - mapeados;
+}
+
+function renderCharts() {
+  const cnt = {D:0,I:0,S:0,C:0}, soma = {D:0,I:0,S:0,C:0};
+  const n = todosResultados.length;
+  todosResultados.forEach(r => { const p=primaryProfile(r.scores); if(p) cnt[p]++; ['D','I','S','C'].forEach(k=>soma[k]+=pct(r.scores,k)); });
+  const dCtx = document.getElementById('chart-dist');
+  if(dCtx){const ex=Chart.getChart(dCtx);if(ex)ex.destroy();new Chart(dCtx,{type:'doughnut',data:{labels:['D','I','S','C'],datasets:[{data:[cnt.D,cnt.I,cnt.S,cnt.C],backgroundColor:['#e05c6a','#f0a047','#3ec98a','#5aabf5'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#b8b0d8',font:{size:11},padding:12}}}}});}
+  const bCtx = document.getElementById('chart-avg');
+  if(bCtx){const ex=Chart.getChart(bCtx);if(ex)ex.destroy();new Chart(bCtx,{type:'bar',data:{labels:['D','I','S','C'],datasets:[{data:n>0?['D','I','S','C'].map(k=>Math.round(soma[k]/n)):[0,0,0,0],backgroundColor:['#e05c6a','#f0a047','#3ec98a','#5aabf5'],borderRadius:6,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100,ticks:{color:'#9b93c0'},grid:{color:'rgba(155,147,192,0.1)'}},x:{ticks:{color:'#f0ecff',font:{weight:'bold'}},grid:{display:false}}},plugins:{legend:{display:false}}}});}
+}
+
+function renderEquipes() {
+  const wrap = document.getElementById('lista-equipes');
+  if (!todosTimes.length) { wrap.innerHTML = '<div class="empty">Nenhuma equipe cadastrada.</div>'; return; }
+  wrap.innerHTML = todosTimes.map(t => {
+    const membros = todosColabs.filter(c=>c.time_id===t.id);
+    const mapeados = membros.filter(c=>getResult(c.email));
+    const pctVal = membros.length > 0 ? Math.round((mapeados.length/membros.length)*100) : 0;
+    const cnt = {D:0,I:0,S:0,C:0};
+    mapeados.forEach(c => { const p=primaryProfile(getResult(c.email).scores); if(p) cnt[p]++; });
+    const dom = Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
+    const domP = dom?.[1]>0 ? dom[0] : null;
+    return `<div class="team-card" onclick="filtrarEquipe('${t.id}')">
+      <div class="team-card-header">
+        <div>
+          <div class="team-name">${t.nome}</div>
+          ${domP ? `<span class="disc-badge badge-${domP}" style="margin-top:4px;">${domP} · ${DISC_NOMES[domP]}</span>` : ''}
+        </div>
+        <div class="team-stats">
+          <div class="team-stat"><strong>${membros.length}</strong> membros</div>
+          <div class="team-stat"><strong>${mapeados.length}</strong> mapeados</div>
+          <div class="team-stat"><strong>${pctVal}%</strong> cobertura</div>
+        </div>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" style="width:${pctVal}%"></div></div>
+      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        ${membros.map(c => {
+          const r = getResult(c.email);
+          const p = r ? primaryProfile(r.scores) : null;
+          const cor = p ? DISC_CORES[p] : '#4a4270';
+          const ini = (c.nome||'?').charAt(0).toUpperCase();
+          return `<div title="${c.nome}" style="width:30px;height:30px;border-radius:50%;background:${cor}33;border:1.5px solid ${cor}66;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${cor};">${ini}</div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrarEquipe(timeId) {
+  showTab('colaboradores', document.querySelectorAll('.nav-tab')[1]);
+  document.getElementById('filter-equipe').value = timeId;
+  renderColaboradores();
+}
+
+function renderColaboradores() {
+  const q = (document.getElementById('search-col')?.value||'').toLowerCase();
+  const ef = document.getElementById('filter-equipe')?.value||'';
+  const pf = document.getElementById('filter-perfil')?.value||'';
+  const wrap = document.getElementById('table-colaboradores');
+
+  const data = todosColabs.filter(c => {
+    const r = getResult(c.email);
+    const p = r ? primaryProfile(r.scores) : null;
+    return (!q || c.nome?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q)) &&
+           (!ef || c.time_id === ef) &&
+           (!pf || (pf==='pendente' ? !p : p===pf));
+  });
+
+  if (!data.length) { wrap.innerHTML = '<div class="empty">Nenhum colaborador encontrado.</div>'; return; }
+
+  const rows = data.map(c => {
+    const r = getResult(c.email);
+    const p = r ? primaryProfile(r.scores) : null;
+    const cor = p ? DISC_CORES[p] : '#4a4270';
+    const ini = (c.nome||'?').charAt(0).toUpperCase();
+    const badge = p ? `<span class="disc-badge badge-${p}">${p} · ${DISC_NOMES[p]}</span>` : '<span class="badge-pendente">Pendente</span>';
+    const bars = p ? `<div class="disc-bars">${['D','I','S','C'].map(k=>`<div class="disc-bar" style="height:${pct(r.scores,k)*0.28}px;background:${DISC_CORES[k]};"></div>`).join('')}</div>` : '—';
+    const dt = r ? new Date(r.created_at).toLocaleDateString('pt-BR') : '—';
+    return `<tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:${cor}33;border:1.5px solid ${cor}66;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:${cor};flex-shrink:0;">${ini}</div>
+          <div><div style="font-weight:700;font-size:13px;">${c.nome||'—'}</div><div style="font-size:11px;color:var(--muted);">${c.email}</div></div>
+        </div>
+      </td>
+      <td style="font-size:12px;color:var(--muted);">${nomeTime(c.time_id)}</td>
+      <td>${badge}</td>
+      <td>${bars}</td>
+      <td style="font-size:12px;color:var(--muted);">${dt}</td>
+      <td>
+        <button class="btn btn-purple" style="padding:6px 14px;font-size:11px;" onclick="abrirRelatorio('${c.email}')">
+          📄 Ver Relatório
+        </button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  wrap.innerHTML = `<table>
+    <thead><tr><th>Colaborador</th><th>Equipe</th><th>Perfil</th><th>DISC</th><th>Mapeamento</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function abrirRelatorio(email) {
+  const colab = todosColabs.find(c=>c.email===email);
+  const r = getResult(email);
+  const p = r ? primaryProfile(r.scores) : null;
+  modalAtual = {colab, r, p};
+
+  const cor = p ? DISC_CORES[p] : '#7b5fff';
+  const ini = (colab?.nome||'?').charAt(0).toUpperCase();
+
+  document.getElementById('modal-avatar').style.background = `linear-gradient(135deg,${cor},${cor}88)`;
+  document.getElementById('modal-avatar').textContent = ini;
+  document.getElementById('modal-nome').textContent = colab?.nome || '—';
+  document.getElementById('modal-email').textContent = email;
+  document.getElementById('modal-time').textContent = nomeTime(colab?.time_id);
+  document.getElementById('modal-data').textContent = r ? new Date(r.created_at).toLocaleDateString('pt-BR') : 'Não mapeado';
+  document.getElementById('modal-empresa').textContent = r?.empresa || '—';
+
+  if (p) {
+    document.getElementById('modal-perfil-badge').innerHTML = `<span class="disc-badge badge-${p}" style="font-size:14px;">${p} · ${DISC_NOMES[p]}</span>`;
+    document.getElementById('modal-scores').innerHTML = ['D','I','S','C'].map(k=>`
+      <div class="score-row">
+        <div style="width:130px;font-size:13px;font-weight:700;color:${DISC_CORES[k]};">${k} · ${DISC_NOMES[k]}</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:${pct(r.scores,k)}%;background:${DISC_CORES[k]};"></div></div>
+        <div style="font-size:12px;color:var(--muted);width:35px;text-align:right;">${pct(r.scores,k)}%</div>
+      </div>`).join('');
+    document.getElementById('modal-dicas').innerHTML = DISC_DICAS[p].comunicar.map(d=>`<div class="disc-tip">→ ${d}</div>`).join('');
+    document.getElementById('modal-talentos').innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">${DISC_DICAS[p].talentos.map(t=>`<div style="background:${cor}1a;border-radius:8px;padding:8px 12px;font-size:12px;">⭐ ${t}</div>`).join('')}</div>`;
+    document.getElementById('modal-scores-wrap').style.display='';
+    document.getElementById('modal-dicas-wrap').style.display='';
+    document.getElementById('modal-talentos-wrap').style.display='';
+    document.getElementById('btn-pdf').style.display='';
+  } else {
+    document.getElementById('modal-perfil-badge').innerHTML='<span class="badge-pendente">Não mapeado ainda</span>';
+    document.getElementById('modal-scores-wrap').style.display='none';
+    document.getElementById('modal-dicas-wrap').style.display='none';
+    document.getElementById('modal-talentos-wrap').style.display='none';
+    document.getElementById('btn-pdf').style.display='none';
+  }
+
+  document.getElementById('modal-relatorio').classList.add('open');
+}
+
+function fecharModal() { document.getElementById('modal-relatorio').classList.remove('open'); }
+
+function gerarPdf() {
+  if (!modalAtual || !modalAtual.r) return;
+  const {colab, r, p} = modalAtual;
+  const btn = document.getElementById('btn-pdf');
+  btn.textContent = 'Gerando...'; btn.disabled = true;
+
+  function fazer() {
+    if (!window.jspdf) { setTimeout(fazer, 200); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const cor = p ? DISC_CORES[p] : '#7b5fff';
+    const corRgb = p === 'D' ? [224,92,106] : p === 'I' ? [240,160,71] : p === 'S' ? [62,201,138] : [90,171,245];
+
+    // Header
+    doc.setFillColor(15,13,26);
+    doc.rect(0,0,210,40,'F');
+    doc.setTextColor(160,140,255);
+    doc.setFontSize(22); doc.setFont('helvetica','bold');
+    doc.text('RealTalent', 20, 18);
+    doc.setTextColor(184,176,216);
+    doc.setFontSize(10); doc.setFont('helvetica','normal');
+    doc.text('Relatório de Mapeamento Comportamental DISC', 20, 28);
+    doc.text(`Gerado em ${new Date().toLocaleDateString('pt-BR')}`, 20, 35);
+
+    // Nome
+    doc.setTextColor(30,30,30);
+    doc.setFontSize(18); doc.setFont('helvetica','bold');
+    doc.text(colab?.nome || '—', 20, 56);
+    doc.setFontSize(11); doc.setFont('helvetica','normal');
+    doc.setTextColor(100,100,100);
+    doc.text(colab?.email || '', 20, 64);
+    doc.text(`Equipe: ${nomeTime(colab?.time_id)}`, 20, 71);
+    doc.text(`Empresa: ${r.empresa || '—'}`, 20, 78);
+    doc.text(`Data: ${new Date(r.created_at).toLocaleDateString('pt-BR')}`, 20, 85);
+
+    // Perfil
+    doc.setFillColor(...corRgb);
+    doc.roundedRect(20, 93, 170, 20, 4, 4, 'F');
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(14); doc.setFont('helvetica','bold');
+    doc.text(`Perfil: ${p} · ${DISC_NOMES[p]}`, 28, 107);
+
+    // Scores
+    doc.setTextColor(30,30,30);
+    doc.setFontSize(13); doc.setFont('helvetica','bold');
+    doc.text('Scores DISC', 20, 125);
+    let y = 133;
+    const discCores = {D:[224,92,106],I:[240,160,71],S:[62,201,138],C:[90,171,245]};
+    ['D','I','S','C'].forEach(k => {
+      const val = pct(r.scores, k);
+      doc.setTextColor(60,60,60);
+      doc.setFontSize(11); doc.setFont('helvetica','bold');
+      doc.text(`${k} · ${DISC_NOMES[k]}`, 20, y);
+      doc.setFillColor(230,230,230);
+      doc.roundedRect(80, y-6, 100, 8, 2, 2, 'F');
+      doc.setFillColor(...discCores[k]);
+      doc.roundedRect(80, y-6, val, 8, 2, 2, 'F');
+      doc.setTextColor(60,60,60);
+      doc.text(`${val}%`, 184, y);
+      y += 14;
+    });
+
+    // Comunicação
+    y += 6;
+    doc.setFillColor(245,245,250);
+    doc.rect(20, y-4, 170, 6 + DISC_DICAS[p].comunicar.length * 10, 'F');
+    doc.setTextColor(30,30,30);
+    doc.setFontSize(13); doc.setFont('helvetica','bold');
+    doc.text('Como se comunicar', 24, y+4);
+    y += 12;
+    DISC_DICAS[p].comunicar.forEach(d => {
+      doc.setFontSize(10); doc.setFont('helvetica','normal');
+      doc.setTextColor(70,70,70);
+      doc.text(`→ ${d}`, 24, y);
+      y += 10;
+    });
+
+    // Talentos
+    y += 6;
+    doc.setTextColor(30,30,30);
+    doc.setFontSize(13); doc.setFont('helvetica','bold');
+    doc.text('Talentos Naturais', 20, y);
+    y += 10;
+    DISC_DICAS[p].talentos.forEach(t => {
+      doc.setFontSize(10); doc.setFont('helvetica','normal');
+      doc.setTextColor(70,70,70);
+      doc.text(`⭐ ${t}`, 24, y);
+      y += 9;
+    });
+
+    // Footer
+    doc.setFillColor(15,13,26);
+    doc.rect(0,282,210,15,'F');
+    doc.setTextColor(120,100,180);
+    doc.setFontSize(9);
+    doc.text('RealTalent · Mapeamento Comportamental · Powered by Claude (Anthropic)', 20, 291);
+
+    doc.save(`relatorio_${(colab?.nome||'colaborador').replace(/\s/g,'_')}.pdf`);
+    btn.textContent = '⤓ Baixar Relatório PDF'; btn.disabled = false;
+  }
+  fazer();
+}
+
+function renderComunicacao() {
+  const wrap = document.getElementById('lista-comunicacao');
+  const mapeados = todosColabs.filter(c=>getResult(c.email));
+  if (!mapeados.length) { wrap.innerHTML = '<div class="empty">Nenhum colaborador mapeado ainda.</div>'; return; }
+  wrap.innerHTML = mapeados.map(c => {
+    const p = primaryProfile(getResult(c.email).scores);
+    if (!p) return '';
+    return `<div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:0.5px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <span class="disc-badge badge-${p}">${p}</span>
+        <strong style="font-size:15px;">${c.nome}</strong>
+        <span style="font-size:12px;color:var(--muted);">${nomeTime(c.time_id)}</span>
+      </div>
+      ${DISC_DICAS[p].comunicar.map(d=>`<div class="disc-tip">→ ${d}</div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function renderConflitos() {
+  const mapeados = todosColabs.filter(c=>getResult(c.email));
+  const tensoes=[],complementos=[];
+  for(let i=0;i<mapeados.length;i++){
+    for(let j=i+1;j<mapeados.length;j++){
+      const pA=primaryProfile(getResult(mapeados[i].email).scores);
+      const pB=primaryProfile(getResult(mapeados[j].email).scores);
+      if(!pA||!pB) continue;
+      TENSOES.forEach(t=>{ if((t.a===pA&&t.b===pB)||(t.a===pB&&t.b===pA)) tensoes.push({a:mapeados[i].nome,b:mapeados[j].nome,pA,pB,m:t.m}); });
+      COMPLEMENTOS.forEach(t=>{ if((t.a===pA&&t.b===pB)||(t.a===pB&&t.b===pA)) complementos.push({a:mapeados[i].nome,b:mapeados[j].nome,pA,pB,m:t.m}); });
+    }
+  }
+  const wT=document.getElementById('lista-tensao');
+  const wC=document.getElementById('lista-complemento');
+  wT.innerHTML = tensoes.length ? tensoes.map(t=>`<div style="display:flex;gap:12px;padding:12px;background:rgba(224,92,106,0.06);border:0.5px solid rgba(224,92,106,0.2);border-radius:10px;margin-bottom:10px;"><span style="font-size:20px;">⚡</span><div><div style="font-size:13px;font-weight:700;margin-bottom:4px;"><span class="disc-badge badge-${t.pA}">${t.pA}</span> ${t.a} <span style="color:var(--muted);margin:0 6px;">×</span><span class="disc-badge badge-${t.pB}">${t.pB}</span> ${t.b}</div><div style="font-size:12px;color:var(--muted);">${t.m}</div></div></div>`).join('') : '<div class="empty">✅ Nenhum ponto de tensão identificado.</div>';
+  wC.innerHTML = complementos.length ? complementos.map(t=>`<div style="display:flex;gap:12px;padding:12px;background:rgba(62,201,138,0.06);border:0.5px solid rgba(62,201,138,0.2);border-radius:10px;margin-bottom:10px;"><span style="font-size:20px;">🤝</span><div><div style="font-size:13px;font-weight:700;margin-bottom:4px;"><span class="disc-badge badge-${t.pA}">${t.pA}</span> ${t.a} <span style="color:var(--muted);margin:0 6px;">+</span><span class="disc-badge badge-${t.pB}">${t.pB}</span> ${t.b}</div><div style="font-size:12px;color:var(--muted);">${t.m}</div></div></div>`).join('') : '<div class="empty">Nenhuma combinação complementar encontrada.</div>';
+}
+
+function renderTalentos() {
+  const wrap = document.getElementById('lista-talentos');
+  const grupos={D:[],I:[],S:[],C:[]};
+  todosColabs.filter(c=>getResult(c.email)).forEach(c=>{ const p=primaryProfile(getResult(c.email).scores); if(p) grupos[p].push({nome:c.nome,time:nomeTime(c.time_id)}); });
+  const html = ['D','I','S','C'].filter(p=>grupos[p].length>0).map(p=>`
+    <div style="margin-bottom:1.5rem;padding:1.25rem;background:${DISC_CORES[p]}0d;border:0.5px solid ${DISC_CORES[p]}33;border-radius:12px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <span class="disc-badge badge-${p}" style="font-size:13px;">${p} · ${DISC_NOMES[p]}</span>
+        ${grupos[p].map(x=>`<span style="font-size:12px;color:var(--muted);">${x.nome} <span style="opacity:.6;">(${x.time})</span></span>`).join(' · ')}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+        ${DISC_DICAS[p].talentos.map(t=>`<div style="background:${DISC_CORES[p]}1a;border-radius:8px;padding:8px 12px;font-size:12px;">⭐ ${t}</div>`).join('')}
+      </div>
+    </div>`).join('');
+  wrap.innerHTML = html || '<div class="empty">Nenhum colaborador mapeado ainda.</div>';
+}
+
+function exportarTodosCsv() {
+  const rows = [['Nome','Email','Equipe','Empresa','Perfil','D%','I%','S%','C%','Data']];
+  todosColabs.forEach(c => {
+    const r = getResult(c.email);
+    const p = r ? primaryProfile(r.scores) : '';
+    rows.push([c.nome||'',c.email,nomeTime(c.time_id),r?.empresa||'',p,r?pct(r.scores,'D'):'',r?pct(r.scores,'I'):'',r?pct(r.scores,'S'):'',r?pct(r.scores,'C'):'',r?new Date(r.created_at).toLocaleDateString('pt-BR'):'']);
+  });
+  const csv = rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  a.download = 'relatorio_equipes.csv';
+  a.click();
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
 }
 
 async function handleLogout() {
-  try { await supabaseClient.auth.signOut(); } catch(e) {}
+  try { await getSb().auth.signOut(); } catch(e) {}
   window.location.href = 'login.html';
 }
 
-checkSession();
+document.getElementById('modal-relatorio').addEventListener('click', function(e){ if(e.target===this) fecharModal(); });
+boot();
 </script>
 </body>
 </html>

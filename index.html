@@ -498,6 +498,10 @@
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
       Evolução
     </button>
+    <button class="nav-tab" id="tab-lider" role="tab" aria-label="Painel do Líder" onclick="switchTab('lider')" style="display:none;">
+      <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Líder
+    </button>
     <button class="nav-tab" id="tab-admin" role="tab" aria-label="Administração" onclick="switchTab('admin')" style="display:none;">
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Admin
@@ -859,6 +863,99 @@
     </div>
   </div>
 
+  <!-- ══ ABA: LÍDER ══ -->
+  <div id="tab-content-lider" style="display:none;">
+    <div style="max-width:1000px;margin:0 auto;">
+
+      <!-- KPIs -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;">
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-equipes">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Equipes</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-total">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Colaboradores</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-mapeados">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Mapeados</div>
+        </div>
+        <div class="section-card" style="text-align:center;padding:1.25rem;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--purple);" id="lid-kpi-pendentes">—</div>
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Pendentes</div>
+        </div>
+      </div>
+
+      <!-- Sub-abas -->
+      <div style="display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--border);padding-bottom:0;overflow-x:auto;">
+        <button onclick="lidTab('equipes')" id="lid-tab-equipes" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid var(--purple);color:var(--purple);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🏷️ Equipes</button>
+        <button onclick="lidTab('colaboradores')" id="lid-tab-colaboradores" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">👥 Colaboradores</button>
+        <button onclick="lidTab('comunicacao')" id="lid-tab-comunicacao" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">💬 Comunicação</button>
+        <button onclick="lidTab('conflitos')" id="lid-tab-conflitos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">⚡ Conflitos</button>
+        <button onclick="lidTab('talentos')" id="lid-tab-talentos" style="padding:10px 18px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;">🌟 Talentos</button>
+      </div>
+
+      <!-- Equipes -->
+      <div id="lid-content-equipes">
+        <div class="section-card" style="margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">Visão Geral por Equipe</div>
+          <div id="lid-lista-equipes"><p style="color:var(--muted);font-size:13px;">Carregando...</p></div>
+        </div>
+      </div>
+
+      <!-- Colaboradores -->
+      <div id="lid-content-colaboradores" style="display:none;">
+        <div class="section-card">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">Todos os Colaboradores</div>
+          <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
+            <input type="text" id="lid-search" placeholder="Buscar nome ou e-mail..." oninput="lidRenderColabs()" style="flex:1;min-width:160px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"/>
+            <select id="lid-filter-equipe" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;"><option value="">Todas as equipes</option></select>
+            <select id="lid-filter-perfil" onchange="lidRenderColabs()" style="background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Lato',sans-serif;outline:none;">
+              <option value="">Todos os perfis</option>
+              <option value="D">D — Dominância</option>
+              <option value="I">I — Influência</option>
+              <option value="S">S — Estabilidade</option>
+              <option value="C">C — Conformidade</option>
+              <option value="pendente">Pendentes</option>
+            </select>
+            <button onclick="lidExportCsv()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:12px;font-weight:700;padding:9px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">⤓ CSV</button>
+          </div>
+          <div id="lid-table-colabs" style="overflow-x:auto;"></div>
+        </div>
+      </div>
+
+      <!-- Comunicação -->
+      <div id="lid-content-comunicacao" style="display:none;">
+        <div class="section-card">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">Como se comunicar com cada pessoa</div>
+          <div id="lid-lista-comunicacao"></div>
+        </div>
+      </div>
+
+      <!-- Conflitos -->
+      <div id="lid-content-conflitos" style="display:none;">
+        <div class="section-card" style="margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">⚡ Pontos de Tensão</div>
+          <div id="lid-lista-tensao"></div>
+        </div>
+        <div class="section-card">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">🤝 Combinações Complementares</div>
+          <div id="lid-lista-complemento"></div>
+        </div>
+      </div>
+
+      <!-- Talentos -->
+      <div id="lid-content-talentos" style="display:none;">
+        <div class="section-card">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--purple);margin-bottom:1rem;">🌟 Mapa de Talentos</div>
+          <div id="lid-lista-talentos"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ══ ABA: ADMIN ══ -->
   <div id="tab-content-admin" style="display:none;">
     <div style="max-width:900px;margin:0 auto;">
@@ -1121,6 +1218,260 @@ document.addEventListener('keydown', (e) => {
 
 
 // ══════════════════════════════════════════════
+// LÍDER PANEL
+// ══════════════════════════════════════════════
+const LID_DISC_NOMES = {D:'Dominância',I:'Influência',S:'Estabilidade',C:'Conformidade'};
+const LID_DISC_CORES = {D:'#e05c6a',I:'#f0a047',S:'#3ec98a',C:'#5aabf5'};
+const LID_DICAS = {
+  D:{comunicar:['Seja direto e objetivo.','Apresente desafios e metas ambiciosas.','Dê autonomia para decidir e executar.','Evite excesso de detalhes.'],talentos:['Liderança natural sob pressão','Tomada de decisão rápida','Orientação para resultados','Resolução de problemas']},
+  I:{comunicar:['Use entusiasmo na comunicação.','Dê espaço para compartilhar ideias.','Reconheça publicamente as contribuições.','Evite críticas em público.'],talentos:['Engajamento da equipe','Criatividade e ideias','Networking e relacionamento','Capacidade de persuadir']},
+  S:{comunicar:['Seja paciente e escute com atenção.','Dê tempo para processar mudanças.','Valorize a lealdade e consistência.','Evite pressão excessiva.'],talentos:['Estabilidade e confiabilidade','Habilidade de ouvir e apoiar','Execução consistente','Mediação de conflitos']},
+  C:{comunicar:['Apresente dados e fatos lógicos.','Dê tempo para análise.','Respeite os processos estabelecidos.','Evite decisões precipitadas.'],talentos:['Análise crítica e atenção a detalhes','Garantia de qualidade','Organização e estrutura','Pensamento sistemático']}
+};
+const LID_TENSOES = [{a:'D',b:'I',m:'O D pode achar o I disperso; o I pode achar o D frio.'},{a:'I',b:'C',m:'O I pode achar o C excessivamente detalhista; o C acha o I impreciso.'},{a:'S',b:'D',m:'O S pode se sentir pressionado pelo D; o D acha o S lento.'},{a:'C',b:'I',m:'O C acha o I superficial; o I acha o C inflexível.'}];
+const LID_COMPLEMENTOS = [{a:'D',b:'S',m:'O D traz velocidade; o S traz estabilidade.'},{a:'I',b:'D',m:'O I traz criatividade; o D traz foco.'},{a:'S',b:'I',m:'O S traz consistência; o I traz energia.'},{a:'C',b:'S',m:'O C traz precisão; o S traz calor humano.'}];
+
+let lidColabs=[], lidResultados=[], lidTimes=[];
+
+function getLidSb() { return getAdmSb(); }
+
+async function lidLoadAll() {
+  const sb = getLidSb();
+  if (!sb) return;
+  const [c,r,t] = await Promise.all([
+    sb.from('perfis').select('id,nome,email,time_id').eq('papel','colaborador').order('nome'),
+    sb.from('resultados').select('*').order('created_at',{ascending:false}),
+    sb.from('times').select('id,nome').order('nome')
+  ]);
+  lidColabs = c.data||[];
+  lidResultados = r.data||[];
+  lidTimes = t.data||[];
+
+  // Popular filtro de equipes
+  const sel = document.getElementById('lid-filter-equipe');
+  if(sel) sel.innerHTML = '<option value="">Todas as equipes</option>' + lidTimes.map(t=>`<option value="${t.id}">${t.nome}</option>`).join('');
+
+  lidRenderKpis();
+  lidRenderEquipes();
+  lidRenderColabs();
+  lidRenderComunicacao();
+  lidRenderConflitos();
+  lidRenderTalentos();
+}
+
+function lidGetResult(email){ return lidResultados.find(r=>r.email===email); }
+function lidPrimary(scores){ if(!scores) return null; return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0]?.[0]; }
+function lidPct(scores,key){ if(!scores) return 0; const t=Object.values(scores).reduce((a,b)=>a+b,0); return t>0?Math.round((scores[key]/t)*100):0; }
+function lidNomeTime(id){ return lidTimes.find(t=>t.id===id)?.nome||'—'; }
+
+function lidRenderKpis() {
+  const mapeados = lidColabs.filter(c=>lidGetResult(c.email)).length;
+  document.getElementById('lid-kpi-equipes').textContent = lidTimes.length;
+  document.getElementById('lid-kpi-total').textContent = lidColabs.length;
+  document.getElementById('lid-kpi-mapeados').textContent = mapeados;
+  document.getElementById('lid-kpi-pendentes').textContent = lidColabs.length - mapeados;
+}
+
+function lidRenderEquipes() {
+  const wrap = document.getElementById('lid-lista-equipes');
+  if(!wrap) return;
+  if(!lidTimes.length){ wrap.innerHTML='<p style="color:var(--muted);font-size:13px;">Nenhuma equipe cadastrada.</p>'; return; }
+  wrap.innerHTML = lidTimes.map(t => {
+    const membros = lidColabs.filter(c=>c.time_id===t.id);
+    const mapeados = membros.filter(c=>lidGetResult(c.email));
+    const pctVal = membros.length>0?Math.round((mapeados.length/membros.length)*100):0;
+    const cnt={D:0,I:0,S:0,C:0};
+    mapeados.forEach(c=>{ const p=lidPrimary(lidGetResult(c.email).scores); if(p) cnt[p]++; });
+    const dom=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
+    const domP=dom?.[1]>0?dom[0]:null;
+    return `<div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:10px;cursor:pointer;" onclick="lidFiltrarEquipe('${t.id}')">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-size:14px;font-weight:700;">${t.nome}</div>
+          ${domP?`<span style="background:${LID_DISC_CORES[domP]}22;color:${LID_DISC_CORES[domP]};padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px;display:inline-block;">${domP} · ${LID_DISC_NOMES[domP]}</span>`:''}
+        </div>
+        <div style="display:flex;gap:16px;">
+          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--purple);">${membros.length}</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">membros</div></div>
+          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--S);">${mapeados.length}</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">mapeados</div></div>
+          <div style="text-align:center;"><div style="font-size:18px;font-weight:700;color:var(--gold);">${pctVal}%</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;">cobertura</div></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border-radius:10px;height:6px;overflow:hidden;">
+        <div style="height:6px;border-radius:10px;background:linear-gradient(90deg,var(--purple2),var(--purple3));width:${pctVal}%;"></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
+        ${membros.map(c=>{ const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):null; const cor=p?LID_DISC_CORES[p]:'#4a4270'; const ini=(c.nome||'?').charAt(0).toUpperCase(); return `<div title="${c.nome}" style="width:28px;height:28px;border-radius:50%;background:${cor}33;border:1.5px solid ${cor}66;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${cor};">${ini}</div>`; }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function lidFiltrarEquipe(timeId) {
+  lidTab('colaboradores');
+  const sel = document.getElementById('lid-filter-equipe');
+  if(sel) sel.value = timeId;
+  lidRenderColabs();
+}
+
+function lidRenderColabs() {
+  const q=(document.getElementById('lid-search')?.value||'').toLowerCase();
+  const ef=document.getElementById('lid-filter-equipe')?.value||'';
+  const pf=document.getElementById('lid-filter-perfil')?.value||'';
+  const wrap=document.getElementById('lid-table-colabs');
+  if(!wrap) return;
+  const data=lidColabs.filter(c=>{
+    const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):null;
+    return(!q||c.nome?.toLowerCase().includes(q)||c.email?.toLowerCase().includes(q))&&(!ef||c.time_id===ef)&&(!pf||(pf==='pendente'?!p:p===pf));
+  });
+  if(!data.length){wrap.innerHTML='<p style="color:var(--muted);font-size:13px;padding:1rem;">Nenhum colaborador encontrado.</p>';return;}
+  const rows=data.map(c=>{
+    const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):null;
+    const cor=p?LID_DISC_CORES[p]:'#4a4270';
+    const ini=(c.nome||'?').charAt(0).toUpperCase();
+    const badge=p?`<span style="background:${cor}22;color:${cor};padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">${p} · ${LID_DISC_NOMES[p]}</span>`:'<span style="background:rgba(184,176,216,0.1);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700;">Pendente</span>';
+    const bars=p?`<div style="display:flex;gap:3px;align-items:flex-end;height:28px;">${['D','I','S','C'].map(k=>`<div style="border-radius:3px 3px 0 0;width:12px;height:${lidPct(r.scores,k)*0.28}px;background:${LID_DISC_CORES[k]};"></div>`).join('')}</div>`:'—';
+    const dt=r?new Date(r.created_at).toLocaleDateString('pt-BR'):'—';
+    return `<tr style="border-top:0.5px solid var(--border);">
+      <td style="padding:12px 8px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:${cor}33;border:1.5px solid ${cor}66;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:${cor};flex-shrink:0;">${ini}</div>
+          <div><div style="font-weight:700;font-size:13px;">${c.nome||'—'}</div><div style="font-size:11px;color:var(--muted);">${c.email}</div></div>
+        </div>
+      </td>
+      <td style="padding:12px 8px;font-size:12px;color:var(--muted);">${lidNomeTime(c.time_id)}</td>
+      <td style="padding:12px 8px;">${badge}</td>
+      <td style="padding:12px 8px;">${bars}</td>
+      <td style="padding:12px 8px;font-size:12px;color:var(--muted);">${dt}</td>
+      <td style="padding:12px 8px;">
+        <button onclick="lidAbrirRelatorio('${c.email}')" style="background:linear-gradient(135deg,var(--purple2),var(--purple3));border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;">📄 Relatório</button>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML=`<table style="width:100%;border-collapse:collapse;"><thead><tr>${['Colaborador','Equipe','Perfil','DISC','Mapeamento',''].map(h=>`<th style="text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0 8px 10px;font-weight:700;">${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function lidAbrirRelatorio(email) {
+  const c=lidColabs.find(x=>x.email===email);
+  const r=lidGetResult(email);
+  const p=r?lidPrimary(r.scores):null;
+  const cor=p?LID_DISC_CORES[p]:'#7b5fff';
+
+  let html=`<div style="background:var(--surface2);border:0.5px solid var(--border2);border-radius:16px;padding:1.5rem;margin-bottom:1rem;">`;
+  html+=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:1.25rem;">`;
+  html+=`<div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,${cor},${cor}88);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;">${(c?.nome||'?').charAt(0).toUpperCase()}</div>`;
+  html+=`<div><div style="font-size:17px;font-weight:700;">${c?.nome||'—'}</div><div style="font-size:12px;color:var(--muted);">${email}</div><div style="font-size:12px;color:var(--muted);">Equipe: ${lidNomeTime(c?.time_id)}</div></div></div>`;
+
+  if(p){
+    html+=`<div style="margin-bottom:1rem;"><span style="background:${cor}22;color:${cor};padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700;">${p} · ${LID_DISC_NOMES[p]}</span></div>`;
+    html+=`<div style="margin-bottom:1rem;">`;
+    ['D','I','S','C'].forEach(k=>{
+      const v=lidPct(r.scores,k);
+      html+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><div style="width:120px;font-size:12px;font-weight:700;color:${LID_DISC_CORES[k]};">${k} · ${LID_DISC_NOMES[k]}</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:10px;height:10px;overflow:hidden;"><div style="height:10px;border-radius:10px;background:${LID_DISC_CORES[k]};width:${v}%;"></div></div><div style="font-size:12px;color:var(--muted);width:35px;text-align:right;">${v}%</div></div>`;
+    });
+    html+=`</div>`;
+    html+=`<div style="margin-bottom:8px;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;">Como se comunicar</div>`;
+    LID_DICAS[p].comunicar.forEach(d=>{ html+=`<div style="background:var(--surface);border-left:3px solid ${cor};border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--muted);margin-bottom:5px;">→ ${d}</div>`; });
+    html+=`<div style="margin-top:12px;margin-bottom:8px;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:700;">Talentos Naturais</div>`;
+    html+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">${LID_DICAS[p].talentos.map(t=>`<div style="background:${cor}1a;border-radius:8px;padding:7px 10px;font-size:11px;">⭐ ${t}</div>`).join('')}</div>`;
+    html+=`<div style="margin-top:12px;font-size:12px;color:var(--muted);">Último mapeamento: ${r?new Date(r.created_at).toLocaleDateString('pt-BR'):'—'}</div>`;
+  } else {
+    html+=`<p style="color:var(--muted);font-size:13px;">Este colaborador ainda não realizou o mapeamento DISC.</p>`;
+  }
+  html+=`</div>`;
+
+  const modal = document.createElement('div');
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;';
+  modal.innerHTML=`<div style="background:var(--surface);border:0.5px solid rgba(160,140,255,0.3);border-radius:20px;padding:2rem;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;">
+    ${html}
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:1rem;">
+      <button onclick="this.closest('[style]').remove()" style="background:var(--surface2);border:0.5px solid var(--border);color:var(--muted);font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;">Fechar</button>
+    </div>
+  </div>`;
+  modal.addEventListener('click', function(e){ if(e.target===this) this.remove(); });
+  document.body.appendChild(modal);
+}
+
+function lidRenderComunicacao() {
+  const wrap=document.getElementById('lid-lista-comunicacao');
+  if(!wrap) return;
+  const mapeados=lidColabs.filter(c=>lidGetResult(c.email));
+  if(!mapeados.length){wrap.innerHTML='<p style="color:var(--muted);font-size:13px;">Nenhum colaborador mapeado ainda.</p>';return;}
+  wrap.innerHTML=mapeados.map(c=>{
+    const p=lidPrimary(lidGetResult(c.email).scores);
+    if(!p) return '';
+    const cor=LID_DISC_CORES[p];
+    return `<div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:0.5px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <span style="background:${cor}22;color:${cor};padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">${p}</span>
+        <strong style="font-size:14px;">${c.nome}</strong>
+        <span style="font-size:11px;color:var(--muted);">${lidNomeTime(c.time_id)}</span>
+      </div>
+      ${LID_DICAS[p].comunicar.map(d=>`<div style="background:var(--surface2);border-left:3px solid ${cor};border-radius:0 8px 8px 0;padding:9px 14px;font-size:13px;color:var(--muted);margin-bottom:5px;">→ ${d}</div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function lidRenderConflitos() {
+  const mapeados=lidColabs.filter(c=>lidGetResult(c.email));
+  const tensoes=[],complementos=[];
+  for(let i=0;i<mapeados.length;i++){
+    for(let j=i+1;j<mapeados.length;j++){
+      const pA=lidPrimary(lidGetResult(mapeados[i].email).scores);
+      const pB=lidPrimary(lidGetResult(mapeados[j].email).scores);
+      if(!pA||!pB) continue;
+      LID_TENSOES.forEach(t=>{if((t.a===pA&&t.b===pB)||(t.a===pB&&t.b===pA)) tensoes.push({a:mapeados[i].nome,b:mapeados[j].nome,pA,pB,m:t.m});});
+      LID_COMPLEMENTOS.forEach(t=>{if((t.a===pA&&t.b===pB)||(t.a===pB&&t.b===pA)) complementos.push({a:mapeados[i].nome,b:mapeados[j].nome,pA,pB,m:t.m});});
+    }
+  }
+  const wT=document.getElementById('lid-lista-tensao');
+  const wC=document.getElementById('lid-lista-complemento');
+  if(wT) wT.innerHTML=tensoes.length?tensoes.map(t=>`<div style="display:flex;gap:10px;padding:12px;background:rgba(224,92,106,0.06);border:0.5px solid rgba(224,92,106,0.2);border-radius:10px;margin-bottom:8px;"><span style="font-size:18px;">⚡</span><div><div style="font-size:13px;font-weight:700;margin-bottom:4px;"><span style="background:${LID_DISC_CORES[t.pA]}22;color:${LID_DISC_CORES[t.pA]};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">${t.pA}</span> ${t.a} <span style="color:var(--muted);margin:0 4px;">×</span><span style="background:${LID_DISC_CORES[t.pB]}22;color:${LID_DISC_CORES[t.pB]};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">${t.pB}</span> ${t.b}</div><div style="font-size:12px;color:var(--muted);">${t.m}</div></div></div>`).join(''):'<p style="color:var(--S);font-size:13px;">✅ Nenhum ponto de tensão identificado.</p>';
+  if(wC) wC.innerHTML=complementos.length?complementos.map(t=>`<div style="display:flex;gap:10px;padding:12px;background:rgba(62,201,138,0.06);border:0.5px solid rgba(62,201,138,0.2);border-radius:10px;margin-bottom:8px;"><span style="font-size:18px;">🤝</span><div><div style="font-size:13px;font-weight:700;margin-bottom:4px;"><span style="background:${LID_DISC_CORES[t.pA]}22;color:${LID_DISC_CORES[t.pA]};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">${t.pA}</span> ${t.a} <span style="color:var(--muted);margin:0 4px;">+</span><span style="background:${LID_DISC_CORES[t.pB]}22;color:${LID_DISC_CORES[t.pB]};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">${t.pB}</span> ${t.b}</div><div style="font-size:12px;color:var(--muted);">${t.m}</div></div></div>`).join(''):'<p style="color:var(--muted);font-size:13px;">Nenhuma combinação complementar encontrada.</p>';
+}
+
+function lidRenderTalentos() {
+  const wrap=document.getElementById('lid-lista-talentos');
+  if(!wrap) return;
+  const grupos={D:[],I:[],S:[],C:[]};
+  lidColabs.filter(c=>lidGetResult(c.email)).forEach(c=>{ const p=lidPrimary(lidGetResult(c.email).scores); if(p) grupos[p].push({nome:c.nome,time:lidNomeTime(c.time_id)}); });
+  const html=['D','I','S','C'].filter(p=>grupos[p].length>0).map(p=>{
+    const cor=LID_DISC_CORES[p];
+    return `<div style="margin-bottom:1.5rem;padding:1.25rem;background:${cor}0d;border:0.5px solid ${cor}33;border-radius:12px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <span style="background:${cor}22;color:${cor};padding:3px 12px;border-radius:20px;font-size:13px;font-weight:700;">${p} · ${LID_DISC_NOMES[p]}</span>
+        ${grupos[p].map(x=>`<span style="font-size:12px;color:var(--muted);">${x.nome} <span style="opacity:.5;">(${x.time})</span></span>`).join(' · ')}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+        ${LID_DICAS[p].talentos.map(t=>`<div style="background:${cor}1a;border-radius:8px;padding:8px 12px;font-size:12px;">⭐ ${t}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+  wrap.innerHTML=html||'<p style="color:var(--muted);font-size:13px;">Nenhum colaborador mapeado ainda.</p>';
+}
+
+function lidExportCsv() {
+  const rows=[['Nome','Email','Equipe','Perfil','D%','I%','S%','C%','Data']];
+  lidColabs.forEach(c=>{
+    const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):'';
+    rows.push([c.nome||'',c.email,lidNomeTime(c.time_id),p,r?lidPct(r.scores,'D'):'',r?lidPct(r.scores,'I'):'',r?lidPct(r.scores,'S'):'',r?lidPct(r.scores,'C'):'',r?new Date(r.created_at).toLocaleDateString('pt-BR'):'']);
+  });
+  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('
+');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  a.download='relatorio_equipes.csv'; a.click();
+}
+
+function lidTab(tab) {
+  ['equipes','colaboradores','comunicacao','conflitos','talentos'].forEach(t=>{
+    const el=document.getElementById('lid-content-'+t);
+    const btn=document.getElementById('lid-tab-'+t);
+    if(el) el.style.display=t===tab?'block':'none';
+    if(btn){ btn.style.borderBottomColor=t===tab?'var(--purple)':'transparent'; btn.style.color=t===tab?'var(--purple)':'var(--muted)'; }
+  });
+}
+
+// ══════════════════════════════════════════════
 // ADMIN PANEL
 // ══════════════════════════════════════════════
 const ADM_URL = 'https://bxdmwdifgpmfybebhxnf.supabase.co';
@@ -1159,6 +1510,10 @@ function checkAdminRole() {
         if (btnSair) btnSair.style.display = '';
         if (perfil?.papel === 'admin') {
           document.getElementById('tab-admin').style.display = '';
+          document.getElementById('tab-lider').style.display = '';
+        }
+        if (perfil?.papel === 'lider') {
+          document.getElementById('tab-lider').style.display = '';
         }
       });
     }).catch(() => setTimeout(() => tentar(n-1), 300));
@@ -1406,19 +1761,28 @@ window.addEventListener('DOMContentLoaded', () => {
       client.auth.getSession().then(({ data }) => {
         if (data && data.session) {
           const user = data.session.user;
-          client.from('perfis').select('nome, email').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
-            if (perfil) {
-              document.getElementById('id-name').value = perfil.nome || '';
-              document.getElementById('id-email').value = perfil.email || user.email || '';
+          client.from('perfis').select('nome, email, papel').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
+            if (perfil?.papel === 'admin') {
+              document.getElementById('tab-admin').style.display = '';
+              document.getElementById('tab-lider').style.display = '';
+              switchTab('admin');
+            } else if (perfil?.papel === 'lider') {
+              document.getElementById('tab-lider').style.display = '';
+              switchTab('lider');
             } else {
-              document.getElementById('id-email').value = user.email || '';
+              if (perfil) {
+                document.getElementById('id-name').value = perfil.nome || '';
+                document.getElementById('id-email').value = perfil.email || user.email || '';
+              } else {
+                document.getElementById('id-email').value = user.email || '';
+              }
+              document.getElementById('intro-section').style.display = 'none';
+              const id = document.getElementById('identify-section');
+              id.style.display = 'block';
+              id.classList.add('screen-fade');
+              setTimeout(() => id.classList.remove('screen-fade'), 400);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            document.getElementById('intro-section').style.display = 'none';
-            const id = document.getElementById('identify-section');
-            id.style.display = 'block';
-            id.classList.add('screen-fade');
-            setTimeout(() => id.classList.remove('screen-fade'), 400);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
       });
@@ -2338,7 +2702,7 @@ function goHome() {
 
 function switchTab(tab) {
   // Atualiza botões de aba
-  ['mapeamento','graficos','sobre','dashboard','admin'].forEach(t => {
+  ['mapeamento','graficos','sobre','dashboard','lider','admin'].forEach(t => {
     document.getElementById('tab-' + t)?.classList.toggle('active', t === tab);
     const el = document.getElementById('tab-content-' + t);
     if (el) {
@@ -2353,6 +2717,9 @@ function switchTab(tab) {
   });
 
   // Aba de gráficos
+  if (tab === 'lider') {
+    lidLoadAll();
+  }
   if (tab === 'admin') {
     admLoadAll();
   }

@@ -1455,7 +1455,8 @@ function lidExportCsv() {
     const r=lidGetResult(c.email); const p=r?lidPrimary(r.scores):'';
     rows.push([c.nome||'',c.email,lidNomeTime(c.time_id),p,r?lidPct(r.scores,'D'):'',r?lidPct(r.scores,'I'):'',r?lidPct(r.scores,'S'):'',r?lidPct(r.scores,'C'):'',r?new Date(r.created_at).toLocaleDateString('pt-BR'):'']);
   });
-  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('
+');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
   a.download='relatorio_equipes.csv'; a.click();
@@ -1504,15 +1505,24 @@ function checkAdminRole() {
     if (!sb) { setTimeout(() => tentar(n-1), 300); return; }
     sb.auth.getSession().then(({ data: sess }) => {
       if (!sess?.session) return;
-      sb.from('perfis').select('papel').eq('id', sess.session.user.id).maybeSingle().then(({ data: perfil }) => {
+      sb.from('perfis').select('papel, nome, email').eq('id', sess.session.user.id).maybeSingle().then(({ data: perfil }) => {
+        // Mostrar botão sair
         const btnSair = document.getElementById('btn-sair');
         if (btnSair) btnSair.style.display = '';
+
         if (perfil?.papel === 'admin') {
           document.getElementById('tab-admin').style.display = '';
           document.getElementById('tab-lider').style.display = '';
-        }
-        if (perfil?.papel === 'lider') {
+          // Se não veio do login (sessionStorage), abrir aba admin automaticamente
+          if (!sessionStorage.getItem('logado_agora')) {
+            switchTab('admin');
+          }
+        } else if (perfil?.papel === 'lider') {
           document.getElementById('tab-lider').style.display = '';
+          // Se não veio do login (sessionStorage), abrir aba lider automaticamente
+          if (!sessionStorage.getItem('logado_agora')) {
+            switchTab('lider');
+          }
         }
       });
     }).catch(() => setTimeout(() => tentar(n-1), 300));
@@ -1750,7 +1760,6 @@ window.addEventListener('DOMContentLoaded', () => {
                       sessionStorage.getItem('logado_agora') === '1';
 
   if (veioDoLogin) {
-    sessionStorage.removeItem('logado_agora');
     function tentarAbrir() {
       if (!window.supabase) { setTimeout(tentarAbrir, 150); return; }
       const client = window.supabase.createClient(
@@ -1761,6 +1770,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (data && data.session) {
           const user = data.session.user;
           client.from('perfis').select('nome, email, papel').eq('id', user.id).maybeSingle().then(({ data: perfil }) => {
+            sessionStorage.removeItem('logado_agora');
             if (perfil?.papel === 'admin') {
               document.getElementById('tab-admin').style.display = '';
               document.getElementById('tab-lider').style.display = '';

@@ -498,11 +498,11 @@
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
       Evolução
     </button>
-    <button class="nav-tab" id="tab-lider" role="tab" aria-label="Painel do Líder" onclick="switchTab('lider')" style="display:none;">
+    <button class="nav-tab" id="tab-lider" role="tab" aria-label="Painel do Líder" onclick="switchTab('lider')">
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Líder
     </button>
-    <button class="nav-tab" id="tab-admin" role="tab" aria-label="Administração" onclick="switchTab('admin')" style="display:none;">
+    <button class="nav-tab" id="tab-admin" role="tab" aria-label="Administração" onclick="switchTab('admin')">
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Admin
     </button>
@@ -893,7 +893,20 @@
 
   <!-- ══ ABA: LÍDER ══ -->
   <div id="tab-content-lider" style="display:none;">
-    <div style="max-width:1000px;margin:0 auto;">
+    <!-- PAREDE DE LOGIN -->
+    <div id="login-wall-lider" style="display:none;max-width:400px;margin:2rem auto;">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(240,193,74,0.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 1rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Painel do Líder</h2>
+        <p style="font-size:13px;color:var(--muted);">Entre com sua conta para acessar.</p>
+      </div>
+      <div class="field"><label>E-mail</label><input type="email" id="wall-lider-email" placeholder="seu@email.com" /></div>
+      <div class="field"><label>Senha</label><input type="password" id="wall-lider-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')loginWall('lider')" /></div>
+      <div id="wall-lider-erro" style="display:none;color:#e05c6a;font-size:12px;margin-bottom:12px;background:rgba(224,92,106,0.08);border-radius:8px;padding:8px 12px;"></div>
+      <button class="btn btn-primary" style="width:100%;" onclick="loginWall('lider')"><span id="wall-lider-btn">Entrar →</span></button>
+    </div>
+    <!-- CONTEÚDO REAL -->
+    <div id="lider-content-real" style="display:none;max-width:1000px;margin:0 auto;">
 
       <!-- KPIs -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;">
@@ -984,9 +997,23 @@
     </div>
   </div>
 
+    </div><!-- /lider-content-real -->
   <!-- ══ ABA: ADMIN ══ -->
   <div id="tab-content-admin" style="display:none;">
-    <div style="max-width:900px;margin:0 auto;">
+    <!-- PAREDE DE LOGIN -->
+    <div id="login-wall-admin" style="display:none;max-width:400px;margin:2rem auto;">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(224,92,106,0.15);color:#e05c6a;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 1rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">Administração</h2>
+        <p style="font-size:13px;color:var(--muted);">Entre com sua conta de Admin para acessar.</p>
+      </div>
+      <div class="field"><label>E-mail</label><input type="email" id="wall-admin-email" placeholder="seu@email.com" /></div>
+      <div class="field"><label>Senha</label><input type="password" id="wall-admin-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')loginWall('admin')" /></div>
+      <div id="wall-admin-erro" style="display:none;color:#e05c6a;font-size:12px;margin-bottom:12px;background:rgba(224,92,106,0.08);border-radius:8px;padding:8px 12px;"></div>
+      <button class="btn btn-primary" style="width:100%;" onclick="loginWall('admin')"><span id="wall-admin-btn">Entrar →</span></button>
+    </div>
+    <!-- CONTEÚDO REAL -->
+    <div id="admin-content-real" style="display:none;max-width:900px;margin:0 auto;">
 
       <!-- KPIs -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.5rem;">
@@ -1057,6 +1084,7 @@
     </div>
   </div>
 
+    </div><!-- /admin-content-real -->
 </main>
 
 <!-- MODAL ADMIN: Editar Colaborador -->
@@ -2743,10 +2771,10 @@ function switchTab(tab) {
 
   // Aba de gráficos
   if (tab === 'lider') {
-    lidLoadAll();
+    verificarAcessoAba('lider');
   }
   if (tab === 'admin') {
-    admLoadAll();
+    verificarAcessoAba('admin');
   }
 
   if (tab === 'graficos') {
@@ -3295,6 +3323,103 @@ async function fazerLogin() {
     if (btnText) btnText.textContent = 'Entrar →';
     if (loading) loading.style.display = 'none';
   }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   LOGIN POR ABA — Líder e Admin
+   ═══════════════════════════════════════════════════════════ */
+function _getSb() {
+  try {
+    return window.supabase.createClient(
+      'https://bxdmwdifgpmfybebhxnf.supabase.co',
+      'sb_publishable_5DNO7W_tqHzgIx60kNqSCw_phh1ZVNf'
+    );
+  } catch(e) { return null; }
+}
+
+function verificarAcessoAba(aba) {
+  function tentar(n) {
+    if (n <= 0) { mostrarLoginWall(aba); return; }
+    const sb = _getSb();
+    if (!sb) { setTimeout(() => tentar(n-1), 200); return; }
+    sb.auth.getSession().then(({ data }) => {
+      if (!data?.session) { mostrarLoginWall(aba); return; }
+      sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle().then(({ data: p }) => {
+        const papel = p?.papel;
+        if (aba === 'admin' && papel === 'admin') {
+          mostrarConteudoAba('admin');
+          admLoadAll();
+        } else if (aba === 'lider' && (papel === 'lider' || papel === 'admin')) {
+          mostrarConteudoAba('lider');
+          lidLoadAll();
+        } else {
+          mostrarLoginWall(aba);
+        }
+      }).catch(() => mostrarLoginWall(aba));
+    }).catch(() => tentar(n-1));
+  }
+  tentar(8);
+}
+
+function mostrarLoginWall(aba) {
+  document.getElementById('login-wall-' + aba).style.display = 'block';
+  document.getElementById(aba + '-content-real').style.display = 'none';
+}
+
+function mostrarConteudoAba(aba) {
+  document.getElementById('login-wall-' + aba).style.display = 'none';
+  document.getElementById(aba + '-content-real').style.display = 'block';
+  const btnSair = document.getElementById('btn-sair');
+  if (btnSair) btnSair.style.display = '';
+}
+
+async function loginWall(aba) {
+  const email = document.getElementById('wall-' + aba + '-email')?.value?.trim();
+  const senha = document.getElementById('wall-' + aba + '-senha')?.value;
+  const erroEl = document.getElementById('wall-' + aba + '-erro');
+  const btnEl  = document.getElementById('wall-' + aba + '-btn');
+
+  erroEl.style.display = 'none';
+  if (!email || !senha) {
+    erroEl.textContent = 'Preencha e-mail e senha.';
+    erroEl.style.display = 'block';
+    return;
+  }
+
+  if (btnEl) btnEl.textContent = 'Entrando...';
+
+  try {
+    const sb = _getSb();
+    const { data, error: authErr } = await sb.auth.signInWithPassword({ email, password: senha });
+
+    if (authErr || !data?.session) {
+      erroEl.textContent = authErr?.message?.includes('Invalid') ? 'E-mail ou senha incorretos.' : (authErr?.message || 'Erro ao entrar.');
+      erroEl.style.display = 'block';
+      if (btnEl) btnEl.textContent = 'Entrar →';
+      return;
+    }
+
+    const { data: perfil } = await sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle();
+    const papel = perfil?.papel;
+
+    if (aba === 'admin' && papel === 'admin') {
+      document.getElementById('tab-lider').style.display = '';
+      mostrarConteudoAba('admin');
+      admLoadAll();
+    } else if (aba === 'lider' && (papel === 'lider' || papel === 'admin')) {
+      mostrarConteudoAba('lider');
+      lidLoadAll();
+    } else {
+      erroEl.textContent = papel ? 'Sua conta não tem permissão para acessar esta área.' : 'Conta não encontrada nos perfis.';
+      erroEl.style.display = 'block';
+      await sb.auth.signOut();
+    }
+  } catch(e) {
+    erroEl.textContent = 'Erro inesperado. Verifique sua conexão.';
+    erroEl.style.display = 'block';
+  }
+  if (btnEl) btnEl.textContent = 'Entrar →';
 }
 
 

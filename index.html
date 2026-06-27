@@ -3345,8 +3345,14 @@ function verificarAcessoAba(aba) {
     if (!sb) { setTimeout(() => tentar(n-1), 200); return; }
     sb.auth.getSession().then(({ data }) => {
       if (!data?.session) { mostrarLoginWall(aba); return; }
-      sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle().then(({ data: p }) => {
-        const papel = p?.papel;
+      const userId = data.session.user.id;
+      const userEmail = data.session.user.email;
+      sb.from('perfis').select('papel').eq('id', userId).maybeSingle().then(async ({ data: p }) => {
+        let papel = p?.papel;
+        if (!papel) {
+          const { data: p2 } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
+          papel = p2?.papel;
+        }
         if (aba === 'admin' && papel === 'admin') {
           mostrarConteudoAba('admin');
           admLoadAll();
@@ -3400,18 +3406,30 @@ async function loginWall(aba) {
       return;
     }
 
-    const { data: perfil } = await sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle();
+    // Busca por id primeiro, fallback por email
+    let { data: perfil } = await sb.from('perfis').select('papel').eq('id', data.session.user.id).maybeSingle();
+    if (!perfil) {
+      const userEmail = data.session.user.email;
+      const { data: perfilEmail } = await sb.from('perfis').select('papel').eq('email', userEmail).maybeSingle();
+      perfil = perfilEmail;
+    }
     const papel = perfil?.papel;
 
-    if (aba === 'admin' && papel === 'admin') {
+    if (papel === 'admin') {
       document.getElementById('tab-lider').style.display = '';
       mostrarConteudoAba('admin');
       admLoadAll();
-    } else if (aba === 'lider' && (papel === 'lider' || papel === 'admin')) {
-      mostrarConteudoAba('lider');
-      lidLoadAll();
+    } else if (papel === 'lider') {
+      if (aba === 'admin') {
+        erroEl.textContent = 'Sua conta é de Líder, não de Admin.';
+        erroEl.style.display = 'block';
+        await sb.auth.signOut();
+      } else {
+        mostrarConteudoAba('lider');
+        lidLoadAll();
+      }
     } else {
-      erroEl.textContent = papel ? 'Sua conta não tem permissão para acessar esta área.' : 'Conta não encontrada nos perfis.';
+      erroEl.textContent = papel ? 'Sua conta não tem permissão para acessar esta área.' : 'E-mail ou senha corretos, mas sem perfil de Admin/Líder cadastrado.';
       erroEl.style.display = 'block';
       await sb.auth.signOut();
     }

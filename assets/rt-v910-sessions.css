@@ -1,0 +1,39 @@
+/* V9.10 — Sessões e continuidade. Estilos isolados ao contexto de encontros. */
+.rt-v910-between{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rt-v910-between strong{font-size:15px;line-height:1.45}
+.rt-v910-between h2{margin:0;font-size:18px}
+.rt-v910-muted{font-size:14px;line-height:1.55;opacity:.72;margin:10px 0}
+.rt-v910-session-detail .rt-v910-recap,.rt-v910-session-detail .rt-v910-commitments,.rt-v910-session-detail .rt-v910-carry{border-top:1px solid var(--rt-border,rgba(161,143,228,.2));padding-top:18px;margin-top:18px}
+.rt-v910-session-detail .rt-v910-recap>p{font-size:14px;line-height:1.6;max-width:65ch;margin:10px 0 12px}
+.rt-v910-session-detail .rt-v910-recap small,.rt-v910-carry>small{display:block;margin-top:10px;font-size:12px;line-height:1.5;opacity:.8}
+.rt-v910-state{font-size:12px;border-radius:100px;padding:5px 10px;background:rgba(154,125,233,.13);color:var(--rt-text,inherit)}
+.rt-v910-agreement,.rt-v910-carry-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--rt-border,rgba(161,143,228,.16))}
+.rt-v910-agreement>div,.rt-v910-carry-row>div{min-width:0;flex:1}
+.rt-v910-agreement strong,.rt-v910-carry-row strong{display:block;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.rt-v910-agreement small,.rt-v910-carry-row small{display:block;margin-top:6px;font-size:12px;line-height:1.5;opacity:.8}
+.rt-v910-agreement p{font-size:13px;margin:7px 0;line-height:1.5}
+.rt-v910-dot{width:10px;height:10px;flex:none;border:2px solid #9574e7;border-radius:50%;margin-top:6px}.rt-v910-dot.done{background:#33b18e;border-color:#33b18e}
+.rt-v910-modal-context{padding:12px;border-radius:10px;background:rgba(147,111,226,.1);font-size:14px;line-height:1.5}
+.rt-v910-client-meetings{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(245px,.75fr);gap:20px;align-items:start}
+.rt-v910-main,.rt-v910-client-aside{min-width:0;display:grid;gap:18px}
+.rt-v910-client-card{border:1px solid var(--rt-border,rgba(161,143,228,.2));background:var(--rt-card,rgba(120,99,212,.07));border-radius:16px;padding:22px;min-width:0}
+.rt-v910-client-card>h2{font-size:17px;margin:0 0 14px;line-height:1.4}
+.rt-v910-client-card>p,.rt-v910-prep p{font-size:14px;line-height:1.65}
+.rt-v910-client-card>.rt-v910-between{margin-bottom:14px}
+.rt-v910-prep{margin-top:16px;padding:15px;border-radius:12px;background:rgba(145,112,226,.09);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rt-v910-prep>strong,.rt-v910-prep>p{flex-basis:100%;margin:0}
+.rt-v910-prep .btn{margin-top:4px}
+.rt-v910-client-meeting{padding:17px 0;border-top:1px solid var(--rt-border,rgba(161,143,228,.18))}
+.rt-v910-client-meeting>.rt-v910-between strong{font-size:15px}.rt-v910-client-meeting>.rt-v910-between small{font-size:13px;opacity:.8}
+.rt-v910-client-recap{border-left:3px solid #9a78ea;padding:10px 15px;margin:12px 0;background:rgba(147,111,226,.08);border-radius:0 10px 10px 0}
+.rt-v910-client-recap b,.rt-v910-client-agreements>b{display:block;font-size:14px}.rt-v910-client-recap p{font-size:14px;line-height:1.65;margin:7px 0 0;overflow-wrap:anywhere}
+.rt-v910-client-agreements{margin-top:14px}.rt-v910-client-agreements>div{padding:11px 0;border-bottom:1px solid var(--rt-border,rgba(161,143,228,.16));display:grid;gap:5px}.rt-v910-client-agreements span{font-size:14px}.rt-v910-client-agreements small{font-size:12px;opacity:.8}
+.rt-v910-client-agreements button{margin-top:12px}
+.rt-v910-meeting-row{display:grid;gap:6px;padding:10px 0}.rt-v910-meeting-row strong{font-size:14px}.rt-v910-meeting-row small{font-size:13px}
+@media(max-width:960px){.rt-v910-client-meetings{grid-template-columns:1fr}.rt-v910-client-aside{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.rt-v910-client-card{padding:17px}.rt-v910-client-aside{grid-template-columns:1fr}.rt-v910-between{align-items:flex-start}.rt-v910-session-detail .btn-secondary{max-width:100%}}
+
+/* Na aba Sessões, o acompanhamento completo deve usar a largura disponível. */
+.rt-v94-layout:has(.rt-v910-session-detail){grid-template-columns:minmax(0,1fr)}
+.rt-v94-layout:has(.rt-v910-session-detail)>.rt-v94-aside{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(235px,.75fr);gap:18px;align-items:start}
+@media(max-width:960px){.rt-v94-layout:has(.rt-v910-session-detail)>.rt-v94-aside{grid-template-columns:1fr}}

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "fundamentos",
+    "titulo": "Fundamentos do modelo",
+    "categoria": "conceitos",
+    "subtitulo": "O que o DISC/ACER descreve",
+    "conteudo": "O DISC organiza preferências de comportamento em quatro dimensões. A nomenclatura ACER foi informada pelo responsável do projeto como sua tradução para português. Esta biblioteca mantém um modelo único, com rótulos DISC e sinônimos de consulta ACER.",
+    "alerta": "Perfis são combinações, não caixas rígidas. A mesma pessoa pode agir de modo diferente conforme objetivo, experiência, segurança psicológica e contexto.",
+    "aplicacao": [
+      "Peça exemplos de ações observáveis em vez de presumir traços permanentes.",
+      "Explore as quatro dimensões, incluindo as menos salientes.",
+      "Diferencie autoavaliação, observação e resultados práticos."
+    ],
+    "tags": [
+      "conceitos",
+      "DISC",
+      "ACER",
+      "fundamentos"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "origem",
+    "titulo": "História e desenvolvimento",
+    "categoria": "conceitos",
+    "subtitulo": "Da teoria comportamental aos instrumentos",
+    "conteudo": "O modelo DISC tem raízes na obra de William Moulton Marston de 1928. Questionários e produtos posteriores foram desenvolvidos por diferentes organizações; não existe garantia de equivalência entre todos eles.",
+    "alerta": "Uma adaptação de nomes para outro idioma não transforma automaticamente o instrumento original em teste validado. Itens, normas, escalas e populações devem ser examinados separadamente.",
+    "aplicacao": [
+      "Registrar autoria e origem de cada instrumento.",
+      "Não usar dados de confiabilidade de um fornecedor como prova da validade da versão RealTalent.",
+      "Documentar mudanças de item e algoritmo."
+    ],
+    "tags": [
+      "conceitos",
+      "DISC",
+      "ACER",
+      "origem"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "dimensoes",
+    "titulo": "As quatro dimensões",
+    "categoria": "conceitos",
+    "subtitulo": "D, I, S e C em linguagem de trabalho",
+    "conteudo": "D descreve iniciativa diante de desafios; I, comunicação e envolvimento; S, ritmo e cooperação; C, qualidade, critérios e processos. Cada fator está presente em graus variados.",
+    "alerta": "As descrições são hipóteses de preferência comportamental, não fatos definitivos sobre uma pessoa. Um D elevado não demonstra capacidade gerencial; um C elevado não comprova inteligência.",
+    "aplicacao": [
+      "Conectar cada leitura a exemplos concretos.",
+      "Acolher casos em que o perfil não se ajusta.",
+      "Evitar comparações de valor entre perfis."
+    ],
+    "tags": [
+      "conceitos",
+      "DISC",
+      "ACER",
+      "dimensoes"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "leitura",
+    "titulo": "Como interpretar um resultado",
+    "categoria": "interpretacao",
+    "subtitulo": "Leitura contextual e cuidadosa",
+    "conteudo": "Comece pela composição dos quatro fatores e pelo contexto de resposta. Não reduza o resultado a uma letra, uma cor ou um ranking entre pessoas. Quando a pontuação vier do questionário do ZIP, descreva-a como indicador exploratório.",
+    "alerta": "Compare hipóteses comportamentais com fatos, relatos e oportunidades de desenvolvimento. Explique margens de interpretação quando a psicometria ainda não foi estudada.",
+    "aplicacao": [
+      "Pergunte: em que situações isso aparece?",
+      "Busque um exemplo que confirma e outro que contraria a hipótese.",
+      "Escolha uma ação de desenvolvimento verificável."
+    ],
+    "tags": [
+      "interpretacao",
+      "DISC",
+      "ACER",
+      "leitura"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "pontuacao",
+    "titulo": "Pontuação e limites",
+    "categoria": "interpretacao",
+    "subtitulo": "Escores não são percentis",
+    "conteudo": "O aplicativo original contabiliza escolhas associadas a D, I, S e C. Frequências de respostas não são automaticamente percentis populacionais, aptidão, probabilidade de êxito ou intensidade clínica.",
+    "alerta": "Exibir uma porcentagem de escolhas como “preferência no instrumento” exige contextualizar número de itens, regra de cálculo e limites. Não aplicar pontos de corte sem estudos específicos.",
+    "aplicacao": [
+      "Publicar fórmula e versão do cálculo.",
+      "Registrar dados ausentes, versões e alterações.",
+      "Não comparar indivíduos usando métricas incomparáveis."
+    ],
+    "tags": [
+      "interpretacao",
+      "DISC",
+      "ACER",
+      "pontuacao"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "contexto",
+    "titulo": "Comportamento e ambiente",
+    "categoria": "interpretacao",
+    "subtitulo": "Preferências mudam conforme o contexto",
+    "conteudo": "Pressão, cargo, cultura, confiança, familiaridade com a tarefa e incentivos influenciam comportamentos observados. Diferenças entre autoimagem e percepção de expectativa externa precisam ser exploradas como narrativas, não interpretadas automaticamente como conflito psicológico.",
+    "alerta": "É inadequado afirmar que a pessoa possui “verdadeiro eu” em uma escala e “máscara” em outra sem fundamentação empírica.",
+    "aplicacao": [
+      "Perguntar sobre exemplos recentes em ambientes distintos.",
+      "Investigar variáveis situacionais.",
+      "Evitar inferir causas clínicas."
+    ],
+    "tags": [
+      "interpretacao",
+      "DISC",
+      "ACER",
+      "contexto"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "feedback",
+    "titulo": "Feedback orientado ao comportamento",
+    "categoria": "comunicacao",
+    "subtitulo": "Fatos, impacto e acordo",
+    "conteudo": "Um feedback útil descreve situação, comportamento observável, impacto e uma próxima ação verificável. Preferências de comunicação ajudam a escolher a forma, mas não alteram a obrigação de dar informações claras e respeitosas.",
+    "alerta": "Evite rotular a pessoa (“você é D, por isso interrompe”). Prefira “na reunião de ontem houve três interrupções; precisamos garantir espaço de fala”.",
+    "aplicacao": [
+      "Observar e registrar o episódio.",
+      "Perguntar a perspectiva da pessoa.",
+      "Combinar comportamento e data de revisão."
+    ],
+    "tags": [
+      "comunicacao",
+      "DISC",
+      "ACER",
+      "feedback"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "adaptacao",
+    "titulo": "Adaptação de comunicação",
+    "categoria": "comunicacao",
+    "subtitulo": "Ajustar a forma sem manipular",
+    "conteudo": "Com interlocutores que valorizam velocidade, sintetize decisões; com os mais expressivos, estimule troca; com os que buscam estabilidade, explique a transição; com os criteriosos, apresente evidências.",
+    "alerta": "Essas são hipóteses de preferência. Pergunte diretamente como a pessoa deseja receber informação; jamais atribua estilo apenas à aparência.",
+    "aplicacao": [
+      "Confirmar ritmo e formato preferido.",
+      "Entregar informação essencial a todos.",
+      "Registrar acordos em linguagem simples."
+    ],
+    "tags": [
+      "comunicacao",
+      "DISC",
+      "ACER",
+      "adaptacao"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "conflitos",
+    "titulo": "Conflitos e negociação interna",
+    "categoria": "comunicacao",
+    "subtitulo": "Transformar diferenças em acordos",
+    "conteudo": "Conflitos muitas vezes surgem de ritmo, nível de detalhe, expectativas e critérios distintos. O DISC pode ser usado como vocabulário para perguntar sobre necessidades, não como explicação conclusiva de uma disputa.",
+    "alerta": "Investigue incentivos, poder, sobrecarga e processos; nem todo conflito é comportamental.",
+    "aplicacao": [
+      "Nomear o desacordo sem acusação.",
+      "Separar fatos de interpretações.",
+      "Registrar uma experiência de cooperação com revisão."
+    ],
+    "tags": [
+      "comunicacao",
+      "DISC",
+      "ACER",
+      "conflitos"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "reunioes",
+    "titulo": "Reuniões inclusivas",
+    "categoria": "comunicacao",
+    "subtitulo": "Ouvir decisões e informações",
+    "conteudo": "Reuniões de qualidade combinam objetivo, informações prévias, turnos de participação e responsáveis. Modere estilos mais dominantes sem excluir iniciativa; dê espaço aos reservados sem obrigá-los a exposição pública.",
+    "alerta": "A preferência individual não determina o direito de falar ou decidir.",
+    "aplicacao": [
+      "Enviar pauta antes.",
+      "Solicitar contribuições de forma inclusiva.",
+      "Encerrar com decisão, dono e prazo."
+    ],
+    "tags": [
+      "comunicacao",
+      "DISC",
+      "ACER",
+      "reunioes"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "lideranca",
+    "titulo": "Liderança adaptativa",
+    "categoria": "lideranca",
+    "subtitulo": "Gestão de pessoas sem estereótipos",
+    "conteudo": "Liderar exige resultados e qualidade das relações. O modelo pode apoiar conversas sobre autonomia, suporte, ritmo e critérios, mas não substitui avaliação de competências e desempenho observável.",
+    "alerta": "Não atribua pessoas a cargos com base em uma letra.",
+    "aplicacao": [
+      "Perguntar de que suporte cada pessoa precisa.",
+      "Definir expectativas iguais de resultado e justas de condição.",
+      "Revisar o estilo de gestão com feedback do time."
+    ],
+    "tags": [
+      "lideranca",
+      "DISC",
+      "ACER"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "equipes",
+    "titulo": "Complementaridade de equipes",
+    "categoria": "lideranca",
+    "subtitulo": "Diversidade de perspectivas, não quotas de letras",
+    "conteudo": "Uma equipe pode se beneficiar de iniciativa, envolvimento, continuidade e rigor. Isso não significa que seja necessário contratar pessoas em proporções predefinidas de D, I, S e C.",
+    "alerta": "Utilize a biblioteca para construir práticas inclusivas e combinados; não para classificar pessoas como “fit” ou “não fit” sem evidência independente.",
+    "aplicacao": [
+      "Mapear processos que precisam de revisão.",
+      "Garantir contraditório nas decisões importantes.",
+      "Distribuir responsabilidades por competência, interesse e carga."
+    ],
+    "tags": [
+      "lideranca",
+      "DISC",
+      "ACER",
+      "equipes"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "mudanca",
+    "titulo": "Gestão da mudança",
+    "categoria": "lideranca",
+    "subtitulo": "Transições claras e participativas",
+    "conteudo": "Mudanças são mais bem conduzidas com propósito, impacto, plano de implantação, canal de dúvidas e aprendizado. Diferentes pessoas podem solicitar velocidade, participação, previsibilidade ou evidências.",
+    "alerta": "Tratar dúvidas como insumos do projeto, não resistência pessoal.",
+    "aplicacao": [
+      "Comunicar antes do anúncio amplo quando pertinente.",
+      "Definir pilotos e critérios de sucesso.",
+      "Medir adoção com dados e relatos."
+    ],
+    "tags": [
+      "lideranca",
+      "DISC",
+      "ACER",
+      "mudanca"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "onboarding",
+    "titulo": "Integração de pessoas",
+    "categoria": "lideranca",
+    "subtitulo": "Acolhimento e expectativas claras",
+    "conteudo": "No onboarding, pergunte ao colaborador o que ajuda a trabalhar bem: frequência de acompanhamento, autonomia, informação, feedback e forma de comunicação. O perfil pode oferecer pistas, nunca regras obrigatórias.",
+    "alerta": "Evite apresentar um rótulo ao time sem finalidade clara e base legal adequada.",
+    "aplicacao": [
+      "Construir acordo de trabalho.",
+      "Ajustar conforme experiência real.",
+      "Rever após 30, 60 e 90 dias."
+    ],
+    "tags": [
+      "lideranca",
+      "DISC",
+      "ACER",
+      "onboarding"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "vendas",
+    "titulo": "Vendas consultivas",
+    "categoria": "vendas",
+    "subtitulo": "Conectar necessidades, evidência e decisão",
+    "conteudo": "Em vendas, adaptar o discurso significa escutar as prioridades reais do comprador. Para quem privilegia resultados, mostre impacto; para quem valoriza relacionamento, colaboração; para quem busca estabilidade, implantação; para quem pede detalhes, evidências.",
+    "alerta": "A linguagem DISC não autoriza adivinhar o perfil de um lead nem manipular vulnerabilidades.",
+    "aplicacao": [
+      "Perguntar critérios de decisão ao comprador.",
+      "Confirmar objetivos, limitações e próximos passos.",
+      "Documentar necessidades no CRM de forma minimizada."
+    ],
+    "tags": [
+      "vendas",
+      "DISC",
+      "ACER"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "descoberta",
+    "titulo": "Perguntas de descoberta comercial",
+    "categoria": "vendas",
+    "subtitulo": "Explorar sem rotular",
+    "conteudo": "Uma descoberta eficaz investiga desafio, impacto, urgência, pessoas envolvidas, condições de sucesso e riscos. Perguntas devem ser abertas e neutras, evitando supor que o cliente tem um estilo por falar rápido ou pedir dados.",
+    "alerta": "Adaptação de comunicação não é uma licença para direcionar a resposta do comprador.",
+    "aplicacao": [
+      "O que precisa melhorar?",
+      "Como você avaliará sucesso?",
+      "Quais riscos precisam ser resolvidos?"
+    ],
+    "tags": [
+      "vendas",
+      "DISC",
+      "ACER",
+      "descoberta"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "objecoes",
+    "titulo": "Objeções em vendas",
+    "categoria": "vendas",
+    "subtitulo": "Entender antes de responder",
+    "conteudo": "Objeções sobre preço, prazo, segurança ou integração pedem diagnóstico: que alternativa existe, qual custo de não resolver, qual evidência falta e quem decide. Use tom e profundidade ajustados ao interlocutor, sem atribuir objeção ao perfil.",
+    "alerta": "Não use suposto estilo comportamental para contornar consentimento ou omitir informação.",
+    "aplicacao": [
+      "Validar a preocupação.",
+      "Separar fato de hipótese.",
+      "Propor teste ou material verificável."
+    ],
+    "tags": [
+      "vendas",
+      "DISC",
+      "ACER",
+      "objecoes"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "posvenda",
+    "titulo": "Pós-venda e sucesso do cliente",
+    "categoria": "vendas",
+    "subtitulo": "Entrega alinhada ao contrato",
+    "conteudo": "Na implantação, diferentes clientes preferem cadências e formatos de acompanhamento. Defina desde o início contatos, canais, responsabilidades, critérios de aceite e forma de escalonamento.",
+    "alerta": "Meça satisfação e adoção; não use o perfil para presumir satisfação.",
+    "aplicacao": [
+      "Definir indicadores acordados.",
+      "Registrar mudanças de escopo.",
+      "Realizar check-ins de adoção."
+    ],
+    "tags": [
+      "vendas",
+      "DISC",
+      "ACER",
+      "posvenda"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "atendimento",
+    "titulo": "Atendimento e experiência",
+    "categoria": "servicos",
+    "subtitulo": "Jornadas que acolhem diferentes necessidades",
+    "conteudo": "Um serviço acessível oferece caminhos distintos para resolver a mesma demanda: resposta rápida, explicação guiada, acompanhamento humano e documentação. O DISC pode inspirar opções de experiência, não segmentação rígida.",
+    "alerta": "O usuário deve poder escolher o atendimento adequado sem ter seu comportamento inferido automaticamente.",
+    "aplicacao": [
+      "Oferecer formatos claros.",
+      "Informar prazos de modo transparente.",
+      "Verificar resolução da necessidade."
+    ],
+    "tags": [
+      "servicos",
+      "DISC",
+      "ACER",
+      "atendimento"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "desenvolvimento",
+    "titulo": "Planos de desenvolvimento",
+    "categoria": "desenvolvimento",
+    "subtitulo": "Experimentos de comportamento observável",
+    "conteudo": "Um plano de desenvolvimento parte de uma situação real, escolhe um comportamento a experimentar, define frequência e indicador observável e revisa o resultado. A pessoa participa da escolha e pode discordar da hipótese sugerida pelo perfil.",
+    "alerta": "Não transforme uma característica exploratória em deficiência permanente.",
+    "aplicacao": [
+      "Definir um alvo por vez.",
+      "Agendar reflexão e feedback.",
+      "Registrar o que funcionou em cada contexto."
+    ],
+    "tags": [
+      "desenvolvimento",
+      "DISC",
+      "ACER"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "facilitacao",
+    "titulo": "Workshops e dinâmicas",
+    "categoria": "desenvolvimento",
+    "subtitulo": "Aprendizagem com segurança psicológica",
+    "conteudo": "Em oficinas, cada pessoa pode explorar preferências de trabalho por meio de casos, reflexões e acordos. Evite divulgação compulsória de resultados e comparação pública de colegas.",
+    "alerta": "A facilitação deve explicar confidencialidade, finalidade e possibilidade de não participar.",
+    "aplicacao": [
+      "Acordar regras de respeito.",
+      "Utilizar cenários fictícios.",
+      "Encerrar com ações de equipe, não rótulos."
+    ],
+    "tags": [
+      "desenvolvimento",
+      "DISC",
+      "ACER",
+      "facilitacao"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "etica",
+    "titulo": "Ética, ciência e privacidade",
+    "categoria": "governanca",
+    "subtitulo": "Limites claros para decisões sobre pessoas",
+    "conteudo": "Cada instrumento exige evidência específica de validade e confiabilidade para sua finalidade. O fato de um fornecedor apresentar pesquisa para seu teste não valida automaticamente o questionário presente no ZIP RealTalent. Resultados individuais devem ser acessados apenas por quem tem finalidade e autorização adequadas.",
+    "alerta": "No Brasil, testes psicológicos e avaliações psicológicas têm regras profissionais específicas; é importante verificar enquadramento e consultar o CFP/SATEPSI, inclusive na modalidade online.",
+    "aplicacao": [
+      "Não usar resultado isoladamente para contratação ou desligamento.",
+      "Aplicar LGPD: finalidade, necessidade, transparência e segurança.",
+      "Oferecer correção, contestação e revisão humana conforme o caso."
+    ],
+    "tags": [
+      "governanca",
+      "DISC",
+      "ACER",
+      "etica"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  },
+  {
+    "id": "instrumento",
+    "titulo": "Questionário original do projeto",
+    "categoria": "governanca",
+    "subtitulo": "Material extraído e pendente de revisão",
+    "conteudo": "O ZIP disponibilizado continha 20 perguntas de escolha e 92 adjetivos associados a quatro fatores. A biblioteca os preserva em JSON separado, mantendo seu status de “revisão pendente” por questões de construção de itens, viés e ausência de dados psicométricos específicos.",
+    "alerta": "As alternativas seguem posições fixas no código original (D, I, C, S). Recomenda-se avaliar viés de posição e o impacto de alterar a ordem sem prejudicar comparabilidade dos dados anteriores.",
+    "aplicacao": [
+      "Revisar ambiguidade e desejabilidade social.",
+      "Examinar itens que não correspondem claramente ao fator marcado.",
+      "Criar estudo de consistência, estabilidade, validade e documentação antes de uso avaliativo."
+    ],
+    "tags": [
+      "governanca",
+      "DISC",
+      "ACER",
+      "instrumento"
+    ],
+    "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+    "status": "conteudo_educativo"
+  }
+]

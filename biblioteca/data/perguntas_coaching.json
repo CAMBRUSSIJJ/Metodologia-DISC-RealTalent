@@ -1,0 +1,58 @@
+[
+  {
+    "id": "coaching-01",
+    "fator": "D",
+    "tema": "Direção",
+    "pergunta_inicial": "Qual resultado precisa ser alcançado e até quando?",
+    "aprofundamento": "O que você delegaria para ampliar participação?"
+  },
+  {
+    "id": "coaching-02",
+    "fator": "D",
+    "tema": "Pressão",
+    "pergunta_inicial": "Que informação seria suficiente para decidir com responsabilidade?",
+    "aprofundamento": "O que aconteceria se você escutasse mais uma perspectiva?"
+  },
+  {
+    "id": "coaching-03",
+    "fator": "I",
+    "tema": "Conexão",
+    "pergunta_inicial": "Quem precisa participar desta conversa?",
+    "aprofundamento": "Que promessa precisa ser registrada e confirmada?"
+  },
+  {
+    "id": "coaching-04",
+    "fator": "I",
+    "tema": "Foco",
+    "pergunta_inicial": "Qual ideia terá maior impacto com a capacidade disponível?",
+    "aprofundamento": "O que você fará primeiro, concretamente?"
+  },
+  {
+    "id": "coaching-05",
+    "fator": "S",
+    "tema": "Segurança",
+    "pergunta_inicial": "Que apoio ajudaria a atravessar esta mudança?",
+    "aprofundamento": "Qual discordância ainda não foi verbalizada?"
+  },
+  {
+    "id": "coaching-06",
+    "fator": "S",
+    "tema": "Limites",
+    "pergunta_inicial": "Quais são as prioridades que cabem de fato nesta semana?",
+    "aprofundamento": "A que você precisa dizer não?"
+  },
+  {
+    "id": "coaching-07",
+    "fator": "C",
+    "tema": "Evidência",
+    "pergunta_inicial": "Que dado poderia alterar esta decisão?",
+    "aprofundamento": "Qual nível de precisão é suficiente?"
+  },
+  {
+    "id": "coaching-08",
+    "fator": "C",
+    "tema": "Síntese",
+    "pergunta_inicial": "Como comunicar a conclusão em três pontos?",
+    "aprofundamento": "Qual decisão é reversível e pode ser testada?"
+  }
+]

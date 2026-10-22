@@ -1,0 +1,28 @@
+{
+  "modelo_canonico": "DISC",
+  "alias_projeto": [
+    "ACER",
+    "DISC/ACER",
+    "DISC"
+  ],
+  "fatores_disc": {
+    "D": "Dominância",
+    "I": "Influência",
+    "S": "Estabilidade",
+    "C": "Conformidade"
+  },
+  "equivalencia": [
+    "DISC e ACER são apresentados como a mesma metodologia no RealTalent, conforme definição fornecida pelo responsável do projeto."
+  ],
+  "letras_acer": {
+    "status": "pendente_confirmacao",
+    "significados_individuais": {
+      "A": null,
+      "C": null,
+      "E": null,
+      "R": null
+    },
+    "nota": "Não afirmar expansão ou correspondência A→D, C→I, E→S, R→C sem confirmar a nomenclatura institucional."
+  },
+  "apresentacao": "Exibir DISC/ACER no título; usar os fatores canônicos D, I, S, C e nomes em português nas análises até a nomenclatura ACER ser homologada."
+}

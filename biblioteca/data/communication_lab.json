@@ -1,0 +1,687 @@
+{
+  "meta": {
+    "versao": "3.2",
+    "aviso": "Conteúdo educacional com personagens fictícios. Não presume o perfil de pessoas reais nem calcula competências."
+  },
+  "cenarios": [
+    {
+      "id": "feedback",
+      "area": "Liderança",
+      "titulo": "Feedback sobre atrasos",
+      "contexto": "Um líder conversa com uma pessoa que atrasou duas entregas.",
+      "interlocutor": "Colaborador(a)",
+      "etapas": [
+        {
+          "fala": "Percebi que precisamos conversar. O que aconteceu?",
+          "pergunta": "Como iniciar uma conversa sobre resultados?",
+          "alternativas": [
+            {
+              "texto": "Você sempre atrasa tudo.",
+              "resposta": "Esse tom me deixa na defensiva.",
+              "feedback": "Generalizações atribuem uma característica à pessoa e dificultam entender fatos."
+            },
+            {
+              "texto": "Na terça e na sexta, a entrega passou do prazo. O que dificultou cumprir o combinado?",
+              "resposta": "Houve mudanças de prioridade que eu não consegui organizar.",
+              "feedback": "Fatos observáveis e perguntas abertas criam espaço para identificar causas."
+            },
+            {
+              "texto": "Vamos ignorar o assunto desta vez.",
+              "resposta": "Tudo bem... mas o problema pode continuar.",
+              "feedback": "Evitar o tema reduz desconforto imediato, mas não estabelece melhoria."
+            }
+          ]
+        },
+        {
+          "fala": "Às vezes recebo pedidos urgentes de outras áreas.",
+          "pergunta": "Como construir um acordo de melhoria?",
+          "alternativas": [
+            {
+              "texto": "Você precisa dar um jeito, independentemente das demandas.",
+              "resposta": "Não sei qual entrega priorizar quando tudo é urgente.",
+              "feedback": "Uma ordem sem critério mantém a ambiguidade de prioridades."
+            },
+            {
+              "texto": "Vamos priorizar juntas as demandas e definir quando avisar sobre riscos de prazo.",
+              "resposta": "Assim consigo sinalizar conflitos antes do vencimento.",
+              "feedback": "Prioridades claras e aviso antecipado tornam o plano verificável."
+            },
+            {
+              "texto": "Não quero me envolver com a sua organização.",
+              "resposta": "Entendo, mas continuo com o mesmo impasse.",
+              "feedback": "Responsabilidades precisam ser combinadas quando dependências organizacionais afetam resultados."
+            }
+          ]
+        },
+        {
+          "fala": "Podemos revisar isso na próxima semana?",
+          "pergunta": "Como encerrar com acompanhamento?",
+          "alternativas": [
+            {
+              "texto": "Se acontecer de novo, haverá consequências.",
+              "resposta": "Gostaria de entender o que preciso mudar concretamente.",
+              "feedback": "Consequências podem existir, mas o acordo precisa primeiro ser específico e justo."
+            },
+            {
+              "texto": "Combinamos a nova prioridade, o aviso de risco até quarta e uma revisão na sexta. Tudo claro?",
+              "resposta": "Sim, podemos acompanhar dessa maneira.",
+              "feedback": "Um acordo com prazo e critério facilita acompanhamento e ajustes."
+            },
+            {
+              "texto": "Tudo certo, depois vemos.",
+              "resposta": "Certo... não sei qual será o próximo passo.",
+              "feedback": "Sem registro da próxima ação, fica difícil identificar progresso."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cliente",
+      "area": "Vendas",
+      "titulo": "Cliente questiona o preço",
+      "contexto": "Um cliente considera a proposta cara e pede justificativas.",
+      "interlocutor": "Cliente",
+      "etapas": [
+        {
+          "fala": "Gostei da solução, mas o valor está acima do que planejei.",
+          "pergunta": "Como acolher a objeção?",
+          "alternativas": [
+            {
+              "texto": "Então essa solução não é para você.",
+              "resposta": "Eu só queria entender se o investimento faz sentido.",
+              "feedback": "Uma objeção não equivale a recusa; desqualificar o cliente encerra a descoberta."
+            },
+            {
+              "texto": "Entendi. Em relação a qual alternativa ou orçamento você está comparando?",
+              "resposta": "Tenho outra proposta, mas ela não inclui implantação.",
+              "feedback": "Entender critérios permite comparar escopo e valor sem pressão."
+            },
+            {
+              "texto": "Posso dar desconto agora mesmo, sem analisar.",
+              "resposta": "Desconto parece bom, mas ainda tenho dúvidas.",
+              "feedback": "Reduzir preço antes de compreender a objeção pode ocultar critérios importantes."
+            }
+          ]
+        },
+        {
+          "fala": "A outra empresa cobra menos, porém a implantação é separada.",
+          "pergunta": "Como esclarecer diferenças de escopo?",
+          "alternativas": [
+            {
+              "texto": "A concorrência certamente entrega menos qualidade.",
+              "resposta": "Você tem dados para confirmar isso?",
+              "feedback": "Evite alegações sobre terceiros sem evidências."
+            },
+            {
+              "texto": "Vamos comparar custo total, implantação, suporte e critérios de sucesso lado a lado.",
+              "resposta": "Ótimo, assim consigo avaliar o conjunto.",
+              "feedback": "Uma comparação verificável melhora a qualidade da decisão."
+            },
+            {
+              "texto": "Nossa proposta é melhor, pode confiar.",
+              "resposta": "Preciso justificar a escolha internamente.",
+              "feedback": "Afirmações genéricas não substituem evidências concretas."
+            }
+          ]
+        },
+        {
+          "fala": "Preciso levar a avaliação para minha diretoria.",
+          "pergunta": "Como combinar o próximo passo?",
+          "alternativas": [
+            {
+              "texto": "Preciso de uma resposta agora.",
+              "resposta": "Não posso decidir sem a diretoria.",
+              "feedback": "Pressão ignora o processo real de compra."
+            },
+            {
+              "texto": "Envio um quadro comparativo e podemos revisar os critérios após a reunião. Qual data ajuda?",
+              "resposta": "Na quinta-feira consigo discutir isso.",
+              "feedback": "Próximo passo acordado respeita a governança do cliente."
+            },
+            {
+              "texto": "Vou mandar vários documentos e você decide sozinho.",
+              "resposta": "Será difícil organizar o material todo.",
+              "feedback": "Documentos são úteis quando priorizam os pontos decisivos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mudanca",
+      "area": "Liderança",
+      "titulo": "Anunciar mudança de processo",
+      "contexto": "A equipe receberá uma nova rotina de atendimento em duas semanas.",
+      "interlocutor": "Equipe",
+      "etapas": [
+        {
+          "fala": "Isso vai mudar todo o nosso jeito de trabalhar?",
+          "pergunta": "Como comunicar o propósito?",
+          "alternativas": [
+            {
+              "texto": "Vocês terão que se adaptar.",
+              "resposta": "Mas por quê?",
+              "feedback": "Uma ordem sem contexto tende a gerar dúvidas não resolvidas."
+            },
+            {
+              "texto": "Vamos mudar o registro para reduzir retrabalho. Vou mostrar o que muda e ouvir riscos.",
+              "resposta": "Entendi o objetivo. Quais tarefas mudam?",
+              "feedback": "Explicar objetivo e impactos cria condições para participação informada."
+            },
+            {
+              "texto": "Não se preocupem, nada será diferente.",
+              "resposta": "Então por que haverá treinamento?",
+              "feedback": "Minimizar impactos reais prejudica a confiança."
+            }
+          ]
+        },
+        {
+          "fala": "Estamos preocupados com atendimento durante a transição.",
+          "pergunta": "Como responder à preocupação?",
+          "alternativas": [
+            {
+              "texto": "Essa preocupação não importa agora.",
+              "resposta": "O atendimento pode ser afetado.",
+              "feedback": "Desconsiderar uma dependência operacional é arriscado."
+            },
+            {
+              "texto": "Vamos testar em uma equipe, oferecer suporte e medir tempo de atendimento.",
+              "resposta": "Assim poderemos antecipar problemas.",
+              "feedback": "Um piloto com apoio e indicadores pode reduzir riscos."
+            },
+            {
+              "texto": "Deixem os riscos para depois.",
+              "resposta": "Então não teremos como prevenir falhas.",
+              "feedback": "Planejamento prévio evita surpresas previsíveis."
+            }
+          ]
+        },
+        {
+          "fala": "Como saberemos se a mudança funcionou?",
+          "pergunta": "Como fechar o alinhamento?",
+          "alternativas": [
+            {
+              "texto": "Vamos perceber com o tempo.",
+              "resposta": "Que sinais precisamos acompanhar?",
+              "feedback": "Acompanhamento vago dificulta aprendizagem."
+            },
+            {
+              "texto": "Compararemos retrabalho, tempo e feedback em duas revisões com responsáveis definidos.",
+              "resposta": "Temos critérios claros para avaliar.",
+              "feedback": "Critérios observáveis e pontos de revisão sustentam mudanças."
+            },
+            {
+              "texto": "Não haverá necessidade de avaliação.",
+              "resposta": "Fica difícil dizer se melhorou.",
+              "feedback": "Sem avaliação, melhorias não ficam demonstráveis."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conflito",
+      "area": "Comunicação",
+      "titulo": "Resolver um conflito entre colegas",
+      "contexto": "Duas pessoas discordam sobre o responsável por uma tarefa.",
+      "interlocutor": "Colega",
+      "etapas": [
+        {
+          "fala": "A responsabilidade era da outra área.",
+          "pergunta": "Como iniciar a mediação?",
+          "alternativas": [
+            {
+              "texto": "Vocês sempre criam problemas.",
+              "resposta": "Isso parece uma acusação.",
+              "feedback": "Rótulos pessoais podem aumentar a polarização."
+            },
+            {
+              "texto": "Vamos separar fatos, combinados e responsabilidades atuais. O que foi registrado?",
+              "resposta": "Temos mensagens diferentes sobre a mesma entrega.",
+              "feedback": "Diferenciar evidência e interpretação diminui a personalização do conflito."
+            },
+            {
+              "texto": "Prefiro não entrar nessa discussão.",
+              "resposta": "O trabalho continua travado.",
+              "feedback": "Evitar o conflito não resolve a ambiguidade."
+            }
+          ]
+        },
+        {
+          "fala": "Um e-mail dizia uma coisa e a reunião outra.",
+          "pergunta": "Como negociar o alinhamento?",
+          "alternativas": [
+            {
+              "texto": "Escolham um culpado e sigam.",
+              "resposta": "Ainda não sabemos qual acordo vale.",
+              "feedback": "Buscar culpados não substitui esclarecer acordos."
+            },
+            {
+              "texto": "Vamos definir uma fonte única de responsabilidades e confirmar as dependências.",
+              "resposta": "Podemos registrar a decisão em um lugar.",
+              "feedback": "Um acordo compartilhado previne repetição do mesmo problema."
+            },
+            {
+              "texto": "O e-mail é sempre a única verdade.",
+              "resposta": "Mas a prioridade mudou depois.",
+              "feedback": "Uma regra rígida pode ignorar mudanças legítimas de contexto."
+            }
+          ]
+        },
+        {
+          "fala": "Podemos registrar o novo acordo hoje?",
+          "pergunta": "Como encerrar sem humilhar?",
+          "alternativas": [
+            {
+              "texto": "Tudo bem, mas não quero mais erros de vocês.",
+              "resposta": "O tom parece uma repreensão pública.",
+              "feedback": "É melhor separar resolução de processo e avaliação individual."
+            },
+            {
+              "texto": "Sim: responsável, prazo, apoio e checagem de entendimento com todos.",
+              "resposta": "Agora sabemos como proceder.",
+              "feedback": "Combinar próximos passos reduz novas ambiguidades."
+            },
+            {
+              "texto": "Depois definimos os detalhes.",
+              "resposta": "Posso acabar seguindo uma orientação antiga.",
+              "feedback": "Acordos incompletos deixam espaço para conflitos futuros."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atendimento",
+      "area": "Atendimento",
+      "titulo": "Cliente frustrado com demora",
+      "contexto": "Uma pessoa reclama de uma solicitação que está sem atualização.",
+      "interlocutor": "Cliente",
+      "etapas": [
+        {
+          "fala": "Já escrevi três vezes e ninguém me respondeu!",
+          "pergunta": "Como reconhecer o problema?",
+          "alternativas": [
+            {
+              "texto": "Calma, não precisa ficar assim.",
+              "resposta": "Parece que você não entendeu o problema.",
+              "feedback": "Pedir calma pode invalidar a experiência do cliente."
+            },
+            {
+              "texto": "Você tem razão em pedir atualização. Vou verificar o status e informar o próximo passo.",
+              "resposta": "Obrigado, preciso de uma resposta concreta.",
+              "feedback": "Reconhecer impacto e assumir uma ação verificável ajuda a reconstruir confiança."
+            },
+            {
+              "texto": "Isso não é responsabilidade minha.",
+              "resposta": "Mas estou falando com a empresa.",
+              "feedback": "Uma transferência sem encaminhamento mantém a frustração."
+            }
+          ]
+        },
+        {
+          "fala": "A solicitação é importante para meu trabalho de hoje.",
+          "pergunta": "Como lidar com incerteza?",
+          "alternativas": [
+            {
+              "texto": "Vai estar resolvido em uma hora, pode confiar.",
+              "resposta": "Vou contar com isso.",
+              "feedback": "Não prometa prazo sem confirmação operacional."
+            },
+            {
+              "texto": "Vou verificar com o time responsável e retornar às 15h, mesmo que ainda esteja em análise.",
+              "resposta": "Uma atualização nesse horário ajuda.",
+              "feedback": "Comprometer-se com a comunicação, sem inventar resolução, é mais responsável."
+            },
+            {
+              "texto": "Não há previsão, então não posso ajudar.",
+              "resposta": "Existe ao menos uma alternativa?",
+              "feedback": "Explorar contingências pode ser útil mesmo sem prazo de solução."
+            }
+          ]
+        },
+        {
+          "fala": "Existe algo que eu possa fazer enquanto isso?",
+          "pergunta": "Como encerrar com apoio?",
+          "alternativas": [
+            {
+              "texto": "Não, só espere.",
+              "resposta": "Fico sem um caminho para trabalhar.",
+              "feedback": "Encerramento abrupto pode deixar necessidades legítimas sem resposta."
+            },
+            {
+              "texto": "Vou registrar a prioridade, confirmar se há alternativa e enviar resumo do combinado.",
+              "resposta": "Ótimo, assim consigo me organizar.",
+              "feedback": "Resumo e alternativas aumentam clareza de acompanhamento."
+            },
+            {
+              "texto": "Vou encerrar o chamado por enquanto.",
+              "resposta": "Mas o problema não foi resolvido.",
+              "feedback": "Encerramento prematuro cria retrabalho e perda de confiança."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reuniao",
+      "area": "Comunicação",
+      "titulo": "Reunião com muita dispersão",
+      "contexto": "Uma reunião de planejamento gera ideias, mas não decisões.",
+      "interlocutor": "Participante",
+      "etapas": [
+        {
+          "fala": "Temos mais cinco ideias para acrescentar!",
+          "pergunta": "Como dar foco sem cortar contribuições?",
+          "alternativas": [
+            {
+              "texto": "Não quero mais nenhuma sugestão.",
+              "resposta": "Mas talvez algumas sejam importantes.",
+              "feedback": "Cortar todas as ideias elimina informação útil."
+            },
+            {
+              "texto": "Vamos registrar ideias extras e voltar ao objetivo: decidir a prioridade de hoje.",
+              "resposta": "Podemos deixar as demais para a próxima rodada.",
+              "feedback": "Timeboxing e estacionamento de ideias conciliam participação e foco."
+            },
+            {
+              "texto": "Que ótimo! Vamos explorar tudo sem limite.",
+              "resposta": "Ainda não temos uma decisão.",
+              "feedback": "Sem critério, o entusiasmo pode gerar dispersão."
+            }
+          ]
+        },
+        {
+          "fala": "Temos duas opções boas, mas preferências diferentes.",
+          "pergunta": "Como decidir com clareza?",
+          "alternativas": [
+            {
+              "texto": "A decisão será a minha e pronto.",
+              "resposta": "Queria entender o critério.",
+              "feedback": "Decisões pouco explicadas podem comprometer comprometimento."
+            },
+            {
+              "texto": "Vamos comparar impacto, esforço e riscos e definir quem decide ao final.",
+              "resposta": "Assim fica transparente.",
+              "feedback": "Critérios e responsabilidade decisória permitem concluir o debate."
+            },
+            {
+              "texto": "Vamos votar sem discutir impacto.",
+              "resposta": "Pode vencer a opção mais popular, não a mais adequada.",
+              "feedback": "Votação sem critérios pode ignorar restrições importantes."
+            }
+          ]
+        },
+        {
+          "fala": "Escolhemos o caminho. O que acontece agora?",
+          "pergunta": "Como concluir de forma operacional?",
+          "alternativas": [
+            {
+              "texto": "Cada um já sabe o que fazer.",
+              "resposta": "Acho que entendemos entregas diferentes.",
+              "feedback": "Pressupor entendimento pode gerar duplicidade."
+            },
+            {
+              "texto": "Registramos tarefa, responsável, prazo e o primeiro ponto de revisão.",
+              "resposta": "Com isso consigo começar.",
+              "feedback": "Acordos explícitos transformam conversa em execução."
+            },
+            {
+              "texto": "Vamos falar disso na próxima reunião.",
+              "resposta": "Então o trabalho não começa hoje.",
+              "feedback": "Adiar responsabilidade aumenta a inércia."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objecao",
+      "area": "Vendas",
+      "titulo": "Objeção técnica em uma negociação",
+      "contexto": "O prospect pergunta sobre integração e proteção de dados.",
+      "interlocutor": "Prospect",
+      "etapas": [
+        {
+          "fala": "Sua plataforma integra com nosso sistema atual?",
+          "pergunta": "Como responder sem inventar?",
+          "alternativas": [
+            {
+              "texto": "Sim, certamente integra com tudo.",
+              "resposta": "Preciso de documentação para verificar.",
+              "feedback": "Garantias não verificadas criam risco de confiança e contrato."
+            },
+            {
+              "texto": "Vamos conferir os conectores compatíveis e validar o cenário com a equipe técnica.",
+              "resposta": "Posso compartilhar os requisitos.",
+              "feedback": "Uma verificação com escopo definido respeita a necessidade do cliente."
+            },
+            {
+              "texto": "Isso é detalhe técnico, vamos falar do preço.",
+              "resposta": "É um requisito de compra para nós.",
+              "feedback": "Ignorar critério obrigatório pode inviabilizar o negócio."
+            }
+          ]
+        },
+        {
+          "fala": "Precisamos de evidências sobre segurança e LGPD.",
+          "pergunta": "Como tratar requisitos críticos?",
+          "alternativas": [
+            {
+              "texto": "A segurança é perfeita e não há nenhum risco.",
+              "resposta": "Essa afirmação não é verificável.",
+              "feedback": "Nenhum sistema deve prometer ausência total de risco."
+            },
+            {
+              "texto": "Vou reunir documentação disponível, responsáveis e eventuais lacunas para revisão.",
+              "resposta": "Assim podemos fazer nossa avaliação.",
+              "feedback": "Transparência sobre controles e lacunas facilita diligência."
+            },
+            {
+              "texto": "Todos os clientes já confiam, vocês também podem.",
+              "resposta": "Nossa análise exige dados específicos.",
+              "feedback": "Referências genéricas não substituem evidência apropriada."
+            }
+          ]
+        },
+        {
+          "fala": "Quando poderemos avaliar as respostas?",
+          "pergunta": "Como agendar um próximo passo?",
+          "alternativas": [
+            {
+              "texto": "Vocês terão tudo amanhã, sem verificar disponibilidade.",
+              "resposta": "Vou reservar recursos para amanhã.",
+              "feedback": "Compromissos irreais prejudicam previsibilidade."
+            },
+            {
+              "texto": "Confirmarei com o time um prazo realista e retorno com responsáveis e itens pendentes.",
+              "resposta": "Tudo bem, com um plano claro avançamos.",
+              "feedback": "Um plano com responsáveis e limitações explícitas evita falsas promessas."
+            },
+            {
+              "texto": "Retornamos quando for possível.",
+              "resposta": "Então não sei quando acompanhar.",
+              "feedback": "Ausência de prazo ou checkpoint pode encerrar o avanço."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delegacao",
+      "area": "Liderança",
+      "titulo": "Delegação de uma entrega complexa",
+      "contexto": "Um líder precisa delegar uma análise a alguém com pouco contexto.",
+      "interlocutor": "Colaborador(a)",
+      "etapas": [
+        {
+          "fala": "O que exatamente você espera que eu entregue?",
+          "pergunta": "Como definir a tarefa?",
+          "alternativas": [
+            {
+              "texto": "Faça como achar melhor, sem perguntas.",
+              "resposta": "Tenho dúvidas sobre o escopo.",
+              "feedback": "Autonomia sem parâmetros pode aumentar retrabalho."
+            },
+            {
+              "texto": "Precisamos de um resumo com recomendações até sexta; posso explicar os critérios de aceitação.",
+              "resposta": "Isso esclarece a expectativa.",
+              "feedback": "Resultado, critério e prazo oferecem direcionamento sem microgerenciamento."
+            },
+            {
+              "texto": "Faça igual ao meu jeito e não mude nada.",
+              "resposta": "Fica difícil propor melhorias.",
+              "feedback": "Delegação excessivamente prescritiva pode reduzir autonomia."
+            }
+          ]
+        },
+        {
+          "fala": "Nunca usei essa fonte de dados antes.",
+          "pergunta": "Como apoiar sem fazer tudo pela pessoa?",
+          "alternativas": [
+            {
+              "texto": "Descubra sozinho, faz parte.",
+              "resposta": "Posso perder muito tempo com erros evitáveis.",
+              "feedback": "Aprender exige suporte proporcional ao risco e experiência."
+            },
+            {
+              "texto": "Vou indicar duas fontes confiáveis e marcamos uma checagem intermediária.",
+              "resposta": "Consigo começar e trazer perguntas.",
+              "feedback": "Referências e checkpoints equilibram suporte e autonomia."
+            },
+            {
+              "texto": "Eu faço a análise então.",
+              "resposta": "Assim não desenvolvo essa habilidade.",
+              "feedback": "Retomar toda a tarefa reduz oportunidade de desenvolvimento."
+            }
+          ]
+        },
+        {
+          "fala": "Quando você quer revisar a primeira versão?",
+          "pergunta": "Como combinar acompanhamento?",
+          "alternativas": [
+            {
+              "texto": "Só me procure se estiver tudo pronto.",
+              "resposta": "Posso avançar na direção errada por dias.",
+              "feedback": "Sem checkpoints, erros podem se acumular."
+            },
+            {
+              "texto": "Na quarta vemos o esboço e na sexta a versão final, com espaço para ajustes.",
+              "resposta": "Perfeito, consigo planejar.",
+              "feedback": "Revisões proporcionais ao risco aumentam qualidade e clareza."
+            },
+            {
+              "texto": "Vou perguntar a cada hora como está.",
+              "resposta": "Fica difícil me concentrar.",
+              "feedback": "Excesso de controle pode interromper o trabalho."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "escuta",
+      "titulo": "Escuta antes da conclusão",
+      "area": "Comunicação",
+      "situacao": "Um colega expressa uma opinião diferente em reunião.",
+      "tarefa": "Escreva duas perguntas abertas para compreender as evidências antes de responder.",
+      "criterios": [
+        "Perguntas não acusatórias",
+        "Solicitação de exemplos ou evidências",
+        "Espaço para discordância"
+      ]
+    },
+    {
+      "id": "feedback",
+      "titulo": "Feedback com fatos e pedido",
+      "area": "Liderança",
+      "situacao": "Uma entrega atrasou duas vezes no mês.",
+      "tarefa": "Escreva uma mensagem com situação observável, impacto e próximo acordo.",
+      "criterios": [
+        "Fato verificável em vez de rótulo",
+        "Impacto concreto",
+        "Pedido ou acordo claro"
+      ]
+    },
+    {
+      "id": "objecao",
+      "titulo": "Responder à objeção de preço",
+      "area": "Vendas",
+      "situacao": "Uma pessoa diz que a proposta está cara, sem explicar o critério.",
+      "tarefa": "Escreva uma resposta breve que explore o critério e combine o próximo passo.",
+      "criterios": [
+        "Acolhimento sem pressão",
+        "Pergunta sobre orçamento ou comparação",
+        "Próximo passo explícito"
+      ]
+    },
+    {
+      "id": "atraso",
+      "titulo": "Atualização responsável",
+      "area": "Atendimento",
+      "situacao": "Uma solicitação está em análise e o prazo de solução não foi confirmado.",
+      "tarefa": "Escreva uma atualização sem inventar prazo de resolução.",
+      "criterios": [
+        "Status honesto",
+        "Prazo de retorno confirmado",
+        "Canal de acompanhamento"
+      ]
+    },
+    {
+      "id": "mudanca",
+      "titulo": "Explicar uma mudança",
+      "area": "Liderança",
+      "situacao": "Um processo conhecido será substituído por outro.",
+      "tarefa": "Explique objetivo, impacto e como as dúvidas serão respondidas.",
+      "criterios": [
+        "Motivo e benefícios verificáveis",
+        "Impacto nas pessoas",
+        "Suporte e revisão"
+      ]
+    },
+    {
+      "id": "pedido",
+      "titulo": "Negociar prioridade com respeito",
+      "area": "Comunicação",
+      "situacao": "Você recebeu uma demanda extra que conflita com outra entrega prioritária.",
+      "tarefa": "Escreva uma resposta com limite, alternativa e proposta de alinhamento.",
+      "criterios": [
+        "Limite transparente",
+        "Alternativa viável",
+        "Convite ao alinhamento"
+      ]
+    }
+  ],
+  "contextos": [
+    "Feedback",
+    "Reunião",
+    "Vendas",
+    "Mudança",
+    "Atendimento"
+  ],
+  "dicas_fatores": {
+    "D": [
+      "Comece pelo objetivo e pela decisão necessária.",
+      "Apresente alternativas, limites e próximo passo.",
+      "Evite confundir concisão com imposição."
+    ],
+    "I": [
+      "Valorize a relação sem perder clareza.",
+      "Resuma ideias em responsáveis e ações.",
+      "Evite prometer algo só para manter entusiasmo."
+    ],
+    "S": [
+      "Explique impactos e etapas de transição.",
+      "Inclua espaço para perguntas e negociação de limites.",
+      "Evite presumir concordância pelo silêncio."
+    ],
+    "C": [
+      "Esclareça critérios e evidências verificáveis.",
+      "Diferencie o confirmado do que precisa ser validado.",
+      "Resuma pontos-chave sem ocultar riscos."
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+/* V9.7 — controles de fluxo educativos. Respeita tokens RealTalent. */
+.rt-v97-draft-notice{font-size:.86rem;line-height:1.45;color:var(--rt-text-muted,#b4afce);margin:12px 0 6px}
+.rt-v97-cancel{border-color:rgba(215,116,130,.28)!important;color:var(--rt-text-muted,#c4bfcf)!important}
+.rt-v97-cancel:hover,.rt-v97-cancel:focus-visible{color:var(--rt-text,#fff)!important;border-color:#b97b99!important}
+@media(max-width:740px){.rt-v96-entry-actions .rt-v97-cancel{width:100%}}

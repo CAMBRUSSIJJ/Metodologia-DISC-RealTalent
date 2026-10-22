@@ -474,7 +474,21 @@
     to   { opacity:1; transform: translateX(-50%) translateY(0); }
   }
 
+
+/* H2.0 · Biblioteca DISC/ACER integrada ao produto */
+body.rt-library-open main {max-width:1600px;width:100%;padding:20px clamp(10px,2vw,32px) 38px;}
+.rt-knowledge-frame {display:block;width:100%;height:calc(100vh - 168px);min-height:580px;border:1px solid var(--border);border-radius:18px;background:#121123;box-shadow:0 18px 55px rgba(0,0,0,.18);}
+.rt-knowledge-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 14px;flex-wrap:wrap;}
+.rt-knowledge-intro h1 {font:800 clamp(17px,2vw,23px)/1.2 'Plus Jakarta Sans',Inter,sans-serif;margin:0 0 6px;letter-spacing:-.035em;}
+.rt-knowledge-intro p {font-size:12px;line-height:1.5;color:var(--muted);margin:0;}
+.rt-knowledge-badge {display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:99px;padding:7px 12px;font-size:11px;color:var(--muted);background:var(--surface);}
+.rt-knowledge-badge::before {content:'●';font-size:8px;color:#56bcad;}
+.rt-library-cta {display:inline-flex;align-items:center;gap:7px;padding:10px 16px;color:var(--purple);background:rgba(123,95,255,.09);border:1px solid rgba(123,95,255,.25);border-radius:10px;font:700 12px Inter,sans-serif;cursor:pointer;margin-top:15px;}
+.rt-library-cta:hover {background:rgba(123,95,255,.17);}
+@media(max-width:700px) {body.rt-library-open main{padding:12px 6px 22px}.rt-knowledge-intro{padding:0 10px}.rt-knowledge-frame{height:calc(100dvh - 195px);min-height:540px;border-radius:10px}}
+
 </style>
+<style>.rt-professional-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px clamp(14px,4vw,35px);background:#0e3d32;color:#f6fcf8;font-family:Inter,Arial,sans-serif;font-size:12px}.rt-professional-bar b{font-weight:800}.rt-professional-bar small{color:#c5dacd;margin-left:9px;font-size:10px}.rt-professional-bar a{color:white;background:#286950;padding:8px 12px;border-radius:7px;font-weight:800;text-decoration:none;white-space:nowrap}@media(max-width:660px){.rt-professional-bar{align-items:flex-start;flex-direction:column}.rt-professional-bar small{display:block;margin:5px 0 0}}</style>
 </head>
 <body>
 
@@ -485,6 +499,7 @@
     </a>
     <div id="account-bar" class="account-bar"></div>
   </div>
+  <div class="rt-professional-bar"><span><b>RealTalent · Coaching e Desenvolvimento Humano</b> <small>Plataforma de apoio a psicólogas e psicólogos</small></span><a href="profissional/index.html">Abrir workspace profissional ↗</a></div>
   <nav class="nav-tabs" role="tablist" aria-label="Navegação principal">
     <button class="nav-tab active" id="tab-mapeamento" role="tab" aria-label="Fazer Mapeamento" onclick="switchTab('mapeamento')">
       <svg class="tab-progress-ring" width="16" height="16" viewBox="0 0 16 16" id="ring-mapeamento">
@@ -499,6 +514,11 @@
         <circle cx="8" cy="8" r="6" fill="none" stroke="var(--purple)" stroke-width="2" stroke-dasharray="37.7" stroke-dashoffset="37.7" id="ring-fill-graficos"/>
       </svg>
       Gráficos
+    </button>
+
+    <button class="nav-tab" id="tab-biblioteca" role="tab" aria-label="Biblioteca DISC e ACER" aria-controls="tab-content-biblioteca" aria-selected="false" onclick="switchTab('biblioteca')">
+      <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M9 7h7M9 11h7"/></svg>
+      Biblioteca DISC/ACER
     </button>
     <button class="nav-tab" id="tab-sobre" role="tab" aria-label="Sobre o RealTalent" onclick="switchTab('sobre')">
       <svg class="tab-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -732,8 +752,22 @@
     <div id="graficos-content" style="display:none;"></div>
   </div>
 
+
+  <!-- ══ ABA: BIBLIOTECA DISC / ACER ══ -->
+  <section id="tab-content-biblioteca" style="display:none;" aria-label="Biblioteca de conhecimento DISC e ACER">
+    <div class="rt-knowledge-intro">
+      <div>
+        <h1>Biblioteca DISC / ACER</h1>
+        <p>Uma metodologia, dois nomes. Aprenda e consulte perfis, comunicação, liderança e desenvolvimento.</p>
+      </div>
+      <span class="rt-knowledge-badge">Conhecimento · 135 conteúdos</span>
+    </div>
+    <iframe id="rt-library-iframe" class="rt-knowledge-frame" title="Biblioteca DISC/ACER do RealTalent" loading="lazy" data-src="biblioteca/index.html?embedded=1&amp;theme=dark" referrerpolicy="no-referrer"></iframe>
+  </section>
+
   <!-- ══ ABA: SOBRE ══ -->
   <div id="tab-content-sobre" style="display:none;">
+    <button type="button" class="rt-library-cta" onclick="switchTab('biblioteca')">📚 Explorar Biblioteca DISC/ACER →</button>
     <div style="text-align:center; margin-bottom: 2.5rem;">
       <div class="intro-eyebrow">Conheça o método</div>
       <h1 style="font-family:'Playfair Display',sans-serif; font-size:28px; font-weight:800; margin-bottom:10px;">O que é o RealTalent?</h1>
@@ -879,14 +913,24 @@ let supabaseClient = null;
 let currentUser = null;   // { id, email }
 let currentProfile = null; // { nome, email, papel, time_id }
 
-try {
-  if (window.supabase) {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  }
-} catch (e) { console.warn('Supabase indisponível:', e); }
-
+function rtInitializeSupabase() {
+  if (supabaseClient) return true;
+  if (!window.supabase?.createClient) return false;
+  try { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); }
+  catch (error) { console.warn('Erro ao iniciar autenticação:', error); }
+  return Boolean(supabaseClient);
+}
+let rtSupabaseInitAttempts = 0;
 async function requireAuthAndBoot() {
-  if (!supabaseClient) { setTimeout(requireAuthAndBoot, 150); return; }
+  if (!rtInitializeSupabase()) {
+    if (++rtSupabaseInitAttempts < 40) { setTimeout(requireAuthAndBoot, 250); return; }
+    const message = document.createElement('p');
+    message.setAttribute('role', 'alert');
+    message.style.cssText = 'padding:16px;margin:16px;background:#4c1d30;color:white;border-radius:10px;text-align:center';
+    message.textContent = 'Não foi possível carregar a autenticação. Verifique a conexão e recarregue.';
+    document.body.prepend(message);
+    return;
+  }
   const { data } = await supabaseClient.auth.getSession();
   if (!data || !data.session) {
     window.location.href = 'login.html';
@@ -1990,8 +2034,9 @@ function goHome() {
 }
 
 function switchTab(tab) {
+  rtSetKnowledgeView(tab);
   // Atualiza botões de aba
-  ['mapeamento','graficos','sobre','dashboard'].forEach(t => {
+  ['mapeamento','graficos','sobre','biblioteca','dashboard'].forEach(t => {
     document.getElementById('tab-' + t)?.classList.toggle('active', t === tab);
     const el = document.getElementById('tab-content-' + t);
     if (el) {
@@ -2450,5 +2495,21 @@ function renderDashboard() {
 
 </script>
 <div id="save-status"></div>
+<script>
+function rtOpenKnowledgeLibrary() {
+  const iframe = document.getElementById('rt-library-iframe');
+  if (iframe && !iframe.getAttribute('src')) iframe.setAttribute('src', iframe.dataset.src);
+}
+function rtSetKnowledgeView(tab) {
+  document.body.classList.toggle('rt-library-open', tab === 'biblioteca');
+  document.querySelectorAll('.nav-tab[role="tab"]').forEach(button => {
+    button.setAttribute('aria-selected', button.id === 'tab-' + tab ? 'true' : 'false');
+  });
+  if (tab === 'biblioteca') rtOpenKnowledgeLibrary();
+}
+window.addEventListener('DOMContentLoaded', function() {
+  if (location.hash === '#biblioteca') switchTab('biblioteca');
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,1024 @@
+{
+  "meta": {
+    "origem": "Arquivo index.html fornecido pelo usuário",
+    "status": "conteúdo original preservado para revisão técnica e psicométrica",
+    "nota": "Sem evidência de validação psicométrica específica encontrada no ZIP; não apresentar como instrumento diagnóstico.",
+    "versao": "original-2026-07-03"
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "enunciado": "Ao enfrentar um problema no trabalho, você:",
+      "alternativas": [
+        {
+          "texto": "Toma a iniciativa e age rapidamente para resolvê-lo",
+          "fator": "D"
+        },
+        {
+          "texto": "Procura o apoio e a opinião da equipe",
+          "fator": "I"
+        },
+        {
+          "texto": "Analisa cuidadosamente todas as opções antes de agir",
+          "fator": "C"
+        },
+        {
+          "texto": "Prefere manter a harmonia e evitar conflitos",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q02",
+      "enunciado": "Em reuniões, você geralmente:",
+      "alternativas": [
+        {
+          "texto": "Lidera a discussão e direciona as decisões",
+          "fator": "D"
+        },
+        {
+          "texto": "Energiza o grupo e faz conexões entre as pessoas",
+          "fator": "I"
+        },
+        {
+          "texto": "Prefere ouvir e só fala quando tem algo relevante",
+          "fator": "C"
+        },
+        {
+          "texto": "Apoia as ideias dos outros e busca consenso",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q03",
+      "enunciado": "Quando recebe uma crítica ao seu trabalho, você:",
+      "alternativas": [
+        {
+          "texto": "Questiona se a crítica é válida e defende sua posição",
+          "fator": "D"
+        },
+        {
+          "texto": "Fica um pouco abalado, pois se importa com a aprovação",
+          "fator": "I"
+        },
+        {
+          "texto": "Analisa se a crítica tem fundamento com base em dados",
+          "fator": "C"
+        },
+        {
+          "texto": "Aceita bem, desde que seja feita de forma respeitosa",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q04",
+      "enunciado": "Seu ritmo de trabalho preferido é:",
+      "alternativas": [
+        {
+          "texto": "Rápido e orientado a resultados imediatos",
+          "fator": "D"
+        },
+        {
+          "texto": "Variado, com muita interação e atividades diferentes",
+          "fator": "I"
+        },
+        {
+          "texto": "Metódico, com tempo para pesquisa e qualidade",
+          "fator": "C"
+        },
+        {
+          "texto": "Constante e previsível, com poucas surpresas",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q05",
+      "enunciado": "Para você, o maior medo profissional é:",
+      "alternativas": [
+        {
+          "texto": "Perder o controle ou ser controlado por outros",
+          "fator": "D"
+        },
+        {
+          "texto": "Ser ignorado ou não ser apreciado",
+          "fator": "I"
+        },
+        {
+          "texto": "Cometer erros por falta de informação",
+          "fator": "C"
+        },
+        {
+          "texto": "Mudanças repentinas sem preparo",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q06",
+      "enunciado": "Na tomada de decisão, você prioriza:",
+      "alternativas": [
+        {
+          "texto": "Agilidade: decide rápido com as informações disponíveis",
+          "fator": "D"
+        },
+        {
+          "texto": "Intuição e impacto nas pessoas envolvidas",
+          "fator": "I"
+        },
+        {
+          "texto": "Dados e análise detalhada antes de concluir",
+          "fator": "C"
+        },
+        {
+          "texto": "Estabilidade e impacto no grupo a longo prazo",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q07",
+      "enunciado": "Ao liderar uma equipe, você:",
+      "alternativas": [
+        {
+          "texto": "Define metas claras e cobra resultados",
+          "fator": "D"
+        },
+        {
+          "texto": "Motiva e inspira as pessoas com entusiasmo",
+          "fator": "I"
+        },
+        {
+          "texto": "Cria processos e padrões de qualidade",
+          "fator": "C"
+        },
+        {
+          "texto": "Cria um ambiente seguro e colaborativo",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q08",
+      "enunciado": "Como você lida com mudanças inesperadas?",
+      "alternativas": [
+        {
+          "texto": "Adapta rapidamente e vê como uma oportunidade",
+          "fator": "D"
+        },
+        {
+          "texto": "Abraça a novidade e anima a equipe",
+          "fator": "I"
+        },
+        {
+          "texto": "Fica desconfortável se não houver planejamento",
+          "fator": "C"
+        },
+        {
+          "texto": "Aceita com dificuldade se não foi avisado antes",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q09",
+      "enunciado": "Em situações de pressão, você tende a:",
+      "alternativas": [
+        {
+          "texto": "Ser mais assertivo e exigente",
+          "fator": "D"
+        },
+        {
+          "texto": "Perder o foco por ansiedade social",
+          "fator": "I"
+        },
+        {
+          "texto": "Demorar mais na análise por perfeccionismo",
+          "fator": "C"
+        },
+        {
+          "texto": "Ceder para evitar conflito",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q10",
+      "enunciado": "O que mais te motiva no trabalho?",
+      "alternativas": [
+        {
+          "texto": "Desafios, poder e resultados concretos",
+          "fator": "D"
+        },
+        {
+          "texto": "Reconhecimento, socialização e criatividade",
+          "fator": "I"
+        },
+        {
+          "texto": "Excelência, precisão e aprendizado constante",
+          "fator": "C"
+        },
+        {
+          "texto": "Segurança, cooperação e estabilidade",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q11",
+      "enunciado": "Ao apresentar uma ideia, você prefere:",
+      "alternativas": [
+        {
+          "texto": "Ir direto ao ponto e destacar os resultados",
+          "fator": "D"
+        },
+        {
+          "texto": "Contar uma história envolvente e animada",
+          "fator": "I"
+        },
+        {
+          "texto": "Apresentar dados, gráficos e embasamento técnico",
+          "fator": "C"
+        },
+        {
+          "texto": "Explicar como a ideia beneficia toda a equipe",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q12",
+      "enunciado": "Seu estilo de comunicação é mais:",
+      "alternativas": [
+        {
+          "texto": "Direto, objetivo e assertivo",
+          "fator": "D"
+        },
+        {
+          "texto": "Entusiasmado, expressivo e comunicativo",
+          "fator": "I"
+        },
+        {
+          "texto": "Preciso, formal e baseado em fatos",
+          "fator": "C"
+        },
+        {
+          "texto": "Calmo, paciente e cuidadoso",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q13",
+      "enunciado": "Quando um projeto falha, você:",
+      "alternativas": [
+        {
+          "texto": "Assume a responsabilidade e parte para a próxima",
+          "fator": "D"
+        },
+        {
+          "texto": "Busca reconforto na equipe e tenta animar todos",
+          "fator": "I"
+        },
+        {
+          "texto": "Analisa detalhadamente o que deu errado",
+          "fator": "C"
+        },
+        {
+          "texto": "Se preocupa com o impacto nas relações da equipe",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q14",
+      "enunciado": "Qual ambiente de trabalho te agrada mais?",
+      "alternativas": [
+        {
+          "texto": "Dinâmico, competitivo e com muita autonomia",
+          "fator": "D"
+        },
+        {
+          "texto": "Colaborativo, criativo e com pessoas diversas",
+          "fator": "I"
+        },
+        {
+          "texto": "Organizado, estruturado e com processos claros",
+          "fator": "C"
+        },
+        {
+          "texto": "Harmonioso, estável e com equipe coesa",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q15",
+      "enunciado": "Como você reage a regras e procedimentos?",
+      "alternativas": [
+        {
+          "texto": "Segue se faz sentido, questiona se achar necessário",
+          "fator": "D"
+        },
+        {
+          "texto": "Prefere flexibilidade para improvisar",
+          "fator": "I"
+        },
+        {
+          "texto": "Valoriza muito: regras garantem qualidade",
+          "fator": "C"
+        },
+        {
+          "texto": "Segue com conforto, pois trazem previsibilidade",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q16",
+      "enunciado": "Ao receber uma tarefa nova, sua primeira reação é:",
+      "alternativas": [
+        {
+          "texto": "Definir como você vai executá-la do seu jeito",
+          "fator": "D"
+        },
+        {
+          "texto": "Entusiasmar-se e já compartilhar com outros",
+          "fator": "I"
+        },
+        {
+          "texto": "Pesquisar e planejar antes de começar",
+          "fator": "C"
+        },
+        {
+          "texto": "Entender bem o que é esperado de você",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q17",
+      "enunciado": "Em conflitos interpessoais, você:",
+      "alternativas": [
+        {
+          "texto": "Enfrenta diretamente e busca uma resolução rápida",
+          "fator": "D"
+        },
+        {
+          "texto": "Tenta mediar e usar o bom humor para aliviar",
+          "fator": "I"
+        },
+        {
+          "texto": "Analisa o problema de forma racional",
+          "fator": "C"
+        },
+        {
+          "texto": "Evita ao máximo e prefere ceder",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q18",
+      "enunciado": "Como você prefere receber feedback?",
+      "alternativas": [
+        {
+          "texto": "Direto e objetivo, sem rodeios",
+          "fator": "D"
+        },
+        {
+          "texto": "De forma positiva e encorajadora",
+          "fator": "I"
+        },
+        {
+          "texto": "Detalhado, com exemplos e dados concretos",
+          "fator": "C"
+        },
+        {
+          "texto": "Com gentileza e em ambiente reservado",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q19",
+      "enunciado": "Sua maior contribuição para a equipe é:",
+      "alternativas": [
+        {
+          "texto": "Resultados, decisão e liderança sob pressão",
+          "fator": "D"
+        },
+        {
+          "texto": "Motivação, energia e capacidade de influenciar",
+          "fator": "I"
+        },
+        {
+          "texto": "Qualidade, análise e atenção aos detalhes",
+          "fator": "C"
+        },
+        {
+          "texto": "Apoio, lealdade e estabilidade emocional",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "q20",
+      "enunciado": "Quando tem autonomia total em um projeto, você:",
+      "alternativas": [
+        {
+          "texto": "Vai direto à execução com foco em resultados",
+          "fator": "D"
+        },
+        {
+          "texto": "Brainstorma ideias criativas e envolve pessoas",
+          "fator": "I"
+        },
+        {
+          "texto": "Cria um plano detalhado antes de qualquer ação",
+          "fator": "C"
+        },
+        {
+          "texto": "Consulta a equipe para garantir que todos estão bem",
+          "fator": "S"
+        }
+      ],
+      "status": "revisao_pendente"
+    }
+  ],
+  "adjectives": [
+    {
+      "id": "a001",
+      "texto": "Decidido",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a002",
+      "texto": "Comunicativo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a003",
+      "texto": "Paciente",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a004",
+      "texto": "Detalhista",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a005",
+      "texto": "Competitivo",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a006",
+      "texto": "Entusiasmado",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a007",
+      "texto": "Leal",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a008",
+      "texto": "Preciso",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a009",
+      "texto": "Ousado",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a010",
+      "texto": "Persuasivo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a011",
+      "texto": "Calmo",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a012",
+      "texto": "Analítico",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a013",
+      "texto": "Direto",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a014",
+      "texto": "Sociável",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a015",
+      "texto": "Constante",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a016",
+      "texto": "Cauteloso",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a017",
+      "texto": "Independente",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a018",
+      "texto": "Otimista",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a019",
+      "texto": "Cooperativo",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a020",
+      "texto": "Organizado",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a021",
+      "texto": "Determinado",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a022",
+      "texto": "Expressivo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a023",
+      "texto": "Confiável",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a024",
+      "texto": "Sistemático",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a025",
+      "texto": "Exigente",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a026",
+      "texto": "Espontâneo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a027",
+      "texto": "Bom ouvinte",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a028",
+      "texto": "Criterioso",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a029",
+      "texto": "Destemido",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a030",
+      "texto": "Autoconfiante",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a031",
+      "texto": "Receoso",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a032",
+      "texto": "Realista",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a033",
+      "texto": "Audaz",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a034",
+      "texto": "Saudável",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a035",
+      "texto": "Bem-educado",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a036",
+      "texto": "Sério",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a037",
+      "texto": "Energético",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a038",
+      "texto": "Egoísta",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a039",
+      "texto": "Diplomático",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a040",
+      "texto": "Preocupado",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a041",
+      "texto": "Persistente",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a042",
+      "texto": "Cativante",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a043",
+      "texto": "Esclarecido",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a044",
+      "texto": "Simpático",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a045",
+      "texto": "Turrão",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a046",
+      "texto": "Passivo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a047",
+      "texto": "Humilde",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a048",
+      "texto": "Equilibrado",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a049",
+      "texto": "Ágil",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a050",
+      "texto": "Sensível",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a051",
+      "texto": "Carismático",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a052",
+      "texto": "Desconfiado",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a053",
+      "texto": "Animado",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a054",
+      "texto": "Autêntico",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a055",
+      "texto": "Eloquente",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a056",
+      "texto": "Personalista",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a057",
+      "texto": "De fácil trato",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a058",
+      "texto": "Suave",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a059",
+      "texto": "Direto ao ponto",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a060",
+      "texto": "Gentil",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a061",
+      "texto": "Coração mole",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a062",
+      "texto": "Bem relacionado",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a063",
+      "texto": "Prudente",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a064",
+      "texto": "Responsável",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a065",
+      "texto": "Tradicional",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a066",
+      "texto": "Versátil",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a067",
+      "texto": "Extrovertido",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a068",
+      "texto": "Simples",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a069",
+      "texto": "Arrojado",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a070",
+      "texto": "Amigo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a071",
+      "texto": "Sossegado",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a072",
+      "texto": "Convincente",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a073",
+      "texto": "Perfeccionista",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a074",
+      "texto": "Competitivo nato",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a075",
+      "texto": "Compreensivo",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a076",
+      "texto": "Tímido",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a077",
+      "texto": "Generoso",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a078",
+      "texto": "Bem-quisto",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a079",
+      "texto": "De paz",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a080",
+      "texto": "Espirituoso",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a081",
+      "texto": "Formal",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a082",
+      "texto": "Leal ao grupo",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a083",
+      "texto": "Empreendedor",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a084",
+      "texto": "Flexível",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a085",
+      "texto": "Mandão",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a086",
+      "texto": "Sereno",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a087",
+      "texto": "Impaciente",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a088",
+      "texto": "Espírito nobre",
+      "fator": "C",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a089",
+      "texto": "Corajoso",
+      "fator": "D",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a090",
+      "texto": "Original",
+      "fator": "I",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a091",
+      "texto": "Respeitoso",
+      "fator": "S",
+      "status": "revisao_pendente"
+    },
+    {
+      "id": "a092",
+      "texto": "Ativo",
+      "fator": "C",
+      "status": "revisao_pendente"
+    }
+  ]
+}

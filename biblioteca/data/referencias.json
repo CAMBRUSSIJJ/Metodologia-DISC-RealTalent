@@ -1,0 +1,51 @@
+[
+  {
+    "id": "f1",
+    "titulo": "What Is the Everything DiSC Model?",
+    "instituicao": "Everything DiSC / Wiley",
+    "url": "https://www.everythingdisc.com/what-is-disc/",
+    "uso": "Referência conceitual às dimensões do modelo; não comprova validação do instrumento RealTalent."
+  },
+  {
+    "id": "f2",
+    "titulo": "How DiSC profiles work",
+    "instituicao": "DiSC Profile",
+    "url": "https://www.discprofile.com/what-is-disc/how-disc-works",
+    "uso": "Definições e limites de interpretação."
+  },
+  {
+    "id": "f3",
+    "titulo": "The Science Behind Everything DiSC",
+    "instituicao": "Everything DiSC / Wiley",
+    "url": "https://www.everythingdisc.com/the-science-behind-disc",
+    "uso": "Exemplo de como pesquisas de confiabilidade e validade devem ser documentadas por instrumento."
+  },
+  {
+    "id": "f4",
+    "titulo": "SATEPSI — Perguntas frequentes",
+    "instituicao": "Conselho Federal de Psicologia",
+    "url": "https://satepsi.cfp.org.br/faq.cfm",
+    "uso": "Diretrizes sobre avaliação psicológica e instrumentos no Brasil."
+  },
+  {
+    "id": "f5",
+    "titulo": "Resolução CFP n.º 31/2022 — legislação SATEPSI",
+    "instituicao": "Conselho Federal de Psicologia",
+    "url": "https://satepsi.cfp.org.br/legislacao.cfm",
+    "uso": "Consulta às regras brasileiras aplicáveis."
+  },
+  {
+    "id": "f6",
+    "titulo": "Lei nº 13.709/2018 — LGPD",
+    "instituicao": "Presidência da República",
+    "url": "https://planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+    "uso": "Base legal para proteção e tratamento de dados pessoais."
+  },
+  {
+    "id": "f7",
+    "titulo": "CFP: testes psicológicos e modalidades informatizada/online",
+    "instituicao": "Conselho Federal de Psicologia",
+    "url": "https://site.cfp.org.br/cfp-orienta-psicologas-sobre-o-uso-de-testes-psicologicos-nas-modalidades-informatizada-e-online/",
+    "uso": "Orientação atual sobre modalidades e aprovação de testes."
+  }
+]

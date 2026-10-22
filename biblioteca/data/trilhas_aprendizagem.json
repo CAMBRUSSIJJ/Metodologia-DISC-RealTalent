@@ -1,0 +1,92 @@
+[
+  {
+    "id": "modulo-01",
+    "numero": "01",
+    "titulo": "Introdução ao DISC/ACER",
+    "duracao": "30 min",
+    "objetivo": "Diferenciar linguagem comportamental de diagnóstico; reconhecer quatro fatores.",
+    "atividade": "Leitura dos fundamentos; reflexão sobre uma situação real.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-02",
+    "numero": "02",
+    "titulo": "Observação sem rótulos",
+    "duracao": "40 min",
+    "objetivo": "Distinguir comportamento observável, interpretação e suposição.",
+    "atividade": "Analisar três cenários fictícios; reescrever rótulos como fatos.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-03",
+    "numero": "03",
+    "titulo": "Dimensões e combinações",
+    "duracao": "45 min",
+    "objetivo": "Descrever tendências e ressalvas sem reduzir pessoas a tipos.",
+    "atividade": "Comparar dois exemplos e buscar contraexemplos.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-04",
+    "numero": "04",
+    "titulo": "Comunicação flexível",
+    "duracao": "45 min",
+    "objetivo": "Ajustar ritmo, detalhe e interação com base em preferência declarada.",
+    "atividade": "Simulação de conversa em quatro formatos.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-05",
+    "numero": "05",
+    "titulo": "Feedback e conflitos",
+    "duracao": "50 min",
+    "objetivo": "Converter conflitos em acordos observáveis.",
+    "atividade": "Praticar feedback de situação, comportamento e impacto.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-06",
+    "numero": "06",
+    "titulo": "Liderança e equipes",
+    "duracao": "50 min",
+    "objetivo": "Usar linguagem de diferenças para fortalecer acordos de trabalho.",
+    "atividade": "Criar pacto de comunicação e revisão quinzenal.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-07",
+    "numero": "07",
+    "titulo": "Vendas consultivas",
+    "duracao": "50 min",
+    "objetivo": "Explorar prioridade real do cliente e adaptar explicação com ética.",
+    "atividade": "Role-play de descoberta, proposta e objeção.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-08",
+    "numero": "08",
+    "titulo": "Experiência de serviços",
+    "duracao": "35 min",
+    "objetivo": "Oferecer jornadas que respondam a ritmos e formatos distintos.",
+    "atividade": "Desenhar quatro opções de interação para um serviço.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-09",
+    "numero": "09",
+    "titulo": "Resultados e psicometria",
+    "duracao": "50 min",
+    "objetivo": "Interpretar dados exploratórios e distinguir escores de percentis.",
+    "atividade": "Revisar o questionário extraído e anotar pontos de validação.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  },
+  {
+    "id": "modulo-10",
+    "numero": "10",
+    "titulo": "Privacidade, legislação e prática",
+    "duracao": "40 min",
+    "objetivo": "Identificar limites legais, confidencialidade e mitigação de vieses.",
+    "atividade": "Simular revisão de acesso e finalidade dos dados.",
+    "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+  }
+]

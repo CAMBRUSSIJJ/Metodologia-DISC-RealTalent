@@ -1,0 +1,177 @@
+[
+  {
+    "id": "gloss-01",
+    "termo": "DISC",
+    "definicao": "Modelo descritivo com quatro dimensões: Dominância, Influência, Estabilidade e Conformidade."
+  },
+  {
+    "id": "gloss-02",
+    "termo": "ACER",
+    "definicao": "Nome português adotado para a mesma metodologia no projeto RealTalent; a expansão das letras depende de definição institucional."
+  },
+  {
+    "id": "gloss-03",
+    "termo": "D",
+    "definicao": "Fator de Dominância; leitura exploratória de orientação a desafios e resultados."
+  },
+  {
+    "id": "gloss-04",
+    "termo": "I",
+    "definicao": "Fator de Influência; leitura exploratória de expressão e interação."
+  },
+  {
+    "id": "gloss-05",
+    "termo": "S",
+    "definicao": "Fator de Estabilidade; leitura exploratória de constância e cooperação."
+  },
+  {
+    "id": "gloss-06",
+    "termo": "C",
+    "definicao": "Fator de Conformidade; leitura exploratória de precisão e padrões."
+  },
+  {
+    "id": "gloss-07",
+    "termo": "Fator",
+    "definicao": "Dimensão usada na descrição de preferências comportamentais."
+  },
+  {
+    "id": "gloss-08",
+    "termo": "Escala",
+    "definicao": "Conjunto de itens associado a uma característica definida."
+  },
+  {
+    "id": "gloss-09",
+    "termo": "Item",
+    "definicao": "Pergunta, afirmação ou estímulo usado em instrumento."
+  },
+  {
+    "id": "gloss-10",
+    "termo": "Pontuação bruta",
+    "definicao": "Resultado numérico do cálculo sem padronização populacional."
+  },
+  {
+    "id": "gloss-11",
+    "termo": "Percentil",
+    "definicao": "Posição relativa em distribuição normativa apropriada; não equivale a percentual de respostas."
+  },
+  {
+    "id": "gloss-12",
+    "termo": "Confiabilidade",
+    "definicao": "Estimativa de consistência ou estabilidade da medida em condições definidas."
+  },
+  {
+    "id": "gloss-13",
+    "termo": "Validade",
+    "definicao": "Evidência que apoia uma interpretação e uso específico de escores."
+  },
+  {
+    "id": "gloss-14",
+    "termo": "Normatização",
+    "definicao": "Construção de referências de comparação para população e finalidade definidas."
+  },
+  {
+    "id": "gloss-15",
+    "termo": "Viés de resposta",
+    "definicao": "Influência sistemática de fatores alheios ao construto, como posição ou desejabilidade social."
+  },
+  {
+    "id": "gloss-16",
+    "termo": "Desejabilidade social",
+    "definicao": "Tendência a responder de modo socialmente valorizado."
+  },
+  {
+    "id": "gloss-17",
+    "termo": "Autorrelato",
+    "definicao": "Informação fornecida pela própria pessoa sobre suas experiências ou preferências."
+  },
+  {
+    "id": "gloss-18",
+    "termo": "Observação",
+    "definicao": "Registro de comportamento em situação definida."
+  },
+  {
+    "id": "gloss-19",
+    "termo": "Contexto",
+    "definicao": "Condições ambientais, sociais e da tarefa que influenciam uma ação."
+  },
+  {
+    "id": "gloss-20",
+    "termo": "Autoimagem",
+    "definicao": "Percepção da pessoa sobre si; não equivale automaticamente a traço estável."
+  },
+  {
+    "id": "gloss-21",
+    "termo": "Expectativa percebida",
+    "definicao": "Percepção do que outras pessoas esperam; não comprova expectativas reais."
+  },
+  {
+    "id": "gloss-22",
+    "termo": "Combinação de fatores",
+    "definicao": "Descrição de tendências associadas a mais de uma dimensão, sem diagnóstico."
+  },
+  {
+    "id": "gloss-23",
+    "termo": "Feedback comportamental",
+    "definicao": "Devolutiva baseada em fatos observáveis, impacto e próximos passos."
+  },
+  {
+    "id": "gloss-24",
+    "termo": "Plano de desenvolvimento",
+    "definicao": "Acordo com objetivos, comportamentos de prática, indicadores e revisão."
+  },
+  {
+    "id": "gloss-25",
+    "termo": "Ancoragem",
+    "definicao": "Influência de uma informação inicial na interpretação posterior."
+  },
+  {
+    "id": "gloss-26",
+    "termo": "Efeito halo",
+    "definicao": "Generalização indevida de uma impressão favorável ou desfavorável."
+  },
+  {
+    "id": "gloss-27",
+    "termo": "RLS",
+    "definicao": "Row Level Security: políticas do banco que limitam acesso por linha."
+  },
+  {
+    "id": "gloss-28",
+    "termo": "LGPD",
+    "definicao": "Lei Geral de Proteção de Dados Pessoais brasileira."
+  },
+  {
+    "id": "gloss-29",
+    "termo": "Finalidade",
+    "definicao": "Propósito específico, legítimo e informado para tratamento de dados."
+  },
+  {
+    "id": "gloss-30",
+    "termo": "Minimização",
+    "definicao": "Coletar e manter apenas os dados necessários para finalidade definida."
+  },
+  {
+    "id": "gloss-31",
+    "termo": "SATEPSI",
+    "definicao": "Sistema brasileiro de avaliação da qualidade técnico-científica de testes psicológicos, mantido pelo CFP."
+  },
+  {
+    "id": "gloss-32",
+    "termo": "Psicometria",
+    "definicao": "Campo voltado à construção e ao estudo das propriedades de medidas psicológicas."
+  },
+  {
+    "id": "gloss-33",
+    "termo": "Conflito de estilos",
+    "definicao": "Descrição coloquial de diferenças de preferência; não dispensa análise de processo e poder."
+  },
+  {
+    "id": "gloss-34",
+    "termo": "Roteiro comercial",
+    "definicao": "Estrutura de perguntas e evidências para venda consultiva, sem manipulação comportamental."
+  },
+  {
+    "id": "gloss-35",
+    "termo": "Consentimento",
+    "definicao": "Uma das possíveis bases legais de tratamento de dados, cuja adequação depende do contexto; não é a única base."
+  }
+]

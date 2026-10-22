@@ -1,0 +1,358 @@
+{
+  "D": {
+    "slogan": "Direção com escuta — rapidez sem perder qualidade",
+    "situacoes": [
+      {
+        "id": "prazo",
+        "area": "Liderança",
+        "titulo": "Prazo em risco",
+        "cenario": "Um cliente pede antecipar uma entrega em dois dias. A equipe alerta que ainda falta uma revisão crítica. Você precisa responder hoje.",
+        "pergunta": "Qual seria um bom primeiro movimento para equilibrar agilidade e segurança?",
+        "alternativas": [
+          {
+            "texto": "Confirmar o novo prazo imediatamente para demonstrar liderança.",
+            "feedback": "A decisão rápida pode transmitir segurança, mas promete algo antes de conhecer o risco. Uma comunicação responsável distingue intenção de compromisso viável."
+          },
+          {
+            "texto": "Pedir à equipe duas opções com impacto e risco, definir o limite aceitável e responder ao cliente.",
+            "feedback": "Esta alternativa reúne decisão e informação essencial. Torna explícitos os critérios para assumir ou renegociar o prazo, sem desconsiderar a equipe."
+          },
+          {
+            "texto": "Recusar qualquer mudança sem explorar possibilidades.",
+            "feedback": "Protege o plano original, mas fecha possibilidades antes de verificar alternativas reversíveis. O contexto pode justificar recusar, porém com critérios claros."
+          }
+        ],
+        "reflexao": "Quais duas informações são indispensáveis antes de assumir um compromisso?",
+        "microacao": "Na próxima decisão urgente, faça uma pergunta sobre risco antes de concluir."
+      },
+      {
+        "id": "feedback",
+        "area": "Comunicação",
+        "titulo": "Uma reunião com discordância",
+        "cenario": "Uma pessoa da equipe contesta sua proposta diante dos colegas. O prazo está apertado, mas a objeção pode revelar um problema real.",
+        "pergunta": "Como avançar sem transformar discordância em confronto?",
+        "alternativas": [
+          {
+            "texto": "Interromper a objeção para encerrar o assunto.",
+            "feedback": "Pode economizar tempo no instante, mas aumenta o risco de ignorar informação relevante e reduzir a segurança para questionamentos futuros."
+          },
+          {
+            "texto": "Pedir que a pessoa resuma o risco, registrar a objeção e definir a decisão com prazo.",
+            "feedback": "Abre espaço para evidências e mantém responsabilidade sobre a decisão. É uma forma de combinar escuta estruturada e direção."
+          },
+          {
+            "texto": "Deixar a reunião sem conclusão para evitar atrito.",
+            "feedback": "Reduz o conflito imediato, mas pode aumentar a ambiguidade. É melhor distinguir uma pausa deliberada de uma decisão sem dono."
+          }
+        ],
+        "reflexao": "O que você poderia perguntar para separar opinião de evidência?",
+        "microacao": "Em uma reunião, convide explicitamente uma objeção bem fundamentada."
+      },
+      {
+        "id": "proposta",
+        "area": "Vendas",
+        "titulo": "O cliente pede uma proposta objetiva",
+        "cenario": "O cliente diz que quer ir direto aos números, mas ainda não explicou restrições operacionais nem quem aprova a contratação.",
+        "pergunta": "Como manter objetividade sem pular a descoberta?",
+        "alternativas": [
+          {
+            "texto": "Enviar imediatamente o preço final sem perguntas.",
+            "feedback": "Entrega rapidez, porém o preço pode não refletir o problema nem as condições. Informação incompleta aumenta retrabalho."
+          },
+          {
+            "texto": "Apresentar um resumo curto e pedir duas informações que mudam o escopo.",
+            "feedback": "Respeita o desejo de concisão enquanto valida requisitos essenciais. Também permite apresentar opções de forma transparente."
+          },
+          {
+            "texto": "Conduzir uma apresentação longa para explicar todos os detalhes.",
+            "feedback": "Pode ser excessivo para uma pessoa que pediu síntese. Detalhes são úteis se forem relevantes para a decisão e apresentados no momento adequado."
+          }
+        ],
+        "reflexao": "Que pergunta curta aumentaria a precisão da sua proposta?",
+        "microacao": "Antes de enviar uma proposta, confirme dois critérios concretos de sucesso."
+      }
+    ],
+    "mitos": [
+      "Agilidade não significa incapacidade de ouvir.",
+      "Assertividade não comprova competência de liderança.",
+      "Questionar uma decisão não é falta de compromisso."
+    ],
+    "dialogo": {
+      "contexto": "Alinhamento de prazo",
+      "menos_util": "Precisamos fazer isso hoje, sem discussão.",
+      "mais_util": "Precisamos decidir hoje. Quais são os dois riscos mais importantes e as opções possíveis? Depois assumo a decisão."
+    },
+    "experimentos": [
+      "Fazer uma rodada de escuta de 90 segundos antes de definir uma prioridade.",
+      "Conferir qualidade e carga da equipe após uma entrega acelerada.",
+      "Registrar a premissa mais importante da próxima decisão."
+    ]
+  },
+  "I": {
+    "slogan": "Conexão com execução — entusiasmo acompanhado de acordos",
+    "situacoes": [
+      {
+        "id": "alinhamento",
+        "area": "Liderança",
+        "titulo": "Reunião produtiva, tarefas confusas",
+        "cenario": "A reunião terminou com energia e boas ideias. Dois dias depois, ninguém sabe quem é responsável pelas entregas.",
+        "pergunta": "O que fortalece a colaboração sem perder a execução?",
+        "alternativas": [
+          {
+            "texto": "Confiar que todos lembram o combinado.",
+            "feedback": "O engajamento é valioso, mas não garante alinhamento. Acordos verificáveis evitam interpretações diferentes."
+          },
+          {
+            "texto": "Sintetizar decisões, responsáveis, prazo e critério de conclusão em mensagem acessível.",
+            "feedback": "Conecta participação à entrega e facilita ajustes futuros. A clareza ajuda equipes com diversas preferências de trabalho."
+          },
+          {
+            "texto": "Cancelar espaços de discussão para evitar novas ideias.",
+            "feedback": "Pode reduzir dispersão, mas também descarta contribuição. É mais útil definir quando divergir, decidir e executar."
+          }
+        ],
+        "reflexao": "Qual entrega precisa de um responsável explícito nesta semana?",
+        "microacao": "Ao terminar a próxima reunião, registre três decisões e seus responsáveis."
+      },
+      {
+        "id": "conversa",
+        "area": "Comunicação",
+        "titulo": "Conversa desconfortável",
+        "cenario": "Um colega costuma interromper apresentações. O relacionamento é bom, mas o comportamento começa a afetar a equipe.",
+        "pergunta": "Como dar feedback preservando o respeito?",
+        "alternativas": [
+          {
+            "texto": "Fazer piadas para sinalizar o problema indiretamente.",
+            "feedback": "O humor pode ser interpretado de várias maneiras e não deixa claro o comportamento esperado."
+          },
+          {
+            "texto": "Conversar em particular, citar uma situação específica e combinar uma mudança observável.",
+            "feedback": "Traz clareza sem atacar a pessoa. O acordo pode ser revisado com base em comportamentos, não em rótulos."
+          },
+          {
+            "texto": "Evitar a conversa para preservar o clima.",
+            "feedback": "Pode aliviar desconforto temporário, mas deixa o problema persistir. Relações de confiança também precisam de limites explícitos."
+          }
+        ],
+        "reflexao": "Como iniciar a conversa com respeito e um exemplo concreto?",
+        "microacao": "Prepare uma frase de feedback com fato, impacto e pedido claro."
+      },
+      {
+        "id": "promessa",
+        "area": "Vendas",
+        "titulo": "Entusiasmo na negociação",
+        "cenario": "O cliente se empolga com a demonstração e pede uma funcionalidade que não está confirmada no produto.",
+        "pergunta": "Como manter o vínculo sem prometer além do escopo?",
+        "alternativas": [
+          {
+            "texto": "Garantir a funcionalidade para não perder o clima positivo.",
+            "feedback": "A promessa pode criar risco contratual e prejudicar confiança. Relação de longo prazo exige limites verificáveis."
+          },
+          {
+            "texto": "Reconhecer a necessidade, confirmar com a equipe técnica e registrar uma resposta com prazo.",
+            "feedback": "Equilibra acolhimento e compromisso responsável. A transparência ajuda o cliente a decidir com informação confiável."
+          },
+          {
+            "texto": "Ignorar a pergunta e seguir a demonstração.",
+            "feedback": "Perde a chance de entender a necessidade real. Perguntar por que o recurso importa pode revelar alternativas."
+          }
+        ],
+        "reflexao": "Como dizer “vou confirmar” de modo seguro e colaborativo?",
+        "microacao": "Na próxima negociação, diferencie recursos demonstrados, previstos e não confirmados."
+      }
+    ],
+    "mitos": [
+      "Sociabilidade não garante capacidade de negociação.",
+      "Entusiasmo não exclui disciplina ou profundidade.",
+      "Preferir interações não significa buscar aprovação sempre."
+    ],
+    "dialogo": {
+      "contexto": "Transformar ideias em ação",
+      "menos_util": "Foi incrível! Vamos fazer tudo o que discutimos.",
+      "mais_util": "Tivemos três boas ideias. Qual cabe nesta semana, quem ficará responsável e como verificamos o resultado?"
+    },
+    "experimentos": [
+      "Encerrar reuniões com um quadro de decisões e próximos passos.",
+      "Planejar uma conversa difícil em três frases antes de iniciá-la.",
+      "Confirmar capacidade de entrega antes de citar um prazo."
+    ]
+  },
+  "S": {
+    "slogan": "Colaboração com assertividade — apoio sem perder limites",
+    "situacoes": [
+      {
+        "id": "mudanca",
+        "area": "Liderança",
+        "titulo": "Mudança de processo inesperada",
+        "cenario": "Um processo importante será substituído na próxima semana. Parte da equipe está insegura sobre treinamento e suporte.",
+        "pergunta": "Que atitude ajuda uma transição responsável?",
+        "alternativas": [
+          {
+            "texto": "Dizer apenas que todos precisam aceitar a mudança.",
+            "feedback": "Pode comunicar urgência, mas não responde às necessidades práticas. Mudanças funcionam melhor com critérios, apoio e espaço para dúvidas."
+          },
+          {
+            "texto": "Explicar o motivo, definir etapas, canais de apoio e ouvir riscos que afetem o trabalho.",
+            "feedback": "Combina transparência com planejamento. Ouvir riscos não significa adiar indefinidamente a decisão."
+          },
+          {
+            "texto": "Adiar toda mudança até que não exista desconforto.",
+            "feedback": "Reduz atrito no curto prazo, mas pode comprometer um objetivo necessário. É útil distinguir riscos reais de desconfortos administráveis."
+          }
+        ],
+        "reflexao": "Qual mudança pequena poderia ser testada antes da implantação total?",
+        "microacao": "Em uma mudança, registre uma dúvida da equipe e seu plano de resposta."
+      },
+      {
+        "id": "limite",
+        "area": "Comunicação",
+        "titulo": "Demandas além do combinado",
+        "cenario": "Uma pessoa pede ajuda novamente, mas sua agenda já está cheia e você corre o risco de atrasar sua própria entrega.",
+        "pergunta": "Como preservar cooperação e responsabilidade?",
+        "alternativas": [
+          {
+            "texto": "Aceitar mesmo sabendo que não conseguirá cumprir o prazo.",
+            "feedback": "A intenção de ajudar é positiva, mas prometer sem capacidade pode prejudicar ambas as entregas."
+          },
+          {
+            "texto": "Explicar sua capacidade atual e oferecer um horário alternativo ou outro caminho.",
+            "feedback": "Estabelece limite claro sem abandonar colaboração. Ajuda a negociar prioridades de forma respeitosa."
+          },
+          {
+            "texto": "Não responder para evitar uma negativa.",
+            "feedback": "Pode manter a tensão e dificultar planejamento. Uma negativa explícita com contexto costuma ser mais útil do que silêncio."
+          }
+        ],
+        "reflexao": "Como expressar um limite sem pedir desculpas pelo próprio trabalho?",
+        "microacao": "Negocie uma prioridade usando “posso entregar X até Y” em vez de assumir tudo."
+      },
+      {
+        "id": "implantacao",
+        "area": "Vendas",
+        "titulo": "Cliente pede segurança na implantação",
+        "cenario": "O cliente teme que a adoção da solução interrompa uma rotina crítica. A equipe comercial está focada no fechamento rápido.",
+        "pergunta": "Como responder à preocupação?",
+        "alternativas": [
+          {
+            "texto": "Dizer que não haverá problemas, sem dados de implantação.",
+            "feedback": "A garantia sem base pode reduzir confiança caso ocorram imprevistos. É melhor apresentar riscos, mitigação e suporte reais."
+          },
+          {
+            "texto": "Mapear a rotina crítica, propor implantação por etapas e confirmar suporte disponível.",
+            "feedback": "Traduz a preocupação em critérios verificáveis. O cliente pode então avaliar o risco de forma informada."
+          },
+          {
+            "texto": "Mudar para descontos sem discutir a implementação.",
+            "feedback": "Preço pode ser relevante, mas não resolve necessariamente o receio operacional. É importante compreender a objeção antes de responder."
+          }
+        ],
+        "reflexao": "Qual evidência concreta de continuidade o cliente precisa?",
+        "microacao": "Em uma proposta, inclua um plano de transição com responsáveis e ponto de revisão."
+      }
+    ],
+    "mitos": [
+      "Busca de previsibilidade não implica resistência à mudança.",
+      "Cooperação não significa incapacidade de discordar.",
+      "Ritmo cauteloso não determina desempenho."
+    ],
+    "dialogo": {
+      "contexto": "Negociar limites",
+      "menos_util": "Tudo bem, eu faço, mesmo que fique difícil.",
+      "mais_util": "Posso ajudar amanhã pela manhã. Hoje preciso concluir a entrega combinada. Essa alternativa atende à prioridade?"
+    },
+    "experimentos": [
+      "Praticar uma negativa respeitosa em um pedido de baixa prioridade.",
+      "Propor uma mudança pequena com prazo de avaliação.",
+      "Perguntar se o silêncio em uma reunião representa concordância ou dúvida."
+    ]
+  },
+  "C": {
+    "slogan": "Qualidade com fluidez — critérios claros sem paralisar decisões",
+    "situacoes": [
+      {
+        "id": "decisao",
+        "area": "Liderança",
+        "titulo": "Dados incompletos e decisão reversível",
+        "cenario": "A equipe precisa escolher uma ferramenta para um piloto de duas semanas. Há dados suficientes para testar, mas nem todas as questões foram respondidas.",
+        "pergunta": "Como manter o rigor sem atrasar um experimento reversível?",
+        "alternativas": [
+          {
+            "texto": "Exigir que todos os riscos sejam eliminados antes de testar.",
+            "feedback": "Eliminar toda incerteza pode ser impossível. Para decisões reversíveis, critérios de parada e um piloto limitado podem produzir evidências melhores."
+          },
+          {
+            "texto": "Definir critérios mínimos, executar um piloto controlado e revisar resultados.",
+            "feedback": "Preserva rigor e promove aprendizagem. O tipo de risco determina se um teste é apropriado."
+          },
+          {
+            "texto": "Escolher uma ferramenta aleatoriamente para ganhar velocidade.",
+            "feedback": "Economiza análise, mas não estabelece parâmetros para avaliar sucesso ou falha. Agilidade não exige ausência de critério."
+          }
+        ],
+        "reflexao": "Quais informações realmente mudariam a decisão?",
+        "microacao": "Classifique uma decisão como reversível ou irreversível antes de decidir o nível de análise."
+      },
+      {
+        "id": "sintese",
+        "area": "Comunicação",
+        "titulo": "Apresentação com excesso de detalhes",
+        "cenario": "Você precisa explicar riscos técnicos a uma liderança que tem dez minutos e decidirá sobre o próximo passo do projeto.",
+        "pergunta": "Que estrutura ajuda sem omitir informações relevantes?",
+        "alternativas": [
+          {
+            "texto": "Ler todo o relatório técnico integralmente.",
+            "feedback": "As informações podem ser corretas, mas a atenção disponível e o objetivo da conversa exigem uma síntese com acesso aos detalhes."
+          },
+          {
+            "texto": "Começar pela decisão necessária, três evidências-chave e os riscos, deixando anexos disponíveis.",
+            "feedback": "Ajuda a liderança a decidir e mantém rastreabilidade. Se houver risco crítico, ele deve aparecer claramente na síntese."
+          },
+          {
+            "texto": "Apresentar apenas uma conclusão sem evidências.",
+            "feedback": "Reduz tempo, mas enfraquece a transparência sobre incertezas e alternativas. Síntese e rigor são complementares."
+          }
+        ],
+        "reflexao": "Qual informação é indispensável para quem precisa decidir hoje?",
+        "microacao": "Resuma um documento técnico em decisão, evidência e risco, em três linhas."
+      },
+      {
+        "id": "objecao",
+        "area": "Vendas",
+        "titulo": "Objeção técnica legítima",
+        "cenario": "O cliente questiona segurança, integração e limitações do serviço. Sua equipe comercial considera a conversa longa demais.",
+        "pergunta": "Como avançar respeitando critérios de avaliação?",
+        "alternativas": [
+          {
+            "texto": "Tratar as perguntas como resistência sem importância.",
+            "feedback": "Desvaloriza critérios que podem ser essenciais para a compra. Informações verificáveis são parte da confiança comercial."
+          },
+          {
+            "texto": "Classificar perguntas por criticidade, documentar respostas e combinar uma próxima decisão.",
+            "feedback": "Mantém precisão com direção. Dúvidas desconhecidas devem receber responsáveis e prazo para resposta, sem promessas infundadas."
+          },
+          {
+            "texto": "Enviar centenas de páginas sem resumo e encerrar o contato.",
+            "feedback": "Material completo pode ser importante, mas sem estrutura torna difícil entender o que já está respondido e o que precisa de decisão."
+          }
+        ],
+        "reflexao": "Como diferenciar exigência contratual de preferência secundária?",
+        "microacao": "Organize objeções em obrigatórias, desejáveis e verificáveis no piloto."
+      }
+    ],
+    "mitos": [
+      "Cuidado com detalhes não define inteligência.",
+      "Pensamento crítico não equivale a frieza emocional.",
+      "Precisão não exige perfeição em toda tarefa."
+    ],
+    "dialogo": {
+      "contexto": "Síntese executiva",
+      "menos_util": "Antes de decidir, preciso explicar todos os 25 pontos do relatório.",
+      "mais_util": "A decisão é esta; há três evidências importantes e um risco relevante. O relatório detalhado está disponível para consulta."
+    },
+    "experimentos": [
+      "Definir um critério objetivo de qualidade suficiente antes de iniciar uma tarefa.",
+      "Resumir uma análise em três achados e um próximo passo.",
+      "Testar uma hipótese pequena em vez de buscar certeza total."
+    ]
+  }
+}

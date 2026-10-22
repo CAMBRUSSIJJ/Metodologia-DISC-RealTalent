@@ -1,0 +1,41 @@
+/* RealTalent V7 · shared components for Professional and Minha Jornada.
+   Uses tokens from rt-design-system.css; CSS remains demo-oriented until component refactor. */
+:root{--rt-space-1:4px;--rt-space-2:8px;--rt-space-3:12px;--rt-space-4:16px;--rt-space-5:24px;--rt-space-6:32px;--rt-radius-md:12px;--rt-radius-lg:18px;--rt-body:14px}
+.sidebar,.side{scrollbar-color:var(--rt-line) transparent}
+#content .lead,#app .page-head p{font-size:14px;line-height:1.7}
+#content .card p,#app .card p,#content .item-main p,#app .row-main p,#app .info small{font-size:12.5px;line-height:1.62}
+#content .card h2,#app .card h2{font-size:16px;line-height:1.4}
+#content .list-item,#app .row{gap:14px;align-items:center}
+#content .line-button,#app .btn.small{font-size:12px;min-height:36px;padding:8px 12px}
+#content .btn-primary,#app .btn.solid,#content .btn-secondary{min-height:41px;font-size:12.5px}
+#content .sidenav a,#app .side nav a{font-size:13px}
+#app .progress-rail{width:100%;max-width:none;margin:14px 0 6px}
+#app .hero-right{background:transparent!important;border-color:var(--rt-line)!important}
+#app .hero-right .big-num{color:var(--rt-text)!important;text-shadow:none;font-size:40px}
+#app .hero-right small{color:var(--rt-muted)!important}
+.rt-next-hero{border:1px solid var(--rt-line);border-radius:21px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--rt-banner);padding:clamp(22px,3vw,35px);margin:0 0 22px}
+.rt-next-hero h2{font:800 clamp(21px,2.6vw,30px) 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:-.03em;margin:9px 0;color:var(--rt-text)}
+.rt-next-hero p{color:var(--rt-muted);font-size:14px;line-height:1.7;max-width:610px}
+.rt-next-mark{display:grid;place-items:center;font-size:68px;flex:0 0 115px;color:var(--rt-purple);opacity:.8;background:var(--rt-chip);border-radius:24px;min-height:120px}
+.rt-next-hero .btn.solid{border-radius:10px}
+.rt-goal-title{font:700 clamp(16px,1.9vw,20px) 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--rt-text);line-height:1.4;margin:12px 0}
+.rt-light-metrics .progress-rail{max-width:100%}
+.rt-instrument-row{align-items:flex-start!important;gap:14px}
+.rt-instrument-row>.item-main{min-width:0;flex:1}
+.rt-row-actions{display:flex;align-items:flex-start;flex-wrap:wrap;gap:6px}
+.rt-assignment{padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;border-top:1px solid var(--rt-line)}
+.rt-assignment:first-of-type{border-top:0}
+.rt-assignment strong{font-size:15px;line-height:1.5;color:var(--rt-text)}
+.rt-assignment p,.rt-answers p{margin:7px 0;line-height:1.6;color:var(--rt-muted);font-size:13px}
+.rt-answers{background:var(--rt-panel);border:1px solid var(--rt-line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.rt-answers b{color:var(--rt-text)}
+.rt-disclaimer{border:1px solid var(--rt-line);background:var(--rt-panel);padding:14px 18px;border-radius:12px;margin-bottom:18px;color:var(--rt-muted);font-size:13px;line-height:1.7}
+.rt-feedback{border:1px solid var(--rt-line);background:var(--rt-panel);padding:12px 14px;margin-top:12px;border-radius:12px}
+.rt-feedback b{color:var(--rt-purple)}
+#instrument-dialog .field{display:flex;flex-direction:column;gap:9px;margin:16px 0;color:var(--rt-text);font-size:13px}
+#instrument-dialog textarea{display:block;min-height:76px;width:100%;resize:vertical;padding:12px;border:1px solid var(--rt-line);border-radius:10px;background:var(--rt-panel);color:var(--rt-text)}
+#instrument-dialog form{padding:26px;max-height:88dvh;overflow:auto}
+#instrument-dialog h2{font-size:21px;margin:10px 0}
+#instrument-dialog .dialog-actions{position:sticky;bottom:-26px;background:var(--rt-surface);padding-top:14px}
+@media(max-width:860px){.rt-next-mark{display:none}.rt-assignment{flex-direction:column;align-items:flex-start}.rt-row-actions{width:100%}}
+@media(max-width:600px){.rt-next-hero{padding:23px 20px}.rt-next-hero h2{font-size:23px}.top-right select{max-width:120px}.rt-instrument-row{flex-direction:column}}

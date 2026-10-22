@@ -78,7 +78,22 @@ tbody td{padding:12px;vertical-align:middle;}
 .modal{background:var(--surface);border:0.5px solid var(--border2);border-radius:20px;padding:2rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;}
 .modal h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:1.5rem;}
 .modal-actions{display:flex;gap:10px;margin-top:1.5rem;justify-content:flex-end;flex-wrap:wrap;}
+
+/* H2.0 · Biblioteca DISC/ACER integrada ao produto */
+body.rt-library-open main {max-width:1600px;width:100%;padding:20px clamp(10px,2vw,32px) 38px;}
+.rt-knowledge-frame {display:block;width:100%;height:calc(100vh - 168px);min-height:580px;border:1px solid var(--border);border-radius:18px;background:#121123;box-shadow:0 18px 55px rgba(0,0,0,.18);}
+.rt-knowledge-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 14px;flex-wrap:wrap;}
+.rt-knowledge-intro h1 {font:800 clamp(17px,2vw,23px)/1.2 'Plus Jakarta Sans',Inter,sans-serif;margin:0 0 6px;letter-spacing:-.035em;}
+.rt-knowledge-intro p {font-size:12px;line-height:1.5;color:var(--muted);margin:0;}
+.rt-knowledge-badge {display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:99px;padding:7px 12px;font-size:11px;color:var(--muted);background:var(--surface);}
+.rt-knowledge-badge::before {content:'●';font-size:8px;color:#56bcad;}
+.rt-library-cta {display:inline-flex;align-items:center;gap:7px;padding:10px 16px;color:var(--purple);background:rgba(123,95,255,.09);border:1px solid rgba(123,95,255,.25);border-radius:10px;font:700 12px Inter,sans-serif;cursor:pointer;margin-top:15px;}
+.rt-library-cta:hover {background:rgba(123,95,255,.17);}
+@media(max-width:700px) {body.rt-library-open main{padding:12px 6px 22px}.rt-knowledge-intro{padding:0 10px}.rt-knowledge-frame{height:calc(100dvh - 195px);min-height:540px;border-radius:10px}}
+
+body.rt-library-open main{max-width:1600px;width:100%;padding:20px clamp(10px,2vw,32px) 38px;}
 </style>
+<style>.rt-professional-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px clamp(14px,4vw,35px);background:#0e3d32;color:#f6fcf8;font-family:Inter,Arial,sans-serif;font-size:12px}.rt-professional-bar b{font-weight:800}.rt-professional-bar small{color:#c5dacd;margin-left:9px;font-size:10px}.rt-professional-bar a{color:white;background:#286950;padding:8px 12px;border-radius:7px;font-weight:800;text-decoration:none;white-space:nowrap}@media(max-width:660px){.rt-professional-bar{align-items:flex-start;flex-direction:column}.rt-professional-bar small{display:block;margin:5px 0 0}}</style>
 </head>
 <body>
 <header>
@@ -92,6 +107,7 @@ tbody td{padding:12px;vertical-align:middle;}
       <button class="btn-logout" onclick="handleLogout()">Sair</button>
     </div>
   </div>
+  <div class="rt-professional-bar"><span><b>RealTalent · Coaching e Desenvolvimento Humano</b> <small>Plataforma de apoio a psicólogas e psicólogos</small></span><a href="profissional/index.html">Abrir workspace profissional ↗</a></div>
   <div class="nav-bar">
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="showTab('equipes',this)">🏷️ Todas as Equipes</button>
@@ -99,11 +115,18 @@ tbody td{padding:12px;vertical-align:middle;}
       <button class="nav-tab" onclick="showTab('comunicacao',this)">💬 Comunicação</button>
       <button class="nav-tab" onclick="showTab('conflitos',this)">⚡ Conflitos</button>
       <button class="nav-tab" onclick="showTab('talentos',this)">🌟 Talentos</button>
+      <button class="nav-tab" onclick="showTab('biblioteca',this)">📚 Biblioteca DISC/ACER</button>
     </div>
   </div>
 </header>
 
 <main>
+
+  <!-- ABA: BIBLIOTECA DISC/ACER -->
+  <div class="tab-content" id="tab-biblioteca">
+    <div class="rt-knowledge-intro"><div><h1>Biblioteca DISC / ACER</h1><p>Consulta de perfis, situações práticas, comunicação e desenvolvimento.</p></div><span class="rt-knowledge-badge">Conhecimento · 135 conteúdos</span></div>
+    <iframe id="rt-library-iframe" class="rt-knowledge-frame" title="Biblioteca DISC/ACER do RealTalent" loading="lazy" data-src="biblioteca/index.html?embedded=1&amp;theme=dark" referrerpolicy="no-referrer"></iframe>
+  </div>
 
   <!-- ABA: TODAS AS EQUIPES -->
   <div class="tab-content active" id="tab-equipes">
@@ -623,6 +646,8 @@ function showTab(id, btn) {
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
+  document.body.classList.toggle('rt-library-open', id === 'biblioteca');
+  if (id === 'biblioteca') {const frame=document.getElementById('rt-library-iframe');if(frame&&!frame.getAttribute('src')) frame.src=frame.dataset.src;}
   if(btn) btn.classList.add('active');
 }
 

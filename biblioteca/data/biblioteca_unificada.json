@@ -1,0 +1,2702 @@
+{
+  "metadata": {
+    "nome": "Biblioteca de Conhecimento DISC/ACER — RealTalent",
+    "versao": "1.0.0",
+    "data": "2026-10-18",
+    "idioma": "pt-BR",
+    "tipo": "base_educativa_editorial",
+    "destino": "consulta, treinamento, apoio a equipes, liderança, vendas, serviços e integração de IA",
+    "escopo": "Conteúdo original editorial, referências públicas, e instrumento extraído do ZIP sob quarentena metodológica.",
+    "nao_e": "instrumento psicométrico validado, teste psicológico homologado, diagnóstico ou critério automático de RH",
+    "licenciamento": "Texto editorial criado para o projeto; referências externas apenas citadas por links; material original do ZIP mantido em arquivo separado.",
+    "aviso_seguranca": "Nenhuma chave, token ou configuração do projeto original foi importada para esta biblioteca."
+  },
+  "equivalencia": {
+    "modelo_canonico": "DISC",
+    "alias_projeto": [
+      "ACER",
+      "DISC/ACER",
+      "DISC"
+    ],
+    "fatores_disc": {
+      "D": "Dominância",
+      "I": "Influência",
+      "S": "Estabilidade",
+      "C": "Conformidade"
+    },
+    "equivalencia": [
+      "DISC e ACER são apresentados como a mesma metodologia no RealTalent, conforme definição fornecida pelo responsável do projeto."
+    ],
+    "letras_acer": {
+      "status": "pendente_confirmacao",
+      "significados_individuais": {
+        "A": null,
+        "C": null,
+        "E": null,
+        "R": null
+      },
+      "nota": "Não afirmar expansão ou correspondência A→D, C→I, E→S, R→C sem confirmar a nomenclatura institucional."
+    },
+    "apresentacao": "Exibir DISC/ACER no título; usar os fatores canônicos D, I, S, C e nomes em português nas análises até a nomenclatura ACER ser homologada."
+  },
+  "perfis": [
+    {
+      "nome": "Dominância",
+      "rotulo": "Direção e resultados",
+      "sigla": "D",
+      "cor": "#d66c64",
+      "essencia": "Tendência a agir sobre desafios com assertividade, velocidade e foco no resultado.",
+      "contexto": "O comportamento pode aparecer quando há autonomia para decidir, metas claras ou pressão por entrega.",
+      "forcas": [
+        "Toma decisões e assume responsabilidade",
+        "Enfrenta obstáculos sem paralisar",
+        "Define prioridades e acelera execução",
+        "Expõe pontos de discordância com clareza"
+      ],
+      "motivadores": [
+        "Autonomia com responsabilidade",
+        "Desafios relevantes",
+        "Critérios claros de sucesso",
+        "Liberdade para propor soluções"
+      ],
+      "necessidades": [
+        "Objetivo e impacto esperados",
+        "Poder decidir o caminho com limites definidos",
+        "Informação essencial de forma direta",
+        "Feedback rápido sobre resultados"
+      ],
+      "riscos": [
+        "Atropelar a escuta e o alinhamento",
+        "Subestimar o impacto relacional",
+        "Tratar urgência como regra",
+        "Confundir discordância com falta de compromisso"
+      ],
+      "sob_pressao": [
+        "Intensifica cobrança e velocidade",
+        "Pode interromper explicações",
+        "Pode assumir tarefas em excesso para controlar o resultado"
+      ],
+      "comunicacao": [
+        "Comece pelo objetivo e decisão requerida",
+        "Mostre duas ou três opções, impactos e prazo",
+        "Indique responsabilidades e limites",
+        "Convide a ouvir riscos sem diluir a mensagem"
+      ],
+      "feedback": "Descreva fatos, impacto, próximo comportamento observável e indicador de avanço; evite disputa de poder.",
+      "desenvolvimento": [
+        "Antes de decidir, pedir uma objeção substantiva",
+        "Realizar rodadas de escuta em reuniões",
+        "Conferir sustentabilidade da entrega, não apenas velocidade",
+        "Praticar delegação com pontos de controle"
+      ],
+      "vendas": "Apresente resultado, prazo, riscos relevantes e proposta objetiva; valide se a prioridade é real, em vez de presumir pressa.",
+      "lideranca": "Combine autonomia com limites, critérios de qualidade e acordos de participação; reconheça quando escuta melhora a decisão.",
+      "perguntas_coaching": [
+        "Qual decisão pode ser tomada hoje sem comprometer a qualidade?",
+        "Quem precisa ser ouvido antes da execução?",
+        "O que seria um sinal de pressa excessiva?"
+      ],
+      "nao_inferir": [
+        "Competência de liderança",
+        "Agressividade ou caráter",
+        "Capacidade cognitiva",
+        "Desempenho futuro"
+      ]
+    },
+    {
+      "nome": "Influência",
+      "rotulo": "Conexão e mobilização",
+      "sigla": "I",
+      "cor": "#daa255",
+      "essencia": "Tendência à expressão social, ao entusiasmo, à persuasão e ao engajamento em interações.",
+      "contexto": "Pode ganhar destaque em atividades colaborativas, apresentações e situações que exigem mobilização de pessoas.",
+      "forcas": [
+        "Conecta interlocutores e amplia participação",
+        "Dá energia a iniciativas coletivas",
+        "Comunica ideias de modo envolvente",
+        "Ajuda a manter abertura ao diálogo"
+      ],
+      "motivadores": [
+        "Trocas e reconhecimento",
+        "Espaço para criatividade",
+        "Ambiente participativo",
+        "Oportunidade de expressar ideias"
+      ],
+      "necessidades": [
+        "Objetivo com espaço para diálogo",
+        "Reconhecimento específico e respeitoso",
+        "Liberdade de experimentar",
+        "Acordos de execução registrados"
+      ],
+      "riscos": [
+        "Prometer além da capacidade de entrega",
+        "Trocar foco por novidade",
+        "Evitar conversas desconfortáveis",
+        "Confundir aprovação com alinhamento"
+      ],
+      "sob_pressao": [
+        "Aumenta comunicação e procura validação",
+        "Pode dispersar diante de críticas",
+        "Pode minimizar detalhes e restrições"
+      ],
+      "comunicacao": [
+        "Abra com o propósito e impacto humano",
+        "Use exemplos e convide a participar",
+        "Termine com responsabilidades, critérios e prazo",
+        "Registre decisões por escrito"
+      ],
+      "feedback": "Reconheça contribuição concreta e delimite o comportamento a ajustar; priorize exemplos e compromissos verificáveis.",
+      "desenvolvimento": [
+        "Converter ideias em uma lista de próximos passos",
+        "Treinar conversas difíceis com respeito",
+        "Reservar blocos de foco e revisão",
+        "Conferir compromissos antes de oferecer prazos"
+      ],
+      "vendas": "Construa relação e demonstre valor com histórias verificáveis; confirme detalhes de implementação e próximos passos.",
+      "lideranca": "Use o entusiasmo para facilitar alinhamento, com decisões, donos e marcos documentados.",
+      "perguntas_coaching": [
+        "Como transformar a ideia em entrega concreta?",
+        "Qual conversa precisa acontecer mesmo sendo desconfortável?",
+        "Que compromisso depende de confirmação antes de ser assumido?"
+      ],
+      "nao_inferir": [
+        "Habilidade universal de negociação",
+        "Honestidade",
+        "Popularidade necessária em todo contexto",
+        "Resultado de vendas"
+      ]
+    },
+    {
+      "nome": "Estabilidade",
+      "rotulo": "Constância e cooperação",
+      "sigla": "S",
+      "cor": "#45ad88",
+      "essencia": "Tendência a valorizar consistência, apoio mútuo, previsibilidade e relações colaborativas.",
+      "contexto": "Pode aparecer em processos de acompanhamento, suporte, cuidado com relações e mudanças graduais.",
+      "forcas": [
+        "Sustenta acordos e rotinas",
+        "Escuta com atenção",
+        "Oferece apoio confiável",
+        "Contribui para continuidade operacional"
+      ],
+      "motivadores": [
+        "Clareza e previsibilidade",
+        "Relações de confiança",
+        "Ambiente cooperativo",
+        "Tempo razoável para adaptação"
+      ],
+      "necessidades": [
+        "Antecedência em mudanças",
+        "Critérios explícitos e seguros",
+        "Espaço para perguntas",
+        "Reconhecimento da continuidade e do cuidado"
+      ],
+      "riscos": [
+        "Postergar confrontos necessários",
+        "Assumir demandas demais para ajudar",
+        "Evitar mudanças úteis",
+        "Silenciar preocupações importantes"
+      ],
+      "sob_pressao": [
+        "Pode reduzir exposição e desacelerar",
+        "Busca estabilidade e suporte",
+        "Pode ceder sem concordar efetivamente"
+      ],
+      "comunicacao": [
+        "Explique o contexto e o porquê da mudança",
+        "Estabeleça transição, suporte e próximos passos",
+        "Dê espaço para dúvidas sem constrangimento",
+        "Cheque concordância real, não só silêncio"
+      ],
+      "feedback": "Converse em ambiente respeitoso, com antecedência e exemplos; crie um plano gradual e confirme entendimento.",
+      "desenvolvimento": [
+        "Praticar posicionamento claro em discordâncias",
+        "Definir limites de carga e prioridades",
+        "Fazer pequenos experimentos com mudança",
+        "Solicitar apoio sem assumir sozinho todo o trabalho"
+      ],
+      "vendas": "Ofereça previsibilidade, implantação assistida e canais de suporte; não transforme cautela em suposta resistência.",
+      "lideranca": "Use a consistência para dar segurança; fortaleça a autonomia de dizer não e levantar riscos.",
+      "perguntas_coaching": [
+        "Em que ponto ajudar começa a prejudicar suas prioridades?",
+        "Qual mudança pequena podemos testar com segurança?",
+        "O que você realmente pensa sobre esta decisão?"
+      ],
+      "nao_inferir": [
+        "Baixa ambição",
+        "Incapacidade de mudar",
+        "Submissão",
+        "Velocidade de aprendizagem"
+      ]
+    },
+    {
+      "nome": "Conformidade",
+      "rotulo": "Critério e qualidade",
+      "sigla": "C",
+      "cor": "#669cda",
+      "essencia": "Tendência a examinar evidências, padrões, precisão e condições para tomar decisões consistentes.",
+      "contexto": "Pode se manifestar em problemas complexos, avaliações de risco, controle de qualidade e decisões técnicas.",
+      "forcas": [
+        "Identifica inconsistências e riscos",
+        "Documenta critérios",
+        "Eleva a qualidade das entregas",
+        "Testa hipóteses antes de concluir"
+      ],
+      "motivadores": [
+        "Critérios transparentes",
+        "Tempo para analisar quando necessário",
+        "Acesso a informações confiáveis",
+        "Autonomia técnica com responsabilidade"
+      ],
+      "necessidades": [
+        "Contexto e evidências relevantes",
+        "Definição explícita de qualidade",
+        "Tempo proporcional à complexidade",
+        "Ambiente que aceite perguntas críticas"
+      ],
+      "riscos": [
+        "Prolongar decisões por busca de completude",
+        "Comunicar com excesso de detalhe",
+        "Subestimar fatores humanos",
+        "Confundir padrão ideal com exigência de todas as situações"
+      ],
+      "sob_pressao": [
+        "Eleva nível de checagem",
+        "Pode questionar premissas repetidamente",
+        "Pode adiar uma decisão reversível"
+      ],
+      "comunicacao": [
+        "Apresente dados, premissas e alternativas",
+        "Indique o grau de incerteza",
+        "Esclareça critérios de qualidade e prazo",
+        "Diferencie decisões reversíveis das irreversíveis"
+      ],
+      "feedback": "Utilize evidências específicas, critérios e oportunidade de esclarecimento, evitando julgamentos vagos.",
+      "desenvolvimento": [
+        "Definir o que é qualidade suficiente para cada decisão",
+        "Treinar sínteses executivas de uma página",
+        "Experimentar decisões reversíveis com prazo",
+        "Considerar sinais relacionais junto aos dados"
+      ],
+      "vendas": "Mostre especificações, limitações, referências verificáveis e condições contratuais claras; não trate objeções técnicas como negatividade.",
+      "lideranca": "Converta padrões em critérios acessíveis, sem exigir perfeição para tarefas de baixo risco.",
+      "perguntas_coaching": [
+        "Quais informações faltantes são realmente decisivas?",
+        "O que pode ser testado em vez de analisado indefinidamente?",
+        "Como resumir esta decisão em três pontos?"
+      ],
+      "nao_inferir": [
+        "Inteligência geral",
+        "Frieza emocional",
+        "Superioridade técnica automática",
+        "Ausência de criatividade"
+      ]
+    }
+  ],
+  "combinacoes": [
+    {
+      "id": "blend-di",
+      "codigo": "DI",
+      "nome": "Direção influente",
+      "descricao": "Combina ação decisiva com energia social.",
+      "atencao": "Pode mobilizar rapidamente, mas precisa equilibrar escuta e compromisso real.",
+      "pratica": "Definir meta, envolver pessoas e registrar decisões.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-ds",
+      "codigo": "DS",
+      "nome": "Direção consistente",
+      "descricao": "Combina foco em entrega com busca de continuidade.",
+      "atencao": "Pode exigir velocidade sem oferecer transição suficiente.",
+      "pratica": "Definir objetivo e explicar como preservar segurança na mudança.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-dc",
+      "codigo": "DC",
+      "nome": "Direção criteriosa",
+      "descricao": "Combina decisão e rigor sobre evidências.",
+      "atencao": "Pode elevar exigência e cobrança em excesso.",
+      "pratica": "Separar riscos críticos de detalhes aperfeiçoáveis.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-id",
+      "codigo": "ID",
+      "nome": "Influência assertiva",
+      "descricao": "Combina sociabilidade com iniciativa.",
+      "atencao": "Pode comunicar entusiasmo como se fosse decisão tomada.",
+      "pratica": "Fechar acordos com responsáveis, escopo e prazos.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-is",
+      "codigo": "IS",
+      "nome": "Influência cooperativa",
+      "descricao": "Combina conexão social com acolhimento.",
+      "atencao": "Pode evitar discordâncias para preservar a harmonia.",
+      "pratica": "Praticar feedback claro com tom respeitoso.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-ic",
+      "codigo": "IC",
+      "nome": "Influência analítica",
+      "descricao": "Combina conexão com preocupação pela qualidade.",
+      "atencao": "Pode oscilar entre improvisação e revisão extensa.",
+      "pratica": "Equilibrar narrativa, evidência e compromisso de execução.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-sd",
+      "codigo": "SD",
+      "nome": "Constância assertiva",
+      "descricao": "Combina suporte estável com ação quando há objetivo claro.",
+      "atencao": "Pode acumular frustração antes de impor limites.",
+      "pratica": "Criar rotinas de alinhamento e espaço de discordância.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-si",
+      "codigo": "SI",
+      "nome": "Constância relacional",
+      "descricao": "Combina confiabilidade e relacionamento.",
+      "atencao": "Pode dizer sim a muitas demandas simultâneas.",
+      "pratica": "Negociar prioridades e limites com transparência.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-sc",
+      "codigo": "SC",
+      "nome": "Constância metódica",
+      "descricao": "Combina previsibilidade com atenção a processos.",
+      "atencao": "Pode resistir a mudanças mal contextualizadas.",
+      "pratica": "Testar mudanças pequenas com indicadores claros.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-cd",
+      "codigo": "CD",
+      "nome": "Precisão orientada à decisão",
+      "descricao": "Combina análise exigente e busca de resultados.",
+      "atencao": "Pode pressionar por certeza impossível antes de decidir.",
+      "pratica": "Definir critérios mínimos e tempo-limite de análise.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-ci",
+      "codigo": "CI",
+      "nome": "Precisão comunicativa",
+      "descricao": "Combina análise e capacidade de explicar ideias.",
+      "atencao": "Pode alternar excesso de detalhes com improvisação.",
+      "pratica": "Usar sínteses estruturadas e evidências acessíveis.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    },
+    {
+      "id": "blend-cs",
+      "codigo": "CS",
+      "nome": "Precisão paciente",
+      "descricao": "Combina cuidado com processo e consistência.",
+      "atencao": "Pode demorar a questionar rotinas inadequadas.",
+      "pratica": "Avaliar regularmente se o processo ainda atende ao objetivo.",
+      "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+    }
+  ],
+  "matriz_comunicacao": [
+    {
+      "id": "D-D",
+      "origem": "D",
+      "destino": "D",
+      "orientacao": "Compartilhe objetivo, restrições e dono da decisão.",
+      "evitar": "Evite transformar a reunião em competição de autoridade.",
+      "pergunta_util": "Qual decisão e prazo você considera adequados?"
+    },
+    {
+      "id": "D-I",
+      "origem": "D",
+      "destino": "I",
+      "orientacao": "Explique o resultado desejado e convide ideias de mobilização.",
+      "evitar": "Não corte contribuições sem acolher a intenção.",
+      "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+    },
+    {
+      "id": "D-S",
+      "origem": "D",
+      "destino": "S",
+      "orientacao": "Apresente a mudança e o suporte disponível antes de cobrar adesão.",
+      "evitar": "Não interprete silêncio como compromisso.",
+      "pergunta_util": "O que tornaria esta mudança mais previsível?"
+    },
+    {
+      "id": "D-C",
+      "origem": "D",
+      "destino": "C",
+      "orientacao": "Mostre dados decisivos, riscos e prazo de decisão.",
+      "evitar": "Não pressione para pular riscos críticos.",
+      "pergunta_util": "Que evidência mudaria sua conclusão?"
+    },
+    {
+      "id": "I-D",
+      "origem": "I",
+      "destino": "D",
+      "orientacao": "Vá ao ponto, apresente benefício e feche com pedido concreto.",
+      "evitar": "Evite introduções longas sem decisão.",
+      "pergunta_util": "Qual decisão e prazo você considera adequados?"
+    },
+    {
+      "id": "I-I",
+      "origem": "I",
+      "destino": "I",
+      "orientacao": "Valorize contribuições e documente acordos ao fim.",
+      "evitar": "Evite sair com entusiasmo e sem responsáveis.",
+      "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+    },
+    {
+      "id": "I-S",
+      "origem": "I",
+      "destino": "S",
+      "orientacao": "Construa confiança e confirme se o ritmo proposto é confortável.",
+      "evitar": "Evite exigir concordância diante do grupo.",
+      "pergunta_util": "O que tornaria esta mudança mais previsível?"
+    },
+    {
+      "id": "I-C",
+      "origem": "I",
+      "destino": "C",
+      "orientacao": "Apoie a narrativa com evidências verificáveis.",
+      "evitar": "Evite promessas genéricas ou falta de documentação.",
+      "pergunta_util": "Que evidência mudaria sua conclusão?"
+    },
+    {
+      "id": "S-D",
+      "origem": "S",
+      "destino": "D",
+      "orientacao": "Seja objetivo sobre limites, riscos e apoio necessário.",
+      "evitar": "Evite concordar apenas para encerrar a pressão.",
+      "pergunta_util": "Qual decisão e prazo você considera adequados?"
+    },
+    {
+      "id": "S-I",
+      "origem": "S",
+      "destino": "I",
+      "orientacao": "Acolha ideias e negocie prioridades possíveis.",
+      "evitar": "Evite aceitar todos os pedidos informalmente.",
+      "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+    },
+    {
+      "id": "S-S",
+      "origem": "S",
+      "destino": "S",
+      "orientacao": "Cheque responsabilidades e cronograma com clareza.",
+      "evitar": "Evite postergar decisões difíceis para preservar o conforto.",
+      "pergunta_util": "O que tornaria esta mudança mais previsível?"
+    },
+    {
+      "id": "S-C",
+      "origem": "S",
+      "destino": "C",
+      "orientacao": "Apresente processo, critérios e pontos de validação.",
+      "evitar": "Evite entregar contexto incompleto.",
+      "pergunta_util": "Que evidência mudaria sua conclusão?"
+    },
+    {
+      "id": "C-D",
+      "origem": "C",
+      "destino": "D",
+      "orientacao": "Resuma a análise em decisão, risco e recomendação.",
+      "evitar": "Evite começar por todas as exceções.",
+      "pergunta_util": "Qual decisão e prazo você considera adequados?"
+    },
+    {
+      "id": "C-I",
+      "origem": "C",
+      "destino": "I",
+      "orientacao": "Traduza dados em benefícios e exemplos concretos.",
+      "evitar": "Evite linguagem excessivamente técnica.",
+      "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+    },
+    {
+      "id": "C-S",
+      "origem": "C",
+      "destino": "S",
+      "orientacao": "Explique procedimento e mudanças com antecedência.",
+      "evitar": "Evite críticas descontextualizadas.",
+      "pergunta_util": "O que tornaria esta mudança mais previsível?"
+    },
+    {
+      "id": "C-C",
+      "origem": "C",
+      "destino": "C",
+      "orientacao": "Alinhe qualidade suficiente, prioridades e prazo.",
+      "evitar": "Evite prolongar a validação sem critério de conclusão.",
+      "pergunta_util": "Que evidência mudaria sua conclusão?"
+    }
+  ],
+  "artigos": [
+    {
+      "id": "fundamentos",
+      "titulo": "Fundamentos do modelo",
+      "categoria": "conceitos",
+      "subtitulo": "O que o DISC/ACER descreve",
+      "conteudo": "O DISC organiza preferências de comportamento em quatro dimensões. A nomenclatura ACER foi informada pelo responsável do projeto como sua tradução para português. Esta biblioteca mantém um modelo único, com rótulos DISC e sinônimos de consulta ACER.",
+      "alerta": "Perfis são combinações, não caixas rígidas. A mesma pessoa pode agir de modo diferente conforme objetivo, experiência, segurança psicológica e contexto.",
+      "aplicacao": [
+        "Peça exemplos de ações observáveis em vez de presumir traços permanentes.",
+        "Explore as quatro dimensões, incluindo as menos salientes.",
+        "Diferencie autoavaliação, observação e resultados práticos."
+      ],
+      "tags": [
+        "conceitos",
+        "DISC",
+        "ACER",
+        "fundamentos"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "origem",
+      "titulo": "História e desenvolvimento",
+      "categoria": "conceitos",
+      "subtitulo": "Da teoria comportamental aos instrumentos",
+      "conteudo": "O modelo DISC tem raízes na obra de William Moulton Marston de 1928. Questionários e produtos posteriores foram desenvolvidos por diferentes organizações; não existe garantia de equivalência entre todos eles.",
+      "alerta": "Uma adaptação de nomes para outro idioma não transforma automaticamente o instrumento original em teste validado. Itens, normas, escalas e populações devem ser examinados separadamente.",
+      "aplicacao": [
+        "Registrar autoria e origem de cada instrumento.",
+        "Não usar dados de confiabilidade de um fornecedor como prova da validade da versão RealTalent.",
+        "Documentar mudanças de item e algoritmo."
+      ],
+      "tags": [
+        "conceitos",
+        "DISC",
+        "ACER",
+        "origem"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "dimensoes",
+      "titulo": "As quatro dimensões",
+      "categoria": "conceitos",
+      "subtitulo": "D, I, S e C em linguagem de trabalho",
+      "conteudo": "D descreve iniciativa diante de desafios; I, comunicação e envolvimento; S, ritmo e cooperação; C, qualidade, critérios e processos. Cada fator está presente em graus variados.",
+      "alerta": "As descrições são hipóteses de preferência comportamental, não fatos definitivos sobre uma pessoa. Um D elevado não demonstra capacidade gerencial; um C elevado não comprova inteligência.",
+      "aplicacao": [
+        "Conectar cada leitura a exemplos concretos.",
+        "Acolher casos em que o perfil não se ajusta.",
+        "Evitar comparações de valor entre perfis."
+      ],
+      "tags": [
+        "conceitos",
+        "DISC",
+        "ACER",
+        "dimensoes"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "leitura",
+      "titulo": "Como interpretar um resultado",
+      "categoria": "interpretacao",
+      "subtitulo": "Leitura contextual e cuidadosa",
+      "conteudo": "Comece pela composição dos quatro fatores e pelo contexto de resposta. Não reduza o resultado a uma letra, uma cor ou um ranking entre pessoas. Quando a pontuação vier do questionário do ZIP, descreva-a como indicador exploratório.",
+      "alerta": "Compare hipóteses comportamentais com fatos, relatos e oportunidades de desenvolvimento. Explique margens de interpretação quando a psicometria ainda não foi estudada.",
+      "aplicacao": [
+        "Pergunte: em que situações isso aparece?",
+        "Busque um exemplo que confirma e outro que contraria a hipótese.",
+        "Escolha uma ação de desenvolvimento verificável."
+      ],
+      "tags": [
+        "interpretacao",
+        "DISC",
+        "ACER",
+        "leitura"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "pontuacao",
+      "titulo": "Pontuação e limites",
+      "categoria": "interpretacao",
+      "subtitulo": "Escores não são percentis",
+      "conteudo": "O aplicativo original contabiliza escolhas associadas a D, I, S e C. Frequências de respostas não são automaticamente percentis populacionais, aptidão, probabilidade de êxito ou intensidade clínica.",
+      "alerta": "Exibir uma porcentagem de escolhas como “preferência no instrumento” exige contextualizar número de itens, regra de cálculo e limites. Não aplicar pontos de corte sem estudos específicos.",
+      "aplicacao": [
+        "Publicar fórmula e versão do cálculo.",
+        "Registrar dados ausentes, versões e alterações.",
+        "Não comparar indivíduos usando métricas incomparáveis."
+      ],
+      "tags": [
+        "interpretacao",
+        "DISC",
+        "ACER",
+        "pontuacao"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "contexto",
+      "titulo": "Comportamento e ambiente",
+      "categoria": "interpretacao",
+      "subtitulo": "Preferências mudam conforme o contexto",
+      "conteudo": "Pressão, cargo, cultura, confiança, familiaridade com a tarefa e incentivos influenciam comportamentos observados. Diferenças entre autoimagem e percepção de expectativa externa precisam ser exploradas como narrativas, não interpretadas automaticamente como conflito psicológico.",
+      "alerta": "É inadequado afirmar que a pessoa possui “verdadeiro eu” em uma escala e “máscara” em outra sem fundamentação empírica.",
+      "aplicacao": [
+        "Perguntar sobre exemplos recentes em ambientes distintos.",
+        "Investigar variáveis situacionais.",
+        "Evitar inferir causas clínicas."
+      ],
+      "tags": [
+        "interpretacao",
+        "DISC",
+        "ACER",
+        "contexto"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "feedback",
+      "titulo": "Feedback orientado ao comportamento",
+      "categoria": "comunicacao",
+      "subtitulo": "Fatos, impacto e acordo",
+      "conteudo": "Um feedback útil descreve situação, comportamento observável, impacto e uma próxima ação verificável. Preferências de comunicação ajudam a escolher a forma, mas não alteram a obrigação de dar informações claras e respeitosas.",
+      "alerta": "Evite rotular a pessoa (“você é D, por isso interrompe”). Prefira “na reunião de ontem houve três interrupções; precisamos garantir espaço de fala”.",
+      "aplicacao": [
+        "Observar e registrar o episódio.",
+        "Perguntar a perspectiva da pessoa.",
+        "Combinar comportamento e data de revisão."
+      ],
+      "tags": [
+        "comunicacao",
+        "DISC",
+        "ACER",
+        "feedback"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "adaptacao",
+      "titulo": "Adaptação de comunicação",
+      "categoria": "comunicacao",
+      "subtitulo": "Ajustar a forma sem manipular",
+      "conteudo": "Com interlocutores que valorizam velocidade, sintetize decisões; com os mais expressivos, estimule troca; com os que buscam estabilidade, explique a transição; com os criteriosos, apresente evidências.",
+      "alerta": "Essas são hipóteses de preferência. Pergunte diretamente como a pessoa deseja receber informação; jamais atribua estilo apenas à aparência.",
+      "aplicacao": [
+        "Confirmar ritmo e formato preferido.",
+        "Entregar informação essencial a todos.",
+        "Registrar acordos em linguagem simples."
+      ],
+      "tags": [
+        "comunicacao",
+        "DISC",
+        "ACER",
+        "adaptacao"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "conflitos",
+      "titulo": "Conflitos e negociação interna",
+      "categoria": "comunicacao",
+      "subtitulo": "Transformar diferenças em acordos",
+      "conteudo": "Conflitos muitas vezes surgem de ritmo, nível de detalhe, expectativas e critérios distintos. O DISC pode ser usado como vocabulário para perguntar sobre necessidades, não como explicação conclusiva de uma disputa.",
+      "alerta": "Investigue incentivos, poder, sobrecarga e processos; nem todo conflito é comportamental.",
+      "aplicacao": [
+        "Nomear o desacordo sem acusação.",
+        "Separar fatos de interpretações.",
+        "Registrar uma experiência de cooperação com revisão."
+      ],
+      "tags": [
+        "comunicacao",
+        "DISC",
+        "ACER",
+        "conflitos"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "reunioes",
+      "titulo": "Reuniões inclusivas",
+      "categoria": "comunicacao",
+      "subtitulo": "Ouvir decisões e informações",
+      "conteudo": "Reuniões de qualidade combinam objetivo, informações prévias, turnos de participação e responsáveis. Modere estilos mais dominantes sem excluir iniciativa; dê espaço aos reservados sem obrigá-los a exposição pública.",
+      "alerta": "A preferência individual não determina o direito de falar ou decidir.",
+      "aplicacao": [
+        "Enviar pauta antes.",
+        "Solicitar contribuições de forma inclusiva.",
+        "Encerrar com decisão, dono e prazo."
+      ],
+      "tags": [
+        "comunicacao",
+        "DISC",
+        "ACER",
+        "reunioes"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "lideranca",
+      "titulo": "Liderança adaptativa",
+      "categoria": "lideranca",
+      "subtitulo": "Gestão de pessoas sem estereótipos",
+      "conteudo": "Liderar exige resultados e qualidade das relações. O modelo pode apoiar conversas sobre autonomia, suporte, ritmo e critérios, mas não substitui avaliação de competências e desempenho observável.",
+      "alerta": "Não atribua pessoas a cargos com base em uma letra.",
+      "aplicacao": [
+        "Perguntar de que suporte cada pessoa precisa.",
+        "Definir expectativas iguais de resultado e justas de condição.",
+        "Revisar o estilo de gestão com feedback do time."
+      ],
+      "tags": [
+        "lideranca",
+        "DISC",
+        "ACER"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "equipes",
+      "titulo": "Complementaridade de equipes",
+      "categoria": "lideranca",
+      "subtitulo": "Diversidade de perspectivas, não quotas de letras",
+      "conteudo": "Uma equipe pode se beneficiar de iniciativa, envolvimento, continuidade e rigor. Isso não significa que seja necessário contratar pessoas em proporções predefinidas de D, I, S e C.",
+      "alerta": "Utilize a biblioteca para construir práticas inclusivas e combinados; não para classificar pessoas como “fit” ou “não fit” sem evidência independente.",
+      "aplicacao": [
+        "Mapear processos que precisam de revisão.",
+        "Garantir contraditório nas decisões importantes.",
+        "Distribuir responsabilidades por competência, interesse e carga."
+      ],
+      "tags": [
+        "lideranca",
+        "DISC",
+        "ACER",
+        "equipes"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "mudanca",
+      "titulo": "Gestão da mudança",
+      "categoria": "lideranca",
+      "subtitulo": "Transições claras e participativas",
+      "conteudo": "Mudanças são mais bem conduzidas com propósito, impacto, plano de implantação, canal de dúvidas e aprendizado. Diferentes pessoas podem solicitar velocidade, participação, previsibilidade ou evidências.",
+      "alerta": "Tratar dúvidas como insumos do projeto, não resistência pessoal.",
+      "aplicacao": [
+        "Comunicar antes do anúncio amplo quando pertinente.",
+        "Definir pilotos e critérios de sucesso.",
+        "Medir adoção com dados e relatos."
+      ],
+      "tags": [
+        "lideranca",
+        "DISC",
+        "ACER",
+        "mudanca"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "onboarding",
+      "titulo": "Integração de pessoas",
+      "categoria": "lideranca",
+      "subtitulo": "Acolhimento e expectativas claras",
+      "conteudo": "No onboarding, pergunte ao colaborador o que ajuda a trabalhar bem: frequência de acompanhamento, autonomia, informação, feedback e forma de comunicação. O perfil pode oferecer pistas, nunca regras obrigatórias.",
+      "alerta": "Evite apresentar um rótulo ao time sem finalidade clara e base legal adequada.",
+      "aplicacao": [
+        "Construir acordo de trabalho.",
+        "Ajustar conforme experiência real.",
+        "Rever após 30, 60 e 90 dias."
+      ],
+      "tags": [
+        "lideranca",
+        "DISC",
+        "ACER",
+        "onboarding"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "vendas",
+      "titulo": "Vendas consultivas",
+      "categoria": "vendas",
+      "subtitulo": "Conectar necessidades, evidência e decisão",
+      "conteudo": "Em vendas, adaptar o discurso significa escutar as prioridades reais do comprador. Para quem privilegia resultados, mostre impacto; para quem valoriza relacionamento, colaboração; para quem busca estabilidade, implantação; para quem pede detalhes, evidências.",
+      "alerta": "A linguagem DISC não autoriza adivinhar o perfil de um lead nem manipular vulnerabilidades.",
+      "aplicacao": [
+        "Perguntar critérios de decisão ao comprador.",
+        "Confirmar objetivos, limitações e próximos passos.",
+        "Documentar necessidades no CRM de forma minimizada."
+      ],
+      "tags": [
+        "vendas",
+        "DISC",
+        "ACER"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "descoberta",
+      "titulo": "Perguntas de descoberta comercial",
+      "categoria": "vendas",
+      "subtitulo": "Explorar sem rotular",
+      "conteudo": "Uma descoberta eficaz investiga desafio, impacto, urgência, pessoas envolvidas, condições de sucesso e riscos. Perguntas devem ser abertas e neutras, evitando supor que o cliente tem um estilo por falar rápido ou pedir dados.",
+      "alerta": "Adaptação de comunicação não é uma licença para direcionar a resposta do comprador.",
+      "aplicacao": [
+        "O que precisa melhorar?",
+        "Como você avaliará sucesso?",
+        "Quais riscos precisam ser resolvidos?"
+      ],
+      "tags": [
+        "vendas",
+        "DISC",
+        "ACER",
+        "descoberta"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "objecoes",
+      "titulo": "Objeções em vendas",
+      "categoria": "vendas",
+      "subtitulo": "Entender antes de responder",
+      "conteudo": "Objeções sobre preço, prazo, segurança ou integração pedem diagnóstico: que alternativa existe, qual custo de não resolver, qual evidência falta e quem decide. Use tom e profundidade ajustados ao interlocutor, sem atribuir objeção ao perfil.",
+      "alerta": "Não use suposto estilo comportamental para contornar consentimento ou omitir informação.",
+      "aplicacao": [
+        "Validar a preocupação.",
+        "Separar fato de hipótese.",
+        "Propor teste ou material verificável."
+      ],
+      "tags": [
+        "vendas",
+        "DISC",
+        "ACER",
+        "objecoes"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "posvenda",
+      "titulo": "Pós-venda e sucesso do cliente",
+      "categoria": "vendas",
+      "subtitulo": "Entrega alinhada ao contrato",
+      "conteudo": "Na implantação, diferentes clientes preferem cadências e formatos de acompanhamento. Defina desde o início contatos, canais, responsabilidades, critérios de aceite e forma de escalonamento.",
+      "alerta": "Meça satisfação e adoção; não use o perfil para presumir satisfação.",
+      "aplicacao": [
+        "Definir indicadores acordados.",
+        "Registrar mudanças de escopo.",
+        "Realizar check-ins de adoção."
+      ],
+      "tags": [
+        "vendas",
+        "DISC",
+        "ACER",
+        "posvenda"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "atendimento",
+      "titulo": "Atendimento e experiência",
+      "categoria": "servicos",
+      "subtitulo": "Jornadas que acolhem diferentes necessidades",
+      "conteudo": "Um serviço acessível oferece caminhos distintos para resolver a mesma demanda: resposta rápida, explicação guiada, acompanhamento humano e documentação. O DISC pode inspirar opções de experiência, não segmentação rígida.",
+      "alerta": "O usuário deve poder escolher o atendimento adequado sem ter seu comportamento inferido automaticamente.",
+      "aplicacao": [
+        "Oferecer formatos claros.",
+        "Informar prazos de modo transparente.",
+        "Verificar resolução da necessidade."
+      ],
+      "tags": [
+        "servicos",
+        "DISC",
+        "ACER",
+        "atendimento"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "desenvolvimento",
+      "titulo": "Planos de desenvolvimento",
+      "categoria": "desenvolvimento",
+      "subtitulo": "Experimentos de comportamento observável",
+      "conteudo": "Um plano de desenvolvimento parte de uma situação real, escolhe um comportamento a experimentar, define frequência e indicador observável e revisa o resultado. A pessoa participa da escolha e pode discordar da hipótese sugerida pelo perfil.",
+      "alerta": "Não transforme uma característica exploratória em deficiência permanente.",
+      "aplicacao": [
+        "Definir um alvo por vez.",
+        "Agendar reflexão e feedback.",
+        "Registrar o que funcionou em cada contexto."
+      ],
+      "tags": [
+        "desenvolvimento",
+        "DISC",
+        "ACER"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "facilitacao",
+      "titulo": "Workshops e dinâmicas",
+      "categoria": "desenvolvimento",
+      "subtitulo": "Aprendizagem com segurança psicológica",
+      "conteudo": "Em oficinas, cada pessoa pode explorar preferências de trabalho por meio de casos, reflexões e acordos. Evite divulgação compulsória de resultados e comparação pública de colegas.",
+      "alerta": "A facilitação deve explicar confidencialidade, finalidade e possibilidade de não participar.",
+      "aplicacao": [
+        "Acordar regras de respeito.",
+        "Utilizar cenários fictícios.",
+        "Encerrar com ações de equipe, não rótulos."
+      ],
+      "tags": [
+        "desenvolvimento",
+        "DISC",
+        "ACER",
+        "facilitacao"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "etica",
+      "titulo": "Ética, ciência e privacidade",
+      "categoria": "governanca",
+      "subtitulo": "Limites claros para decisões sobre pessoas",
+      "conteudo": "Cada instrumento exige evidência específica de validade e confiabilidade para sua finalidade. O fato de um fornecedor apresentar pesquisa para seu teste não valida automaticamente o questionário presente no ZIP RealTalent. Resultados individuais devem ser acessados apenas por quem tem finalidade e autorização adequadas.",
+      "alerta": "No Brasil, testes psicológicos e avaliações psicológicas têm regras profissionais específicas; é importante verificar enquadramento e consultar o CFP/SATEPSI, inclusive na modalidade online.",
+      "aplicacao": [
+        "Não usar resultado isoladamente para contratação ou desligamento.",
+        "Aplicar LGPD: finalidade, necessidade, transparência e segurança.",
+        "Oferecer correção, contestação e revisão humana conforme o caso."
+      ],
+      "tags": [
+        "governanca",
+        "DISC",
+        "ACER",
+        "etica"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    },
+    {
+      "id": "instrumento",
+      "titulo": "Questionário original do projeto",
+      "categoria": "governanca",
+      "subtitulo": "Material extraído e pendente de revisão",
+      "conteudo": "O ZIP disponibilizado continha 20 perguntas de escolha e 92 adjetivos associados a quatro fatores. A biblioteca os preserva em JSON separado, mantendo seu status de “revisão pendente” por questões de construção de itens, viés e ausência de dados psicométricos específicos.",
+      "alerta": "As alternativas seguem posições fixas no código original (D, I, C, S). Recomenda-se avaliar viés de posição e o impacto de alterar a ordem sem prejudicar comparabilidade dos dados anteriores.",
+      "aplicacao": [
+        "Revisar ambiguidade e desejabilidade social.",
+        "Examinar itens que não correspondem claramente ao fator marcado.",
+        "Criar estudo de consistência, estabilidade, validade e documentação antes de uso avaliativo."
+      ],
+      "tags": [
+        "governanca",
+        "DISC",
+        "ACER",
+        "instrumento"
+      ],
+      "fonte": "síntese editorial RealTalent; referências na seção de fontes",
+      "status": "conteudo_educativo"
+    }
+  ],
+  "casos_praticos": [
+    {
+      "id": "caso-01",
+      "titulo": "Cliente quer resposta imediata",
+      "categoria": "vendas",
+      "situacao": "Cliente quer resposta imediata",
+      "intervencao": "Confirmar prazo real e fornecer decisão com riscos relevantes, sem sacrificar verificação.",
+      "fator_referencia": "D",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-02",
+      "titulo": "Cliente pede demonstração interativa",
+      "categoria": "vendas",
+      "situacao": "Cliente pede demonstração interativa",
+      "intervencao": "Explorar casos reais e encerrar com requisitos, próximos passos e responsáveis.",
+      "fator_referencia": "I",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-03",
+      "titulo": "Cliente receia migração de sistema",
+      "categoria": "vendas",
+      "situacao": "Cliente receia migração de sistema",
+      "intervencao": "Detalhar fases, suporte, reversibilidade e plano de continuidade.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-04",
+      "titulo": "Cliente solicita critérios técnicos",
+      "categoria": "vendas",
+      "situacao": "Cliente solicita critérios técnicos",
+      "intervencao": "Enviar documentação verificável, limites e hipóteses com prazo de retorno.",
+      "fator_referencia": "C",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-05",
+      "titulo": "Vendedor interrompe demais",
+      "categoria": "lideranca",
+      "situacao": "Vendedor interrompe demais",
+      "intervencao": "Dar feedback sobre episódios específicos e criar regra de turno de fala.",
+      "fator_referencia": "D",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-06",
+      "titulo": "Equipe chega animada sem escopo",
+      "categoria": "lideranca",
+      "situacao": "Equipe chega animada sem escopo",
+      "intervencao": "Converter ideias em backlog, prioridades, dono e data de revisão.",
+      "fator_referencia": "I",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-07",
+      "titulo": "Colaborador evita dizer não",
+      "categoria": "lideranca",
+      "situacao": "Colaborador evita dizer não",
+      "intervencao": "Checar capacidade, negociar prioridades e valorizar comunicação de limites.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-08",
+      "titulo": "Analista revisa indefinidamente",
+      "categoria": "lideranca",
+      "situacao": "Analista revisa indefinidamente",
+      "intervencao": "Definir qualidade suficiente e janela de decisão por risco.",
+      "fator_referencia": "C",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-09",
+      "titulo": "Conflito por ritmo de decisão",
+      "categoria": "comunicacao",
+      "situacao": "Conflito por ritmo de decisão",
+      "intervencao": "Alinhar decisões reversíveis, critérios mínimos e prazo.",
+      "fator_referencia": "D",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-10",
+      "titulo": "Conflito entre precisão e rapidez",
+      "categoria": "comunicacao",
+      "situacao": "Conflito entre precisão e rapidez",
+      "intervencao": "Listar riscos materiais e aceitar decisões com incertezas explícitas.",
+      "fator_referencia": "C",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-11",
+      "titulo": "Mudança de processo sem aviso",
+      "categoria": "lideranca",
+      "situacao": "Mudança de processo sem aviso",
+      "intervencao": "Compartilhar razão, plano de transição e canal de dúvidas.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-12",
+      "titulo": "Reunião monopolizada",
+      "categoria": "comunicacao",
+      "situacao": "Reunião monopolizada",
+      "intervencao": "Distribuir fala e registrar contribuições antes da decisão.",
+      "fator_referencia": "I",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-13",
+      "titulo": "Proposta com muitos slides",
+      "categoria": "vendas",
+      "situacao": "Proposta com muitos slides",
+      "intervencao": "Criar resumo executivo e apêndice com evidências.",
+      "fator_referencia": "D",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-14",
+      "titulo": "Cliente prefere relação próxima",
+      "categoria": "servicos",
+      "situacao": "Cliente prefere relação próxima",
+      "intervencao": "Oferecer interlocutor claro, escuta e acordos de entrega verificáveis.",
+      "fator_referencia": "I",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-15",
+      "titulo": "Cliente não retorna mensagens",
+      "categoria": "vendas",
+      "situacao": "Cliente não retorna mensagens",
+      "intervencao": "Confirmar canal e momento adequados; não inferir perfil a partir do silêncio.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-16",
+      "titulo": "Feedback difícil para colega",
+      "categoria": "desenvolvimento",
+      "situacao": "Feedback difícil para colega",
+      "intervencao": "Preparar situação, fatos, impacto e pedido observável em conversa reservada.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-17",
+      "titulo": "Alto padrão reduz velocidade",
+      "categoria": "desenvolvimento",
+      "situacao": "Alto padrão reduz velocidade",
+      "intervencao": "Priorizar controles conforme risco e diferenciar versão piloto de final.",
+      "fator_referencia": "C",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-18",
+      "titulo": "Líder muda prioridade a cada dia",
+      "categoria": "lideranca",
+      "situacao": "Líder muda prioridade a cada dia",
+      "intervencao": "Definir janela de planejamento e critério explícito para exceções.",
+      "fator_referencia": "D",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-19",
+      "titulo": "Integração de novo membro",
+      "categoria": "lideranca",
+      "situacao": "Integração de novo membro",
+      "intervencao": "Perguntar preferências reais de autonomia, feedback e informações.",
+      "fator_referencia": "S",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    },
+    {
+      "id": "caso-20",
+      "titulo": "Uso do DISC para contratar",
+      "categoria": "governanca",
+      "situacao": "Uso do DISC para contratar",
+      "intervencao": "Não usar perfil como filtro isolado; consultar orientação técnica, evidências e exigências legais.",
+      "fator_referencia": "C",
+      "perguntas": [
+        "Que fato observável evidencia a necessidade?",
+        "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+        "Qual resultado indicará melhora?"
+      ],
+      "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+    }
+  ],
+  "perguntas_coaching": [
+    {
+      "id": "coaching-01",
+      "fator": "D",
+      "tema": "Direção",
+      "pergunta_inicial": "Qual resultado precisa ser alcançado e até quando?",
+      "aprofundamento": "O que você delegaria para ampliar participação?"
+    },
+    {
+      "id": "coaching-02",
+      "fator": "D",
+      "tema": "Pressão",
+      "pergunta_inicial": "Que informação seria suficiente para decidir com responsabilidade?",
+      "aprofundamento": "O que aconteceria se você escutasse mais uma perspectiva?"
+    },
+    {
+      "id": "coaching-03",
+      "fator": "I",
+      "tema": "Conexão",
+      "pergunta_inicial": "Quem precisa participar desta conversa?",
+      "aprofundamento": "Que promessa precisa ser registrada e confirmada?"
+    },
+    {
+      "id": "coaching-04",
+      "fator": "I",
+      "tema": "Foco",
+      "pergunta_inicial": "Qual ideia terá maior impacto com a capacidade disponível?",
+      "aprofundamento": "O que você fará primeiro, concretamente?"
+    },
+    {
+      "id": "coaching-05",
+      "fator": "S",
+      "tema": "Segurança",
+      "pergunta_inicial": "Que apoio ajudaria a atravessar esta mudança?",
+      "aprofundamento": "Qual discordância ainda não foi verbalizada?"
+    },
+    {
+      "id": "coaching-06",
+      "fator": "S",
+      "tema": "Limites",
+      "pergunta_inicial": "Quais são as prioridades que cabem de fato nesta semana?",
+      "aprofundamento": "A que você precisa dizer não?"
+    },
+    {
+      "id": "coaching-07",
+      "fator": "C",
+      "tema": "Evidência",
+      "pergunta_inicial": "Que dado poderia alterar esta decisão?",
+      "aprofundamento": "Qual nível de precisão é suficiente?"
+    },
+    {
+      "id": "coaching-08",
+      "fator": "C",
+      "tema": "Síntese",
+      "pergunta_inicial": "Como comunicar a conclusão em três pontos?",
+      "aprofundamento": "Qual decisão é reversível e pode ser testada?"
+    }
+  ],
+  "trilhas_aprendizagem": [
+    {
+      "id": "modulo-01",
+      "numero": "01",
+      "titulo": "Introdução ao DISC/ACER",
+      "duracao": "30 min",
+      "objetivo": "Diferenciar linguagem comportamental de diagnóstico; reconhecer quatro fatores.",
+      "atividade": "Leitura dos fundamentos; reflexão sobre uma situação real.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-02",
+      "numero": "02",
+      "titulo": "Observação sem rótulos",
+      "duracao": "40 min",
+      "objetivo": "Distinguir comportamento observável, interpretação e suposição.",
+      "atividade": "Analisar três cenários fictícios; reescrever rótulos como fatos.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-03",
+      "numero": "03",
+      "titulo": "Dimensões e combinações",
+      "duracao": "45 min",
+      "objetivo": "Descrever tendências e ressalvas sem reduzir pessoas a tipos.",
+      "atividade": "Comparar dois exemplos e buscar contraexemplos.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-04",
+      "numero": "04",
+      "titulo": "Comunicação flexível",
+      "duracao": "45 min",
+      "objetivo": "Ajustar ritmo, detalhe e interação com base em preferência declarada.",
+      "atividade": "Simulação de conversa em quatro formatos.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-05",
+      "numero": "05",
+      "titulo": "Feedback e conflitos",
+      "duracao": "50 min",
+      "objetivo": "Converter conflitos em acordos observáveis.",
+      "atividade": "Praticar feedback de situação, comportamento e impacto.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-06",
+      "numero": "06",
+      "titulo": "Liderança e equipes",
+      "duracao": "50 min",
+      "objetivo": "Usar linguagem de diferenças para fortalecer acordos de trabalho.",
+      "atividade": "Criar pacto de comunicação e revisão quinzenal.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-07",
+      "numero": "07",
+      "titulo": "Vendas consultivas",
+      "duracao": "50 min",
+      "objetivo": "Explorar prioridade real do cliente e adaptar explicação com ética.",
+      "atividade": "Role-play de descoberta, proposta e objeção.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-08",
+      "numero": "08",
+      "titulo": "Experiência de serviços",
+      "duracao": "35 min",
+      "objetivo": "Oferecer jornadas que respondam a ritmos e formatos distintos.",
+      "atividade": "Desenhar quatro opções de interação para um serviço.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-09",
+      "numero": "09",
+      "titulo": "Resultados e psicometria",
+      "duracao": "50 min",
+      "objetivo": "Interpretar dados exploratórios e distinguir escores de percentis.",
+      "atividade": "Revisar o questionário extraído e anotar pontos de validação.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    },
+    {
+      "id": "modulo-10",
+      "numero": "10",
+      "titulo": "Privacidade, legislação e prática",
+      "duracao": "40 min",
+      "objetivo": "Identificar limites legais, confidencialidade e mitigação de vieses.",
+      "atividade": "Simular revisão de acesso e finalidade dos dados.",
+      "avaliacao": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+    }
+  ],
+  "glossario": [
+    {
+      "id": "gloss-01",
+      "termo": "DISC",
+      "definicao": "Modelo descritivo com quatro dimensões: Dominância, Influência, Estabilidade e Conformidade."
+    },
+    {
+      "id": "gloss-02",
+      "termo": "ACER",
+      "definicao": "Nome português adotado para a mesma metodologia no projeto RealTalent; a expansão das letras depende de definição institucional."
+    },
+    {
+      "id": "gloss-03",
+      "termo": "D",
+      "definicao": "Fator de Dominância; leitura exploratória de orientação a desafios e resultados."
+    },
+    {
+      "id": "gloss-04",
+      "termo": "I",
+      "definicao": "Fator de Influência; leitura exploratória de expressão e interação."
+    },
+    {
+      "id": "gloss-05",
+      "termo": "S",
+      "definicao": "Fator de Estabilidade; leitura exploratória de constância e cooperação."
+    },
+    {
+      "id": "gloss-06",
+      "termo": "C",
+      "definicao": "Fator de Conformidade; leitura exploratória de precisão e padrões."
+    },
+    {
+      "id": "gloss-07",
+      "termo": "Fator",
+      "definicao": "Dimensão usada na descrição de preferências comportamentais."
+    },
+    {
+      "id": "gloss-08",
+      "termo": "Escala",
+      "definicao": "Conjunto de itens associado a uma característica definida."
+    },
+    {
+      "id": "gloss-09",
+      "termo": "Item",
+      "definicao": "Pergunta, afirmação ou estímulo usado em instrumento."
+    },
+    {
+      "id": "gloss-10",
+      "termo": "Pontuação bruta",
+      "definicao": "Resultado numérico do cálculo sem padronização populacional."
+    },
+    {
+      "id": "gloss-11",
+      "termo": "Percentil",
+      "definicao": "Posição relativa em distribuição normativa apropriada; não equivale a percentual de respostas."
+    },
+    {
+      "id": "gloss-12",
+      "termo": "Confiabilidade",
+      "definicao": "Estimativa de consistência ou estabilidade da medida em condições definidas."
+    },
+    {
+      "id": "gloss-13",
+      "termo": "Validade",
+      "definicao": "Evidência que apoia uma interpretação e uso específico de escores."
+    },
+    {
+      "id": "gloss-14",
+      "termo": "Normatização",
+      "definicao": "Construção de referências de comparação para população e finalidade definidas."
+    },
+    {
+      "id": "gloss-15",
+      "termo": "Viés de resposta",
+      "definicao": "Influência sistemática de fatores alheios ao construto, como posição ou desejabilidade social."
+    },
+    {
+      "id": "gloss-16",
+      "termo": "Desejabilidade social",
+      "definicao": "Tendência a responder de modo socialmente valorizado."
+    },
+    {
+      "id": "gloss-17",
+      "termo": "Autorrelato",
+      "definicao": "Informação fornecida pela própria pessoa sobre suas experiências ou preferências."
+    },
+    {
+      "id": "gloss-18",
+      "termo": "Observação",
+      "definicao": "Registro de comportamento em situação definida."
+    },
+    {
+      "id": "gloss-19",
+      "termo": "Contexto",
+      "definicao": "Condições ambientais, sociais e da tarefa que influenciam uma ação."
+    },
+    {
+      "id": "gloss-20",
+      "termo": "Autoimagem",
+      "definicao": "Percepção da pessoa sobre si; não equivale automaticamente a traço estável."
+    },
+    {
+      "id": "gloss-21",
+      "termo": "Expectativa percebida",
+      "definicao": "Percepção do que outras pessoas esperam; não comprova expectativas reais."
+    },
+    {
+      "id": "gloss-22",
+      "termo": "Combinação de fatores",
+      "definicao": "Descrição de tendências associadas a mais de uma dimensão, sem diagnóstico."
+    },
+    {
+      "id": "gloss-23",
+      "termo": "Feedback comportamental",
+      "definicao": "Devolutiva baseada em fatos observáveis, impacto e próximos passos."
+    },
+    {
+      "id": "gloss-24",
+      "termo": "Plano de desenvolvimento",
+      "definicao": "Acordo com objetivos, comportamentos de prática, indicadores e revisão."
+    },
+    {
+      "id": "gloss-25",
+      "termo": "Ancoragem",
+      "definicao": "Influência de uma informação inicial na interpretação posterior."
+    },
+    {
+      "id": "gloss-26",
+      "termo": "Efeito halo",
+      "definicao": "Generalização indevida de uma impressão favorável ou desfavorável."
+    },
+    {
+      "id": "gloss-27",
+      "termo": "RLS",
+      "definicao": "Row Level Security: políticas do banco que limitam acesso por linha."
+    },
+    {
+      "id": "gloss-28",
+      "termo": "LGPD",
+      "definicao": "Lei Geral de Proteção de Dados Pessoais brasileira."
+    },
+    {
+      "id": "gloss-29",
+      "termo": "Finalidade",
+      "definicao": "Propósito específico, legítimo e informado para tratamento de dados."
+    },
+    {
+      "id": "gloss-30",
+      "termo": "Minimização",
+      "definicao": "Coletar e manter apenas os dados necessários para finalidade definida."
+    },
+    {
+      "id": "gloss-31",
+      "termo": "SATEPSI",
+      "definicao": "Sistema brasileiro de avaliação da qualidade técnico-científica de testes psicológicos, mantido pelo CFP."
+    },
+    {
+      "id": "gloss-32",
+      "termo": "Psicometria",
+      "definicao": "Campo voltado à construção e ao estudo das propriedades de medidas psicológicas."
+    },
+    {
+      "id": "gloss-33",
+      "termo": "Conflito de estilos",
+      "definicao": "Descrição coloquial de diferenças de preferência; não dispensa análise de processo e poder."
+    },
+    {
+      "id": "gloss-34",
+      "termo": "Roteiro comercial",
+      "definicao": "Estrutura de perguntas e evidências para venda consultiva, sem manipulação comportamental."
+    },
+    {
+      "id": "gloss-35",
+      "termo": "Consentimento",
+      "definicao": "Uma das possíveis bases legais de tratamento de dados, cuja adequação depende do contexto; não é a única base."
+    }
+  ],
+  "referencias": [
+    {
+      "id": "f1",
+      "titulo": "What Is the Everything DiSC Model?",
+      "instituicao": "Everything DiSC / Wiley",
+      "url": "https://www.everythingdisc.com/what-is-disc/",
+      "uso": "Referência conceitual às dimensões do modelo; não comprova validação do instrumento RealTalent."
+    },
+    {
+      "id": "f2",
+      "titulo": "How DiSC profiles work",
+      "instituicao": "DiSC Profile",
+      "url": "https://www.discprofile.com/what-is-disc/how-disc-works",
+      "uso": "Definições e limites de interpretação."
+    },
+    {
+      "id": "f3",
+      "titulo": "The Science Behind Everything DiSC",
+      "instituicao": "Everything DiSC / Wiley",
+      "url": "https://www.everythingdisc.com/the-science-behind-disc",
+      "uso": "Exemplo de como pesquisas de confiabilidade e validade devem ser documentadas por instrumento."
+    },
+    {
+      "id": "f4",
+      "titulo": "SATEPSI — Perguntas frequentes",
+      "instituicao": "Conselho Federal de Psicologia",
+      "url": "https://satepsi.cfp.org.br/faq.cfm",
+      "uso": "Diretrizes sobre avaliação psicológica e instrumentos no Brasil."
+    },
+    {
+      "id": "f5",
+      "titulo": "Resolução CFP n.º 31/2022 — legislação SATEPSI",
+      "instituicao": "Conselho Federal de Psicologia",
+      "url": "https://satepsi.cfp.org.br/legislacao.cfm",
+      "uso": "Consulta às regras brasileiras aplicáveis."
+    },
+    {
+      "id": "f6",
+      "titulo": "Lei nº 13.709/2018 — LGPD",
+      "instituicao": "Presidência da República",
+      "url": "https://planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+      "uso": "Base legal para proteção e tratamento de dados pessoais."
+    },
+    {
+      "id": "f7",
+      "titulo": "CFP: testes psicológicos e modalidades informatizada/online",
+      "instituicao": "Conselho Federal de Psicologia",
+      "url": "https://site.cfp.org.br/cfp-orienta-psicologas-sobre-o-uso-de-testes-psicologicos-nas-modalidades-informatizada-e-online/",
+      "uso": "Orientação atual sobre modalidades e aprovação de testes."
+    }
+  ],
+  "instrumento_extraido_para_revisao": {
+    "meta": {
+      "origem": "Arquivo index.html fornecido pelo usuário",
+      "status": "conteúdo original preservado para revisão técnica e psicométrica",
+      "nota": "Sem evidência de validação psicométrica específica encontrada no ZIP; não apresentar como instrumento diagnóstico.",
+      "versao": "original-2026-07-03"
+    },
+    "questions": [
+      {
+        "id": "q01",
+        "enunciado": "Ao enfrentar um problema no trabalho, você:",
+        "alternativas": [
+          {
+            "texto": "Toma a iniciativa e age rapidamente para resolvê-lo",
+            "fator": "D"
+          },
+          {
+            "texto": "Procura o apoio e a opinião da equipe",
+            "fator": "I"
+          },
+          {
+            "texto": "Analisa cuidadosamente todas as opções antes de agir",
+            "fator": "C"
+          },
+          {
+            "texto": "Prefere manter a harmonia e evitar conflitos",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q02",
+        "enunciado": "Em reuniões, você geralmente:",
+        "alternativas": [
+          {
+            "texto": "Lidera a discussão e direciona as decisões",
+            "fator": "D"
+          },
+          {
+            "texto": "Energiza o grupo e faz conexões entre as pessoas",
+            "fator": "I"
+          },
+          {
+            "texto": "Prefere ouvir e só fala quando tem algo relevante",
+            "fator": "C"
+          },
+          {
+            "texto": "Apoia as ideias dos outros e busca consenso",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q03",
+        "enunciado": "Quando recebe uma crítica ao seu trabalho, você:",
+        "alternativas": [
+          {
+            "texto": "Questiona se a crítica é válida e defende sua posição",
+            "fator": "D"
+          },
+          {
+            "texto": "Fica um pouco abalado, pois se importa com a aprovação",
+            "fator": "I"
+          },
+          {
+            "texto": "Analisa se a crítica tem fundamento com base em dados",
+            "fator": "C"
+          },
+          {
+            "texto": "Aceita bem, desde que seja feita de forma respeitosa",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q04",
+        "enunciado": "Seu ritmo de trabalho preferido é:",
+        "alternativas": [
+          {
+            "texto": "Rápido e orientado a resultados imediatos",
+            "fator": "D"
+          },
+          {
+            "texto": "Variado, com muita interação e atividades diferentes",
+            "fator": "I"
+          },
+          {
+            "texto": "Metódico, com tempo para pesquisa e qualidade",
+            "fator": "C"
+          },
+          {
+            "texto": "Constante e previsível, com poucas surpresas",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q05",
+        "enunciado": "Para você, o maior medo profissional é:",
+        "alternativas": [
+          {
+            "texto": "Perder o controle ou ser controlado por outros",
+            "fator": "D"
+          },
+          {
+            "texto": "Ser ignorado ou não ser apreciado",
+            "fator": "I"
+          },
+          {
+            "texto": "Cometer erros por falta de informação",
+            "fator": "C"
+          },
+          {
+            "texto": "Mudanças repentinas sem preparo",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q06",
+        "enunciado": "Na tomada de decisão, você prioriza:",
+        "alternativas": [
+          {
+            "texto": "Agilidade: decide rápido com as informações disponíveis",
+            "fator": "D"
+          },
+          {
+            "texto": "Intuição e impacto nas pessoas envolvidas",
+            "fator": "I"
+          },
+          {
+            "texto": "Dados e análise detalhada antes de concluir",
+            "fator": "C"
+          },
+          {
+            "texto": "Estabilidade e impacto no grupo a longo prazo",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q07",
+        "enunciado": "Ao liderar uma equipe, você:",
+        "alternativas": [
+          {
+            "texto": "Define metas claras e cobra resultados",
+            "fator": "D"
+          },
+          {
+            "texto": "Motiva e inspira as pessoas com entusiasmo",
+            "fator": "I"
+          },
+          {
+            "texto": "Cria processos e padrões de qualidade",
+            "fator": "C"
+          },
+          {
+            "texto": "Cria um ambiente seguro e colaborativo",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q08",
+        "enunciado": "Como você lida com mudanças inesperadas?",
+        "alternativas": [
+          {
+            "texto": "Adapta rapidamente e vê como uma oportunidade",
+            "fator": "D"
+          },
+          {
+            "texto": "Abraça a novidade e anima a equipe",
+            "fator": "I"
+          },
+          {
+            "texto": "Fica desconfortável se não houver planejamento",
+            "fator": "C"
+          },
+          {
+            "texto": "Aceita com dificuldade se não foi avisado antes",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q09",
+        "enunciado": "Em situações de pressão, você tende a:",
+        "alternativas": [
+          {
+            "texto": "Ser mais assertivo e exigente",
+            "fator": "D"
+          },
+          {
+            "texto": "Perder o foco por ansiedade social",
+            "fator": "I"
+          },
+          {
+            "texto": "Demorar mais na análise por perfeccionismo",
+            "fator": "C"
+          },
+          {
+            "texto": "Ceder para evitar conflito",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q10",
+        "enunciado": "O que mais te motiva no trabalho?",
+        "alternativas": [
+          {
+            "texto": "Desafios, poder e resultados concretos",
+            "fator": "D"
+          },
+          {
+            "texto": "Reconhecimento, socialização e criatividade",
+            "fator": "I"
+          },
+          {
+            "texto": "Excelência, precisão e aprendizado constante",
+            "fator": "C"
+          },
+          {
+            "texto": "Segurança, cooperação e estabilidade",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q11",
+        "enunciado": "Ao apresentar uma ideia, você prefere:",
+        "alternativas": [
+          {
+            "texto": "Ir direto ao ponto e destacar os resultados",
+            "fator": "D"
+          },
+          {
+            "texto": "Contar uma história envolvente e animada",
+            "fator": "I"
+          },
+          {
+            "texto": "Apresentar dados, gráficos e embasamento técnico",
+            "fator": "C"
+          },
+          {
+            "texto": "Explicar como a ideia beneficia toda a equipe",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q12",
+        "enunciado": "Seu estilo de comunicação é mais:",
+        "alternativas": [
+          {
+            "texto": "Direto, objetivo e assertivo",
+            "fator": "D"
+          },
+          {
+            "texto": "Entusiasmado, expressivo e comunicativo",
+            "fator": "I"
+          },
+          {
+            "texto": "Preciso, formal e baseado em fatos",
+            "fator": "C"
+          },
+          {
+            "texto": "Calmo, paciente e cuidadoso",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q13",
+        "enunciado": "Quando um projeto falha, você:",
+        "alternativas": [
+          {
+            "texto": "Assume a responsabilidade e parte para a próxima",
+            "fator": "D"
+          },
+          {
+            "texto": "Busca reconforto na equipe e tenta animar todos",
+            "fator": "I"
+          },
+          {
+            "texto": "Analisa detalhadamente o que deu errado",
+            "fator": "C"
+          },
+          {
+            "texto": "Se preocupa com o impacto nas relações da equipe",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q14",
+        "enunciado": "Qual ambiente de trabalho te agrada mais?",
+        "alternativas": [
+          {
+            "texto": "Dinâmico, competitivo e com muita autonomia",
+            "fator": "D"
+          },
+          {
+            "texto": "Colaborativo, criativo e com pessoas diversas",
+            "fator": "I"
+          },
+          {
+            "texto": "Organizado, estruturado e com processos claros",
+            "fator": "C"
+          },
+          {
+            "texto": "Harmonioso, estável e com equipe coesa",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q15",
+        "enunciado": "Como você reage a regras e procedimentos?",
+        "alternativas": [
+          {
+            "texto": "Segue se faz sentido, questiona se achar necessário",
+            "fator": "D"
+          },
+          {
+            "texto": "Prefere flexibilidade para improvisar",
+            "fator": "I"
+          },
+          {
+            "texto": "Valoriza muito: regras garantem qualidade",
+            "fator": "C"
+          },
+          {
+            "texto": "Segue com conforto, pois trazem previsibilidade",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q16",
+        "enunciado": "Ao receber uma tarefa nova, sua primeira reação é:",
+        "alternativas": [
+          {
+            "texto": "Definir como você vai executá-la do seu jeito",
+            "fator": "D"
+          },
+          {
+            "texto": "Entusiasmar-se e já compartilhar com outros",
+            "fator": "I"
+          },
+          {
+            "texto": "Pesquisar e planejar antes de começar",
+            "fator": "C"
+          },
+          {
+            "texto": "Entender bem o que é esperado de você",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q17",
+        "enunciado": "Em conflitos interpessoais, você:",
+        "alternativas": [
+          {
+            "texto": "Enfrenta diretamente e busca uma resolução rápida",
+            "fator": "D"
+          },
+          {
+            "texto": "Tenta mediar e usar o bom humor para aliviar",
+            "fator": "I"
+          },
+          {
+            "texto": "Analisa o problema de forma racional",
+            "fator": "C"
+          },
+          {
+            "texto": "Evita ao máximo e prefere ceder",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q18",
+        "enunciado": "Como você prefere receber feedback?",
+        "alternativas": [
+          {
+            "texto": "Direto e objetivo, sem rodeios",
+            "fator": "D"
+          },
+          {
+            "texto": "De forma positiva e encorajadora",
+            "fator": "I"
+          },
+          {
+            "texto": "Detalhado, com exemplos e dados concretos",
+            "fator": "C"
+          },
+          {
+            "texto": "Com gentileza e em ambiente reservado",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q19",
+        "enunciado": "Sua maior contribuição para a equipe é:",
+        "alternativas": [
+          {
+            "texto": "Resultados, decisão e liderança sob pressão",
+            "fator": "D"
+          },
+          {
+            "texto": "Motivação, energia e capacidade de influenciar",
+            "fator": "I"
+          },
+          {
+            "texto": "Qualidade, análise e atenção aos detalhes",
+            "fator": "C"
+          },
+          {
+            "texto": "Apoio, lealdade e estabilidade emocional",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "q20",
+        "enunciado": "Quando tem autonomia total em um projeto, você:",
+        "alternativas": [
+          {
+            "texto": "Vai direto à execução com foco em resultados",
+            "fator": "D"
+          },
+          {
+            "texto": "Brainstorma ideias criativas e envolve pessoas",
+            "fator": "I"
+          },
+          {
+            "texto": "Cria um plano detalhado antes de qualquer ação",
+            "fator": "C"
+          },
+          {
+            "texto": "Consulta a equipe para garantir que todos estão bem",
+            "fator": "S"
+          }
+        ],
+        "status": "revisao_pendente"
+      }
+    ],
+    "adjectives": [
+      {
+        "id": "a001",
+        "texto": "Decidido",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a002",
+        "texto": "Comunicativo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a003",
+        "texto": "Paciente",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a004",
+        "texto": "Detalhista",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a005",
+        "texto": "Competitivo",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a006",
+        "texto": "Entusiasmado",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a007",
+        "texto": "Leal",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a008",
+        "texto": "Preciso",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a009",
+        "texto": "Ousado",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a010",
+        "texto": "Persuasivo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a011",
+        "texto": "Calmo",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a012",
+        "texto": "Analítico",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a013",
+        "texto": "Direto",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a014",
+        "texto": "Sociável",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a015",
+        "texto": "Constante",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a016",
+        "texto": "Cauteloso",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a017",
+        "texto": "Independente",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a018",
+        "texto": "Otimista",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a019",
+        "texto": "Cooperativo",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a020",
+        "texto": "Organizado",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a021",
+        "texto": "Determinado",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a022",
+        "texto": "Expressivo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a023",
+        "texto": "Confiável",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a024",
+        "texto": "Sistemático",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a025",
+        "texto": "Exigente",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a026",
+        "texto": "Espontâneo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a027",
+        "texto": "Bom ouvinte",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a028",
+        "texto": "Criterioso",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a029",
+        "texto": "Destemido",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a030",
+        "texto": "Autoconfiante",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a031",
+        "texto": "Receoso",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a032",
+        "texto": "Realista",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a033",
+        "texto": "Audaz",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a034",
+        "texto": "Saudável",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a035",
+        "texto": "Bem-educado",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a036",
+        "texto": "Sério",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a037",
+        "texto": "Energético",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a038",
+        "texto": "Egoísta",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a039",
+        "texto": "Diplomático",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a040",
+        "texto": "Preocupado",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a041",
+        "texto": "Persistente",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a042",
+        "texto": "Cativante",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a043",
+        "texto": "Esclarecido",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a044",
+        "texto": "Simpático",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a045",
+        "texto": "Turrão",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a046",
+        "texto": "Passivo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a047",
+        "texto": "Humilde",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a048",
+        "texto": "Equilibrado",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a049",
+        "texto": "Ágil",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a050",
+        "texto": "Sensível",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a051",
+        "texto": "Carismático",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a052",
+        "texto": "Desconfiado",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a053",
+        "texto": "Animado",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a054",
+        "texto": "Autêntico",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a055",
+        "texto": "Eloquente",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a056",
+        "texto": "Personalista",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a057",
+        "texto": "De fácil trato",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a058",
+        "texto": "Suave",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a059",
+        "texto": "Direto ao ponto",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a060",
+        "texto": "Gentil",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a061",
+        "texto": "Coração mole",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a062",
+        "texto": "Bem relacionado",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a063",
+        "texto": "Prudente",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a064",
+        "texto": "Responsável",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a065",
+        "texto": "Tradicional",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a066",
+        "texto": "Versátil",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a067",
+        "texto": "Extrovertido",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a068",
+        "texto": "Simples",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a069",
+        "texto": "Arrojado",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a070",
+        "texto": "Amigo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a071",
+        "texto": "Sossegado",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a072",
+        "texto": "Convincente",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a073",
+        "texto": "Perfeccionista",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a074",
+        "texto": "Competitivo nato",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a075",
+        "texto": "Compreensivo",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a076",
+        "texto": "Tímido",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a077",
+        "texto": "Generoso",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a078",
+        "texto": "Bem-quisto",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a079",
+        "texto": "De paz",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a080",
+        "texto": "Espirituoso",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a081",
+        "texto": "Formal",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a082",
+        "texto": "Leal ao grupo",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a083",
+        "texto": "Empreendedor",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a084",
+        "texto": "Flexível",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a085",
+        "texto": "Mandão",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a086",
+        "texto": "Sereno",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a087",
+        "texto": "Impaciente",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a088",
+        "texto": "Espírito nobre",
+        "fator": "C",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a089",
+        "texto": "Corajoso",
+        "fator": "D",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a090",
+        "texto": "Original",
+        "fator": "I",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a091",
+        "texto": "Respeitoso",
+        "fator": "S",
+        "status": "revisao_pendente"
+      },
+      {
+        "id": "a092",
+        "texto": "Ativo",
+        "fator": "C",
+        "status": "revisao_pendente"
+      }
+    ]
+  }
+}

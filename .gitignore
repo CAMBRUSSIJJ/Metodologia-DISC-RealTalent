@@ -1,0 +1,13 @@
+# Local / generated artifacts (not committed)
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+.vercel/
+qa/*.png
+qa/*.webm
+qa/*.log
+*.zip

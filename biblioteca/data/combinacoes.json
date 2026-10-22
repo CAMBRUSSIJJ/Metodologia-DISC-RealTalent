@@ -1,0 +1,110 @@
+[
+  {
+    "id": "blend-di",
+    "codigo": "DI",
+    "nome": "Direção influente",
+    "descricao": "Combina ação decisiva com energia social.",
+    "atencao": "Pode mobilizar rapidamente, mas precisa equilibrar escuta e compromisso real.",
+    "pratica": "Definir meta, envolver pessoas e registrar decisões.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-ds",
+    "codigo": "DS",
+    "nome": "Direção consistente",
+    "descricao": "Combina foco em entrega com busca de continuidade.",
+    "atencao": "Pode exigir velocidade sem oferecer transição suficiente.",
+    "pratica": "Definir objetivo e explicar como preservar segurança na mudança.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-dc",
+    "codigo": "DC",
+    "nome": "Direção criteriosa",
+    "descricao": "Combina decisão e rigor sobre evidências.",
+    "atencao": "Pode elevar exigência e cobrança em excesso.",
+    "pratica": "Separar riscos críticos de detalhes aperfeiçoáveis.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-id",
+    "codigo": "ID",
+    "nome": "Influência assertiva",
+    "descricao": "Combina sociabilidade com iniciativa.",
+    "atencao": "Pode comunicar entusiasmo como se fosse decisão tomada.",
+    "pratica": "Fechar acordos com responsáveis, escopo e prazos.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-is",
+    "codigo": "IS",
+    "nome": "Influência cooperativa",
+    "descricao": "Combina conexão social com acolhimento.",
+    "atencao": "Pode evitar discordâncias para preservar a harmonia.",
+    "pratica": "Praticar feedback claro com tom respeitoso.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-ic",
+    "codigo": "IC",
+    "nome": "Influência analítica",
+    "descricao": "Combina conexão com preocupação pela qualidade.",
+    "atencao": "Pode oscilar entre improvisação e revisão extensa.",
+    "pratica": "Equilibrar narrativa, evidência e compromisso de execução.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-sd",
+    "codigo": "SD",
+    "nome": "Constância assertiva",
+    "descricao": "Combina suporte estável com ação quando há objetivo claro.",
+    "atencao": "Pode acumular frustração antes de impor limites.",
+    "pratica": "Criar rotinas de alinhamento e espaço de discordância.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-si",
+    "codigo": "SI",
+    "nome": "Constância relacional",
+    "descricao": "Combina confiabilidade e relacionamento.",
+    "atencao": "Pode dizer sim a muitas demandas simultâneas.",
+    "pratica": "Negociar prioridades e limites com transparência.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-sc",
+    "codigo": "SC",
+    "nome": "Constância metódica",
+    "descricao": "Combina previsibilidade com atenção a processos.",
+    "atencao": "Pode resistir a mudanças mal contextualizadas.",
+    "pratica": "Testar mudanças pequenas com indicadores claros.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-cd",
+    "codigo": "CD",
+    "nome": "Precisão orientada à decisão",
+    "descricao": "Combina análise exigente e busca de resultados.",
+    "atencao": "Pode pressionar por certeza impossível antes de decidir.",
+    "pratica": "Definir critérios mínimos e tempo-limite de análise.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-ci",
+    "codigo": "CI",
+    "nome": "Precisão comunicativa",
+    "descricao": "Combina análise e capacidade de explicar ideias.",
+    "atencao": "Pode alternar excesso de detalhes com improvisação.",
+    "pratica": "Usar sínteses estruturadas e evidências acessíveis.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  },
+  {
+    "id": "blend-cs",
+    "codigo": "CS",
+    "nome": "Precisão paciente",
+    "descricao": "Combina cuidado com processo e consistência.",
+    "atencao": "Pode demorar a questionar rotinas inadequadas.",
+    "pratica": "Avaliar regularmente se o processo ainda atende ao objetivo.",
+    "nota": "Síntese editorial hipotética; não equivale a escala psicométrica validada."
+  }
+]

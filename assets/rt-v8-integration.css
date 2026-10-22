@@ -1,0 +1,31 @@
+/* RealTalent V8 Unified Experience — Professional + Minha Jornada. */
+:root{--rt-v8-purple:#9278ff}
+.rt-workspace-switch{margin-bottom:12px!important}
+.rt-workspace-switch a{min-height:40px}
+.rt-v8-tabs{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 18px;padding:6px;border:1px solid var(--rt-line);background:var(--rt-surface);border-radius:13px}
+.rt-v8-tabs a,.rt-v8-tabs button{background:transparent;border:1px solid transparent;border-radius:9px;color:var(--rt-muted);font-size:12px;font-weight:750;padding:11px 14px;text-decoration:none;cursor:pointer;line-height:1.2}
+.rt-v8-tabs a:hover,.rt-v8-tabs button:hover{background:var(--rt-chip);color:var(--rt-text)}
+.rt-v8-tabs a[aria-current=page],.rt-v8-tabs button[aria-selected=true]{background:var(--rt-highlight);color:var(--rt-purple);border-color:var(--rt-line)}
+.rt-v8-subtabs{justify-content:flex-start}
+.rt-v8-notice{padding:13px 17px;border-radius:12px;margin:15px 0;color:var(--rt-muted);background:var(--rt-panel);border:1px solid var(--rt-line);line-height:1.6;font-size:12px}
+.rt-v8-notice strong{color:var(--rt-text)}
+.rt-v8-frame-wrap{display:block;width:100%;background:var(--rt-bg);border:1px solid var(--rt-line);border-radius:18px;overflow:hidden;margin-bottom:24px;min-width:0}
+.rt-v8-frame{display:block;width:100%;height:900px;border:0;background:transparent;min-height:430px}
+.rt-v8-linked{margin:20px 0}
+.rt-v8-link-form{display:flex;align-items:center;gap:15px;border-top:1px solid var(--rt-line);padding:16px 0;flex-wrap:wrap}
+.rt-v8-link-form>div{flex:1 1 220px;min-width:0}
+.rt-v8-link-form strong{display:block;font-size:13px;color:var(--rt-text)}
+.rt-v8-link-form small{display:block;color:var(--rt-muted);font-size:12px;margin-top:5px}
+.rt-v8-link-form label{flex:1 1 240px;display:flex;flex-direction:column;gap:6px;color:var(--rt-muted);font-size:11px}
+.rt-v8-link-form select{background:var(--rt-panel);color:var(--rt-text);border:1px solid var(--rt-line);border-radius:9px;padding:10px;min-width:100px;max-width:100%}
+.rt-v8-link-form button{min-width:110px}
+.rt-inline-route{margin:0 0 16px}
+@media(max-width:700px){.rt-v8-tabs a,.rt-v8-tabs button{padding:10px;font-size:11px}.rt-v8-link-form{align-items:stretch}.rt-v8-link-form button{width:100%}}
+/* Últimos controles verdes legados no portal do cliente: padronização efetiva. */
+#app .btn.small:not(.solid),#app .btn.ghost,#app .row .btn:not(.solid){background:var(--rt-panel)!important;border:1px solid var(--rt-line)!important;color:var(--rt-purple)!important;border-radius:10px!important;box-shadow:none!important}
+#app .btn.small:not(.solid):hover,#app .btn.ghost:hover{background:var(--rt-raised)!important;color:var(--rt-text)!important}
+#app .row-main b,#app .item-main strong,#app .card-heading h2{color:var(--rt-text)!important}
+#app .row-main p,#app .muted,#app .side-muted{color:var(--rt-muted)!important}
+#app .row-symbol{background:var(--rt-highlight)!important;color:var(--rt-purple)!important}
+#app .help{border-left:3px solid var(--rt-purple)!important;background:var(--rt-panel)!important;color:var(--rt-muted)!important}
+#app .progress-rail span{background:linear-gradient(90deg,#7b5fff,#a08cff)!important}

@@ -1,0 +1,13 @@
+{
+  "nome": "Biblioteca de Conhecimento DISC/ACER — RealTalent",
+  "versao": "3.0.0",
+  "data": "2026-10-18",
+  "idioma": "pt-BR",
+  "tipo": "base_educativa_editorial",
+  "destino": "consulta, treinamento, apoio a equipes, liderança, vendas, serviços e integração de IA",
+  "escopo": "Conteúdo original editorial, referências públicas, e instrumento extraído do ZIP sob quarentena metodológica.",
+  "nao_e": "instrumento psicométrico validado, teste psicológico homologado, diagnóstico ou critério automático de RH",
+  "licenciamento": "Texto editorial criado para o projeto; referências externas apenas citadas por links; material original do ZIP mantido em arquivo separado.",
+  "aviso_seguranca": "Nenhuma chave, token ou configuração do projeto original foi importada para esta biblioteca.",
+  "interface": "knowledge_experience"
+}

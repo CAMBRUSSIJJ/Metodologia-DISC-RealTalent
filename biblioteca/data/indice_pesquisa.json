@@ -1,0 +1,2302 @@
+[
+  {
+    "id": "art:fundamentos",
+    "kind": "Artigos",
+    "group": "conceitos",
+    "title": "Fundamentos do modelo",
+    "subtitle": "O que o DISC/ACER descreve",
+    "body": "O DISC organiza preferências de comportamento em quatro dimensões. A nomenclatura ACER foi informada pelo responsável do projeto como sua tradução para português. Esta biblioteca mantém um modelo único, com rótulos DISC e sinônimos de consulta ACER.",
+    "alert": "Perfis são combinações, não caixas rígidas. A mesma pessoa pode agir de modo diferente conforme objetivo, experiência, segurança psicológica e contexto.",
+    "points": [
+      "Peça exemplos de ações observáveis em vez de presumir traços permanentes.",
+      "Explore as quatro dimensões, incluindo as menos salientes.",
+      "Diferencie autoavaliação, observação e resultados práticos."
+    ],
+    "keywords": "conceitos DISC ACER fundamentos"
+  },
+  {
+    "id": "art:origem",
+    "kind": "Artigos",
+    "group": "conceitos",
+    "title": "História e desenvolvimento",
+    "subtitle": "Da teoria comportamental aos instrumentos",
+    "body": "O modelo DISC tem raízes na obra de William Moulton Marston de 1928. Questionários e produtos posteriores foram desenvolvidos por diferentes organizações; não existe garantia de equivalência entre todos eles.",
+    "alert": "Uma adaptação de nomes para outro idioma não transforma automaticamente o instrumento original em teste validado. Itens, normas, escalas e populações devem ser examinados separadamente.",
+    "points": [
+      "Registrar autoria e origem de cada instrumento.",
+      "Não usar dados de confiabilidade de um fornecedor como prova da validade da versão RealTalent.",
+      "Documentar mudanças de item e algoritmo."
+    ],
+    "keywords": "conceitos DISC ACER origem"
+  },
+  {
+    "id": "art:dimensoes",
+    "kind": "Artigos",
+    "group": "conceitos",
+    "title": "As quatro dimensões",
+    "subtitle": "D, I, S e C em linguagem de trabalho",
+    "body": "D descreve iniciativa diante de desafios; I, comunicação e envolvimento; S, ritmo e cooperação; C, qualidade, critérios e processos. Cada fator está presente em graus variados.",
+    "alert": "As descrições são hipóteses de preferência comportamental, não fatos definitivos sobre uma pessoa. Um D elevado não demonstra capacidade gerencial; um C elevado não comprova inteligência.",
+    "points": [
+      "Conectar cada leitura a exemplos concretos.",
+      "Acolher casos em que o perfil não se ajusta.",
+      "Evitar comparações de valor entre perfis."
+    ],
+    "keywords": "conceitos DISC ACER dimensoes"
+  },
+  {
+    "id": "art:leitura",
+    "kind": "Artigos",
+    "group": "interpretacao",
+    "title": "Como interpretar um resultado",
+    "subtitle": "Leitura contextual e cuidadosa",
+    "body": "Comece pela composição dos quatro fatores e pelo contexto de resposta. Não reduza o resultado a uma letra, uma cor ou um ranking entre pessoas. Quando a pontuação vier do questionário do ZIP, descreva-a como indicador exploratório.",
+    "alert": "Compare hipóteses comportamentais com fatos, relatos e oportunidades de desenvolvimento. Explique margens de interpretação quando a psicometria ainda não foi estudada.",
+    "points": [
+      "Pergunte: em que situações isso aparece?",
+      "Busque um exemplo que confirma e outro que contraria a hipótese.",
+      "Escolha uma ação de desenvolvimento verificável."
+    ],
+    "keywords": "interpretacao DISC ACER leitura"
+  },
+  {
+    "id": "art:pontuacao",
+    "kind": "Artigos",
+    "group": "interpretacao",
+    "title": "Pontuação e limites",
+    "subtitle": "Escores não são percentis",
+    "body": "O aplicativo original contabiliza escolhas associadas a D, I, S e C. Frequências de respostas não são automaticamente percentis populacionais, aptidão, probabilidade de êxito ou intensidade clínica.",
+    "alert": "Exibir uma porcentagem de escolhas como “preferência no instrumento” exige contextualizar número de itens, regra de cálculo e limites. Não aplicar pontos de corte sem estudos específicos.",
+    "points": [
+      "Publicar fórmula e versão do cálculo.",
+      "Registrar dados ausentes, versões e alterações.",
+      "Não comparar indivíduos usando métricas incomparáveis."
+    ],
+    "keywords": "interpretacao DISC ACER pontuacao"
+  },
+  {
+    "id": "art:contexto",
+    "kind": "Artigos",
+    "group": "interpretacao",
+    "title": "Comportamento e ambiente",
+    "subtitle": "Preferências mudam conforme o contexto",
+    "body": "Pressão, cargo, cultura, confiança, familiaridade com a tarefa e incentivos influenciam comportamentos observados. Diferenças entre autoimagem e percepção de expectativa externa precisam ser exploradas como narrativas, não interpretadas automaticamente como conflito psicológico.",
+    "alert": "É inadequado afirmar que a pessoa possui “verdadeiro eu” em uma escala e “máscara” em outra sem fundamentação empírica.",
+    "points": [
+      "Perguntar sobre exemplos recentes em ambientes distintos.",
+      "Investigar variáveis situacionais.",
+      "Evitar inferir causas clínicas."
+    ],
+    "keywords": "interpretacao DISC ACER contexto"
+  },
+  {
+    "id": "art:feedback",
+    "kind": "Artigos",
+    "group": "comunicacao",
+    "title": "Feedback orientado ao comportamento",
+    "subtitle": "Fatos, impacto e acordo",
+    "body": "Um feedback útil descreve situação, comportamento observável, impacto e uma próxima ação verificável. Preferências de comunicação ajudam a escolher a forma, mas não alteram a obrigação de dar informações claras e respeitosas.",
+    "alert": "Evite rotular a pessoa (“você é D, por isso interrompe”). Prefira “na reunião de ontem houve três interrupções; precisamos garantir espaço de fala”.",
+    "points": [
+      "Observar e registrar o episódio.",
+      "Perguntar a perspectiva da pessoa.",
+      "Combinar comportamento e data de revisão."
+    ],
+    "keywords": "comunicacao DISC ACER feedback"
+  },
+  {
+    "id": "art:adaptacao",
+    "kind": "Artigos",
+    "group": "comunicacao",
+    "title": "Adaptação de comunicação",
+    "subtitle": "Ajustar a forma sem manipular",
+    "body": "Com interlocutores que valorizam velocidade, sintetize decisões; com os mais expressivos, estimule troca; com os que buscam estabilidade, explique a transição; com os criteriosos, apresente evidências.",
+    "alert": "Essas são hipóteses de preferência. Pergunte diretamente como a pessoa deseja receber informação; jamais atribua estilo apenas à aparência.",
+    "points": [
+      "Confirmar ritmo e formato preferido.",
+      "Entregar informação essencial a todos.",
+      "Registrar acordos em linguagem simples."
+    ],
+    "keywords": "comunicacao DISC ACER adaptacao"
+  },
+  {
+    "id": "art:conflitos",
+    "kind": "Artigos",
+    "group": "comunicacao",
+    "title": "Conflitos e negociação interna",
+    "subtitle": "Transformar diferenças em acordos",
+    "body": "Conflitos muitas vezes surgem de ritmo, nível de detalhe, expectativas e critérios distintos. O DISC pode ser usado como vocabulário para perguntar sobre necessidades, não como explicação conclusiva de uma disputa.",
+    "alert": "Investigue incentivos, poder, sobrecarga e processos; nem todo conflito é comportamental.",
+    "points": [
+      "Nomear o desacordo sem acusação.",
+      "Separar fatos de interpretações.",
+      "Registrar uma experiência de cooperação com revisão."
+    ],
+    "keywords": "comunicacao DISC ACER conflitos"
+  },
+  {
+    "id": "art:reunioes",
+    "kind": "Artigos",
+    "group": "comunicacao",
+    "title": "Reuniões inclusivas",
+    "subtitle": "Ouvir decisões e informações",
+    "body": "Reuniões de qualidade combinam objetivo, informações prévias, turnos de participação e responsáveis. Modere estilos mais dominantes sem excluir iniciativa; dê espaço aos reservados sem obrigá-los a exposição pública.",
+    "alert": "A preferência individual não determina o direito de falar ou decidir.",
+    "points": [
+      "Enviar pauta antes.",
+      "Solicitar contribuições de forma inclusiva.",
+      "Encerrar com decisão, dono e prazo."
+    ],
+    "keywords": "comunicacao DISC ACER reunioes"
+  },
+  {
+    "id": "art:lideranca",
+    "kind": "Artigos",
+    "group": "lideranca",
+    "title": "Liderança adaptativa",
+    "subtitle": "Gestão de pessoas sem estereótipos",
+    "body": "Liderar exige resultados e qualidade das relações. O modelo pode apoiar conversas sobre autonomia, suporte, ritmo e critérios, mas não substitui avaliação de competências e desempenho observável.",
+    "alert": "Não atribua pessoas a cargos com base em uma letra.",
+    "points": [
+      "Perguntar de que suporte cada pessoa precisa.",
+      "Definir expectativas iguais de resultado e justas de condição.",
+      "Revisar o estilo de gestão com feedback do time."
+    ],
+    "keywords": "lideranca DISC ACER"
+  },
+  {
+    "id": "art:equipes",
+    "kind": "Artigos",
+    "group": "lideranca",
+    "title": "Complementaridade de equipes",
+    "subtitle": "Diversidade de perspectivas, não quotas de letras",
+    "body": "Uma equipe pode se beneficiar de iniciativa, envolvimento, continuidade e rigor. Isso não significa que seja necessário contratar pessoas em proporções predefinidas de D, I, S e C.",
+    "alert": "Utilize a biblioteca para construir práticas inclusivas e combinados; não para classificar pessoas como “fit” ou “não fit” sem evidência independente.",
+    "points": [
+      "Mapear processos que precisam de revisão.",
+      "Garantir contraditório nas decisões importantes.",
+      "Distribuir responsabilidades por competência, interesse e carga."
+    ],
+    "keywords": "lideranca DISC ACER equipes"
+  },
+  {
+    "id": "art:mudanca",
+    "kind": "Artigos",
+    "group": "lideranca",
+    "title": "Gestão da mudança",
+    "subtitle": "Transições claras e participativas",
+    "body": "Mudanças são mais bem conduzidas com propósito, impacto, plano de implantação, canal de dúvidas e aprendizado. Diferentes pessoas podem solicitar velocidade, participação, previsibilidade ou evidências.",
+    "alert": "Tratar dúvidas como insumos do projeto, não resistência pessoal.",
+    "points": [
+      "Comunicar antes do anúncio amplo quando pertinente.",
+      "Definir pilotos e critérios de sucesso.",
+      "Medir adoção com dados e relatos."
+    ],
+    "keywords": "lideranca DISC ACER mudanca"
+  },
+  {
+    "id": "art:onboarding",
+    "kind": "Artigos",
+    "group": "lideranca",
+    "title": "Integração de pessoas",
+    "subtitle": "Acolhimento e expectativas claras",
+    "body": "No onboarding, pergunte ao colaborador o que ajuda a trabalhar bem: frequência de acompanhamento, autonomia, informação, feedback e forma de comunicação. O perfil pode oferecer pistas, nunca regras obrigatórias.",
+    "alert": "Evite apresentar um rótulo ao time sem finalidade clara e base legal adequada.",
+    "points": [
+      "Construir acordo de trabalho.",
+      "Ajustar conforme experiência real.",
+      "Rever após 30, 60 e 90 dias."
+    ],
+    "keywords": "lideranca DISC ACER onboarding"
+  },
+  {
+    "id": "art:vendas",
+    "kind": "Artigos",
+    "group": "vendas",
+    "title": "Vendas consultivas",
+    "subtitle": "Conectar necessidades, evidência e decisão",
+    "body": "Em vendas, adaptar o discurso significa escutar as prioridades reais do comprador. Para quem privilegia resultados, mostre impacto; para quem valoriza relacionamento, colaboração; para quem busca estabilidade, implantação; para quem pede detalhes, evidências.",
+    "alert": "A linguagem DISC não autoriza adivinhar o perfil de um lead nem manipular vulnerabilidades.",
+    "points": [
+      "Perguntar critérios de decisão ao comprador.",
+      "Confirmar objetivos, limitações e próximos passos.",
+      "Documentar necessidades no CRM de forma minimizada."
+    ],
+    "keywords": "vendas DISC ACER"
+  },
+  {
+    "id": "art:descoberta",
+    "kind": "Artigos",
+    "group": "vendas",
+    "title": "Perguntas de descoberta comercial",
+    "subtitle": "Explorar sem rotular",
+    "body": "Uma descoberta eficaz investiga desafio, impacto, urgência, pessoas envolvidas, condições de sucesso e riscos. Perguntas devem ser abertas e neutras, evitando supor que o cliente tem um estilo por falar rápido ou pedir dados.",
+    "alert": "Adaptação de comunicação não é uma licença para direcionar a resposta do comprador.",
+    "points": [
+      "O que precisa melhorar?",
+      "Como você avaliará sucesso?",
+      "Quais riscos precisam ser resolvidos?"
+    ],
+    "keywords": "vendas DISC ACER descoberta"
+  },
+  {
+    "id": "art:objecoes",
+    "kind": "Artigos",
+    "group": "vendas",
+    "title": "Objeções em vendas",
+    "subtitle": "Entender antes de responder",
+    "body": "Objeções sobre preço, prazo, segurança ou integração pedem diagnóstico: que alternativa existe, qual custo de não resolver, qual evidência falta e quem decide. Use tom e profundidade ajustados ao interlocutor, sem atribuir objeção ao perfil.",
+    "alert": "Não use suposto estilo comportamental para contornar consentimento ou omitir informação.",
+    "points": [
+      "Validar a preocupação.",
+      "Separar fato de hipótese.",
+      "Propor teste ou material verificável."
+    ],
+    "keywords": "vendas DISC ACER objecoes"
+  },
+  {
+    "id": "art:posvenda",
+    "kind": "Artigos",
+    "group": "vendas",
+    "title": "Pós-venda e sucesso do cliente",
+    "subtitle": "Entrega alinhada ao contrato",
+    "body": "Na implantação, diferentes clientes preferem cadências e formatos de acompanhamento. Defina desde o início contatos, canais, responsabilidades, critérios de aceite e forma de escalonamento.",
+    "alert": "Meça satisfação e adoção; não use o perfil para presumir satisfação.",
+    "points": [
+      "Definir indicadores acordados.",
+      "Registrar mudanças de escopo.",
+      "Realizar check-ins de adoção."
+    ],
+    "keywords": "vendas DISC ACER posvenda"
+  },
+  {
+    "id": "art:atendimento",
+    "kind": "Artigos",
+    "group": "servicos",
+    "title": "Atendimento e experiência",
+    "subtitle": "Jornadas que acolhem diferentes necessidades",
+    "body": "Um serviço acessível oferece caminhos distintos para resolver a mesma demanda: resposta rápida, explicação guiada, acompanhamento humano e documentação. O DISC pode inspirar opções de experiência, não segmentação rígida.",
+    "alert": "O usuário deve poder escolher o atendimento adequado sem ter seu comportamento inferido automaticamente.",
+    "points": [
+      "Oferecer formatos claros.",
+      "Informar prazos de modo transparente.",
+      "Verificar resolução da necessidade."
+    ],
+    "keywords": "servicos DISC ACER atendimento"
+  },
+  {
+    "id": "art:desenvolvimento",
+    "kind": "Artigos",
+    "group": "desenvolvimento",
+    "title": "Planos de desenvolvimento",
+    "subtitle": "Experimentos de comportamento observável",
+    "body": "Um plano de desenvolvimento parte de uma situação real, escolhe um comportamento a experimentar, define frequência e indicador observável e revisa o resultado. A pessoa participa da escolha e pode discordar da hipótese sugerida pelo perfil.",
+    "alert": "Não transforme uma característica exploratória em deficiência permanente.",
+    "points": [
+      "Definir um alvo por vez.",
+      "Agendar reflexão e feedback.",
+      "Registrar o que funcionou em cada contexto."
+    ],
+    "keywords": "desenvolvimento DISC ACER"
+  },
+  {
+    "id": "art:facilitacao",
+    "kind": "Artigos",
+    "group": "desenvolvimento",
+    "title": "Workshops e dinâmicas",
+    "subtitle": "Aprendizagem com segurança psicológica",
+    "body": "Em oficinas, cada pessoa pode explorar preferências de trabalho por meio de casos, reflexões e acordos. Evite divulgação compulsória de resultados e comparação pública de colegas.",
+    "alert": "A facilitação deve explicar confidencialidade, finalidade e possibilidade de não participar.",
+    "points": [
+      "Acordar regras de respeito.",
+      "Utilizar cenários fictícios.",
+      "Encerrar com ações de equipe, não rótulos."
+    ],
+    "keywords": "desenvolvimento DISC ACER facilitacao"
+  },
+  {
+    "id": "art:etica",
+    "kind": "Artigos",
+    "group": "governanca",
+    "title": "Ética, ciência e privacidade",
+    "subtitle": "Limites claros para decisões sobre pessoas",
+    "body": "Cada instrumento exige evidência específica de validade e confiabilidade para sua finalidade. O fato de um fornecedor apresentar pesquisa para seu teste não valida automaticamente o questionário presente no ZIP RealTalent. Resultados individuais devem ser acessados apenas por quem tem finalidade e autorização adequadas.",
+    "alert": "No Brasil, testes psicológicos e avaliações psicológicas têm regras profissionais específicas; é importante verificar enquadramento e consultar o CFP/SATEPSI, inclusive na modalidade online.",
+    "points": [
+      "Não usar resultado isoladamente para contratação ou desligamento.",
+      "Aplicar LGPD: finalidade, necessidade, transparência e segurança.",
+      "Oferecer correção, contestação e revisão humana conforme o caso."
+    ],
+    "keywords": "governanca DISC ACER etica"
+  },
+  {
+    "id": "art:instrumento",
+    "kind": "Artigos",
+    "group": "governanca",
+    "title": "Questionário original do projeto",
+    "subtitle": "Material extraído e pendente de revisão",
+    "body": "O ZIP disponibilizado continha 20 perguntas de escolha e 92 adjetivos associados a quatro fatores. A biblioteca os preserva em JSON separado, mantendo seu status de “revisão pendente” por questões de construção de itens, viés e ausência de dados psicométricos específicos.",
+    "alert": "As alternativas seguem posições fixas no código original (D, I, C, S). Recomenda-se avaliar viés de posição e o impacto de alterar a ordem sem prejudicar comparabilidade dos dados anteriores.",
+    "points": [
+      "Revisar ambiguidade e desejabilidade social.",
+      "Examinar itens que não correspondem claramente ao fator marcado.",
+      "Criar estudo de consistência, estabilidade, validade e documentação antes de uso avaliativo."
+    ],
+    "keywords": "governanca DISC ACER instrumento"
+  },
+  {
+    "id": "perfil:D",
+    "kind": "Perfis",
+    "group": "Perfis",
+    "title": "D · Dominância",
+    "subtitle": "Direção e resultados",
+    "body": "Tendência a agir sobre desafios com assertividade, velocidade e foco no resultado.",
+    "details": [
+      {
+        "head": "Essência",
+        "text": "Tendência a agir sobre desafios com assertividade, velocidade e foco no resultado."
+      },
+      {
+        "head": "Quando pode aparecer",
+        "text": "O comportamento pode aparecer quando há autonomia para decidir, metas claras ou pressão por entrega."
+      },
+      {
+        "head": "Pontos fortes",
+        "text": [
+          "Toma decisões e assume responsabilidade",
+          "Enfrenta obstáculos sem paralisar",
+          "Define prioridades e acelera execução",
+          "Expõe pontos de discordância com clareza"
+        ]
+      },
+      {
+        "head": "Motivadores",
+        "text": [
+          "Autonomia com responsabilidade",
+          "Desafios relevantes",
+          "Critérios claros de sucesso",
+          "Liberdade para propor soluções"
+        ]
+      },
+      {
+        "head": "Necessidades",
+        "text": [
+          "Objetivo e impacto esperados",
+          "Poder decidir o caminho com limites definidos",
+          "Informação essencial de forma direta",
+          "Feedback rápido sobre resultados"
+        ]
+      },
+      {
+        "head": "Atenções",
+        "text": [
+          "Atropelar a escuta e o alinhamento",
+          "Subestimar o impacto relacional",
+          "Tratar urgência como regra",
+          "Confundir discordância com falta de compromisso"
+        ]
+      },
+      {
+        "head": "Sob pressão (hipóteses)",
+        "text": [
+          "Intensifica cobrança e velocidade",
+          "Pode interromper explicações",
+          "Pode assumir tarefas em excesso para controlar o resultado"
+        ]
+      },
+      {
+        "head": "Como se comunicar",
+        "text": [
+          "Comece pelo objetivo e decisão requerida",
+          "Mostre duas ou três opções, impactos e prazo",
+          "Indique responsabilidades e limites",
+          "Convide a ouvir riscos sem diluir a mensagem"
+        ]
+      },
+      {
+        "head": "Feedback",
+        "text": "Descreva fatos, impacto, próximo comportamento observável e indicador de avanço; evite disputa de poder."
+      },
+      {
+        "head": "Desenvolvimento",
+        "text": [
+          "Antes de decidir, pedir uma objeção substantiva",
+          "Realizar rodadas de escuta em reuniões",
+          "Conferir sustentabilidade da entrega, não apenas velocidade",
+          "Praticar delegação com pontos de controle"
+        ]
+      },
+      {
+        "head": "Em vendas",
+        "text": "Apresente resultado, prazo, riscos relevantes e proposta objetiva; valide se a prioridade é real, em vez de presumir pressa."
+      },
+      {
+        "head": "Na liderança",
+        "text": "Combine autonomia com limites, critérios de qualidade e acordos de participação; reconheça quando escuta melhora a decisão."
+      },
+      {
+        "head": "Perguntas de coaching",
+        "text": [
+          "Qual decisão pode ser tomada hoje sem comprometer a qualidade?",
+          "Quem precisa ser ouvido antes da execução?",
+          "O que seria um sinal de pressa excessiva?"
+        ]
+      },
+      {
+        "head": "O que não se deve inferir",
+        "text": [
+          "Competência de liderança",
+          "Agressividade ou caráter",
+          "Capacidade cognitiva",
+          "Desempenho futuro"
+        ]
+      }
+    ],
+    "keywords": "DISC ACER D Dominância Direção e resultados"
+  },
+  {
+    "id": "perfil:I",
+    "kind": "Perfis",
+    "group": "Perfis",
+    "title": "I · Influência",
+    "subtitle": "Conexão e mobilização",
+    "body": "Tendência à expressão social, ao entusiasmo, à persuasão e ao engajamento em interações.",
+    "details": [
+      {
+        "head": "Essência",
+        "text": "Tendência à expressão social, ao entusiasmo, à persuasão e ao engajamento em interações."
+      },
+      {
+        "head": "Quando pode aparecer",
+        "text": "Pode ganhar destaque em atividades colaborativas, apresentações e situações que exigem mobilização de pessoas."
+      },
+      {
+        "head": "Pontos fortes",
+        "text": [
+          "Conecta interlocutores e amplia participação",
+          "Dá energia a iniciativas coletivas",
+          "Comunica ideias de modo envolvente",
+          "Ajuda a manter abertura ao diálogo"
+        ]
+      },
+      {
+        "head": "Motivadores",
+        "text": [
+          "Trocas e reconhecimento",
+          "Espaço para criatividade",
+          "Ambiente participativo",
+          "Oportunidade de expressar ideias"
+        ]
+      },
+      {
+        "head": "Necessidades",
+        "text": [
+          "Objetivo com espaço para diálogo",
+          "Reconhecimento específico e respeitoso",
+          "Liberdade de experimentar",
+          "Acordos de execução registrados"
+        ]
+      },
+      {
+        "head": "Atenções",
+        "text": [
+          "Prometer além da capacidade de entrega",
+          "Trocar foco por novidade",
+          "Evitar conversas desconfortáveis",
+          "Confundir aprovação com alinhamento"
+        ]
+      },
+      {
+        "head": "Sob pressão (hipóteses)",
+        "text": [
+          "Aumenta comunicação e procura validação",
+          "Pode dispersar diante de críticas",
+          "Pode minimizar detalhes e restrições"
+        ]
+      },
+      {
+        "head": "Como se comunicar",
+        "text": [
+          "Abra com o propósito e impacto humano",
+          "Use exemplos e convide a participar",
+          "Termine com responsabilidades, critérios e prazo",
+          "Registre decisões por escrito"
+        ]
+      },
+      {
+        "head": "Feedback",
+        "text": "Reconheça contribuição concreta e delimite o comportamento a ajustar; priorize exemplos e compromissos verificáveis."
+      },
+      {
+        "head": "Desenvolvimento",
+        "text": [
+          "Converter ideias em uma lista de próximos passos",
+          "Treinar conversas difíceis com respeito",
+          "Reservar blocos de foco e revisão",
+          "Conferir compromissos antes de oferecer prazos"
+        ]
+      },
+      {
+        "head": "Em vendas",
+        "text": "Construa relação e demonstre valor com histórias verificáveis; confirme detalhes de implementação e próximos passos."
+      },
+      {
+        "head": "Na liderança",
+        "text": "Use o entusiasmo para facilitar alinhamento, com decisões, donos e marcos documentados."
+      },
+      {
+        "head": "Perguntas de coaching",
+        "text": [
+          "Como transformar a ideia em entrega concreta?",
+          "Qual conversa precisa acontecer mesmo sendo desconfortável?",
+          "Que compromisso depende de confirmação antes de ser assumido?"
+        ]
+      },
+      {
+        "head": "O que não se deve inferir",
+        "text": [
+          "Habilidade universal de negociação",
+          "Honestidade",
+          "Popularidade necessária em todo contexto",
+          "Resultado de vendas"
+        ]
+      }
+    ],
+    "keywords": "DISC ACER I Influência Conexão e mobilização"
+  },
+  {
+    "id": "perfil:S",
+    "kind": "Perfis",
+    "group": "Perfis",
+    "title": "S · Estabilidade",
+    "subtitle": "Constância e cooperação",
+    "body": "Tendência a valorizar consistência, apoio mútuo, previsibilidade e relações colaborativas.",
+    "details": [
+      {
+        "head": "Essência",
+        "text": "Tendência a valorizar consistência, apoio mútuo, previsibilidade e relações colaborativas."
+      },
+      {
+        "head": "Quando pode aparecer",
+        "text": "Pode aparecer em processos de acompanhamento, suporte, cuidado com relações e mudanças graduais."
+      },
+      {
+        "head": "Pontos fortes",
+        "text": [
+          "Sustenta acordos e rotinas",
+          "Escuta com atenção",
+          "Oferece apoio confiável",
+          "Contribui para continuidade operacional"
+        ]
+      },
+      {
+        "head": "Motivadores",
+        "text": [
+          "Clareza e previsibilidade",
+          "Relações de confiança",
+          "Ambiente cooperativo",
+          "Tempo razoável para adaptação"
+        ]
+      },
+      {
+        "head": "Necessidades",
+        "text": [
+          "Antecedência em mudanças",
+          "Critérios explícitos e seguros",
+          "Espaço para perguntas",
+          "Reconhecimento da continuidade e do cuidado"
+        ]
+      },
+      {
+        "head": "Atenções",
+        "text": [
+          "Postergar confrontos necessários",
+          "Assumir demandas demais para ajudar",
+          "Evitar mudanças úteis",
+          "Silenciar preocupações importantes"
+        ]
+      },
+      {
+        "head": "Sob pressão (hipóteses)",
+        "text": [
+          "Pode reduzir exposição e desacelerar",
+          "Busca estabilidade e suporte",
+          "Pode ceder sem concordar efetivamente"
+        ]
+      },
+      {
+        "head": "Como se comunicar",
+        "text": [
+          "Explique o contexto e o porquê da mudança",
+          "Estabeleça transição, suporte e próximos passos",
+          "Dê espaço para dúvidas sem constrangimento",
+          "Cheque concordância real, não só silêncio"
+        ]
+      },
+      {
+        "head": "Feedback",
+        "text": "Converse em ambiente respeitoso, com antecedência e exemplos; crie um plano gradual e confirme entendimento."
+      },
+      {
+        "head": "Desenvolvimento",
+        "text": [
+          "Praticar posicionamento claro em discordâncias",
+          "Definir limites de carga e prioridades",
+          "Fazer pequenos experimentos com mudança",
+          "Solicitar apoio sem assumir sozinho todo o trabalho"
+        ]
+      },
+      {
+        "head": "Em vendas",
+        "text": "Ofereça previsibilidade, implantação assistida e canais de suporte; não transforme cautela em suposta resistência."
+      },
+      {
+        "head": "Na liderança",
+        "text": "Use a consistência para dar segurança; fortaleça a autonomia de dizer não e levantar riscos."
+      },
+      {
+        "head": "Perguntas de coaching",
+        "text": [
+          "Em que ponto ajudar começa a prejudicar suas prioridades?",
+          "Qual mudança pequena podemos testar com segurança?",
+          "O que você realmente pensa sobre esta decisão?"
+        ]
+      },
+      {
+        "head": "O que não se deve inferir",
+        "text": [
+          "Baixa ambição",
+          "Incapacidade de mudar",
+          "Submissão",
+          "Velocidade de aprendizagem"
+        ]
+      }
+    ],
+    "keywords": "DISC ACER S Estabilidade Constância e cooperação"
+  },
+  {
+    "id": "perfil:C",
+    "kind": "Perfis",
+    "group": "Perfis",
+    "title": "C · Conformidade",
+    "subtitle": "Critério e qualidade",
+    "body": "Tendência a examinar evidências, padrões, precisão e condições para tomar decisões consistentes.",
+    "details": [
+      {
+        "head": "Essência",
+        "text": "Tendência a examinar evidências, padrões, precisão e condições para tomar decisões consistentes."
+      },
+      {
+        "head": "Quando pode aparecer",
+        "text": "Pode se manifestar em problemas complexos, avaliações de risco, controle de qualidade e decisões técnicas."
+      },
+      {
+        "head": "Pontos fortes",
+        "text": [
+          "Identifica inconsistências e riscos",
+          "Documenta critérios",
+          "Eleva a qualidade das entregas",
+          "Testa hipóteses antes de concluir"
+        ]
+      },
+      {
+        "head": "Motivadores",
+        "text": [
+          "Critérios transparentes",
+          "Tempo para analisar quando necessário",
+          "Acesso a informações confiáveis",
+          "Autonomia técnica com responsabilidade"
+        ]
+      },
+      {
+        "head": "Necessidades",
+        "text": [
+          "Contexto e evidências relevantes",
+          "Definição explícita de qualidade",
+          "Tempo proporcional à complexidade",
+          "Ambiente que aceite perguntas críticas"
+        ]
+      },
+      {
+        "head": "Atenções",
+        "text": [
+          "Prolongar decisões por busca de completude",
+          "Comunicar com excesso de detalhe",
+          "Subestimar fatores humanos",
+          "Confundir padrão ideal com exigência de todas as situações"
+        ]
+      },
+      {
+        "head": "Sob pressão (hipóteses)",
+        "text": [
+          "Eleva nível de checagem",
+          "Pode questionar premissas repetidamente",
+          "Pode adiar uma decisão reversível"
+        ]
+      },
+      {
+        "head": "Como se comunicar",
+        "text": [
+          "Apresente dados, premissas e alternativas",
+          "Indique o grau de incerteza",
+          "Esclareça critérios de qualidade e prazo",
+          "Diferencie decisões reversíveis das irreversíveis"
+        ]
+      },
+      {
+        "head": "Feedback",
+        "text": "Utilize evidências específicas, critérios e oportunidade de esclarecimento, evitando julgamentos vagos."
+      },
+      {
+        "head": "Desenvolvimento",
+        "text": [
+          "Definir o que é qualidade suficiente para cada decisão",
+          "Treinar sínteses executivas de uma página",
+          "Experimentar decisões reversíveis com prazo",
+          "Considerar sinais relacionais junto aos dados"
+        ]
+      },
+      {
+        "head": "Em vendas",
+        "text": "Mostre especificações, limitações, referências verificáveis e condições contratuais claras; não trate objeções técnicas como negatividade."
+      },
+      {
+        "head": "Na liderança",
+        "text": "Converta padrões em critérios acessíveis, sem exigir perfeição para tarefas de baixo risco."
+      },
+      {
+        "head": "Perguntas de coaching",
+        "text": [
+          "Quais informações faltantes são realmente decisivas?",
+          "O que pode ser testado em vez de analisado indefinidamente?",
+          "Como resumir esta decisão em três pontos?"
+        ]
+      },
+      {
+        "head": "O que não se deve inferir",
+        "text": [
+          "Inteligência geral",
+          "Frieza emocional",
+          "Superioridade técnica automática",
+          "Ausência de criatividade"
+        ]
+      }
+    ],
+    "keywords": "DISC ACER C Conformidade Critério e qualidade"
+  },
+  {
+    "id": "combo:DI",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "DI · Direção influente",
+    "subtitle": "Combina ação decisiva com energia social.",
+    "body": "Combina ação decisiva com energia social.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode mobilizar rapidamente, mas precisa equilibrar escuta e compromisso real."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Definir meta, envolver pessoas e registrar decisões."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER DI"
+  },
+  {
+    "id": "combo:DS",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "DS · Direção consistente",
+    "subtitle": "Combina foco em entrega com busca de continuidade.",
+    "body": "Combina foco em entrega com busca de continuidade.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode exigir velocidade sem oferecer transição suficiente."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Definir objetivo e explicar como preservar segurança na mudança."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER DS"
+  },
+  {
+    "id": "combo:DC",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "DC · Direção criteriosa",
+    "subtitle": "Combina decisão e rigor sobre evidências.",
+    "body": "Combina decisão e rigor sobre evidências.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode elevar exigência e cobrança em excesso."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Separar riscos críticos de detalhes aperfeiçoáveis."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER DC"
+  },
+  {
+    "id": "combo:ID",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "ID · Influência assertiva",
+    "subtitle": "Combina sociabilidade com iniciativa.",
+    "body": "Combina sociabilidade com iniciativa.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode comunicar entusiasmo como se fosse decisão tomada."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Fechar acordos com responsáveis, escopo e prazos."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER ID"
+  },
+  {
+    "id": "combo:IS",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "IS · Influência cooperativa",
+    "subtitle": "Combina conexão social com acolhimento.",
+    "body": "Combina conexão social com acolhimento.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode evitar discordâncias para preservar a harmonia."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Praticar feedback claro com tom respeitoso."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER IS"
+  },
+  {
+    "id": "combo:IC",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "IC · Influência analítica",
+    "subtitle": "Combina conexão com preocupação pela qualidade.",
+    "body": "Combina conexão com preocupação pela qualidade.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode oscilar entre improvisação e revisão extensa."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Equilibrar narrativa, evidência e compromisso de execução."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER IC"
+  },
+  {
+    "id": "combo:SD",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "SD · Constância assertiva",
+    "subtitle": "Combina suporte estável com ação quando há objetivo claro.",
+    "body": "Combina suporte estável com ação quando há objetivo claro.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode acumular frustração antes de impor limites."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Criar rotinas de alinhamento e espaço de discordância."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER SD"
+  },
+  {
+    "id": "combo:SI",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "SI · Constância relacional",
+    "subtitle": "Combina confiabilidade e relacionamento.",
+    "body": "Combina confiabilidade e relacionamento.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode dizer sim a muitas demandas simultâneas."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Negociar prioridades e limites com transparência."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER SI"
+  },
+  {
+    "id": "combo:SC",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "SC · Constância metódica",
+    "subtitle": "Combina previsibilidade com atenção a processos.",
+    "body": "Combina previsibilidade com atenção a processos.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode resistir a mudanças mal contextualizadas."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Testar mudanças pequenas com indicadores claros."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER SC"
+  },
+  {
+    "id": "combo:CD",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "CD · Precisão orientada à decisão",
+    "subtitle": "Combina análise exigente e busca de resultados.",
+    "body": "Combina análise exigente e busca de resultados.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode pressionar por certeza impossível antes de decidir."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Definir critérios mínimos e tempo-limite de análise."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER CD"
+  },
+  {
+    "id": "combo:CI",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "CI · Precisão comunicativa",
+    "subtitle": "Combina análise e capacidade de explicar ideias.",
+    "body": "Combina análise e capacidade de explicar ideias.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode alternar excesso de detalhes com improvisação."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Usar sínteses estruturadas e evidências acessíveis."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER CI"
+  },
+  {
+    "id": "combo:CS",
+    "kind": "Combinações",
+    "group": "Combinações",
+    "title": "CS · Precisão paciente",
+    "subtitle": "Combina cuidado com processo e consistência.",
+    "body": "Combina cuidado com processo e consistência.",
+    "details": [
+      {
+        "head": "Atenção",
+        "text": "Pode demorar a questionar rotinas inadequadas."
+      },
+      {
+        "head": "Aplicação",
+        "text": "Avaliar regularmente se o processo ainda atende ao objetivo."
+      }
+    ],
+    "alert": "Síntese editorial hipotética; não equivale a escala psicométrica validada.",
+    "keywords": "DISC ACER CS"
+  },
+  {
+    "id": "matriz:D-D",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "D → D",
+    "subtitle": "Comunicação: origem D / interlocutor D",
+    "body": "Compartilhe objetivo, restrições e dono da decisão.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite transformar a reunião em competição de autoridade."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Qual decisão e prazo você considera adequados?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao D-D"
+  },
+  {
+    "id": "matriz:D-I",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "D → I",
+    "subtitle": "Comunicação: origem D / interlocutor I",
+    "body": "Explique o resultado desejado e convide ideias de mobilização.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Não corte contribuições sem acolher a intenção."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Como envolver as pessoas certas sem perder o foco?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao D-I"
+  },
+  {
+    "id": "matriz:D-S",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "D → S",
+    "subtitle": "Comunicação: origem D / interlocutor S",
+    "body": "Apresente a mudança e o suporte disponível antes de cobrar adesão.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Não interprete silêncio como compromisso."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "O que tornaria esta mudança mais previsível?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao D-S"
+  },
+  {
+    "id": "matriz:D-C",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "D → C",
+    "subtitle": "Comunicação: origem D / interlocutor C",
+    "body": "Mostre dados decisivos, riscos e prazo de decisão.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Não pressione para pular riscos críticos."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Que evidência mudaria sua conclusão?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao D-C"
+  },
+  {
+    "id": "matriz:I-D",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "I → D",
+    "subtitle": "Comunicação: origem I / interlocutor D",
+    "body": "Vá ao ponto, apresente benefício e feche com pedido concreto.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite introduções longas sem decisão."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Qual decisão e prazo você considera adequados?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao I-D"
+  },
+  {
+    "id": "matriz:I-I",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "I → I",
+    "subtitle": "Comunicação: origem I / interlocutor I",
+    "body": "Valorize contribuições e documente acordos ao fim.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite sair com entusiasmo e sem responsáveis."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Como envolver as pessoas certas sem perder o foco?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao I-I"
+  },
+  {
+    "id": "matriz:I-S",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "I → S",
+    "subtitle": "Comunicação: origem I / interlocutor S",
+    "body": "Construa confiança e confirme se o ritmo proposto é confortável.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite exigir concordância diante do grupo."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "O que tornaria esta mudança mais previsível?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao I-S"
+  },
+  {
+    "id": "matriz:I-C",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "I → C",
+    "subtitle": "Comunicação: origem I / interlocutor C",
+    "body": "Apoie a narrativa com evidências verificáveis.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite promessas genéricas ou falta de documentação."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Que evidência mudaria sua conclusão?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao I-C"
+  },
+  {
+    "id": "matriz:S-D",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "S → D",
+    "subtitle": "Comunicação: origem S / interlocutor D",
+    "body": "Seja objetivo sobre limites, riscos e apoio necessário.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite concordar apenas para encerrar a pressão."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Qual decisão e prazo você considera adequados?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao S-D"
+  },
+  {
+    "id": "matriz:S-I",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "S → I",
+    "subtitle": "Comunicação: origem S / interlocutor I",
+    "body": "Acolha ideias e negocie prioridades possíveis.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite aceitar todos os pedidos informalmente."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Como envolver as pessoas certas sem perder o foco?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao S-I"
+  },
+  {
+    "id": "matriz:S-S",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "S → S",
+    "subtitle": "Comunicação: origem S / interlocutor S",
+    "body": "Cheque responsabilidades e cronograma com clareza.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite postergar decisões difíceis para preservar o conforto."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "O que tornaria esta mudança mais previsível?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao S-S"
+  },
+  {
+    "id": "matriz:S-C",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "S → C",
+    "subtitle": "Comunicação: origem S / interlocutor C",
+    "body": "Apresente processo, critérios e pontos de validação.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite entregar contexto incompleto."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Que evidência mudaria sua conclusão?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao S-C"
+  },
+  {
+    "id": "matriz:C-D",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "C → D",
+    "subtitle": "Comunicação: origem C / interlocutor D",
+    "body": "Resuma a análise em decisão, risco e recomendação.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite começar por todas as exceções."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Qual decisão e prazo você considera adequados?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao C-D"
+  },
+  {
+    "id": "matriz:C-I",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "C → I",
+    "subtitle": "Comunicação: origem C / interlocutor I",
+    "body": "Traduza dados em benefícios e exemplos concretos.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite linguagem excessivamente técnica."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Como envolver as pessoas certas sem perder o foco?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao C-I"
+  },
+  {
+    "id": "matriz:C-S",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "C → S",
+    "subtitle": "Comunicação: origem C / interlocutor S",
+    "body": "Explique procedimento e mudanças com antecedência.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite críticas descontextualizadas."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "O que tornaria esta mudança mais previsível?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao C-S"
+  },
+  {
+    "id": "matriz:C-C",
+    "kind": "Matriz",
+    "group": "Matriz",
+    "title": "C → C",
+    "subtitle": "Comunicação: origem C / interlocutor C",
+    "body": "Alinhe qualidade suficiente, prioridades e prazo.",
+    "details": [
+      {
+        "head": "Evitar",
+        "text": "Evite prolongar a validação sem critério de conclusão."
+      },
+      {
+        "head": "Pergunta útil",
+        "text": "Que evidência mudaria sua conclusão?"
+      }
+    ],
+    "keywords": "DISC ACER adaptacao comunicacao C-C"
+  },
+  {
+    "id": "caso:caso-01",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Cliente quer resposta imediata",
+    "subtitle": "Caso prático · vendas",
+    "body": "Confirmar prazo real e fornecer decisão com riscos relevantes, sem sacrificar verificação.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER D vendas"
+  },
+  {
+    "id": "caso:caso-02",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Cliente pede demonstração interativa",
+    "subtitle": "Caso prático · vendas",
+    "body": "Explorar casos reais e encerrar com requisitos, próximos passos e responsáveis.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER I vendas"
+  },
+  {
+    "id": "caso:caso-03",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Cliente receia migração de sistema",
+    "subtitle": "Caso prático · vendas",
+    "body": "Detalhar fases, suporte, reversibilidade e plano de continuidade.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S vendas"
+  },
+  {
+    "id": "caso:caso-04",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Cliente solicita critérios técnicos",
+    "subtitle": "Caso prático · vendas",
+    "body": "Enviar documentação verificável, limites e hipóteses com prazo de retorno.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER C vendas"
+  },
+  {
+    "id": "caso:caso-05",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Vendedor interrompe demais",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Dar feedback sobre episódios específicos e criar regra de turno de fala.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER D lideranca"
+  },
+  {
+    "id": "caso:caso-06",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Equipe chega animada sem escopo",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Converter ideias em backlog, prioridades, dono e data de revisão.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER I lideranca"
+  },
+  {
+    "id": "caso:caso-07",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Colaborador evita dizer não",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Checar capacidade, negociar prioridades e valorizar comunicação de limites.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S lideranca"
+  },
+  {
+    "id": "caso:caso-08",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Analista revisa indefinidamente",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Definir qualidade suficiente e janela de decisão por risco.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER C lideranca"
+  },
+  {
+    "id": "caso:caso-09",
+    "kind": "Casos",
+    "group": "comunicacao",
+    "title": "Conflito por ritmo de decisão",
+    "subtitle": "Caso prático · comunicacao",
+    "body": "Alinhar decisões reversíveis, critérios mínimos e prazo.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER D comunicacao"
+  },
+  {
+    "id": "caso:caso-10",
+    "kind": "Casos",
+    "group": "comunicacao",
+    "title": "Conflito entre precisão e rapidez",
+    "subtitle": "Caso prático · comunicacao",
+    "body": "Listar riscos materiais e aceitar decisões com incertezas explícitas.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER C comunicacao"
+  },
+  {
+    "id": "caso:caso-11",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Mudança de processo sem aviso",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Compartilhar razão, plano de transição e canal de dúvidas.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S lideranca"
+  },
+  {
+    "id": "caso:caso-12",
+    "kind": "Casos",
+    "group": "comunicacao",
+    "title": "Reunião monopolizada",
+    "subtitle": "Caso prático · comunicacao",
+    "body": "Distribuir fala e registrar contribuições antes da decisão.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER I comunicacao"
+  },
+  {
+    "id": "caso:caso-13",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Proposta com muitos slides",
+    "subtitle": "Caso prático · vendas",
+    "body": "Criar resumo executivo e apêndice com evidências.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER D vendas"
+  },
+  {
+    "id": "caso:caso-14",
+    "kind": "Casos",
+    "group": "servicos",
+    "title": "Cliente prefere relação próxima",
+    "subtitle": "Caso prático · servicos",
+    "body": "Oferecer interlocutor claro, escuta e acordos de entrega verificáveis.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER I servicos"
+  },
+  {
+    "id": "caso:caso-15",
+    "kind": "Casos",
+    "group": "vendas",
+    "title": "Cliente não retorna mensagens",
+    "subtitle": "Caso prático · vendas",
+    "body": "Confirmar canal e momento adequados; não inferir perfil a partir do silêncio.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S vendas"
+  },
+  {
+    "id": "caso:caso-16",
+    "kind": "Casos",
+    "group": "desenvolvimento",
+    "title": "Feedback difícil para colega",
+    "subtitle": "Caso prático · desenvolvimento",
+    "body": "Preparar situação, fatos, impacto e pedido observável em conversa reservada.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S desenvolvimento"
+  },
+  {
+    "id": "caso:caso-17",
+    "kind": "Casos",
+    "group": "desenvolvimento",
+    "title": "Alto padrão reduz velocidade",
+    "subtitle": "Caso prático · desenvolvimento",
+    "body": "Priorizar controles conforme risco e diferenciar versão piloto de final.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER C desenvolvimento"
+  },
+  {
+    "id": "caso:caso-18",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Líder muda prioridade a cada dia",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Definir janela de planejamento e critério explícito para exceções.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER D lideranca"
+  },
+  {
+    "id": "caso:caso-19",
+    "kind": "Casos",
+    "group": "lideranca",
+    "title": "Integração de novo membro",
+    "subtitle": "Caso prático · lideranca",
+    "body": "Perguntar preferências reais de autonomia, feedback e informações.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER S lideranca"
+  },
+  {
+    "id": "caso:caso-20",
+    "kind": "Casos",
+    "group": "governanca",
+    "title": "Uso do DISC para contratar",
+    "subtitle": "Caso prático · governanca",
+    "body": "Não usar perfil como filtro isolado; consultar orientação técnica, evidências e exigências legais.",
+    "points": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "alert": "Exemplo didático. A intervenção não depende de conhecer o perfil real.",
+    "keywords": "DISC ACER C governanca"
+  },
+  {
+    "id": "coach:coaching-01",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "D · Direção",
+    "subtitle": "Perguntas de coaching",
+    "body": "Qual resultado precisa ser alcançado e até quando?",
+    "points": [
+      "O que você delegaria para ampliar participação?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento D"
+  },
+  {
+    "id": "coach:coaching-02",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "D · Pressão",
+    "subtitle": "Perguntas de coaching",
+    "body": "Que informação seria suficiente para decidir com responsabilidade?",
+    "points": [
+      "O que aconteceria se você escutasse mais uma perspectiva?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento D"
+  },
+  {
+    "id": "coach:coaching-03",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "I · Conexão",
+    "subtitle": "Perguntas de coaching",
+    "body": "Quem precisa participar desta conversa?",
+    "points": [
+      "Que promessa precisa ser registrada e confirmada?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento I"
+  },
+  {
+    "id": "coach:coaching-04",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "I · Foco",
+    "subtitle": "Perguntas de coaching",
+    "body": "Qual ideia terá maior impacto com a capacidade disponível?",
+    "points": [
+      "O que você fará primeiro, concretamente?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento I"
+  },
+  {
+    "id": "coach:coaching-05",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "S · Segurança",
+    "subtitle": "Perguntas de coaching",
+    "body": "Que apoio ajudaria a atravessar esta mudança?",
+    "points": [
+      "Qual discordância ainda não foi verbalizada?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento S"
+  },
+  {
+    "id": "coach:coaching-06",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "S · Limites",
+    "subtitle": "Perguntas de coaching",
+    "body": "Quais são as prioridades que cabem de fato nesta semana?",
+    "points": [
+      "A que você precisa dizer não?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento S"
+  },
+  {
+    "id": "coach:coaching-07",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "C · Evidência",
+    "subtitle": "Perguntas de coaching",
+    "body": "Que dado poderia alterar esta decisão?",
+    "points": [
+      "Qual nível de precisão é suficiente?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento C"
+  },
+  {
+    "id": "coach:coaching-08",
+    "kind": "Coaching",
+    "group": "Desenvolvimento",
+    "title": "C · Síntese",
+    "subtitle": "Perguntas de coaching",
+    "body": "Como comunicar a conclusão em três pontos?",
+    "points": [
+      "Qual decisão é reversível e pode ser testada?"
+    ],
+    "keywords": "DISC ACER coach desenvolvimento C"
+  },
+  {
+    "id": "trilha:modulo-01",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 01 · Introdução ao DISC/ACER",
+    "subtitle": "30 min · Diferenciar linguagem comportamental de diagnóstico; reconhecer quatro fatores.",
+    "body": "Diferenciar linguagem comportamental de diagnóstico; reconhecer quatro fatores.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Leitura dos fundamentos; reflexão sobre uma situação real."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-02",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 02 · Observação sem rótulos",
+    "subtitle": "40 min · Distinguir comportamento observável, interpretação e suposição.",
+    "body": "Distinguir comportamento observável, interpretação e suposição.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Analisar três cenários fictícios; reescrever rótulos como fatos."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-03",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 03 · Dimensões e combinações",
+    "subtitle": "45 min · Descrever tendências e ressalvas sem reduzir pessoas a tipos.",
+    "body": "Descrever tendências e ressalvas sem reduzir pessoas a tipos.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Comparar dois exemplos e buscar contraexemplos."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-04",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 04 · Comunicação flexível",
+    "subtitle": "45 min · Ajustar ritmo, detalhe e interação com base em preferência declarada.",
+    "body": "Ajustar ritmo, detalhe e interação com base em preferência declarada.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Simulação de conversa em quatro formatos."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-05",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 05 · Feedback e conflitos",
+    "subtitle": "50 min · Converter conflitos em acordos observáveis.",
+    "body": "Converter conflitos em acordos observáveis.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Praticar feedback de situação, comportamento e impacto."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-06",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 06 · Liderança e equipes",
+    "subtitle": "50 min · Usar linguagem de diferenças para fortalecer acordos de trabalho.",
+    "body": "Usar linguagem de diferenças para fortalecer acordos de trabalho.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Criar pacto de comunicação e revisão quinzenal."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-07",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 07 · Vendas consultivas",
+    "subtitle": "50 min · Explorar prioridade real do cliente e adaptar explicação com ética.",
+    "body": "Explorar prioridade real do cliente e adaptar explicação com ética.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Role-play de descoberta, proposta e objeção."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-08",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 08 · Experiência de serviços",
+    "subtitle": "35 min · Oferecer jornadas que respondam a ritmos e formatos distintos.",
+    "body": "Oferecer jornadas que respondam a ritmos e formatos distintos.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Desenhar quatro opções de interação para um serviço."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-09",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 09 · Resultados e psicometria",
+    "subtitle": "50 min · Interpretar dados exploratórios e distinguir escores de percentis.",
+    "body": "Interpretar dados exploratórios e distinguir escores de percentis.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Revisar o questionário extraído e anotar pontos de validação."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "trilha:modulo-10",
+    "kind": "Cursos",
+    "group": "Cursos",
+    "title": "Módulo 10 · Privacidade, legislação e prática",
+    "subtitle": "40 min · Identificar limites legais, confidencialidade e mitigação de vieses.",
+    "body": "Identificar limites legais, confidencialidade e mitigação de vieses.",
+    "details": [
+      {
+        "head": "Atividade",
+        "text": "Simular revisão de acesso e finalidade dos dados."
+      },
+      {
+        "head": "Avaliação",
+        "text": "Produzir uma resposta aplicada sem classificar terceiros ou emitir diagnóstico."
+      }
+    ],
+    "keywords": "DISC ACER treinamento curso workshop"
+  },
+  {
+    "id": "gloss:gloss-01",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "DISC",
+    "subtitle": "Termo e definição",
+    "body": "Modelo descritivo com quatro dimensões: Dominância, Influência, Estabilidade e Conformidade.",
+    "keywords": "DISC ACER DISC"
+  },
+  {
+    "id": "gloss:gloss-02",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "ACER",
+    "subtitle": "Termo e definição",
+    "body": "Nome português adotado para a mesma metodologia no projeto RealTalent; a expansão das letras depende de definição institucional.",
+    "keywords": "DISC ACER ACER"
+  },
+  {
+    "id": "gloss:gloss-03",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "D",
+    "subtitle": "Termo e definição",
+    "body": "Fator de Dominância; leitura exploratória de orientação a desafios e resultados.",
+    "keywords": "DISC ACER D"
+  },
+  {
+    "id": "gloss:gloss-04",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "I",
+    "subtitle": "Termo e definição",
+    "body": "Fator de Influência; leitura exploratória de expressão e interação.",
+    "keywords": "DISC ACER I"
+  },
+  {
+    "id": "gloss:gloss-05",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "S",
+    "subtitle": "Termo e definição",
+    "body": "Fator de Estabilidade; leitura exploratória de constância e cooperação.",
+    "keywords": "DISC ACER S"
+  },
+  {
+    "id": "gloss:gloss-06",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "C",
+    "subtitle": "Termo e definição",
+    "body": "Fator de Conformidade; leitura exploratória de precisão e padrões.",
+    "keywords": "DISC ACER C"
+  },
+  {
+    "id": "gloss:gloss-07",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Fator",
+    "subtitle": "Termo e definição",
+    "body": "Dimensão usada na descrição de preferências comportamentais.",
+    "keywords": "DISC ACER Fator"
+  },
+  {
+    "id": "gloss:gloss-08",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Escala",
+    "subtitle": "Termo e definição",
+    "body": "Conjunto de itens associado a uma característica definida.",
+    "keywords": "DISC ACER Escala"
+  },
+  {
+    "id": "gloss:gloss-09",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Item",
+    "subtitle": "Termo e definição",
+    "body": "Pergunta, afirmação ou estímulo usado em instrumento.",
+    "keywords": "DISC ACER Item"
+  },
+  {
+    "id": "gloss:gloss-10",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Pontuação bruta",
+    "subtitle": "Termo e definição",
+    "body": "Resultado numérico do cálculo sem padronização populacional.",
+    "keywords": "DISC ACER Pontuação bruta"
+  },
+  {
+    "id": "gloss:gloss-11",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Percentil",
+    "subtitle": "Termo e definição",
+    "body": "Posição relativa em distribuição normativa apropriada; não equivale a percentual de respostas.",
+    "keywords": "DISC ACER Percentil"
+  },
+  {
+    "id": "gloss:gloss-12",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Confiabilidade",
+    "subtitle": "Termo e definição",
+    "body": "Estimativa de consistência ou estabilidade da medida em condições definidas.",
+    "keywords": "DISC ACER Confiabilidade"
+  },
+  {
+    "id": "gloss:gloss-13",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Validade",
+    "subtitle": "Termo e definição",
+    "body": "Evidência que apoia uma interpretação e uso específico de escores.",
+    "keywords": "DISC ACER Validade"
+  },
+  {
+    "id": "gloss:gloss-14",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Normatização",
+    "subtitle": "Termo e definição",
+    "body": "Construção de referências de comparação para população e finalidade definidas.",
+    "keywords": "DISC ACER Normatização"
+  },
+  {
+    "id": "gloss:gloss-15",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Viés de resposta",
+    "subtitle": "Termo e definição",
+    "body": "Influência sistemática de fatores alheios ao construto, como posição ou desejabilidade social.",
+    "keywords": "DISC ACER Viés de resposta"
+  },
+  {
+    "id": "gloss:gloss-16",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Desejabilidade social",
+    "subtitle": "Termo e definição",
+    "body": "Tendência a responder de modo socialmente valorizado.",
+    "keywords": "DISC ACER Desejabilidade social"
+  },
+  {
+    "id": "gloss:gloss-17",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Autorrelato",
+    "subtitle": "Termo e definição",
+    "body": "Informação fornecida pela própria pessoa sobre suas experiências ou preferências.",
+    "keywords": "DISC ACER Autorrelato"
+  },
+  {
+    "id": "gloss:gloss-18",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Observação",
+    "subtitle": "Termo e definição",
+    "body": "Registro de comportamento em situação definida.",
+    "keywords": "DISC ACER Observação"
+  },
+  {
+    "id": "gloss:gloss-19",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Contexto",
+    "subtitle": "Termo e definição",
+    "body": "Condições ambientais, sociais e da tarefa que influenciam uma ação.",
+    "keywords": "DISC ACER Contexto"
+  },
+  {
+    "id": "gloss:gloss-20",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Autoimagem",
+    "subtitle": "Termo e definição",
+    "body": "Percepção da pessoa sobre si; não equivale automaticamente a traço estável.",
+    "keywords": "DISC ACER Autoimagem"
+  },
+  {
+    "id": "gloss:gloss-21",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Expectativa percebida",
+    "subtitle": "Termo e definição",
+    "body": "Percepção do que outras pessoas esperam; não comprova expectativas reais.",
+    "keywords": "DISC ACER Expectativa percebida"
+  },
+  {
+    "id": "gloss:gloss-22",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Combinação de fatores",
+    "subtitle": "Termo e definição",
+    "body": "Descrição de tendências associadas a mais de uma dimensão, sem diagnóstico.",
+    "keywords": "DISC ACER Combinação de fatores"
+  },
+  {
+    "id": "gloss:gloss-23",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Feedback comportamental",
+    "subtitle": "Termo e definição",
+    "body": "Devolutiva baseada em fatos observáveis, impacto e próximos passos.",
+    "keywords": "DISC ACER Feedback comportamental"
+  },
+  {
+    "id": "gloss:gloss-24",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Plano de desenvolvimento",
+    "subtitle": "Termo e definição",
+    "body": "Acordo com objetivos, comportamentos de prática, indicadores e revisão.",
+    "keywords": "DISC ACER Plano de desenvolvimento"
+  },
+  {
+    "id": "gloss:gloss-25",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Ancoragem",
+    "subtitle": "Termo e definição",
+    "body": "Influência de uma informação inicial na interpretação posterior.",
+    "keywords": "DISC ACER Ancoragem"
+  },
+  {
+    "id": "gloss:gloss-26",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Efeito halo",
+    "subtitle": "Termo e definição",
+    "body": "Generalização indevida de uma impressão favorável ou desfavorável.",
+    "keywords": "DISC ACER Efeito halo"
+  },
+  {
+    "id": "gloss:gloss-27",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "RLS",
+    "subtitle": "Termo e definição",
+    "body": "Row Level Security: políticas do banco que limitam acesso por linha.",
+    "keywords": "DISC ACER RLS"
+  },
+  {
+    "id": "gloss:gloss-28",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "LGPD",
+    "subtitle": "Termo e definição",
+    "body": "Lei Geral de Proteção de Dados Pessoais brasileira.",
+    "keywords": "DISC ACER LGPD"
+  },
+  {
+    "id": "gloss:gloss-29",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Finalidade",
+    "subtitle": "Termo e definição",
+    "body": "Propósito específico, legítimo e informado para tratamento de dados.",
+    "keywords": "DISC ACER Finalidade"
+  },
+  {
+    "id": "gloss:gloss-30",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Minimização",
+    "subtitle": "Termo e definição",
+    "body": "Coletar e manter apenas os dados necessários para finalidade definida.",
+    "keywords": "DISC ACER Minimização"
+  },
+  {
+    "id": "gloss:gloss-31",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "SATEPSI",
+    "subtitle": "Termo e definição",
+    "body": "Sistema brasileiro de avaliação da qualidade técnico-científica de testes psicológicos, mantido pelo CFP.",
+    "keywords": "DISC ACER SATEPSI"
+  },
+  {
+    "id": "gloss:gloss-32",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Psicometria",
+    "subtitle": "Termo e definição",
+    "body": "Campo voltado à construção e ao estudo das propriedades de medidas psicológicas.",
+    "keywords": "DISC ACER Psicometria"
+  },
+  {
+    "id": "gloss:gloss-33",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Conflito de estilos",
+    "subtitle": "Termo e definição",
+    "body": "Descrição coloquial de diferenças de preferência; não dispensa análise de processo e poder.",
+    "keywords": "DISC ACER Conflito de estilos"
+  },
+  {
+    "id": "gloss:gloss-34",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Roteiro comercial",
+    "subtitle": "Termo e definição",
+    "body": "Estrutura de perguntas e evidências para venda consultiva, sem manipulação comportamental.",
+    "keywords": "DISC ACER Roteiro comercial"
+  },
+  {
+    "id": "gloss:gloss-35",
+    "kind": "Glossário",
+    "group": "Glossário",
+    "title": "Consentimento",
+    "subtitle": "Termo e definição",
+    "body": "Uma das possíveis bases legais de tratamento de dados, cuja adequação depende do contexto; não é a única base.",
+    "keywords": "DISC ACER Consentimento"
+  },
+  {
+    "id": "source:f1",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "What Is the Everything DiSC Model?",
+    "subtitle": "Everything DiSC / Wiley",
+    "body": "Referência conceitual às dimensões do modelo; não comprova validação do instrumento RealTalent.",
+    "url": "https://www.everythingdisc.com/what-is-disc/",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f2",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "How DiSC profiles work",
+    "subtitle": "DiSC Profile",
+    "body": "Definições e limites de interpretação.",
+    "url": "https://www.discprofile.com/what-is-disc/how-disc-works",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f3",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "The Science Behind Everything DiSC",
+    "subtitle": "Everything DiSC / Wiley",
+    "body": "Exemplo de como pesquisas de confiabilidade e validade devem ser documentadas por instrumento.",
+    "url": "https://www.everythingdisc.com/the-science-behind-disc",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f4",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "SATEPSI — Perguntas frequentes",
+    "subtitle": "Conselho Federal de Psicologia",
+    "body": "Diretrizes sobre avaliação psicológica e instrumentos no Brasil.",
+    "url": "https://satepsi.cfp.org.br/faq.cfm",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f5",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "Resolução CFP n.º 31/2022 — legislação SATEPSI",
+    "subtitle": "Conselho Federal de Psicologia",
+    "body": "Consulta às regras brasileiras aplicáveis.",
+    "url": "https://satepsi.cfp.org.br/legislacao.cfm",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f6",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "Lei nº 13.709/2018 — LGPD",
+    "subtitle": "Presidência da República",
+    "body": "Base legal para proteção e tratamento de dados pessoais.",
+    "url": "https://planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  },
+  {
+    "id": "source:f7",
+    "kind": "Fontes",
+    "group": "Fontes",
+    "title": "CFP: testes psicológicos e modalidades informatizada/online",
+    "subtitle": "Conselho Federal de Psicologia",
+    "body": "Orientação atual sobre modalidades e aprovação de testes.",
+    "url": "https://site.cfp.org.br/cfp-orienta-psicologas-sobre-o-uso-de-testes-psicologicos-nas-modalidades-informatizada-e-online/",
+    "keywords": "referencias metodologia DISC ACER lei ciencia"
+  }
+]

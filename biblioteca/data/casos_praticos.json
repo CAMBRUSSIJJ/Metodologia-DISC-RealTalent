@@ -1,0 +1,282 @@
+[
+  {
+    "id": "caso-01",
+    "titulo": "Cliente quer resposta imediata",
+    "categoria": "vendas",
+    "situacao": "Cliente quer resposta imediata",
+    "intervencao": "Confirmar prazo real e fornecer decisão com riscos relevantes, sem sacrificar verificação.",
+    "fator_referencia": "D",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-02",
+    "titulo": "Cliente pede demonstração interativa",
+    "categoria": "vendas",
+    "situacao": "Cliente pede demonstração interativa",
+    "intervencao": "Explorar casos reais e encerrar com requisitos, próximos passos e responsáveis.",
+    "fator_referencia": "I",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-03",
+    "titulo": "Cliente receia migração de sistema",
+    "categoria": "vendas",
+    "situacao": "Cliente receia migração de sistema",
+    "intervencao": "Detalhar fases, suporte, reversibilidade e plano de continuidade.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-04",
+    "titulo": "Cliente solicita critérios técnicos",
+    "categoria": "vendas",
+    "situacao": "Cliente solicita critérios técnicos",
+    "intervencao": "Enviar documentação verificável, limites e hipóteses com prazo de retorno.",
+    "fator_referencia": "C",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-05",
+    "titulo": "Vendedor interrompe demais",
+    "categoria": "lideranca",
+    "situacao": "Vendedor interrompe demais",
+    "intervencao": "Dar feedback sobre episódios específicos e criar regra de turno de fala.",
+    "fator_referencia": "D",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-06",
+    "titulo": "Equipe chega animada sem escopo",
+    "categoria": "lideranca",
+    "situacao": "Equipe chega animada sem escopo",
+    "intervencao": "Converter ideias em backlog, prioridades, dono e data de revisão.",
+    "fator_referencia": "I",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-07",
+    "titulo": "Colaborador evita dizer não",
+    "categoria": "lideranca",
+    "situacao": "Colaborador evita dizer não",
+    "intervencao": "Checar capacidade, negociar prioridades e valorizar comunicação de limites.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-08",
+    "titulo": "Analista revisa indefinidamente",
+    "categoria": "lideranca",
+    "situacao": "Analista revisa indefinidamente",
+    "intervencao": "Definir qualidade suficiente e janela de decisão por risco.",
+    "fator_referencia": "C",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-09",
+    "titulo": "Conflito por ritmo de decisão",
+    "categoria": "comunicacao",
+    "situacao": "Conflito por ritmo de decisão",
+    "intervencao": "Alinhar decisões reversíveis, critérios mínimos e prazo.",
+    "fator_referencia": "D",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-10",
+    "titulo": "Conflito entre precisão e rapidez",
+    "categoria": "comunicacao",
+    "situacao": "Conflito entre precisão e rapidez",
+    "intervencao": "Listar riscos materiais e aceitar decisões com incertezas explícitas.",
+    "fator_referencia": "C",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-11",
+    "titulo": "Mudança de processo sem aviso",
+    "categoria": "lideranca",
+    "situacao": "Mudança de processo sem aviso",
+    "intervencao": "Compartilhar razão, plano de transição e canal de dúvidas.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-12",
+    "titulo": "Reunião monopolizada",
+    "categoria": "comunicacao",
+    "situacao": "Reunião monopolizada",
+    "intervencao": "Distribuir fala e registrar contribuições antes da decisão.",
+    "fator_referencia": "I",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-13",
+    "titulo": "Proposta com muitos slides",
+    "categoria": "vendas",
+    "situacao": "Proposta com muitos slides",
+    "intervencao": "Criar resumo executivo e apêndice com evidências.",
+    "fator_referencia": "D",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-14",
+    "titulo": "Cliente prefere relação próxima",
+    "categoria": "servicos",
+    "situacao": "Cliente prefere relação próxima",
+    "intervencao": "Oferecer interlocutor claro, escuta e acordos de entrega verificáveis.",
+    "fator_referencia": "I",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-15",
+    "titulo": "Cliente não retorna mensagens",
+    "categoria": "vendas",
+    "situacao": "Cliente não retorna mensagens",
+    "intervencao": "Confirmar canal e momento adequados; não inferir perfil a partir do silêncio.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-16",
+    "titulo": "Feedback difícil para colega",
+    "categoria": "desenvolvimento",
+    "situacao": "Feedback difícil para colega",
+    "intervencao": "Preparar situação, fatos, impacto e pedido observável em conversa reservada.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-17",
+    "titulo": "Alto padrão reduz velocidade",
+    "categoria": "desenvolvimento",
+    "situacao": "Alto padrão reduz velocidade",
+    "intervencao": "Priorizar controles conforme risco e diferenciar versão piloto de final.",
+    "fator_referencia": "C",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-18",
+    "titulo": "Líder muda prioridade a cada dia",
+    "categoria": "lideranca",
+    "situacao": "Líder muda prioridade a cada dia",
+    "intervencao": "Definir janela de planejamento e critério explícito para exceções.",
+    "fator_referencia": "D",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-19",
+    "titulo": "Integração de novo membro",
+    "categoria": "lideranca",
+    "situacao": "Integração de novo membro",
+    "intervencao": "Perguntar preferências reais de autonomia, feedback e informações.",
+    "fator_referencia": "S",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  },
+  {
+    "id": "caso-20",
+    "titulo": "Uso do DISC para contratar",
+    "categoria": "governanca",
+    "situacao": "Uso do DISC para contratar",
+    "intervencao": "Não usar perfil como filtro isolado; consultar orientação técnica, evidências e exigências legais.",
+    "fator_referencia": "C",
+    "perguntas": [
+      "Que fato observável evidencia a necessidade?",
+      "Como perguntar pela preferência da pessoa sem presumir seu perfil?",
+      "Qual resultado indicará melhora?"
+    ],
+    "nota": "Exemplo didático. A intervenção não depende de conhecer o perfil real."
+  }
+]

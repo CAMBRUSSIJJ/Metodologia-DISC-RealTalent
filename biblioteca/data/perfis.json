@@ -1,0 +1,254 @@
+[
+  {
+    "nome": "Dominância",
+    "rotulo": "Direção e resultados",
+    "sigla": "D",
+    "cor": "#d66c64",
+    "essencia": "Tendência a agir sobre desafios com assertividade, velocidade e foco no resultado.",
+    "contexto": "O comportamento pode aparecer quando há autonomia para decidir, metas claras ou pressão por entrega.",
+    "forcas": [
+      "Toma decisões e assume responsabilidade",
+      "Enfrenta obstáculos sem paralisar",
+      "Define prioridades e acelera execução",
+      "Expõe pontos de discordância com clareza"
+    ],
+    "motivadores": [
+      "Autonomia com responsabilidade",
+      "Desafios relevantes",
+      "Critérios claros de sucesso",
+      "Liberdade para propor soluções"
+    ],
+    "necessidades": [
+      "Objetivo e impacto esperados",
+      "Poder decidir o caminho com limites definidos",
+      "Informação essencial de forma direta",
+      "Feedback rápido sobre resultados"
+    ],
+    "riscos": [
+      "Atropelar a escuta e o alinhamento",
+      "Subestimar o impacto relacional",
+      "Tratar urgência como regra",
+      "Confundir discordância com falta de compromisso"
+    ],
+    "sob_pressao": [
+      "Intensifica cobrança e velocidade",
+      "Pode interromper explicações",
+      "Pode assumir tarefas em excesso para controlar o resultado"
+    ],
+    "comunicacao": [
+      "Comece pelo objetivo e decisão requerida",
+      "Mostre duas ou três opções, impactos e prazo",
+      "Indique responsabilidades e limites",
+      "Convide a ouvir riscos sem diluir a mensagem"
+    ],
+    "feedback": "Descreva fatos, impacto, próximo comportamento observável e indicador de avanço; evite disputa de poder.",
+    "desenvolvimento": [
+      "Antes de decidir, pedir uma objeção substantiva",
+      "Realizar rodadas de escuta em reuniões",
+      "Conferir sustentabilidade da entrega, não apenas velocidade",
+      "Praticar delegação com pontos de controle"
+    ],
+    "vendas": "Apresente resultado, prazo, riscos relevantes e proposta objetiva; valide se a prioridade é real, em vez de presumir pressa.",
+    "lideranca": "Combine autonomia com limites, critérios de qualidade e acordos de participação; reconheça quando escuta melhora a decisão.",
+    "perguntas_coaching": [
+      "Qual decisão pode ser tomada hoje sem comprometer a qualidade?",
+      "Quem precisa ser ouvido antes da execução?",
+      "O que seria um sinal de pressa excessiva?"
+    ],
+    "nao_inferir": [
+      "Competência de liderança",
+      "Agressividade ou caráter",
+      "Capacidade cognitiva",
+      "Desempenho futuro"
+    ]
+  },
+  {
+    "nome": "Influência",
+    "rotulo": "Conexão e mobilização",
+    "sigla": "I",
+    "cor": "#daa255",
+    "essencia": "Tendência à expressão social, ao entusiasmo, à persuasão e ao engajamento em interações.",
+    "contexto": "Pode ganhar destaque em atividades colaborativas, apresentações e situações que exigem mobilização de pessoas.",
+    "forcas": [
+      "Conecta interlocutores e amplia participação",
+      "Dá energia a iniciativas coletivas",
+      "Comunica ideias de modo envolvente",
+      "Ajuda a manter abertura ao diálogo"
+    ],
+    "motivadores": [
+      "Trocas e reconhecimento",
+      "Espaço para criatividade",
+      "Ambiente participativo",
+      "Oportunidade de expressar ideias"
+    ],
+    "necessidades": [
+      "Objetivo com espaço para diálogo",
+      "Reconhecimento específico e respeitoso",
+      "Liberdade de experimentar",
+      "Acordos de execução registrados"
+    ],
+    "riscos": [
+      "Prometer além da capacidade de entrega",
+      "Trocar foco por novidade",
+      "Evitar conversas desconfortáveis",
+      "Confundir aprovação com alinhamento"
+    ],
+    "sob_pressao": [
+      "Aumenta comunicação e procura validação",
+      "Pode dispersar diante de críticas",
+      "Pode minimizar detalhes e restrições"
+    ],
+    "comunicacao": [
+      "Abra com o propósito e impacto humano",
+      "Use exemplos e convide a participar",
+      "Termine com responsabilidades, critérios e prazo",
+      "Registre decisões por escrito"
+    ],
+    "feedback": "Reconheça contribuição concreta e delimite o comportamento a ajustar; priorize exemplos e compromissos verificáveis.",
+    "desenvolvimento": [
+      "Converter ideias em uma lista de próximos passos",
+      "Treinar conversas difíceis com respeito",
+      "Reservar blocos de foco e revisão",
+      "Conferir compromissos antes de oferecer prazos"
+    ],
+    "vendas": "Construa relação e demonstre valor com histórias verificáveis; confirme detalhes de implementação e próximos passos.",
+    "lideranca": "Use o entusiasmo para facilitar alinhamento, com decisões, donos e marcos documentados.",
+    "perguntas_coaching": [
+      "Como transformar a ideia em entrega concreta?",
+      "Qual conversa precisa acontecer mesmo sendo desconfortável?",
+      "Que compromisso depende de confirmação antes de ser assumido?"
+    ],
+    "nao_inferir": [
+      "Habilidade universal de negociação",
+      "Honestidade",
+      "Popularidade necessária em todo contexto",
+      "Resultado de vendas"
+    ]
+  },
+  {
+    "nome": "Estabilidade",
+    "rotulo": "Constância e cooperação",
+    "sigla": "S",
+    "cor": "#45ad88",
+    "essencia": "Tendência a valorizar consistência, apoio mútuo, previsibilidade e relações colaborativas.",
+    "contexto": "Pode aparecer em processos de acompanhamento, suporte, cuidado com relações e mudanças graduais.",
+    "forcas": [
+      "Sustenta acordos e rotinas",
+      "Escuta com atenção",
+      "Oferece apoio confiável",
+      "Contribui para continuidade operacional"
+    ],
+    "motivadores": [
+      "Clareza e previsibilidade",
+      "Relações de confiança",
+      "Ambiente cooperativo",
+      "Tempo razoável para adaptação"
+    ],
+    "necessidades": [
+      "Antecedência em mudanças",
+      "Critérios explícitos e seguros",
+      "Espaço para perguntas",
+      "Reconhecimento da continuidade e do cuidado"
+    ],
+    "riscos": [
+      "Postergar confrontos necessários",
+      "Assumir demandas demais para ajudar",
+      "Evitar mudanças úteis",
+      "Silenciar preocupações importantes"
+    ],
+    "sob_pressao": [
+      "Pode reduzir exposição e desacelerar",
+      "Busca estabilidade e suporte",
+      "Pode ceder sem concordar efetivamente"
+    ],
+    "comunicacao": [
+      "Explique o contexto e o porquê da mudança",
+      "Estabeleça transição, suporte e próximos passos",
+      "Dê espaço para dúvidas sem constrangimento",
+      "Cheque concordância real, não só silêncio"
+    ],
+    "feedback": "Converse em ambiente respeitoso, com antecedência e exemplos; crie um plano gradual e confirme entendimento.",
+    "desenvolvimento": [
+      "Praticar posicionamento claro em discordâncias",
+      "Definir limites de carga e prioridades",
+      "Fazer pequenos experimentos com mudança",
+      "Solicitar apoio sem assumir sozinho todo o trabalho"
+    ],
+    "vendas": "Ofereça previsibilidade, implantação assistida e canais de suporte; não transforme cautela em suposta resistência.",
+    "lideranca": "Use a consistência para dar segurança; fortaleça a autonomia de dizer não e levantar riscos.",
+    "perguntas_coaching": [
+      "Em que ponto ajudar começa a prejudicar suas prioridades?",
+      "Qual mudança pequena podemos testar com segurança?",
+      "O que você realmente pensa sobre esta decisão?"
+    ],
+    "nao_inferir": [
+      "Baixa ambição",
+      "Incapacidade de mudar",
+      "Submissão",
+      "Velocidade de aprendizagem"
+    ]
+  },
+  {
+    "nome": "Conformidade",
+    "rotulo": "Critério e qualidade",
+    "sigla": "C",
+    "cor": "#669cda",
+    "essencia": "Tendência a examinar evidências, padrões, precisão e condições para tomar decisões consistentes.",
+    "contexto": "Pode se manifestar em problemas complexos, avaliações de risco, controle de qualidade e decisões técnicas.",
+    "forcas": [
+      "Identifica inconsistências e riscos",
+      "Documenta critérios",
+      "Eleva a qualidade das entregas",
+      "Testa hipóteses antes de concluir"
+    ],
+    "motivadores": [
+      "Critérios transparentes",
+      "Tempo para analisar quando necessário",
+      "Acesso a informações confiáveis",
+      "Autonomia técnica com responsabilidade"
+    ],
+    "necessidades": [
+      "Contexto e evidências relevantes",
+      "Definição explícita de qualidade",
+      "Tempo proporcional à complexidade",
+      "Ambiente que aceite perguntas críticas"
+    ],
+    "riscos": [
+      "Prolongar decisões por busca de completude",
+      "Comunicar com excesso de detalhe",
+      "Subestimar fatores humanos",
+      "Confundir padrão ideal com exigência de todas as situações"
+    ],
+    "sob_pressao": [
+      "Eleva nível de checagem",
+      "Pode questionar premissas repetidamente",
+      "Pode adiar uma decisão reversível"
+    ],
+    "comunicacao": [
+      "Apresente dados, premissas e alternativas",
+      "Indique o grau de incerteza",
+      "Esclareça critérios de qualidade e prazo",
+      "Diferencie decisões reversíveis das irreversíveis"
+    ],
+    "feedback": "Utilize evidências específicas, critérios e oportunidade de esclarecimento, evitando julgamentos vagos.",
+    "desenvolvimento": [
+      "Definir o que é qualidade suficiente para cada decisão",
+      "Treinar sínteses executivas de uma página",
+      "Experimentar decisões reversíveis com prazo",
+      "Considerar sinais relacionais junto aos dados"
+    ],
+    "vendas": "Mostre especificações, limitações, referências verificáveis e condições contratuais claras; não trate objeções técnicas como negatividade.",
+    "lideranca": "Converta padrões em critérios acessíveis, sem exigir perfeição para tarefas de baixo risco.",
+    "perguntas_coaching": [
+      "Quais informações faltantes são realmente decisivas?",
+      "O que pode ser testado em vez de analisado indefinidamente?",
+      "Como resumir esta decisão em três pontos?"
+    ],
+    "nao_inferir": [
+      "Inteligência geral",
+      "Frieza emocional",
+      "Superioridade técnica automática",
+      "Ausência de criatividade"
+    ]
+  }
+]

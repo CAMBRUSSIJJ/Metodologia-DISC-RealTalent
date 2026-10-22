@@ -1,0 +1,130 @@
+[
+  {
+    "id": "D-D",
+    "origem": "D",
+    "destino": "D",
+    "orientacao": "Compartilhe objetivo, restrições e dono da decisão.",
+    "evitar": "Evite transformar a reunião em competição de autoridade.",
+    "pergunta_util": "Qual decisão e prazo você considera adequados?"
+  },
+  {
+    "id": "D-I",
+    "origem": "D",
+    "destino": "I",
+    "orientacao": "Explique o resultado desejado e convide ideias de mobilização.",
+    "evitar": "Não corte contribuições sem acolher a intenção.",
+    "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+  },
+  {
+    "id": "D-S",
+    "origem": "D",
+    "destino": "S",
+    "orientacao": "Apresente a mudança e o suporte disponível antes de cobrar adesão.",
+    "evitar": "Não interprete silêncio como compromisso.",
+    "pergunta_util": "O que tornaria esta mudança mais previsível?"
+  },
+  {
+    "id": "D-C",
+    "origem": "D",
+    "destino": "C",
+    "orientacao": "Mostre dados decisivos, riscos e prazo de decisão.",
+    "evitar": "Não pressione para pular riscos críticos.",
+    "pergunta_util": "Que evidência mudaria sua conclusão?"
+  },
+  {
+    "id": "I-D",
+    "origem": "I",
+    "destino": "D",
+    "orientacao": "Vá ao ponto, apresente benefício e feche com pedido concreto.",
+    "evitar": "Evite introduções longas sem decisão.",
+    "pergunta_util": "Qual decisão e prazo você considera adequados?"
+  },
+  {
+    "id": "I-I",
+    "origem": "I",
+    "destino": "I",
+    "orientacao": "Valorize contribuições e documente acordos ao fim.",
+    "evitar": "Evite sair com entusiasmo e sem responsáveis.",
+    "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+  },
+  {
+    "id": "I-S",
+    "origem": "I",
+    "destino": "S",
+    "orientacao": "Construa confiança e confirme se o ritmo proposto é confortável.",
+    "evitar": "Evite exigir concordância diante do grupo.",
+    "pergunta_util": "O que tornaria esta mudança mais previsível?"
+  },
+  {
+    "id": "I-C",
+    "origem": "I",
+    "destino": "C",
+    "orientacao": "Apoie a narrativa com evidências verificáveis.",
+    "evitar": "Evite promessas genéricas ou falta de documentação.",
+    "pergunta_util": "Que evidência mudaria sua conclusão?"
+  },
+  {
+    "id": "S-D",
+    "origem": "S",
+    "destino": "D",
+    "orientacao": "Seja objetivo sobre limites, riscos e apoio necessário.",
+    "evitar": "Evite concordar apenas para encerrar a pressão.",
+    "pergunta_util": "Qual decisão e prazo você considera adequados?"
+  },
+  {
+    "id": "S-I",
+    "origem": "S",
+    "destino": "I",
+    "orientacao": "Acolha ideias e negocie prioridades possíveis.",
+    "evitar": "Evite aceitar todos os pedidos informalmente.",
+    "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+  },
+  {
+    "id": "S-S",
+    "origem": "S",
+    "destino": "S",
+    "orientacao": "Cheque responsabilidades e cronograma com clareza.",
+    "evitar": "Evite postergar decisões difíceis para preservar o conforto.",
+    "pergunta_util": "O que tornaria esta mudança mais previsível?"
+  },
+  {
+    "id": "S-C",
+    "origem": "S",
+    "destino": "C",
+    "orientacao": "Apresente processo, critérios e pontos de validação.",
+    "evitar": "Evite entregar contexto incompleto.",
+    "pergunta_util": "Que evidência mudaria sua conclusão?"
+  },
+  {
+    "id": "C-D",
+    "origem": "C",
+    "destino": "D",
+    "orientacao": "Resuma a análise em decisão, risco e recomendação.",
+    "evitar": "Evite começar por todas as exceções.",
+    "pergunta_util": "Qual decisão e prazo você considera adequados?"
+  },
+  {
+    "id": "C-I",
+    "origem": "C",
+    "destino": "I",
+    "orientacao": "Traduza dados em benefícios e exemplos concretos.",
+    "evitar": "Evite linguagem excessivamente técnica.",
+    "pergunta_util": "Como envolver as pessoas certas sem perder o foco?"
+  },
+  {
+    "id": "C-S",
+    "origem": "C",
+    "destino": "S",
+    "orientacao": "Explique procedimento e mudanças com antecedência.",
+    "evitar": "Evite críticas descontextualizadas.",
+    "pergunta_util": "O que tornaria esta mudança mais previsível?"
+  },
+  {
+    "id": "C-C",
+    "origem": "C",
+    "destino": "C",
+    "orientacao": "Alinhe qualidade suficiente, prioridades e prazo.",
+    "evitar": "Evite prolongar a validação sem critério de conclusão.",
+    "pergunta_util": "Que evidência mudaria sua conclusão?"
+  }
+]

@@ -1,0 +1,38 @@
+/* Testes lógicos do protótipo, não testes de segurança. */
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const mem=new Map(),localStorage={getItem:k=>mem.get(k)||null,setItem:(k,v)=>mem.set(k,String(v)),removeItem:k=>mem.delete(k)};
+const ctx={window:{},localStorage,Date,Math,crypto:require('node:crypto').webcrypto};vm.createContext(ctx);
+for(const f of ['core/disc-questions.js','core/demo-store.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+f,'utf8'),ctx,{filename:f});
+const S=ctx.window.RTDemoStore,Q=ctx.window.RTDiscQuestions,plain=x=>JSON.parse(JSON.stringify(x));
+assert.equal(S.VERSION,9);assert.equal(Q.QUESTIONS.length,20);assert.equal(Q.ADJECTIVES.length,92);
+assert(Q.QUESTIONS.every(q=>q.options.length===4&&new Set(q.options.map(x=>x[1])).size===4));
+assert.equal(Q.tally(Array(20).fill('D')).D,20);
+assert.equal(Q.tally(Array(20).fill('X')),null);
+assert.equal(Object.values(Q.tallyAdjs([0,1,2])).reduce((a,b)=>a+b),3);
+assert.equal(Q.tallyAdjs([0,0,1]),null);
+let db=S.load();assert.equal(db.version,9);assert.equal(db.discAssignments.length,1);
+const seed=db.discAssignments[0];assert.equal(seed.clientId,'c1');assert.equal(seed.status,'atribuido');
+assert.equal(S.clientView(db,'c1').discAssignments.length,1);
+assert.equal(S.clientView(db,'c2').discAssignments.length,0);
+const answers=Q.QUESTIONS.map(q=>q.options[0][1]);
+assert.equal(S.submitDisc(db,'c2',seed.id,answers,[0,1,2],[3,4,5]),false,'no cross-client submission');
+assert.equal(S.submitDisc(db,'c1',seed.id,answers,[0,0,1],[3,4,5]),false,'duplicate adjectives rejected');
+assert.equal(S.submitDisc(db,'c1',seed.id,answers.slice(1),[0,1,2],[3,4,5]),false,'incomplete rejected');
+assert.equal(S.submitDisc(db,'c1',seed.id,answers,[0,1,2],[3,4,5]),true,'valid questionnaire accepted');
+assert.equal(S.submitDisc(db,'c1',seed.id,answers,[0,1,2],[3,4,5]),false,'cannot resubmit');
+assert.equal(Object.values(seed.scores).reduce((a,b)=>a+b),20);
+assert.equal(Object.values(seed.selfScores).reduce((a,b)=>a+b),3);
+const v=S.clientView(db,'c1');assert.equal(v.discAssignments[0].status,'respondido');
+for(const k of ['scores','answers','selfScores','perceivedScores','selfAdjectives','perceivedAdjectives','feedbackVisibility'])assert(!(k in v.discAssignments[0]),'hidden field: '+k);
+seed.feedback='Comentário ilustrativo reservado';seed.feedbackVisibility='privado';assert.equal(S.clientView(db,'c1').discAssignments[0].feedback,'');
+seed.feedbackVisibility='compartilhado';assert.equal(S.clientView(db,'c1').discAssignments[0].feedback,'Comentário ilustrativo reservado');
+assert.equal(S.assignDisc(db,'p1','compartilhado'),true,'completed process may be reassigned');
+assert.equal(S.assignDisc(db,'p1','compartilhado'),false,'duplicate pending assignment blocked');
+const draft=db.discAssignments.find(x=>x.status==='atribuido');draft.visibility='privado';assert.equal(S.clientView(db,'c1').discAssignments.length,1,'draft must not be visible');
+assert.equal(S.submitDisc(db,'c1',draft.id,answers,[0,1,2],[3,4,5]),false,'draft cannot be answered');
+assert.equal(S.assignDisc(db,'does-not-exist','compartilhado'),false);
+for(const version of [5,7,8]){let old=plain(db);old.version=version;delete old.discAssignments;if(version===5)delete old.instruments;if(version<=7)delete old.discLinks;const upgraded=S.upgrade(old);assert.equal(upgraded.version,9);assert(Array.isArray(upgraded.discAssignments));assert.equal(upgraded.discAssignments.length,0);}
+const denied=S.clientView(db,'c2');assert(!denied.discAssignments.some(x=>x.clientId==='c1'));
+S.save(db);assert.equal(S.load().discAssignments.length,db.discAssignments.length);
+console.log('V8.1 CORE OK — original 20 questões + 92 adjetivos, 2 papéis, resposta vinculada, visibilidade, devolutiva e migrações');

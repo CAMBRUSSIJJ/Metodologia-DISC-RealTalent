@@ -66,6 +66,42 @@
     s.preparationUpdatedAt=new Date().toISOString();
     return true;
   }
+  // V9.13: banco de perguntas e agenda temporal da sessão são sempre internos.
+  const TIMER_DEFAULT=[{id:'abertura',label:'Abertura',minutes:5},{id:'exploracao',label:'Exploração',minutes:25},{id:'pratica',label:'Prática',minutes:15},{id:'fechamento',label:'Fechamento',minutes:5}];
+  function defaultTimerPlan(){return TIMER_DEFAULT.map(x=>({...x}));}
+  function normalizeTimerPlan(input){
+    if(!Array.isArray(input)||input.length!==4)return null;
+    const ids=new Set(TIMER_DEFAULT.map(x=>x.id)),found=new Set();let total=0;
+    const output=[];
+    for(const entry of input){
+      const id=String(entry?.id??''),label=String(entry?.label??'').trim().slice(0,65),minutes=Number(entry?.minutes);
+      if(!ids.has(id)||found.has(id)||!label||!Number.isInteger(minutes)||minutes<1||minutes>90)return null;
+      found.add(id);total+=minutes;output.push({id,label,minutes});
+    }
+    return total<=240&&found.size===4?output:null;
+  }
+  function setSessionTimerPlan(d,sessionId,plan){
+    const s=d.sessions.find(x=>x.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId&&d.clients.some(c=>c.id===p.clientId)))return false;
+    const normalized=normalizeTimerPlan(plan);if(!normalized)return false;
+    s.timerPlan=normalized;s.timerPlanUpdatedAt=new Date().toISOString();return true;
+  }
+  function normalizeSessionQuestionIds(input){
+    if(!Array.isArray(input))return [];
+    const ids=[];
+    for(const v of input){
+      if(typeof v!=='string'||!/^cq-[a-z0-9-]{2,40}$/.test(v))continue;
+      if(!ids.includes(v))ids.push(v);
+      if(ids.length===12)break;
+    }
+    return ids;
+  }
+  function setSessionQuestionIds(d,sessionId,ids){
+    const s=d.sessions.find(x=>x.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId&&d.clients.some(c=>c.id===p.clientId)))return false;
+    if(!Array.isArray(ids)||ids.length>12||ids.some(id=>typeof id!=='string'||!/^cq-[a-z0-9-]{2,40}$/.test(id))||new Set(ids).size!==ids.length)return false;
+    s.coachingQuestionIds=ids.slice();return true;
+  }
   // V9.12: registros de autoavaliação subjetiva; nunca uma pontuação psicológica.
   function validDate(s){
     if(typeof s!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;
@@ -143,6 +179,8 @@
       if(a.fiveWTwoH){const normalized=normalizeFiveWTwoH(a.fiveWTwoH);if(normalized)a.fiveWTwoH=normalized;else delete a.fiveWTwoH;}
     }
     for(const s of d.sessions){
+      s.coachingQuestionIds=normalizeSessionQuestionIds(s.coachingQuestionIds);
+      s.timerPlan=normalizeTimerPlan(s.timerPlan)||defaultTimerPlan();
       s.preparation=normalizeSessionPreparation(s.preparation);
       s.clientRecap=String(s.clientRecap||'').slice(0,800);
       if(s.recapVisibility!=='compartilhado'||s.visibility!=='compartilhado'||s.status!=='concluida'||!s.clientRecap)s.recapVisibility='privado';
@@ -225,7 +263,7 @@
     const c=d.clients.find(x=>x.id===clientId);if(!c)return null;
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
-      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
+      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
       actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
@@ -283,5 +321,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

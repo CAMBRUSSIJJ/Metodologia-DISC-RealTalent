@@ -3,6 +3,7 @@
   "product": "RealTalent DISC/ACER — Perguntas e Temporizador",
   "base": "9.12.0",
   "files": {
+    ".github/workflows/v913-session-e2e.yml": "34dcfab5536132ba3da56bd97a587ee8e5c5a07f6fb5156e0df5bdc61a7c03ac",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -105,6 +106,7 @@
     "qa/testar-disc-completo-v98.py": "6bb42c5154ef758f16b107494b632a3eca89324bf693ffd7f91b37ad09e72cc0",
     "qa/testar-ferramentas-desenvolvimento-v912.js": "b3bc32747dfc103181b28659df9570a2b3776e63ff476c31522bc9f2666ad30d",
     "qa/testar-ferramentas-v96.py": "9454136d96cf9ee67427d18a9ebe2c0f543be1863b8ded972ddf81f945ffad38",
+    "qa/testar-fluxo-atendimento-v913.py": "38adeee4cc36a9871fbd61efd42c41057730e38788d112d6dbac66be9135628d",
     "qa/testar-fluxos-v9.py": "5ed9241957178e42826c8918944b9f6c9c78b08944045d2b9da2c2c7e3c9d761",
     "qa/testar-fluxos-v95.py": "53d5c106e597fd9e66dfa0ccfdbb5821442dbf5a26e425a69fae1604c1c2c708",
     "qa/testar-jornada-integrada-v99.py": "d1ccc3dd81b43e9cf245282435900d568d9d3ad617cc605d5dd0215829315aea",

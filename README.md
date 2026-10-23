@@ -1,3 +1,17 @@
+# RealTalent DISC/ACER V9.12 — Ferramentas de Desenvolvimento (DEMONSTRAÇÃO)
+
+**Novo na V9.12:** Roda da Vida com dimensões configuráveis, gráfico interativo e histórico por processo; Matriz 5W2H que cria/atualiza diretamente ações do plano existente. Em **Profissional → Ferramentas**, selecione **Roda da Vida** ou **Matriz 5W2H**, ou use os atalhos em **Clientes → Desenvolvimento**.
+
+- Registros da Roda da Vida continuam internos, sem diagnóstico nem compartilhamento com o participante.
+- Detalhes 5W2H ficam privados; o título e o prazo das ações seguem a visibilidade configurada no Plano de Ação.
+- A V9.11 (Kit/GROW), DISC/ACER e Minha Jornada foram preservados.
+
+Guia de uso: [V9.12 — Ferramentas de Desenvolvimento](docs/V9_12_FERRAMENTAS_DESENVOLVIMENTO.md). Teste estrutural: `node qa/testar-ferramentas-desenvolvimento-v912.js`.
+
+**Somente demonstração com dados fictícios**: a plataforma ainda não possui autenticação ou armazenamento seguro para uso real.
+
+---
+
 # RealTalent DISC/ACER V9.11 — Kit do Profissional (DEMONSTRAÇÃO)
 
 **Novo na V9.11:** preparação contextual de sessões; compromissos anteriores recuperados automaticamente no mesmo processo; roteiro GROW opcional com quatro campos internos, salvos no encontro existente. Acesse **Profissional → Ferramentas → Kit de atendimento** ou o atalho de preparação da sessão.

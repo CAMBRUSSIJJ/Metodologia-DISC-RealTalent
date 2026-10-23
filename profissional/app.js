@@ -754,7 +754,11 @@ document.addEventListener('input',e=>{
     if(output)output.textContent=score.value+'/10';
   }
   const chart=document.querySelector('#rt-v912-chart');
-  if(chart)chart.innerHTML=RTDevelopmentToolkit.wheelSvg(items);
+  if(chart){
+    const pid=String(wheel.elements.namedItem('programId')?.value||'');
+    const history=(db.wheelAssessments||[]).filter(x=>x.programId===pid).slice().sort((a,b)=>(b.date+'T'+(b.createdAt||'')).localeCompare(a.date+'T'+(a.createdAt||'')));
+    chart.innerHTML=RTDevelopmentToolkit.wheelSvg(items,history[1]?.areas);
+  }
  }
  if(e.target.id==='client-search'){
    const term=e.target.value.trim().toLocaleLowerCase('pt-BR');let visible=0;

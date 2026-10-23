@@ -49,6 +49,22 @@
     audit:[]
   };}
   function valid(d) {return d && d.version===VERSION && ['clients','programs','goals','sessions','actions','guidance','reflections','instruments','discLinks','discAssignments','audit'].every(k=>Array.isArray(d[k]));}
+  // Preparação de sessão: estrutura interna, opcional, nunca compartilhada no portal.
+  const PREP_FIELDS=['goal','reality','options','wayForward'];
+  function normalizeSessionPreparation(input){
+    if(!input||typeof input!=='object'||Array.isArray(input))return null;
+    const normalized={};
+    for(const key of PREP_FIELDS)normalized[key]=String(input[key]??'').trim().slice(0,650);
+    return PREP_FIELDS.some(key=>normalized[key])?normalized:null;
+  }
+  function updateSessionPreparation(d,sessionId,input){
+    const s=d.sessions.find(s=>s.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId))return false;
+    if(!input||typeof input!=='object'||Array.isArray(input))return false;
+    s.preparation=normalizeSessionPreparation(input);
+    s.preparationUpdatedAt=new Date().toISOString();
+    return true;
+  }
   // Migração somente do protótipo local; dados sem visibilidade explícita tornam-se privados.
   function upgrade(raw) {
     if(!raw || ![5,7,8,9,10,11].includes(raw.version))return null;
@@ -63,6 +79,7 @@
       if(!d.sessions.some(s=>s.id===a.sessionId&&s.programId===a.programId))a.sessionId=null;
     }
     for(const s of d.sessions){
+      s.preparation=normalizeSessionPreparation(s.preparation);
       s.clientRecap=String(s.clientRecap||'').slice(0,800);
       if(s.recapVisibility!=='compartilhado'||s.visibility!=='compartilhado'||s.status!=='concluida'||!s.clientRecap)s.recapVisibility='privado';
     }
@@ -144,7 +161,7 @@
     const c=d.clients.find(x=>x.id===clientId);if(!c)return null;
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
-      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
+      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
       actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(a=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
@@ -202,5 +219,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

@@ -207,7 +207,7 @@ function ws94SelectedSession(s,id,pid){
  const recaps=`<div class="rt-v910-recap"><div class="rt-v910-between"><strong>Resumo para Minha Jornada</strong><span class="rt-v910-state">${s.clientRecap&&s.recapVisibility==='compartilhado'?'Compartilhado':'Restrito'}</span></div>${s.clientRecap?`<p>${esc(s.clientRecap)}</p>`:'<p>Prepare um resumo simples dos acordos quando o encontro for concluído.</p>'}${s.status==='concluida'?btn('Editar resumo e compartilhamento','edit-session-recap',s.id,'btn-secondary'):''}${s.visibility==='privado'?'<small>Encontro interno: o resumo não pode ser compartilhado enquanto a agenda estiver restrita.</small>':''}</div>`;
  const commitments=`<div class="rt-v910-commitments"><div class="rt-v910-between"><strong>Compromissos deste encontro</strong>${btn('+ Novo acordo','new-session-action',s.id,'btn-secondary')}</div>${tied.length?tied.map(a=>`<div class="rt-v910-agreement"><span class="rt-v910-dot ${a.status==='concluido'?'done':''}" aria-hidden="true"></span><div><strong>${esc(a.title)}</strong><small>${a.due?'Prazo: '+dateFmt(a.due):'Sem prazo'} · ${a.status==='concluido'?'Registrado':'Em aberto'} · ${a.visibility==='compartilhado'?'Compartilhado':'Restrito'}</small>${a.experience?`<p>${esc(a.experience.outcome==='tentada'?'Tentou e encontrou dificuldades':'Realizou')}${a.experience.note?' — '+esc(a.experience.note):''}</p>`:''}</div></div>`).join(''):'<p class="rt-v910-muted">Nenhum acordo registrado para este encontro.</p>'}</div>`;
  const carry=`<div class="rt-v910-carry"><strong>Para retomar neste encontro</strong>${previous.length?previous.slice(0,5).map(a=>`<div class="rt-v910-carry-row"><span class="rt-v910-dot" aria-hidden="true"></span><div><strong>${esc(a.title)}</strong><small>${a.due?'Até '+dateFmt(a.due):'Sem prazo'} · Aguardando retorno</small></div></div>`).join(''):'<p class="rt-v910-muted">Sem compromissos anteriores em aberto.</p>'}<small>Registros do mesmo processo. Ações continuam ligadas ao plano e não são duplicadas.</small></div>`;
- return ws94Panel('Detalhes do encontro',details+`<div class="rt-v911-shortcut"><a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar sessão com o roteiro GROW →</a></div>`+privateNotes+(canClose?`<div class="rt-v94-inline-actions">${btn('Concluir encontro','close-session',s.id,'btn-primary')}</div>`:'')+commitments+recaps+carry,'Preparação, acordos e continuidade no mesmo processo.','','rt-v94-detail rt-v910-session-detail');
+ return ws94Panel('Detalhes do encontro',details+`<div class="rt-v911-shortcut rt-v913-session-shortcuts"><a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar com GROW →</a><a class="btn-secondary" href="${rt96Href('perguntas','session='+encodeURIComponent(s.id))}">Banco de perguntas →</a><a class="btn-secondary" href="${rt96Href('temporizador','session='+encodeURIComponent(s.id))}">Temporizador →</a></div>`+privateNotes+(canClose?`<div class="rt-v94-inline-actions">${btn('Concluir encontro','close-session',s.id,'btn-primary')}</div>`:'')+commitments+recaps+carry,'Preparação, acordos e continuidade no mesmo processo.','','rt-v94-detail rt-v910-session-detail');
 }
 
 function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
@@ -511,8 +511,16 @@ function rt96ProgressLine(t){
 function showInstrumentsCenter(){
  const active=rt96Params().get('tab')||'visao';
  const choice='<nav class="rt-v911-chooser rt-v912-tool-nav" aria-label="Tipos de ferramentas">'+[
-  ['kit','Kit de atendimento'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
- ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['kit','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+  ['kit','Kit de atendimento'],['perguntas','Perguntas de Coaching'],['temporizador','Temporizador'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
+ ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['kit','perguntas','temporizador','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+ if(active==='perguntas'){
+  return head('APOIO À CONDUÇÃO','Banco de Perguntas','Perguntas abertas por etapa para apoiar sessões de coaching e desenvolvimento.')+
+    choice+RTSessionAssist.renderQuestions(db,rt96Params().get('session')||'',rt96Params().get('phase')||'todas',{esc,dateFmt,wsUrl,today});
+ }
+ if(active==='temporizador'){
+  return head('CONDUÇÃO DO ENCONTRO','Temporizador de Sessão','Controle de tempo opcional, com etapas configuráveis e avanço manual.')+
+    choice+RTSessionAssist.renderTimer(db,rt96Params().get('session')||'',{esc,dateFmt,wsUrl,today});
+ }
  if(active==='roda'){
   return head('REFLEXÃO CONTEXTUAL','Roda da Vida','Autoavaliação subjetiva, histórica e vinculada a um único processo.')+
     choice+RTDevelopmentToolkit.renderWheel(db,rt96Params().get('program')||'',{esc,dateFmt,wsUrl,today});
@@ -652,10 +660,32 @@ function render(){
  if(page==='cliente')output=showClientWorkspace(cid,new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('tab')||'geral',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('program')||'',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('session')||'');
  $('#content').innerHTML='<div class="demo-strip"><strong>Modo demonstrativo</strong> · Somente dados fictícios neste navegador. Não há autenticação nem proteção para uso profissional real.</div>'+(output||showHome());
  $('#crumb').textContent=page==='cliente'?`Clientes / ${client(cid)?.name||'Cliente'}`:(pages[page]||'Visão geral');
+ if(page==='ferramentas'&&rt96Params().get('tab')==='temporizador'){
+   const selected=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+   RTSessionAssist.armTimerSession(selected);
+ }else RTSessionAssist.armTimerSession(null);
  document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===(page==='cliente'?'clientes':page);a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  $('#side').classList.remove('open');$('#shade').classList.remove('open');$('#menu-btn').setAttribute('aria-expanded','false');
 }
 function runAction(act,id){
+   if(act==='rt-v913-toggle-question'){
+     if(!RTSessionAssist.questions.some(q=>q.id===id))return;
+     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     if(!s)return;
+     const selected=(s.coachingQuestionIds||[]).slice();
+     const next=selected.includes(id)?selected.filter(x=>x!==id):selected.concat(id);
+     if(next.length>12){toast('Selecione no máximo 12 perguntas por sessão.');return;}
+     if(!RTDemoStore.setSessionQuestionIds(db,s.id,next)){toast('Seleção inválida para esta sessão.');return;}
+     persist('profissional','select-coaching-question',s.id);
+     location.hash=rt96Href('perguntas','session='+encodeURIComponent(s.id)+'&phase='+encodeURIComponent(rt96Params().get('phase')||'todas'));
+     render();toast(next.includes(id)?'Pergunta associada à sessão.':'Pergunta removida da sessão.');
+     return;
+   }
+   if(act==='rt-v913-timer'){
+     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     if(s&&RTSessionAssist.timerCommand(s,id)){render();}
+     return;
+   }
    if(act==='rt-v912-wheel-delete'){
      const pid=rt96Params().get('program')||db.programs.find(p=>p.status==='em andamento')?.id||db.programs[0]?.id;
      if(!db.wheelAssessments?.some(x=>x.id===id&&x.programId===pid))return;
@@ -694,6 +724,18 @@ function runAction(act,id){
  if(act==='finish-process'||act==='reopen-process'){let p=program(id);if(p){p.status=act==='finish-process'?'finalizado':'em andamento';persist('profissional',act,id);render();toast('Processo atualizado no navegador.')}return;}
  if(act==='reset'){if(window.confirm('Reiniciar todos os dados fictícios desta demonstração?')){db=RTDemoStore.reset();location.hash='#inicio';render();toast('Dados fictícios restaurados neste navegador.')}return;}
 }
+document.addEventListener('submit',e=>{
+ const f=e.target.closest('#rt-v913-timer-form');if(!f)return;
+ e.preventDefault();const data=new FormData(f),sid=String(data.get('sessionId')||'');
+ const ids=['abertura','exploracao','pratica','fechamento'];
+ const plan=ids.map(id=>({id,label:String(data.get('label-'+id)||''),minutes:Number(data.get('minutes-'+id))}));
+ if(!RTDemoStore.setSessionTimerPlan(db,sid,plan)){toast('Verifique os tempos (1–90 min; até 240 min no total) e os nomes das etapas.');return;}
+ persist('profissional','configure-session-timer',sid);
+ const s=db.sessions.find(x=>x.id===sid);
+ if(s)RTSessionAssist.timerCommand(s,'reset');
+ location.hash=rt96Href('temporizador','session='+encodeURIComponent(sid));render();
+ toast('Etapas salvas. Temporizador reiniciado nesta aba.');
+});
 document.addEventListener('submit',e=>{
  const f=e.target.closest('#rt-v912-wheel-form');if(!f)return;
  e.preventDefault();
@@ -744,6 +786,7 @@ document.addEventListener('click',e=>{
  if(lib){const frame=document.querySelector('[data-rt-module="library"]');if(frame?.contentWindow){frame.contentWindow.postMessage({type:'rt:library-view',view:lib.dataset.libView},location.origin);document.querySelectorAll('[data-lib-view]').forEach(b=>b.setAttribute('aria-selected',String(b===lib)));}return;}
  let b=e.target.closest('[data-act]');if(b){e.preventDefault();runAction(b.dataset.act,b.dataset.id||'')}});
 document.addEventListener('input',e=>{
+ if(e.target.id==='rt-v913-question-search'){RTSessionAssist.filterQuestions(e.target.value);return;}
  const wheel=e.target.closest('#rt-v912-wheel-form');
  if(wheel&&/^(name|score)-\d+$/.test(e.target.name)){
   const items=[];for(let i=0;i<10;i++){
@@ -771,6 +814,11 @@ document.addEventListener('input',e=>{
  }
 });
 document.addEventListener('change',e=>{
+ if(e.target.id==='rt-v913-session-select'){
+   const tab=e.target.dataset.tab==='temporizador'?'temporizador':'perguntas';
+   const extra=tab==='perguntas'?'phase='+encodeURIComponent(rt96Params().get('phase')||'todas'):'';
+   location.hash=RTSessionAssist.href(tab,e.target.value,extra);render();return;
+ }
  if(e.target.id==='rt-v912-program'){
   location.hash=rt96Href(rt96Params().get('tab')==='5w2h'?'5w2h':'roda','program='+encodeURIComponent(e.target.value));render();return;
  }

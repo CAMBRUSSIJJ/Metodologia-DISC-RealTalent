@@ -47,7 +47,14 @@ def main():
         # Preparação GROW — preenchida na sessão existente, nunca no portal.
         page.locator('a[href*="tab=kit&session=s1"]').first.click()
         form=page.locator("#rt-v911-prep-form")
-        assert form.is_visible()
+        try:
+            form.wait_for(state="visible",timeout=7000)
+        except Exception:
+            print('DEBUG GROW route:',page.url,flush=True)
+            print('DEBUG page heading:',page.locator('#content').inner_text()[:1000],flush=True)
+            print('DEBUG errors:',errors,flush=True)
+            page.screenshot(path=str(OUTPUT/'v913-debug-grow.png'),full_page=True)
+            raise
         form.locator('[name="goal"]').fill("OBJETIVO INTERNO QA: conversa de feedback")
         form.locator('[name="reality"]').fill("REALIDADE INTERNA QA: fatos da simulação")
         form.locator('[name="options"]').fill("OPÇÕES INTERNAS QA")

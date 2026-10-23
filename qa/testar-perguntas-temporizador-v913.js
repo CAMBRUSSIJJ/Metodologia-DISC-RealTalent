@@ -6,7 +6,7 @@ const dir=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(dir,p),
 const local=new Map(),memory=new Map();
 const localStorage={getItem:k=>local.get(k)||null,setItem:(k,v)=>local.set(k,String(v)),removeItem:k=>local.delete(k),
  get length(){return local.size},key:i=>[...local.keys()][i]??null};
-const sessionStorage={getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,String(v)),removeItem:k=>memory.delete(k)};
+const sessionStorage={getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,String(v)),removeItem:k=>memory.delete(k),get length(){return memory.size},key:i=>[...memory.keys()][i]??null};
 const sandbox={window:{sessionStorage},localStorage,Date,URLSearchParams,console};
 vm.runInNewContext(read('core/demo-store.js'),sandbox,{filename:'demo-store.js'});
 vm.runInNewContext(read('assets/rt-v913-session-assist.js'),sandbox,{filename:'rt-v913-session-assist.js'});
@@ -81,4 +81,7 @@ assert.ok(!payload.includes('<img onerror=alert(1)>'),'Questions from curated im
 assert.ok(read('profissional/index.html').includes('rt-v913-session-assist.js'));
 assert.ok(read('profissional/index.html').includes('rt-v913-session-assist.css'));
 assert.ok(read('profissional/app.js').includes('RTDemoStore.setSessionQuestionIds(db,s.id,next)'));
+assert.ok(sessionStorage.getItem('rt-v913-session-timer:s1'),'Timer state existed before reset');
+store.reset();
+assert.equal(sessionStorage.getItem('rt-v913-session-timer:s1'),null,'Demo reset clears timer runtime');
 console.log('V9.13 QA OK — perguntas, migração, privacidade, seleção, tempo real, pausa, avanço e configuração.');

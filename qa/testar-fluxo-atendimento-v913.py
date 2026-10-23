@@ -7,7 +7,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from functools import partial
-import os, threading, tempfile, traceback
+import os, threading, tempfile, traceback, json
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=Path(os.environ.get("REALTALENT_QA_OUTPUT",str(Path(tempfile.gettempdir())/"rt-v913-e2e")))
@@ -128,7 +128,7 @@ def main():
         raw=page.evaluate("RTDemoStore.load()")
         page2=b.new_page(viewport={"width":1440,"height":920})
         page2.on("pageerror",lambda e:errors.append(str(e)))
-        page2.add_init_script("""(data) => localStorage.setItem('rt-disc-v5-demo-20261020',JSON.stringify(data))""",raw)
+        page2.add_init_script("localStorage.setItem('rt-disc-v5-demo-20261020',"+json.dumps(json.dumps(raw,ensure_ascii=False))+")")
         page2.goto(origin+"/cliente/index.html",wait_until="domcontentloaded")
         go(page2,"#encontros")
         portal=page2.locator("#app").inner_text()

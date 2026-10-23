@@ -1,3 +1,15 @@
+# RealTalent DISC/ACER V9.11 — Kit do Profissional (DEMONSTRAÇÃO)
+
+**Novo na V9.11:** preparação contextual de sessões; compromissos anteriores recuperados automaticamente no mesmo processo; roteiro GROW opcional com quatro campos internos, salvos no encontro existente. Acesse **Profissional → Ferramentas → Kit de atendimento** ou o atalho de preparação da sessão.
+
+O DISC/ACER, a Biblioteca e a Minha Jornada permanecem preservados. Os campos GROW nunca são expostos em `RTDemoStore.clientView` e não geram compromissos automaticamente.
+
+Guia: [V9.11 — Kit do Profissional](docs/V9_11_KIT_PROFISSIONAL.md). Teste: `node qa/testar-kit-profissional-v911.js`.
+
+**Atenção:** versão demonstrativa com dados apenas locais e fictícios, sem autenticação nem armazenamento apropriado para dados profissionais reais.
+
+---
+
 # RealTalent DISC/ACER V9.10 — Sessões e Continuidade (DEMONSTRAÇÃO)
 
 **Novo na V9.10:** compromissos vinculados a cada sessão e objetivo, retomada das ações em aberto no encontro seguinte, resumo opcional compartilhado com Minha Jornada e separação rigorosa entre pauta interna e orientação liberada. Consulte `docs/V9_10_SESSOES_E_CONTINUIDADE.md`.

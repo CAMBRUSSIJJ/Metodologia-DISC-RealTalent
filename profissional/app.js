@@ -302,6 +302,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
    {label:'Ações concluídas',value:completed.length,hint:'De '+actions.length+' ações combinadas'}],btn('+ Nova ação','new-action-for',pid,'btn-primary'))+
   (late.length?`<div class="rt-v94-attention"><div><strong>${late.length} ação(ões) com prazo vencido</strong><p>Confirme a situação com o participante. O atraso não é uma avaliação de desenvolvimento.</p></div><a class="btn-secondary" href="${wsUrl(id,'desenvolvimento',pid,'view=pendentes')}">Acompanhar</a></div>`:'')+
   `<div class="rt-v94-goal"><div><small>OBJETIVO DO PROCESSO</small><h3>${esc(p.goal)}</h3><p>${esc(p.stage)} · Início em ${dateFmt(p.start)}</p></div>${btn('Atualizar etapa','edit-stage',pid,'btn-secondary')}</div>`+
+  `<section class="rt-v912-shortcuts"><div><strong>Ferramentas para este processo</strong><small>Organize reflexões e planos a partir deste cliente.</small></div><a class="btn-secondary" href="${rt96Href('roda','program='+encodeURIComponent(pid))}">Roda da Vida →</a><a class="btn-secondary" href="${rt96Href('5w2h','program='+encodeURIComponent(pid))}">Matriz 5W2H →</a></section>`+
   `<section class="rt99-goals" aria-label="Objetivos do processo"><div class="rt99-goals-head"><div><h3>Objetivos acordados</h3><p>Vincule as ações a cada objetivo para acompanhar o contexto da jornada.</p></div>${btn('+ Objetivo','new-goal',pid,'btn-secondary')}</div><div class="rt99-goal-grid">${RTDemoStore.goalsOf(db,pid).map(g=>`<article class="rt99-goal-item"><strong>${esc(g.title)}</strong><small>${actions.filter(a=>a.goalId===g.id).length} ação(ões) vinculada(s)</small></article>`).join('')}</div></section>`+
   `<div class="rt-v94-layout"><div class="rt-v94-main">${ws94Filters(id,pid,chosen,[['pendentes','Pendentes',open.length],['concluidas','Concluídas',completed.length],['todas','Todas',actions.length]],view)}`+
   ws94Panel('Ações combinadas',filtered.map(a=>ws94Row(a.title,a.due?'Até '+dateFmt(a.due):'Sem prazo definido',`${a.status==='concluido'?'Concluída':a.due&&a.due<today()?'Prazo vencido':'Pendente'} · ${a.visibility==='compartilhado'?'Compartilhada':'Restrita'} · Objetivo: ${RTDemoStore.goalsOf(db,pid).find(g=>g.id===a.goalId)?.title||p.goal}${a.experience?' · Relato: '+(a.experience.outcome==='tentada'?'Tentou, com dificuldades':'Conseguiu realizar')+(a.experience.note?' · '+a.experience.note:''):''}`,btn(a.status==='concluido'?'Reabrir':'Concluir','toggle-action',a.id,'btn-secondary')+btn(a.visibility==='compartilhado'?'Restringir':'Compartilhar','toggle-share-action',a.id,'line-button'))).join('')||empty('Nenhuma ação neste filtro','Adicione uma ação ou altere o filtro.'),'A conclusão indica execução da atividade, não progresso psicológico.')+
@@ -508,7 +509,18 @@ function rt96ProgressLine(t){
  return `<div class="rt-v96-entry"><div class="rt-v96-entry-main"><span class="rt-v96-kicker">${esc(c.name)} · ${esc(p.stage||'Processo')}</span><strong>${esc(p.goal)}</strong><small>${t.status==='respondido'?'Respondido em '+new Date(t.completedAt||t.assignedAt).toLocaleDateString('pt-BR'):'Atribuído em '+new Date(t.assignedAt).toLocaleDateString('pt-BR')} · ${t.visibility==='compartilhado'?'Visível em Minha Jornada':'Restrito ao profissional'}</small></div><span class="rt-v96-pill ${t.status==='respondido'?'done':t.visibility==='compartilhado'?'waiting':''}">${rt96Status(t)}</span><div class="rt-v96-entry-actions">${t.status==='respondido'?`<a class="btn-secondary" href="${rt96Href('resultados','result='+encodeURIComponent(t.id))}">Ver resultados</a>`:t.status==='cancelado'?'':btn(t.visibility==='compartilhado'?'Recolher':'Disponibilizar','toggle-disc',t.id,'btn-secondary')+btn('Cancelar aplicação','cancel-disc',t.id,'btn-secondary rt-v97-cancel')}<a class="rt-v96-inline" href="${wsUrl(p.clientId,'atividades',p.id)}">Abrir cliente →</a></div></div>`;
 }
 function showInstrumentsCenter(){
- const choice='<nav class="rt-v911-chooser" aria-label="Tipos de ferramentas"><a href="'+rt96Href('kit')+'"'+(rt96Params().get('tab')==='kit'?' aria-current="page"':'')+'>Kit de atendimento</a><a href="'+rt96Href('visao')+'"'+(rt96Params().get('tab')!=='kit'?' aria-current="page"':'')+'>DISC / ACER</a></nav>';
+ const active=rt96Params().get('tab')||'visao';
+ const choice='<nav class="rt-v911-chooser rt-v912-tool-nav" aria-label="Tipos de ferramentas">'+[
+  ['kit','Kit de atendimento'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
+ ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['kit','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+ if(active==='roda'){
+  return head('REFLEXÃO CONTEXTUAL','Roda da Vida','Autoavaliação subjetiva, histórica e vinculada a um único processo.')+
+    choice+RTDevelopmentToolkit.renderWheel(db,rt96Params().get('program')||'',{esc,dateFmt,wsUrl,today});
+ }
+ if(active==='5w2h'){
+  return head('PLANEJAMENTO DE AÇÕES','Matriz 5W2H','Converta uma decisão concreta em uma ação do Plano de Ação existente.')+
+    choice+RTDevelopmentToolkit.renderFive(db,rt96Params().get('program')||'',rt96Params().get('action')||'',{esc,dateFmt,wsUrl,today});
+ }
  if(rt96Params().get('tab')==='kit'){
    return head('APOIO À CONDUÇÃO','Kit do profissional','Prepare encontros, recupere compromissos e organize perguntas de coaching sem duplicar registros.')+
      choice+RTProfessionalKit.render(db,rt96Params().get('session')||'',{esc,dateFmt,wsUrl,today});
@@ -644,6 +656,13 @@ function render(){
  $('#side').classList.remove('open');$('#shade').classList.remove('open');$('#menu-btn').setAttribute('aria-expanded','false');
 }
 function runAction(act,id){
+   if(act==='rt-v912-wheel-delete'){
+     const pid=rt96Params().get('program')||db.programs.find(p=>p.status==='em andamento')?.id||db.programs[0]?.id;
+     if(!db.wheelAssessments?.some(x=>x.id===id&&x.programId===pid))return;
+     if(!confirm('Excluir este registro fictício da Roda da Vida? Esta ação não pode ser desfeita.'))return;
+     if(RTDemoStore.deleteWheelSnapshot(db,id,pid)){persist('profissional','delete-wheel',id);render();toast('Registro demonstrativo excluído.');}
+     return;
+   }
    if(act==='select-disc'){window.rtDiscSelected=id;render();return;}
    if(act==='cancel-disc'){
      const t=db.discAssignments.find(x=>x.id===id&&x.status==='atribuido');
@@ -676,6 +695,32 @@ function runAction(act,id){
  if(act==='reset'){if(window.confirm('Reiniciar todos os dados fictícios desta demonstração?')){db=RTDemoStore.reset();location.hash='#inicio';render();toast('Dados fictícios restaurados neste navegador.')}return;}
 }
 document.addEventListener('submit',e=>{
+ const f=e.target.closest('#rt-v912-wheel-form');if(!f)return;
+ e.preventDefault();
+ const data=new FormData(f),areas=[];
+ for(let i=0;i<10;i++){
+  if(data.get('name-'+i)===null)break;
+  areas.push({name:data.get('name-'+i),score:data.get('score-'+i)});
+ }
+ const saved=RTDemoStore.createWheelSnapshot(db,String(data.get('programId')||''),{areas,date:String(data.get('date')||''),note:data.get('note')});
+ if(!saved){toast('Confira as dimensões, as notas de 0 a 10 e a data da reflexão.');return;}
+ persist('profissional','save-wheel',saved.id);
+ location.hash=rt96Href('roda','program='+encodeURIComponent(saved.programId));
+ render();toast('Roda da Vida salva no histórico demonstrativo.');
+});
+document.addEventListener('submit',e=>{
+ const f=e.target.closest('#rt-v912-five-form');if(!f)return;
+ e.preventDefault();
+ const data=new FormData(f),programId=String(data.get('programId')||''),actionId=String(data.get('actionId')||'');
+ const input={goalId:data.get('goalId')};
+ for(const key of ['what','why','where','when','who','how','howMuch'])input[key]=String(data.get(key)||'');
+ const saved=RTDemoStore.upsertFiveWTwoH(db,programId,input,actionId);
+ if(!saved){toast('Confira o objetivo, o prazo e os campos obrigatórios da Matriz 5W2H.');return;}
+ persist('profissional','save-5w2h',saved.id);
+ location.hash=rt96Href('5w2h','program='+encodeURIComponent(programId)+'&action='+encodeURIComponent(saved.id));
+ render();toast('Matriz integrada ao Plano de Ação demonstrativo.');
+});
+document.addEventListener('submit',e=>{
  const f=e.target.closest('#rt-v911-prep-form');if(!f)return;
  e.preventDefault();
  const data=new FormData(f),sessionId=String(data.get('sessionId')||'');
@@ -699,6 +744,18 @@ document.addEventListener('click',e=>{
  if(lib){const frame=document.querySelector('[data-rt-module="library"]');if(frame?.contentWindow){frame.contentWindow.postMessage({type:'rt:library-view',view:lib.dataset.libView},location.origin);document.querySelectorAll('[data-lib-view]').forEach(b=>b.setAttribute('aria-selected',String(b===lib)));}return;}
  let b=e.target.closest('[data-act]');if(b){e.preventDefault();runAction(b.dataset.act,b.dataset.id||'')}});
 document.addEventListener('input',e=>{
+ const wheel=e.target.closest('#rt-v912-wheel-form');
+ if(wheel&&/^(name|score)-\d+$/.test(e.target.name)){
+  const items=[];for(let i=0;i<10;i++){
+    const name=wheel.elements.namedItem('name-'+i),score=wheel.elements.namedItem('score-'+i);
+    if(!name||!score)break;
+    items.push({name:name.value,score:Number(score.value)});
+    const output=wheel.querySelector('[data-wheel-output="'+i+'"]');
+    if(output)output.textContent=score.value+'/10';
+  }
+  const chart=document.querySelector('#rt-v912-chart');
+  if(chart)chart.innerHTML=RTDevelopmentToolkit.wheelSvg(items);
+ }
  if(e.target.id==='client-search'){
    const term=e.target.value.trim().toLocaleLowerCase('pt-BR');let visible=0;
    document.querySelectorAll('[data-v92-client-row]').forEach(tr=>{const show=tr.textContent.toLocaleLowerCase('pt-BR').includes(term);tr.hidden=!show;if(show)visible++});
@@ -710,6 +767,14 @@ document.addEventListener('input',e=>{
  }
 });
 document.addEventListener('change',e=>{
+ if(e.target.id==='rt-v912-program'){
+  location.hash=rt96Href(rt96Params().get('tab')==='5w2h'?'5w2h':'roda','program='+encodeURIComponent(e.target.value));render();return;
+ }
+ if(e.target.id==='rt-v912-action-select'){
+  const pid=rt96Params().get('program')||db.programs.find(p=>p.status==='em andamento')?.id||db.programs[0]?.id;
+  location.hash=rt96Href('5w2h','program='+encodeURIComponent(pid)+(e.target.value?'&action='+encodeURIComponent(e.target.value):''));
+  render();return;
+ }
  if(e.target.id==='rt-v911-session-select'){location.hash=rt96Href('kit','session='+encodeURIComponent(e.target.value));render();return;}
  if(e.target.name==='programId'&&e.target.closest('#modal-form')?.dataset.kind==='new-action'){const goalField=document.querySelector('#f-goalId');if(goalField)goalField.innerHTML=goalOptions(e.target.value).map(([id,title])=>`<option value="${esc(id)}">${esc(title)}</option>`).join('');}
  if(e.target.id==='rt-v95-process'){const current=new URLSearchParams(location.hash.split('?')[1]||'');location.hash='#plano-acao?filter='+encodeURIComponent(current.get('filter')||'abertas')+'&program='+encodeURIComponent(e.target.value);return;}

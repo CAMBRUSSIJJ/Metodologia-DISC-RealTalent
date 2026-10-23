@@ -75,7 +75,7 @@ def main():
         assert page.locator('[data-v913-question]:visible').count()>=1
         page.locator("#rt-v913-question-search").fill("sem-resultado-qa")
         assert page.locator('[data-v913-question]:visible').count()==0
-        go(page,"#ferramentas?tab=perguntas&session=s1&phase=realidade")
+        page.locator("#rt-v913-question-search").fill("")
         page.locator('[data-act="rt-v913-toggle-question"][data-id="cq-11"]').first.click()
         ids=result(page,"RTDemoStore.load().sessions.find(s=>s.id==='s1').coachingQuestionIds")
         assert ids==["cq-01","cq-11"]

@@ -41,6 +41,7 @@
       {id:'g1',programId:'p1',goalId:'goal-p1',text:'Nesta semana, observe uma situação em que uma pergunta aberta possa melhorar o diálogo.',visibility:'compartilhado',created:iso(-1)}
     ],
     reflections:[],
+    wheelAssessments:[],
     instruments:[
       {id:'i-seed-1',programId:'p1',kind:'reflexao-guiada',title:'Meu estilo de comunicação',instructions:'Registre uma situação fictícia de comunicação. Não é um teste psicológico nem produz perfil DISC.',visibility:'compartilhado',status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',assignedAt:iso(-1)}
     ],
@@ -48,21 +49,139 @@
     discAssignments:[{id:'disc-seed-1',programId:'p1',clientId:'c1',visibility:'compartilhado',status:'atribuido',assignedAt:iso(-1),completedAt:null,answers:null,scores:null,selfAdjectives:null,perceivedAdjectives:null,selfScores:null,perceivedScores:null,feedback:'',feedbackVisibility:'privado'}],
     audit:[]
   };}
-  function valid(d) {return d && d.version===VERSION && ['clients','programs','goals','sessions','actions','guidance','reflections','instruments','discLinks','discAssignments','audit'].every(k=>Array.isArray(d[k]));}
+  function valid(d) {return d && d.version===VERSION && ['clients','programs','goals','sessions','actions','guidance','reflections','wheelAssessments','instruments','discLinks','discAssignments','audit'].every(k=>Array.isArray(d[k]));}
+  // Preparação de sessão: estrutura interna, opcional, nunca compartilhada no portal.
+  const PREP_FIELDS=['goal','reality','options','wayForward'];
+  function normalizeSessionPreparation(input){
+    if(!input||typeof input!=='object'||Array.isArray(input))return null;
+    const normalized={};
+    for(const key of PREP_FIELDS)normalized[key]=String(input[key]??'').trim().slice(0,650);
+    return PREP_FIELDS.some(key=>normalized[key])?normalized:null;
+  }
+  function updateSessionPreparation(d,sessionId,input){
+    const s=d.sessions.find(s=>s.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId))return false;
+    if(!input||typeof input!=='object'||Array.isArray(input))return false;
+    s.preparation=normalizeSessionPreparation(input);
+    s.preparationUpdatedAt=new Date().toISOString();
+    return true;
+  }
+  // V9.13: banco de perguntas e agenda temporal da sessão são sempre internos.
+  const TIMER_DEFAULT=[{id:'abertura',label:'Abertura',minutes:5},{id:'exploracao',label:'Exploração',minutes:25},{id:'pratica',label:'Prática',minutes:15},{id:'fechamento',label:'Fechamento',minutes:5}];
+  function defaultTimerPlan(){return TIMER_DEFAULT.map(x=>({...x}));}
+  function normalizeTimerPlan(input){
+    if(!Array.isArray(input)||input.length!==4)return null;
+    const ids=new Set(TIMER_DEFAULT.map(x=>x.id)),found=new Set();let total=0;
+    const output=[];
+    for(const entry of input){
+      const id=String(entry?.id??''),label=String(entry?.label??'').trim().slice(0,65),minutes=Number(entry?.minutes);
+      if(!ids.has(id)||found.has(id)||!label||!Number.isInteger(minutes)||minutes<1||minutes>90)return null;
+      found.add(id);total+=minutes;output.push({id,label,minutes});
+    }
+    return total<=240&&found.size===4?output:null;
+  }
+  function setSessionTimerPlan(d,sessionId,plan){
+    const s=d.sessions.find(x=>x.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId&&d.clients.some(c=>c.id===p.clientId)))return false;
+    const normalized=normalizeTimerPlan(plan);if(!normalized)return false;
+    s.timerPlan=normalized;s.timerPlanUpdatedAt=new Date().toISOString();return true;
+  }
+  function normalizeSessionQuestionIds(input){
+    if(!Array.isArray(input))return [];
+    const ids=[];
+    for(const v of input){
+      if(typeof v!=='string'||!/^cq-[a-z0-9-]{2,40}$/.test(v))continue;
+      if(!ids.includes(v))ids.push(v);
+      if(ids.length===12)break;
+    }
+    return ids;
+  }
+  function setSessionQuestionIds(d,sessionId,ids){
+    const s=d.sessions.find(x=>x.id===sessionId);
+    if(!s||!d.programs.some(p=>p.id===s.programId&&d.clients.some(c=>c.id===p.clientId)))return false;
+    if(!Array.isArray(ids)||ids.length>12||ids.some(id=>typeof id!=='string'||!/^cq-[a-z0-9-]{2,40}$/.test(id))||new Set(ids).size!==ids.length)return false;
+    s.coachingQuestionIds=ids.slice();return true;
+  }
+  // V9.12: registros de autoavaliação subjetiva; nunca uma pontuação psicológica.
+  function validDate(s){
+    if(typeof s!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;
+    const [y,m,d]=s.split('-').map(Number);
+    const parsed=new Date(Date.UTC(y,m-1,d));
+    return y>=2000&&y<=2100&&parsed.getUTCFullYear()===y&&parsed.getUTCMonth()===m-1&&parsed.getUTCDate()===d;
+  }
+  function normalizeWheelAreas(items){
+    if(!Array.isArray(items)||items.length<6||items.length>10)return null;
+    const seen=new Set(),out=[];
+    for(const item of items){
+      if(!item||typeof item!=='object')return null;
+      const name=String(item.name??'').trim().slice(0,65);
+      const score=Number(item.score),norm=name.toLocaleLowerCase('pt-BR');
+      if(!name||seen.has(norm)||!Number.isInteger(score)||score<0||score>10)return null;
+      seen.add(norm);out.push({name,score});
+    }
+    return out;
+  }
+  function createWheelSnapshot(d,programId,input){
+    if(!d.programs.some(p=>p.id===programId&&d.clients.some(c=>c.id===p.clientId)))return null;
+    const areas=normalizeWheelAreas(input?.areas),date=input?.date;
+    if(!areas||!validDate(date))return null;
+    if(!Array.isArray(d.wheelAssessments))d.wheelAssessments=[];
+    const row={id:freshId('wheel'),programId,date,areas,note:String(input?.note??'').trim().slice(0,400),createdAt:new Date().toISOString()};
+    d.wheelAssessments.push(row);return row;
+  }
+  function deleteWheelSnapshot(d,id,programId){
+    if(!Array.isArray(d.wheelAssessments))return false;
+    const pos=d.wheelAssessments.findIndex(x=>x.id===id&&x.programId===programId);
+    if(pos<0)return false;
+    d.wheelAssessments.splice(pos,1);return true;
+  }
+  // Matriz 5W2H: os dados operacionais permanecem na ação canônica.
+  function normalizeFiveWTwoH(input){
+    if(!input||typeof input!=='object'||Array.isArray(input))return null;
+    const limits={why:450,where:160,who:140,how:550,howMuch:130},output={};
+    for(const [key,max] of Object.entries(limits))output[key]=String(input[key]??'').trim().slice(0,max);
+    return output;
+  }
+  function upsertFiveWTwoH(d,programId,input,actionId=''){
+    const p=d.programs.find(p=>p.id===programId&&p.status!=='finalizado'&&d.clients.some(c=>c.id===p.clientId));
+    const goal=d.goals.find(g=>g.id===input?.goalId&&g.programId===programId);
+    const what=String(input?.what??'').trim().slice(0,300),when=input?.when;
+    const meta=normalizeFiveWTwoH(input);
+    if(!p||!goal||what.length<4||!validDate(when)||!meta||!meta.why||!meta.who||!meta.how)return null;
+    if(actionId){
+      const target=d.actions.find(a=>a.id===actionId&&a.programId===programId);
+      if(!target)return null;
+      target.title=what;target.due=when;target.goalId=goal.id;target.fiveWTwoH=meta;
+      target.updatedAt=new Date().toISOString();
+      return target;
+    }
+    const record={id:freshId('a'),programId,goalId:goal.id,sessionId:null,title:what,due:when,
+      resource:'Matriz 5W2H',status:'pendente',visibility:'privado',fiveWTwoH:meta,createdAt:new Date().toISOString()};
+    d.actions.push(record);return record;
+  }
   // Migração somente do protótipo local; dados sem visibilidade explícita tornam-se privados.
   function upgrade(raw) {
     if(!raw || ![5,7,8,9,10,11].includes(raw.version))return null;
     const d=clone(raw);
     d.version=VERSION;
     if(!Array.isArray(d.goals))d.goals=[];
+    if(!Array.isArray(d.wheelAssessments))d.wheelAssessments=[];
+    d.wheelAssessments=d.wheelAssessments.filter(x=>x&&d.programs.some(p=>p.id===x.programId)&&validDate(x.date)&&normalizeWheelAreas(x.areas))
+      .map(x=>({id:String(x.id),programId:x.programId,date:x.date,areas:normalizeWheelAreas(x.areas),
+        note:String(x.note??'').trim().slice(0,400),createdAt:String(x.createdAt||'')}));
+
     for(const p of d.programs){
       if(!d.goals.some(g=>g.programId===p.id))d.goals.push({id:'goal-'+p.id,programId:p.id,title:p.goal,status:'ativo',createdAt:p.start||iso()});
     }
     for(const a of d.actions){
       if(!d.goals.some(g=>g.id===a.goalId&&g.programId===a.programId))a.goalId=d.goals.find(g=>g.programId===a.programId)?.id||null;
       if(!d.sessions.some(s=>s.id===a.sessionId&&s.programId===a.programId))a.sessionId=null;
+      if(a.fiveWTwoH){const normalized=normalizeFiveWTwoH(a.fiveWTwoH);if(normalized)a.fiveWTwoH=normalized;else delete a.fiveWTwoH;}
     }
     for(const s of d.sessions){
+      s.coachingQuestionIds=normalizeSessionQuestionIds(s.coachingQuestionIds);
+      s.timerPlan=normalizeTimerPlan(s.timerPlan)||defaultTimerPlan();
+      s.preparation=normalizeSessionPreparation(s.preparation);
       s.clientRecap=String(s.clientRecap||'').slice(0,800);
       if(s.recapVisibility!=='compartilhado'||s.visibility!=='compartilhado'||s.status!=='concluida'||!s.clientRecap)s.recapVisibility='privado';
     }
@@ -83,6 +202,7 @@
   function save(d) {const normalized=upgrade(d);if(!normalized)throw new Error('Esquema demonstrativo inválido');Object.assign(d,normalized);localStorage.setItem(KEY,JSON.stringify(d));return d;}
   function reset(){
     try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i);if(key&&key.startsWith('rt-v97-disc-draft:'))localStorage.removeItem(key);}}catch(e){}
+    try{const temp=root.sessionStorage;for(let i=temp.length-1;i>=0;i--){const key=temp.key(i);if(key&&key.startsWith('rt-v913-session-timer:'))temp.removeItem(key);}}catch(e){}
     const d=seed();save(d);return d;
   }
   function addDiscLink(d,input){
@@ -144,8 +264,8 @@
     const c=d.clients.find(x=>x.id===clientId);if(!c)return null;
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
-      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
-      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(a=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
+      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
+      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
       // Tela cliente não recebe respostas nem gráficos pelo contrato de visualização.
@@ -202,5 +322,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

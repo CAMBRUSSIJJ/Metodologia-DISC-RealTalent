@@ -1,0 +1,51 @@
+
+/* V9.11 — camada pontual, sem alterar o layout das áreas existentes. */
+.rt-v911-chooser{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.rt-v911-chooser a{display:inline-flex;align-items:center;padding:10px 15px;border:1px solid var(--rt-line,#d8ddd9);border-radius:11px;color:var(--rt-text,inherit);font-weight:700;text-decoration:none;background:var(--rt-surface,#fff)}
+.rt-v911-chooser a[aria-current="page"]{background:var(--rt-highlight,#e7f4ee);border-color:var(--rt-purple,#458e78)}
+.rt-v911-kit{display:grid;gap:16px}
+.rt-v911-pick,.rt-v911-summary,.rt-v911-card,.rt-v911-empty,.rt-v911-guidance{background:var(--rt-surface,#fff);border:1px solid var(--rt-line,#dce1dc);border-radius:16px;padding:20px}
+.rt-v911-pick{display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+.rt-v911-pick label{display:grid;gap:5px;max-width:360px}
+.rt-v911-pick label span,.rt-v911-card-head p,.rt-v911-note,.rt-v911-foot,.rt-v911-guidance p{color:var(--rt-muted,#626e68);font-size:13px;line-height:1.6}
+.rt-v911-pick select{flex:1;min-width:180px;max-width:560px;padding:11px;border:1px solid var(--rt-line,#cbd6cf);border-radius:10px;background:var(--rt-surface,#fff);color:var(--rt-text,inherit)}
+.rt-v911-summary{display:flex;justify-content:space-between;gap:24px;align-items:center;background:var(--rt-highlight,#f3f9f5)}
+.rt-v911-summary h2{margin:4px 0 8px;font-size:clamp(20px,3vw,25px)}
+.rt-v911-summary p{margin:0 0 8px;line-height:1.55}
+.rt-v911-summary small,.rt-v911-kicker{font-size:12px;color:var(--rt-muted,#596860)}
+.rt-v911-summary-side{display:grid;justify-items:end;text-align:right;gap:10px;min-width:210px}
+.rt-v911-summary-side strong{font-size:14px}
+.rt-v911-pill{display:inline-block;border:1px solid var(--rt-line,#cbd6cf);border-radius:50px;padding:6px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.rt-v911-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rt-v911-card h3{margin:0;font-size:16px}
+.rt-v911-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.rt-v911-card-head>span{font-size:12px;color:var(--rt-muted,#647269);white-space:nowrap}
+.rt-v911-card-head p{margin:7px 0 0}
+.rt-v911-facts{margin:0}
+.rt-v911-facts div{padding:10px 0;border-bottom:1px solid var(--rt-line,#ddd)}
+.rt-v911-facts dt{font-size:12px;color:var(--rt-muted,#626e68);margin-bottom:4px}
+.rt-v911-facts dd{margin:0;line-height:1.55}
+.rt-v911-card details{margin:14px 0}
+.rt-v911-card summary{cursor:pointer;font-weight:700}
+.rt-v911-card details p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}
+.rt-v911-actions{padding:0;margin:0;list-style:none;display:grid;gap:9px}
+.rt-v911-actions li{display:grid;gap:5px;padding:11px 12px;background:var(--rt-highlight,#f5f9f6);border-radius:10px;overflow-wrap:anywhere}
+.rt-v911-actions small{color:var(--rt-muted,#647269)}
+.rt-v911-link{font-weight:700;display:inline-block;margin-top:10px}
+.rt-v911-work{padding:22px}
+.rt-v911-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rt-v911-fields label{display:grid;align-content:start;gap:7px;font-size:13px}
+.rt-v911-fields label>strong{font-size:14px}
+.rt-v911-fields label>span{color:var(--rt-muted,#647269);line-height:1.5}
+.rt-v911-fields textarea{min-height:114px;resize:vertical;padding:12px;border:1px solid var(--rt-line,#cbd6cf);border-radius:10px;background:var(--rt-surface,#fff);color:var(--rt-text,inherit);font:inherit;line-height:1.5;width:100%;box-sizing:border-box}
+.rt-v911-fields textarea:focus,.rt-v911-pick select:focus{outline:2px solid var(--rt-purple,#458e78);outline-offset:2px}
+.rt-v911-save{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;border-top:1px solid var(--rt-line,#ddd);padding-top:16px}
+.rt-v911-save p{color:var(--rt-muted,#626e68);font-size:12px;max-width:540px;line-height:1.6}
+.rt-v911-save button{white-space:nowrap}
+.rt-v911-guidance{background:transparent}
+.rt-v911-guidance p{margin-bottom:0}
+.rt-v911-shortcut{margin:12px 0}
+.rt-v911-shortcut a{display:inline-flex;align-items:center}
+.rt-v911-empty h2{margin-top:0}
+@media(max-width:900px){.rt-v911-grid,.rt-v911-fields{grid-template-columns:1fr}}
+@media(max-width:640px){.rt-v911-pick,.rt-v911-summary,.rt-v911-save{flex-direction:column;align-items:stretch}.rt-v911-summary-side{justify-items:start;text-align:left}.rt-v911-pick select{width:100%;max-width:none}.rt-v911-card,.rt-v911-work,.rt-v911-summary{padding:16px}.rt-v911-save button{width:100%}}

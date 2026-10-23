@@ -1,0 +1,54 @@
+name: RealTalent V9.13 — Session E2E QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'profissional/**'
+      - 'cliente/**'
+      - 'core/**'
+      - 'assets/**'
+      - 'qa/**'
+      - 'build-manifest.json'
+      - '.github/workflows/v913-session-e2e.yml'
+  push:
+    branches:
+      - 'feature/v9-11-kit-profissional'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrated-qa:
+    name: Chromium — atendimento completo desktop/mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar integridade SHA256
+        run: python scripts/verify-build.py
+      - name: Testes estruturais V9.11, V9.12 e V9.13
+        run: |
+          node qa/testar-kit-profissional-v911.js
+          node qa/testar-ferramentas-desenvolvimento-v912.js
+          node qa/testar-perguntas-temporizador-v913.js
+      - name: Instalar Playwright
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Playwright E2E — V9.13
+        run: python qa/testar-fluxo-atendimento-v913.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Evidências (screenshots)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v913-e2e-screenshots
+          path: /tmp/realtalent-v913-qa/
+          if-no-files-found: ignore
+          retention-days: 7

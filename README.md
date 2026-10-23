@@ -1,3 +1,15 @@
+# RealTalent DISC/ACER V9.13 — Perguntas e Temporizador de Sessão (DEMONSTRAÇÃO)
+
+**Novo na V9.13:** banco com **30 perguntas abertas** por etapa de coaching/desenvolvimento, com seleção de até 12 perguntas por sessão; temporizador de sessão com quatro fases e duração configuráveis, pausa/retomada e avanço manual. Acesse **Profissional → Ferramentas → Perguntas de Coaching / Temporizador**, ou use os atalhos em **Clientes → Sessões → Detalhes**.
+
+Ambos usam as sessões já cadastradas, sem duplicá-las. Os dados de planejamento são **internos ao Profissional** e não aparecem na Minha Jornada. O cronômetro usa `sessionStorage` nesta aba e não é um registro da duração efetiva dos atendimentos.
+
+Guia: [V9.13 — Perguntas e Temporizador](docs/V9_13_PERGUNTAS_TEMPORIZADOR.md). Teste: `node qa/testar-perguntas-temporizador-v913.js`.
+
+**Atenção: produto demonstrativo, apenas dados fictícios.** Ainda não há autenticação multiusuário, controle de acesso ou persistência segura para informações reais de clientes.
+
+---
+
 # RealTalent DISC/ACER V9.12 — Ferramentas de Desenvolvimento (DEMONSTRAÇÃO)
 
 **Novo na V9.12:** Roda da Vida com dimensões configuráveis, gráfico interativo e histórico por processo; Matriz 5W2H que cria/atualiza diretamente ações do plano existente. Em **Profissional → Ferramentas**, selecione **Roda da Vida** ou **Matriz 5W2H**, ou use os atalhos em **Clientes → Desenvolvimento**.

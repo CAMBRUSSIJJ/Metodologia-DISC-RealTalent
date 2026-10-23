@@ -202,6 +202,7 @@
   function save(d) {const normalized=upgrade(d);if(!normalized)throw new Error('Esquema demonstrativo inválido');Object.assign(d,normalized);localStorage.setItem(KEY,JSON.stringify(d));return d;}
   function reset(){
     try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i);if(key&&key.startsWith('rt-v97-disc-draft:'))localStorage.removeItem(key);}}catch(e){}
+    try{const temp=root.sessionStorage;for(let i=temp.length-1;i>=0;i--){const key=temp.key(i);if(key&&key.startsWith('rt-v913-session-timer:'))temp.removeItem(key);}}catch(e){}
     const d=seed();save(d);return d;
   }
   function addDiscLink(d,input){

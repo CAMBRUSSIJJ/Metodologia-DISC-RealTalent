@@ -648,12 +648,12 @@ function saveModal(e){e.preventDefault();let f=e.target;let d=new FormData(f);le
    const a=RTDemoStore.createSessionAgreement(db,id,{title:get('title'),goalId:get('goalId'),due:get('due'),visibility:get('visibility')});
    if(!a){toast('Informe um objetivo, compromisso e prazo válidos.');return;}
    const s=db.sessions.find(s=>s.id===id),p=program(s?.programId);
-   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id));
+   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id)+(ws94Query().get('moment')?'&moment='+encodeURIComponent(ws94Query().get('moment')):''));
  }
  if(kind==='edit-session-recap'){
    if(!RTDemoStore.updateSessionRecap(db,id,get('clientRecap'),get('recapVisibility'))){toast('Não foi possível salvar o resumo.');return;}
    const s=db.sessions.find(s=>s.id===id),p=program(s?.programId);
-   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id));
+   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id)+(ws94Query().get('moment')?'&moment='+encodeURIComponent(ws94Query().get('moment')):''));
  }
  if(kind==='new-action'){const onBoard=location.hash.startsWith('#plano-acao');db.actions.push({id:newid('a'),programId:get('programId'),goalId:db.goals.find(g=>g.id===get('goalId')&&g.programId===get('programId'))?.id||RTDemoStore.goalsOf(db,get('programId'))[0]?.id,title:get('title').slice(0,500),due:get('due'),resource:get('resource'),status:'pendente',visibility:get('visibility')==='compartilhado'?'compartilhado':'privado',createdAt:new Date().toISOString()});if(!onBoard)location.hash=wsUrl(program(get('programId'))?.clientId||'', 'desenvolvimento',get('programId'));else location.hash='#plano-acao?filter=abertas&program='+encodeURIComponent(get('programId'));}
  if(kind==='edit-action'){const a=db.actions.find(x=>x.id===id);if(a){a.title=get('title').slice(0,500);a.due=get('due');a.resource=get('resource');RTDemoStore.linkActionGoal(db,a.id,get('goalId'));a.visibility=get('visibility')==='compartilhado'?'compartilhado':'privado';a.updatedAt=new Date().toISOString();}}

@@ -82,7 +82,8 @@ def main():
         page.locator('#modal [name="visibility"]').select_option("compartilhado")
         page.locator("#modal-save").click()
         assert page.evaluate("RTDemoStore.load().actions.filter(x=>x.title==='Acordo V914 — exercitar pergunta de abertura'&&x.sessionId==='s1').length")==1
-        milestones.append("05: acordo único vinculado à sessão e ao objetivo")
+        assert "moment=depois" in page.url,"Salvar acordo não deve devolver o profissional à preparação"
+        milestones.append("05: acordo único vinculado à sessão, com etapa preservada")
 
         page.locator('[data-act="close-session"][data-id="s1"]').click()
         page.locator('#modal [name="summary"]').fill("V914 SÍNTESE PRIVADA NUNCA PUBLICAR")

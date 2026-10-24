@@ -246,7 +246,10 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   const ordered=shown.slice().sort((a,b)=>((a.date+a.time).localeCompare(b.date+b.time))*(view==='historico'?-1:1));
   const nextSession=next.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
   const primary=focused||pending[0]||nextSession;
-  body=ws94TabIntro(id,pid,chosen,'Prepare encontros, confirme o que ocorreu e consulte os registros sem perder o contexto.',[
+  if(focused){
+   body=RTSessionWorkspace.render(db,focused,{esc,dateFmt,wsUrl,btn,today,moment:ws94Query().get('moment'),filter:ws94Query().get('phase')});
+  }else{
+  body=ws94TabIntro(id,pid,chosen,'Escolha um encontro para preparar, conduzir e acompanhar em uma única tela.',[
    {label:'Próximo encontro',value:nextSession?dateFmt(nextSession.date):'Não agendado',hint:nextSession?nextSession.time:'Agendar novo'},
    {label:'Sem confirmação',value:pending.length,hint:'Horário transcorrido'},
    {label:'Realizados',value:completed.length,hint:'Histórico deste processo'}],btn('+ Agendar sessão','new-session-for',pid,'btn-primary'))+
@@ -254,6 +257,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   `<div class="rt-v94-layout"><div class="rt-v94-main">${ws94Filters(id,pid,chosen,[['proximos','Agendados',sessions.filter(x=>x.status==='agendada').length],['historico','Realizados',completed.length],['todos','Todos',sessions.length]],view)}`+
   ws94Panel(view==='historico'?'Histórico de encontros':view==='todos'?'Todos os encontros':'Encontros agendados',ordered.map(s=>ws94Row(s.clientTopic||'Sessão de acompanhamento',`${dateFmt(s.date)} · ${s.time}`,isElapsedAppointment(s)?'Aguardando confirmação':s.status==='concluida'?'Realizada':s.status,`<a class="btn-secondary" href="${wsUrl(id,'sessoes',pid,'session='+encodeURIComponent(s.id))}">Detalhes</a>`,focused?.id===s.id?'selected':'')).join('')||empty(view==='historico'?'Nenhuma sessão realizada':'Nenhuma sessão neste filtro','Agende um encontro ou altere o filtro.'),'Cada registro mantém sua pauta e situação.')+'</div>'+
   `<aside class="rt-v94-aside">${ws94SelectedSession(primary,id,pid)}${ws94Panel('Acompanhamento após a sessão',`<p class="rt-v94-aside-copy">Cada encontro pode gerar compromissos vinculados ao objetivo, exibidos no Plano de ação e, quando compartilhados, na Minha Jornada.</p><a class="rt-v94-text-link" href="${wsUrl(id,'desenvolvimento',pid)}">Ver ações combinadas →</a>`,'Continuidade do trabalho.')}</aside></div>`;
+  }
  }
  else if(chosen==='atividades'){
   const review=instruments.filter(x=>x.responses&&!x.feedback);
@@ -660,29 +664,32 @@ function render(){
  if(page==='cliente')output=showClientWorkspace(cid,new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('tab')||'geral',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('program')||'',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('session')||'');
  $('#content').innerHTML='<div class="demo-strip"><strong>Modo demonstrativo</strong> · Somente dados fictícios neste navegador. Não há autenticação nem proteção para uso profissional real.</div>'+(output||showHome());
  $('#crumb').textContent=page==='cliente'?`Clientes / ${client(cid)?.name||'Cliente'}`:(pages[page]||'Visão geral');
- if(page==='ferramentas'&&rt96Params().get('tab')==='temporizador'){
-   const selected=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
-   RTSessionAssist.armTimerSession(selected);
- }else RTSessionAssist.armTimerSession(null);
+ const sessionId=page==='cliente'?ws94Query().get('session'):rt96Params().get('session');
+ const useTimer=page==='ferramentas'&&rt96Params().get('tab')==='temporizador'||
+   page==='cliente'&&ws94Query().get('tab')==='sessoes'&&ws94Query().get('moment')==='durante';
+ if(useTimer)RTSessionAssist.armTimerSession(RTSessionAssist.choose(db,sessionId||'',today()).s);
+ else RTSessionAssist.armTimerSession(null);
  document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===(page==='cliente'?'clientes':page);a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  $('#side').classList.remove('open');$('#shade').classList.remove('open');$('#menu-btn').setAttribute('aria-expanded','false');
 }
 function runAction(act,id){
    if(act==='rt-v913-toggle-question'){
      if(!RTSessionAssist.questions.some(q=>q.id===id))return;
-     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     const activeId=location.hash.startsWith('#cliente=')?ws94Query().get('session'):rt96Params().get('session');
+     const s=RTSessionAssist.choose(db,activeId||'',today()).s;
      if(!s)return;
      const selected=(s.coachingQuestionIds||[]).slice();
      const next=selected.includes(id)?selected.filter(x=>x!==id):selected.concat(id);
      if(next.length>12){toast('Selecione no máximo 12 perguntas por sessão.');return;}
      if(!RTDemoStore.setSessionQuestionIds(db,s.id,next)){toast('Seleção inválida para esta sessão.');return;}
      persist('profissional','select-coaching-question',s.id);
-     location.hash=rt96Href('perguntas','session='+encodeURIComponent(s.id)+'&phase='+encodeURIComponent(rt96Params().get('phase')||'todas'));
+     if(!location.hash.startsWith('#cliente='))location.hash=rt96Href('perguntas','session='+encodeURIComponent(s.id)+'&phase='+encodeURIComponent(rt96Params().get('phase')||'todas'));
      render();toast(next.includes(id)?'Pergunta associada à sessão.':'Pergunta removida da sessão.');
      return;
    }
    if(act==='rt-v913-timer'){
-     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     const activeId=location.hash.startsWith('#cliente=')?ws94Query().get('session'):rt96Params().get('session');
+     const s=RTSessionAssist.choose(db,activeId||'',today()).s;
      if(s&&RTSessionAssist.timerCommand(s,id)){render();}
      return;
    }
@@ -725,6 +732,15 @@ function runAction(act,id){
  if(act==='reset'){if(window.confirm('Reiniciar todos os dados fictícios desta demonstração?')){db=RTDemoStore.reset();location.hash='#inicio';render();toast('Dados fictícios restaurados neste navegador.')}return;}
 }
 document.addEventListener('submit',e=>{
+ const f=e.target.closest('#rt-v914-live-form');if(!f)return;
+ e.preventDefault();
+ const data=new FormData(f),sid=String(data.get('sessionId')||''),notes=String(data.get('liveNotes')||'');
+ const focused=db.sessions.find(x=>x.id===sid);
+ if(!focused||!location.hash.startsWith('#cliente=')||ws94Query().get('session')!==sid){toast('Abra a sessão correta para salvar.');return;}
+ if(!RTDemoStore.updateSessionLiveNotes(db,sid,notes)){toast('Notas inválidas ou excedem 1.600 caracteres.');return;}
+ persist('profissional','save-session-live-notes',sid);render();toast('Anotações internas salvas nesta demonstração.');
+});
+document.addEventListener('submit',e=>{
  const f=e.target.closest('#rt-v913-timer-form');if(!f)return;
  e.preventDefault();const data=new FormData(f),sid=String(data.get('sessionId')||'');
  const ids=['abertura','exploracao','pratica','fechamento'];
@@ -733,7 +749,7 @@ document.addEventListener('submit',e=>{
  persist('profissional','configure-session-timer',sid);
  const s=db.sessions.find(x=>x.id===sid);
  if(s)RTSessionAssist.timerCommand(s,'reset');
- location.hash=rt96Href('temporizador','session='+encodeURIComponent(sid));render();
+ if(!location.hash.startsWith('#cliente='))location.hash=rt96Href('temporizador','session='+encodeURIComponent(sid));render();
  toast('Etapas salvas. Temporizador reiniciado nesta aba.');
 });
 document.addEventListener('submit',e=>{

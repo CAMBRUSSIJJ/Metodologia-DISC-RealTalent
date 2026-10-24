@@ -72,7 +72,7 @@
   return '<div class="rt-v914-stage-content">'+
   '<div class="rt-v914-two-col"><section class="rt-v914-card">'+sectionHeading('ENCERRAMENTO','Registrar o que foi combinado',done?'Encontro concluído. Consulte e atualize os registros existentes.':'Conclua o encontro depois de revisar a síntese e os acordos.')+
   '<div class="rt-v914-status-line"><span class="'+(done?'is-complete':'')+'">'+(done?'✓ Encontro concluído':'• Ainda agendado')+'</span>'+
-  (!done?ctx.btn('Concluir encontro','close-session',s.id,'btn-primary'):'<span>Conclusão registrada</span>')+'</div>'+
+  (!done?'<span>Conclua pelo botão no cabeçalho.</span>':'<span>Conclusão registrada</span>')+'</div>'+
   '<div class="rt-v914-context-block"><strong>Síntese interna</strong><p>'+ctx.esc(s.summary||'Nenhuma síntese registrada.')+'</p></div>'+
   '<div class="rt-v914-context-block"><strong>Notas da condução</strong><p>'+ctx.esc(s.liveNotes||'Nenhuma anotação interna salva.')+'</p></div>'+
   (!done?'<p class="rt-v914-muted">Ao concluir, a síntese interna não é compartilhada com o cliente.</p>':'')+
@@ -82,7 +82,7 @@
   (done?ctx.btn('Editar resumo e compartilhamento','edit-session-recap',s.id,'btn-secondary'):'<small>Conclua o encontro para preparar o resumo compartilhável.</small>')+
   '</section></div>'+
   '<section class="rt-v914-card">'+sectionHeading('ACOMPANHAMENTO','Compromissos deste encontro','Os acordos são vinculados ao Plano de Ação original, sem duplicação.')+
-  '<div class="rt-v914-form-foot"><span>'+m.linked.length+' compromisso(s) associado(s)</span>'+ctx.btn('+ Novo acordo','new-session-action',s.id,'btn-primary')+'</div>'+
+  '<div class="rt-v914-form-foot"><span>'+m.linked.length+' compromisso(s) associado(s)</span><span>Gerencie pela lateral</span></div>'+
   (m.linked.length?'<ul class="rt-v914-tasks">'+m.linked.map(a=>actionRow(a,ctx)).join('')+'</ul>':summaryCard('Nenhum compromisso neste encontro','Adicione um acordo concreto, com objetivo e prazo, para dar continuidade.'))+
   '<div class="rt-v914-footer-links"><a href="'+ctx.wsUrl(m.c.id,'desenvolvimento',m.p.id)+'">Ver plano de desenvolvimento →</a><a href="'+link(m,'antes',ctx)+'">Rever preparação →</a></div></section></div>';
  }
@@ -97,7 +97,8 @@
    '<div class="rt-v914-mini-metric"><span>Compromissos pendentes</span><strong>'+carried+'</strong></div>'+
    '<div class="rt-v914-mini-metric"><span>Acordos deste encontro</span><strong>'+linked+'</strong></div>'+
    '<div class="rt-v914-mini-metric"><span>Perguntas selecionadas</span><strong>'+(s.coachingQuestionIds||[]).length+'</strong></div>'+
-   '<div class="rt-v914-rail-links"><a href="'+link(m,'antes',ctx)+'">Ver contexto anterior →</a><a href="'+link(m,'depois',ctx)+'">Ver compromissos →</a></div></div>'+
+   '<div class="rt-v914-rail-links"><a href="'+link(m,'antes',ctx)+'">Ver contexto anterior →</a><a href="'+link(m,'depois',ctx)+'">Ver compromissos →</a></div></div>'+ 
+   '<div class="rt-v914-rail-card rt-v914-rail-actions"><h3>Compromissos deste encontro</h3><p>'+linked+' acordo(s) vinculados à sessão atual.</p>'+ctx.btn('+ Novo acordo','new-session-action',s.id,'btn-secondary')+'</div>'+
    '<details class="rt-v914-rail-card"><summary>Visibilidade e privacidade</summary><p>A preparação, as perguntas e as anotações são internas. Os acordos e os resumos só aparecem na Minha Jornada quando explicitamente compartilhados.</p></details>'+
    '</aside>';
   const content=moment==='antes'?before(m,ctx):moment==='durante'?during(m,{...ctx,db}):after(m,ctx);

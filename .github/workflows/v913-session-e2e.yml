@@ -1,4 +1,4 @@
-name: RealTalent V9.13 — Session E2E QA
+name: RealTalent V9.13–V9.14 — Session E2E QA
 on:
   pull_request:
     branches: [main]
@@ -42,13 +42,15 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Playwright E2E — V9.13
         run: python qa/testar-fluxo-atendimento-v913.py
+      - name: Playwright E2E — V9.14
+        run: python qa/testar-atendimento-integrado-v914.py
         env:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Evidências (screenshots)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v913-e2e-screenshots
+          name: v913-v914-e2e-screenshots
           path: /tmp/realtalent-v913-qa/
           if-no-files-found: ignore
           retention-days: 7

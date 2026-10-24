@@ -347,11 +347,27 @@ function showDevelopmentPlans(){
  `<div class="rt-v91-cards">${ps.map(p=>{const aa=db.actions.filter(a=>a.programId===p.id);const done=aa.filter(a=>a.status==='concluido').length;return `<section class="card rt-v91-process-card"><div class="card-head"><div><small class="eyebrow">${esc(clientOf(p))}</small><h2>${esc(p.goal)}</h2></div>${status(p.status)}</div><p class="muted">${esc(p.stage)} · ${done} de ${aa.length} ações concluídas</p><div class="progress-track"><span style="width:${aa.length?100*done/aa.length:0}%"></span></div>${aa.slice(0,3).map(a=>`<div class="rt-v9-dash-row"><div class="item-main"><strong>${esc(a.title)}</strong><p>${a.status==='concluido'?'Concluída':'Prazo: '+dateFmt(a.due)}</p></div>${btn(a.status==='concluido'?'Reabrir':'Concluir','toggle-action',a.id)}</div>`).join('')||empty('Sem ações','Adicione uma ação ao plano deste processo.')}<div class="rt-v91-card-footer">${btn('+ Ação','new-action-for',p.id,'btn-secondary')}${workspaceButton('Abrir plano →',p.clientId,'desenvolvimento',p.id,'btn-primary')}</div></section>`}).join('')||empty('Nenhum plano disponível','Crie um processo de desenvolvimento para começar.')}</div>`;
 }
 function showAgenda(){
- const opts=[['todos','Todos'],['hoje','Hoje'],['proximos','Próximos'],['concluidas','Concluídas']];const filter=new URLSearchParams(location.hash.split('?')[1]||'').get('filter')||'proximos';
- const ss=db.sessions.filter(s=>filter==='hoje'?s.date===today():filter==='concluidas'?s.status==='concluida':filter==='proximos'?s.status==='agendada'&&s.date>=today():true).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
- return head('COMPROMISSOS','Sessões','Encontros organizados por cliente e processo.',btn('+ Agendar sessão','new-session','','btn-primary'))+
- `<div class="rt-v9-filter-group rt-v9-agenda-filter" role="group" aria-label="Filtrar agenda">${opts.map(([k,label])=>`<a class="filter ${filter===k?'active':''}" href="#sessoes?filter=${k}" ${filter===k?'aria-current="page"':''}>${label}</a>`).join('')}</div>`+
- cardList('Sessões',ss.map(s=>{const p=program(s.programId);return `<div class="rt-v9-dash-row"><div class="datebox"><strong>${day(s.date)}</strong>${month(s.date)}</div><div class="item-main"><strong>${esc(pgName(s.programId))}</strong><p>${dateFmt(s.date)} · ${esc(s.time)} · ${esc(s.clientTopic||'Encontro')}</p></div>${status(s.status)}${p?`<a class="line-button" href="${wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id))}">Abrir</a><a class="line-button" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar</a>`:''}</div>`}).join('')||empty('Nenhuma sessão neste filtro','Agende um encontro para visualizar aqui.'));
+ const opts=[['proximos','Próximos'],['hoje','Hoje'],['concluidas','Concluídas'],['todos','Todos']];
+ const query=new URLSearchParams(location.hash.split('?')[1]||''),requested=query.get('filter')||'proximos';
+ const filter=opts.some(([id])=>id===requested)?requested:'proximos';
+ const all=db.sessions.filter(s=>program(s.programId)&&client(program(s.programId).clientId));
+ const shown=all.filter(s=>filter==='hoje'?s.date===today():filter==='concluidas'?s.status==='concluida':filter==='proximos'?s.status==='agendada'&&s.date>=today():true)
+  .sort((a,b)=>((a.date||'')+(a.time||'')).localeCompare((b.date||'')+(b.time||''))*(filter==='concluidas'?-1:1));
+ const future=all.filter(s=>s.status==='agendada'&&s.date>=today()).length;
+ const unconfirmed=all.filter(s=>isElapsedAppointment(s)).length;
+ const finished=all.filter(s=>s.status==='concluida').length;
+ const cards=shown.map(s=>{
+  const p=program(s.programId),name=client(p.clientId)?.name||'Cliente';
+  const href=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id));
+  return '<article class="rt-v914-agenda-card"><div class="rt-v914-agenda-date"><strong>'+esc(day(s.date))+'</strong><span>'+esc(month(s.date))+'</span></div>'+
+   '<div class="rt-v914-agenda-title"><span>'+(s.status==='concluida'?'Realizado':isElapsedAppointment(s)?'Aguardando confirmação':'Agendado')+'</span>'+
+   '<h3>'+esc(name)+'</h3><p>'+esc(s.clientTopic||'Acompanhamento individual')+' · '+dateFmt(s.date)+' às '+esc(s.time||'')+'</p><small>'+esc(p.goal)+'</small></div>'+
+   '<div class="rt-v914-agenda-cta"><a class="btn-primary" href="'+href+'">Abrir atendimento →</a></div></article>';
+ }).join('');
+ return head('ATENDIMENTO PROFISSIONAL','Sessões','Escolha um encontro e acompanhe as etapas Antes, Durante e Depois.',btn('+ Agendar sessão','new-session','','btn-primary'))+
+ '<div class="rt-v914-agenda-summary" aria-label="Resumo da agenda"><div><span>Próximos encontros</span><strong>'+future+'</strong></div><div><span>Sem confirmação</span><strong>'+unconfirmed+'</strong></div><div><span>Concluídos</span><strong>'+finished+'</strong></div></div>'+
+ '<nav class="rt-v914-agenda-filters" aria-label="Filtrar sessões">'+opts.map(([id,label])=>'<a href="#sessoes?filter='+id+'"'+(filter===id?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>'+
+ '<div class="rt-v914-agenda-list">'+(cards||'<div class="rt-v914-empty">Nenhum encontro neste filtro. <a href="#sessoes?filter=todos">Ver todas as sessões →</a></div>')+'</div>';
 }
 function showProcesses(){return head('PROCESSOS ACOMPANHADOS','Processo de desenvolvimento','Defina objetivos verificáveis, etapas, sessões e ações. Cada processo é conduzido pelo profissional.',btn('+ Novo processo','new-process','','btn-primary'))+
  `<div class="workflow">${[['01','Acordo','Finalidade e limites'],['02','Objetivos','Metas contextualizadas'],['03','Sessões','Planejamento conjunto'],['04','Prática','Ações entre encontros'],['05','Revisão','Evolução e fechamento']].map(([n,t,d])=>`<div class="step"><span>${n}</span><strong>${t}</strong><small>${d}</small></div>`).join('')}</div><div class="card"><div class="card-head"><h2>Processos registrados · ${db.programs.length}</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>CLIENTE</th><th>OBJETIVO</th><th>ETAPA</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>${db.programs.map(p=>`<tr><td><b>${esc(clientOf(p))}</b></td><td>${esc(p.goal)}</td><td>${esc(p.stage)}</td><td>${status(p.status)}</td><td>${btn('Ver processo','process-detail',p.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty('Sem processos','Crie seu primeiro processo demonstrativo.')}</td></tr>`}</tbody></table></div></div>`;}

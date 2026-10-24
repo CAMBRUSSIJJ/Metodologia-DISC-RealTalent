@@ -110,7 +110,7 @@
    '<div class="rt-v914-hero-cta">'+(s.status==='agendada'?ctx.btn('Concluir encontro','close-session',s.id,'btn-primary'):'<span class="rt-v914-done">✓ Concluída</span>')+'</div></header>'+
    '<nav class="rt-v914-stage-nav" aria-label="Etapas do atendimento">'+stages.map(([id,n,title,subtitle])=>
     '<a href="'+link(m,id,ctx)+'"'+(id===moment?' aria-current="step"':'')+'><span class="rt-v914-stage-number">'+n+'</span><span><strong>'+title+'</strong><small>'+subtitle+'</small></span></a>').join('')+'</nav>'+
-   '<div class="rt-v914-shell"><main class="rt-v914-stage" aria-label="Etapa '+safe(moment)+'">'+content+'</main>'+sheet+'</div>'+
+   '<div class="rt-v914-shell"><section class="rt-v914-stage" aria-label="Etapa '+safe(moment)+'">'+content+'</section>'+sheet+'</div>'+
    '</div>';
  }
  root.RTSessionWorkspace=Object.freeze({model,render,stages});

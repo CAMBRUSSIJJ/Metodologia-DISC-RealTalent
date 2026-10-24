@@ -30,7 +30,7 @@
   const carry=m.carried.length?'<ul class="rt-v914-tasks">'+m.carried.slice(0,5).map(a=>actionRow(a,ctx)).join('')+'</ul>':summaryCard('Nada pendente','Não há compromissos anteriores em aberto neste processo.');
   return '<div class="rt-v914-stage-content"><div class="rt-v914-two-col"><section class="rt-v914-card">'+sectionHeading('CONTEXTO','O que precisamos retomar?','Informações da mesma trajetória, sem recadastros.')+
    '<div class="rt-v914-context-block"><strong>Foco planejado</strong><p>'+ctx.esc(s.focus||'Pauta não definida')+'</p></div>'+previous+
-   '<details class="rt-v914-details" open><summary>Compromissos anteriores em aberto <span>'+m.carried.length+'</span></summary>'+carry+'</details></section>'+
+   '<details class="rt-v914-details" open><summary>Para retomar neste encontro <span>'+m.carried.length+'</span></summary>'+carry+'</details></section>'+
    '<aside class="rt-v914-card rt-v914-support">'+sectionHeading('PREPARAÇÃO','Checklist rápido')+
    '<ol class="rt-v914-steps"><li>Recuperar o resultado desejado pela pessoa.</li><li>Consultar situações e compromissos anteriores.</li><li>Escolher perguntas relevantes, sem roteiro obrigatório.</li><li>Combinar o foco do encontro.</li></ol>'+
    '<a class="btn-secondary" href="'+link(m,'durante',ctx)+'">Ir para a condução →</a></aside></div>'+

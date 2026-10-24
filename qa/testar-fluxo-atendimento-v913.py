@@ -39,13 +39,19 @@ def main():
         page.wait_for_function("typeof window.RTDemoStore==='object' && typeof window.RTSessionAssist==='object' && typeof window.RTProfessionalKit==='object'")
         assert result(page,"RTDemoStore.VERSION") == 11
         go(page,"#cliente=c1&tab=sessoes&program=p1&session=s1")
-        assert page.locator('a[href*="tab=kit&session=s1"]').count()>0
-        assert page.locator('a[href*="tab=perguntas&session=s1"]').count()>0
-        assert page.locator('a[href*="tab=temporizador&session=s1"]').count()>0
-        steps.append("01: cliente/sessão e três atalhos contextuais OK")
+        is_v914=page.locator('[data-rt-v914-workspace]').count()>0
+        if is_v914:
+            assert page.locator('.rt-v914-stage-nav a').count()==3
+            assert page.locator('#rt-v911-prep-form').count()==1
+        else:
+            assert page.locator('a[href*="tab=kit&session=s1"]').count()>0
+            assert page.locator('a[href*="tab=perguntas&session=s1"]').count()>0
+            assert page.locator('a[href*="tab=temporizador&session=s1"]').count()>0
+        steps.append("01: cliente/sessão e acesso às ferramentas OK")
 
         # Preparação GROW — preenchida na sessão existente, nunca no portal.
-        page.locator('a[href*="tab=kit&session=s1"]').first.click()
+        if is_v914:go(page,"#ferramentas?tab=kit&session=s1")
+        else:page.locator('a[href*="tab=kit&session=s1"]').first.click()
         form=page.locator("#rt-v911-prep-form")
         try:
             form.wait_for(state="visible",timeout=7000)

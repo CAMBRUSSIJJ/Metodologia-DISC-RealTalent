@@ -5,7 +5,8 @@ const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const sql=read('supabase/migrations/20261026170000_realtalent_secure_foundation.sql');
 const js=read('seguro/app.mjs'),html=read('seguro/index.html'),cfg=read('seguro/config.js');
-new Function(js.replace(/^import[^\\n]*\\n/,'').trim());new Function(cfg);
+assert.ok(js.startsWith("import {showProfessionalPresentations,showParticipantPresentations}"));
+new Function(js.slice(js.indexOf('\n')+1));new Function(cfg);
 for(const name of ['rt_secure_profiles','rt_secure_cases','rt_secure_records','rt_secure_responses'])
   assert.match(sql,new RegExp('alter table public\\.'+name+' enable row level security;'));
 assert.equal((sql.match(/create policy /g)||[]).length,10);

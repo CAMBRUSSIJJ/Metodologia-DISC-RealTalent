@@ -3,7 +3,7 @@
   "product": "RealTalent DISC/ACER — Fundação Segura Isolada (sem banco conectado)",
   "base": "9.17.0",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "bb4f00941f8fa9e79cb2e5491b875ec50d960f893103a110a8802e8968ed313d",
+    ".github/workflows/v913-session-e2e.yml": "3b51195c98a0ed1f49291ca0f4ff6455e068ba65a4a1c0e72672c18675b8af0a",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -149,6 +149,7 @@
     "seguro/secure.css": "0aba67ac37092d2df3123859e318f23f6c8fa4beca88c8ee1bbbb2b6304db1f2",
     "supabase/migrations/20261026170000_realtalent_secure_foundation.sql": "f252f9ef43859329126f61291766f313c692492127dc8fbe277c0041ba2c50f5",
     "qa/testar-seguranca-v10.js": "83024b73db95f7bbfcd1e45f6b016822fae59f0ec16d3310d66c20972d141caf",
-    "docs/V10_BASE_SEGURA.md": "7a5e6928cc926d71c7dd5f74c559a58d9c25ec8004e663f2b268739f694dd720"
+    "docs/V10_BASE_SEGURA.md": "7a5e6928cc926d71c7dd5f74c559a58d9c25ec8004e663f2b268739f694dd720",
+    "qa/testar-acesso-seguro-v10.py": "3192878140c1015b7cbe8c06653545969ee09b5b44cdbde331c719088d1956ee"
   }
 }

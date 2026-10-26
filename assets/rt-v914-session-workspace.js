@@ -64,7 +64,7 @@
    '<section class="rt-v914-card">'+sectionHeading('ANOTAÇÕES INTERNAS','Registre observações relevantes','Use apenas dados fictícios. Notas são privadas e não geram automaticamente tarefas ou devolutivas.')+
    '<form id="rt-v914-live-form"><input type="hidden" name="sessionId" value="'+ctx.esc(s.id)+'"><label class="rt-v914-live-label">Notas do encontro<textarea name="liveNotes" maxlength="1600" rows="5" placeholder="Síntese breve e fictícia da condução...">'+ctx.esc(s.liveNotes||'')+'</textarea></label>'+
    '<div class="rt-v914-form-foot"><small>Até 1.600 caracteres · salvo somente neste navegador.</small><button class="btn-primary" type="submit">Salvar notas internas</button></div></form></section>'+
-   questionsPanel(m,ctx)+'</div>';
+   questionsPanel(m,ctx)+'<nav class="rt-v914-stage-next" aria-label="Continuar atendimento"><a class="btn-secondary" href="'+link(m,'depois',ctx)+'">Continuar para Depois →</a></nav></div>';
  }
  function after(m,ctx){
   const s=m.s,done=s.status==='concluida';
@@ -84,7 +84,7 @@
   '<section class="rt-v914-card">'+sectionHeading('ACOMPANHAMENTO','Compromissos deste encontro','Os acordos são vinculados ao Plano de Ação original, sem duplicação.')+
   '<div class="rt-v914-form-foot"><span>'+m.linked.length+' compromisso(s) associado(s)</span><span>Gerencie pela lateral</span></div>'+
   (m.linked.length?'<ul class="rt-v914-tasks">'+m.linked.map(a=>actionRow(a,ctx)).join('')+'</ul>':summaryCard('Nenhum compromisso neste encontro','Adicione um acordo concreto, com objetivo e prazo, para dar continuidade.'))+
-  '<div class="rt-v914-footer-links"><a href="'+ctx.wsUrl(m.c.id,'desenvolvimento',m.p.id)+'">Ver plano de desenvolvimento →</a><a href="'+link(m,'antes',ctx)+'">Rever preparação →</a></div></section></div>';
+  '<div class="rt-v914-footer-links"><a href="'+ctx.wsUrl(m.c.id,'desenvolvimento',m.p.id)+'">Ver plano de desenvolvimento →</a><a href="'+link(m,'antes',ctx)+'">Rever preparação →</a></div>'+(done&&m.p.status!=='finalizado'?'<div class="rt-v914-stage-next">'+ctx.btn('Agendar próximo encontro','new-session-for',m.p.id,'btn-secondary')+'</div>':'')+'</section></div>';
  }
  function render(db,s,ctx){
   const m=model(db,s);

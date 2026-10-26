@@ -1,4 +1,4 @@
-name: RealTalent V9.13–V9.17 — Professional E2E QA
+name: RealTalent V9.13–V10 — Integração e Segurança (Preview)
 on:
   pull_request:
     branches: [main]
@@ -9,11 +9,14 @@ on:
       - 'assets/**'
       - 'qa/**'
       - 'build-manifest.json'
+      - 'seguro/**'
+      - 'supabase/**'
       - '.github/workflows/v913-session-e2e.yml'
   push:
     branches:
       - 'feature/v9-11-kit-profissional'
       - 'feature/v9-17-guided-activities-cycle'
+      - 'feature/v10-secure-foundation'
   workflow_dispatch:
 permissions:
   contents: read
@@ -39,6 +42,10 @@ jobs:
           node qa/testar-perguntas-temporizador-v913.js
           node qa/testar-v916-vinculos.js
           node qa/testar-ciclo-atividades-v917.js
+      - name: Segurança V10 — contratos estáticos e sintaxe
+        run: |
+          node --check seguro/app.mjs
+          node qa/testar-seguranca-v10.js
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0

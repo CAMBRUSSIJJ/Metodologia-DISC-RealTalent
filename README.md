@@ -1,3 +1,13 @@
+# RealTalent V9.17 — Ciclo de Atividades Guiadas (PREVIEW)
+
+Atribuição profissional vinculada a objetivos, resposta na Minha Jornada, revisão e compartilhamento explícito, com o mesmo registro e privacidade por padrão.
+
+[Documentação e limites V9.17](docs/V9_17_CICLO_ATIVIDADES.md).
+
+**Uso demonstrativo, exclusivamente com dados fictícios.**
+
+---
+
 # RealTalent V9.16 — Desenvolvimento e Plano de Ação (PREVIEW)
 
 Objetivos editáveis, compromissos vinculados a objetivos e sessões, filtros por processo e objetivo, privacidade por padrão e continuidade entre encontros. Preservada a V9.15.

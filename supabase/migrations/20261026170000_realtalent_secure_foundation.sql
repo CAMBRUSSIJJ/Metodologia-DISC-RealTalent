@@ -98,7 +98,7 @@ create policy rt_records_professional_create on public.rt_secure_records
     and exists(select 1 from public.rt_secure_cases c
       join public.rt_secure_profiles p on p.user_id=c.professional_user_id
       where c.id=case_id and c.professional_user_id=(select auth.uid())
-        and p.role='professional')
+        and c.status='active' and p.role='professional')
   );
 create policy rt_records_professional_edit on public.rt_secure_records
   for update to authenticated
@@ -127,7 +127,7 @@ create policy rt_responses_participant_once on public.rt_secure_responses
     and exists(select 1 from public.rt_secure_profiles p
       where p.user_id=(select auth.uid()) and p.role='participant')
     and exists(select 1 from public.rt_secure_cases c
-      where c.id=case_id and c.participant_user_id=(select auth.uid()))
+      where c.id=case_id and c.participant_user_id=(select auth.uid()) and c.status='active')
     and exists(select 1 from public.rt_secure_records a
       where a.id=activity_id and a.case_id=case_id and a.record_type='activity'
         and a.visibility='shared' and a.status='open')

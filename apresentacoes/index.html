@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f6f9fd">
+<title>RealTalent · Estúdio de Apresentações</title>
+<link rel="stylesheet" href="./studio.css"><script src="../core/demo-store.js" defer></script><script src="./studio.js" defer></script>
+</head><body>
+<a href="#main" class="skip">Ir ao conteúdo</a>
+<header class="studio-header">
+  <div class="logo"><span class="mark">R</span><div><strong>Estúdio de Apresentações</strong><small>RealTalent · Desenvolvimento profissional</small></div></div>
+  <div class="header-actions"><span class="demo-label">DEMONSTRAÇÃO · SEM DADOS REAIS</span><a class="subtle back-workspace" href="../profissional/index.html#biblioteca" target="_top">Biblioteca ↗</a></div>
+</header>
+<main id="main">
+  <section id="home" class="home" aria-labelledby="home-title">
+    <div class="home-top"><div><span class="eyebrow">SEU ESPAÇO DE FACILITAÇÃO</span><h1 id="home-title">Apresentações com propósito</h1><p>Crie roteiros visuais, integre conteúdos da Biblioteca e conduza exercícios em tela cheia. Tudo neste navegador de demonstração.</p></div><button type="button" id="new-deck" class="primary">+ Nova apresentação</button></div>
+    <div class="template-panel"><div><strong>Comece com um roteiro</strong><p>Modelos editáveis com conteúdo exclusivamente fictício.</p></div>
+      <div class="template-options"><button type="button" data-template="session" class="template"><span class="template-symbol">01</span><strong>Sessão de desenvolvimento</strong><small>5 slides · objetivos, reflexão e compromissos</small></button>
+      <button type="button" data-template="workshop" class="template"><span class="template-symbol">02</span><strong>Workshop de comunicação</strong><small>4 slides · conceito, pergunta e ferramenta</small></button></div>
+    </div>
+    <div class="collection-head"><h2>Minhas apresentações</h2><span id="deck-count" class="muted"></span></div><div id="deck-list" class="deck-grid" aria-live="polite"></div>
+    <p class="privacy">Armazenamento demonstrativo no navegador (localStorage e IndexedDB). Não há contas, sincronização ou proteção de dados clínicos. Não use arquivos ou nomes reais.</p>
+  </section>
+  <section id="editor" class="editor" hidden aria-label="Editor de apresentações">
+    <div class="editor-bar"><button type="button" id="editor-back" class="subtle">← Apresentações</button>
+      <label class="title-label"><span class="sr-only">Nome da apresentação</span><input id="deck-title" maxlength="100" placeholder="Título da apresentação"></label>
+      <span id="saved" class="saved" role="status" aria-live="polite">Salvo localmente</span>
+      <div class="editor-actions"><button type="button" id="duplicate-deck" class="secondary">Duplicar</button><button type="button" id="delete-deck" class="danger">Excluir</button><button type="button" id="present" class="primary">▶ Apresentar</button></div>
+    </div>
+    <div class="editor-grid">
+      <aside class="slides-panel" aria-label="Slides da apresentação">
+        <div class="panel-head"><strong>Slides</strong><span id="slide-total" class="muted"></span></div>
+        <div id="slides-list" class="slides-list"></div>
+        <div class="add-slides"><label for="slide-kind">Adicionar</label>
+          <select id="slide-kind" aria-label="Tipo do novo slide"><option value="cover">Capa</option><option value="text">Texto e ideias</option><option value="question">Pergunta interativa</option><option value="tool">Ferramenta</option><option value="library">Conteúdo da Biblioteca</option><option value="document">PDF ou imagem</option></select>
+          <button type="button" id="add-slide" class="secondary">+ Slide</button></div>
+      </aside>
+      <div class="stage-panel"><div class="stage-header"><strong id="slide-type-label">Slide</strong><span class="muted">16:9 · Prévia editável</span></div>
+        <div id="stage" class="stage" aria-label="Prévia do slide selecionado"></div>
+        <div class="stage-bottom"><span class="muted">Dica: use as propriedades à direita para editar</span><div class="reorder-actions"><button type="button" id="move-up" class="subtle">↑ Subir</button><button type="button" id="move-down" class="subtle">↓ Descer</button><button type="button" id="duplicate-slide" class="subtle">Duplicar slide</button><button type="button" id="remove-slide" class="subtle danger-text">Excluir slide</button></div></div>
+      </div>
+      <aside class="inspector" aria-label="Propriedades do slide"><div class="panel-head"><strong>Propriedades</strong><span class="muted" id="inspector-count"></span></div>
+        <div class="inspector-content">
+          <label>Título<input id="slide-title" maxlength="130" placeholder="Título"></label>
+          <label id="subtitle-wrap">Subtítulo<textarea id="slide-subtitle" rows="2" maxlength="280"></textarea></label>
+          <label id="body-wrap">Conteúdo<textarea id="slide-body" rows="6" maxlength="2200" placeholder="Escreva as ideias principais..."></textarea></label>
+          <label id="tool-wrap" hidden>Ferramenta<select id="slide-tool"><option value="wheel">Roda de reflexão</option><option value="5w2h">Plano 5W2H</option></select></label>
+          <div id="library-wrap" class="resource-config" hidden><strong>Conteúdo da Biblioteca</strong><p id="selected-resource" class="muted">Nenhum conteúdo selecionado</p><button type="button" id="pick-library" class="secondary">Selecionar material</button></div>
+          <div id="document-wrap" class="resource-config" hidden><strong>Arquivo local</strong><p id="selected-file" class="muted">Nenhum arquivo selecionado</p><label class="upload-label">Importar PDF ou imagem<input id="upload-file" type="file" accept="application/pdf,image/jpeg,image/png,image/webp"></label><small>Até 16 MB, salvo somente neste navegador. Não suporta PPTX nesta etapa.</small></div>
+          <label>Tema do slide<select id="slide-theme"><option value="ocean">Azul RealTalent</option><option value="light">Claro</option><option value="dark">Noturno</option></select></label>
+          <label>Anotações privadas do apresentador<textarea id="slide-notes" rows="4" maxlength="2000" placeholder="Somente no editor, nunca na tela de apresentação"></textarea></label>
+          <p class="muted privacy-note">Os campos são salvos automaticamente. As anotações não aparecem no modo apresentação.</p>
+        </div>
+        <section id="session-panel" class="session-panel" aria-labelledby="session-panel-title">
+          <div class="panel-head"><strong id="session-panel-title">Vincular ao atendimento</strong></div>
+          <p class="muted">Associe esta apresentação a uma sessão fictícia. O vínculo é privado por padrão.</p>
+          <label>Sessão<select id="presentation-session" aria-label="Sessão associada"><option value="">Selecionar sessão</option></select></label>
+          <div class="session-actions"><button id="link-session" type="button" class="secondary">Vincular apresentação</button><button id="unlink-session" type="button" class="subtle danger-text" hidden>Desvincular</button></div>
+          <p class="muted" id="link-status" role="status">Nenhuma sessão vinculada.</p>
+          <div id="session-workflow" hidden>
+            <div class="session-divider"></div>
+            <h3>Material para Minha Jornada</h3>
+            <p class="muted">Escolha apenas slides educativos. PDF, imagem, ferramentas dinâmicas e notas privadas não são compartilhados.</p>
+            <div id="publish-slides" class="publish-slides" role="group" aria-label="Selecionar slides para compartilhar"></div>
+            <button id="publish-slides-btn" type="button" class="secondary">Compartilhar slides selecionados</button>
+            <button id="withdraw-slides" type="button" class="subtle danger-text" hidden>Retirar da Minha Jornada</button>
+            <p id="publish-status" class="muted" role="status"></p>
+            <div class="session-divider"></div>
+            <h3>Compromisso do atendimento</h3>
+            <p class="muted">Um compromisso é criado no Plano de Ação já existente, vinculado ao objetivo e à sessão.</p>
+            <form id="presentation-action-form">
+              <label>Objetivo<select name="goal" id="presentation-goal" required></select></label>
+              <label>Ação acordada<textarea name="title" rows="2" maxlength="500" minlength="4" required placeholder="Ex.: testar uma nova abordagem de comunicação"></textarea></label>
+              <label>Prazo<input type="date" name="due" required></label>
+              <label>Visibilidade<select name="visibility"><option value="privado">Somente profissional (padrão)</option><option value="compartilhado">Disponibilizar na Minha Jornada</option></select></label>
+              <button type="submit" class="primary">Registrar compromisso</button>
+            </form>
+            <p id="commitment-status" class="muted" role="status"></p>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>
+<dialog id="library-dialog" class="library-dialog" aria-labelledby="library-title">
+  <div class="dialog-top"><div><h2 id="library-title">Escolher da Biblioteca</h2><p>Conteúdos educacionais DISC/ACER existentes no RealTalent.</p></div><button type="button" id="close-library" class="subtle" aria-label="Fechar Biblioteca">✕</button></div>
+  <label>Buscar conteúdo<input id="library-search" type="search" placeholder="Ex.: comunicação, liderança, escuta"></label>
+  <div id="library-results" class="library-results" aria-live="polite"></div>
+</dialog>
+<div id="presenter" class="presenter" hidden role="dialog" aria-modal="true" aria-label="Modo apresentação" tabindex="-1">
+  <div id="presentation-stage" class="presentation-stage"></div>
+  <div class="presenter-controls">
+    <div class="presenter-meta"><span class="presenter-dot"></span><span id="presenter-count">Slide 1 de 1</span><span id="presenter-time">00:00</span></div>
+    <div class="presenter-buttons"><button type="button" id="previous" aria-label="Slide anterior">←</button><button type="button" id="next" aria-label="Próximo slide">→</button><button type="button" id="presenter-action" title="Registrar compromisso na sessão">+ Compromisso</button><button type="button" id="toggle-fullscreen" title="Tela cheia">⛶ Tela cheia</button><button type="button" id="exit-presenter" title="Esc">✕ Encerrar</button></div>
+  </div>
+  <div id="presenter-progress" class="presenter-progress"></div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body></html>

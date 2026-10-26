@@ -8,7 +8,7 @@ vm.runInNewContext(read('core/demo-store.js'),ctx);
 for(const p of ['apresentacoes/studio.js','profissional/app.js','cliente/app.js'])new Function(read(p));
 const S=ctx.window.RTDemoStore,d=S.seed();
 assert.ok(Array.isArray(d.presentationLinks)&&d.presentationLinks.length===0);
-const old=S.seed();delete old.presentationLinks;assert.deepEqual(S.upgrade(old).presentationLinks,[]);
+const old=S.seed();delete old.presentationLinks;assert.equal(S.upgrade(old).presentationLinks.length,0);
 const link=S.linkPresentationToSession(d,'s1','demo-deck-v11-1','Roteiro fictício para sessão');
 assert.ok(link&&link.programId==='p1'&&link.visibility==='privado');
 assert.equal(S.linkPresentationToSession(d,'s1','demo-deck-v11-1','Roteiro ajustado').id,link.id);

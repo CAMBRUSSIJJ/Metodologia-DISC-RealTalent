@@ -33,7 +33,7 @@ function examples(){return {
 };}
 let db=RTDemoStore.load();
 const persist=(actor,action,id)=>{RTDemoStore.log(db,actor,action,id||'');RTDemoStore.save(db);};
-const pages={inicio:'Visão geral',clientes:'Clientes',processos:'Processo de desenvolvimento','atividades-guiadas':'Atividades guiadas','graficos-relatorios':'Gráficos e relatórios',sessoes:'Sessões','plano-desenvolvimento':'Plano de desenvolvimento','plano-acao':'Plano de ação',ferramentas:'Ferramentas',biblioteca:'Biblioteca',configuracoes:'Configurações'};
+const pages={inicio:'Visão geral',clientes:'Clientes',processos:'Processo de desenvolvimento','atividades-guiadas':'Atividades guiadas','graficos-relatorios':'Gráficos e relatórios',sessoes:'Sessões','plano-desenvolvimento':'Plano de desenvolvimento','plano-acao':'Plano de ação',ferramentas:'Ferramentas',biblioteca:'Biblioteca',apresentacoes:'Apresentações',configuracoes:'Configurações'};
 const client=id=>db.clients.find(c=>c.id===id);
 const program=id=>db.programs.find(p=>p.id===id);
 const clientOf=p=>client(p?.clientId)?.name || 'Cliente não vinculado';
@@ -555,6 +555,13 @@ function showTools(){
  moduleFrame('library','../biblioteca/index.html?embedded=1#view='+view,'Biblioteca e Communication Lab')+
  `<p class="inline-note">Biblioteca educacional com recursos contextualizados. O profissional continua responsável por selecionar o que é adequado à sua atuação.</p>`;
 }
+// V11.0 — Estúdio de Apresentações integrado ao workspace sem recriar a Biblioteca.
+function showPresentations(){
+  return head('FACILITAÇÃO E APRENDIZAGEM','Apresentações','Transforme conteúdos da Biblioteca em roteiros visuais, exercícios e apresentações em tela cheia.',
+    '<a class="btn-secondary" href="../apresentacoes/index.html" target="_blank" rel="noopener noreferrer">Abrir estúdio em nova janela ↗</a>')+
+    '<div class="rt-v8-frame-wrap"><iframe class="rt-v8-frame" data-rt-module="presentations" src="../apresentacoes/index.html" title="Estúdio de Apresentações RealTalent" loading="eager" allow="fullscreen" allowfullscreen referrerpolicy="no-referrer" scrolling="no" style="min-height:900px"></iframe></div>'+
+    '<p class="inline-note">Versão demonstrativa: apresentações e arquivos ficam apenas neste navegador. Não utilize dados de clientes reais.</p>';
+}
 // V9.6 — central de ferramentas NATIVA. Os registros DISC são os mesmos do
 // workspace individual e do portal demonstrativo, sem outro estado duplicado.
 function rt96Params(){return new URLSearchParams(location.hash.split('?')[1]||'');}
@@ -718,7 +725,7 @@ function render(){
  if(key==='processo'){const p=program(raw.split('=')[1]);if(p){location.replace(wsUrl(p.clientId,'geral',p.id));return;}}
  if(key==='sessao'){const s=db.sessions.find(x=>x.id===raw.split('=')[1]);const p=program(s?.programId);if(p){location.replace(wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id)));return;}}
  const page=pages[key]?key:(key==='cliente'?'cliente':'inicio');
- const views={inicio:showHome,clientes:showClients,processos:showProcesses,'atividades-guiadas':showGuidedActivities,'graficos-relatorios':showDiscReports,sessoes:showAgenda,'plano-desenvolvimento':showDevelopmentPlans,'plano-acao':showActionPlan,ferramentas:showInstrumentsCenter,biblioteca:showTools,configuracoes:()=>showSettings()+`<div class="rt-v9-settings-actions">${btn('Restaurar dados fictícios','reset','','btn-secondary')}</div><details class="card rt-v9-legacy"><summary>Diretrizes profissionais e limites de uso</summary>${showPolicy()}</details>`};
+ const views={inicio:showHome,clientes:showClients,processos:showProcesses,'atividades-guiadas':showGuidedActivities,'graficos-relatorios':showDiscReports,sessoes:showAgenda,'plano-desenvolvimento':showDevelopmentPlans,'plano-acao':showActionPlan,ferramentas:showInstrumentsCenter,biblioteca:showTools,apresentacoes:showPresentations,configuracoes:()=>showSettings()+`<div class="rt-v9-settings-actions">${btn('Restaurar dados fictícios','reset','','btn-secondary')}</div><details class="card rt-v9-legacy"><summary>Diretrizes profissionais e limites de uso</summary>${showPolicy()}</details>`};
  let output=views[page]?.();
  if(page==='cliente')output=showClientWorkspace(cid,new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('tab')||'geral',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('program')||'',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('session')||'');
  $('#content').innerHTML='<div class="demo-strip"><strong>Modo demonstrativo</strong> · Somente dados fictícios neste navegador. Não há autenticação nem proteção para uso profissional real.</div>'+(output||showHome());

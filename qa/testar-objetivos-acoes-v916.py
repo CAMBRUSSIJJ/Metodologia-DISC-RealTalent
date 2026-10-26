@@ -12,7 +12,7 @@ class Quiet(SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
 def go(page,route):
     page.evaluate("(r)=>location.hash=r",route)
-    page.wait_for_function("(r)=>location.hash===r && document.querySelector('#content')?.innerText.length>0",route)
+    page.wait_for_function("(r)=>location.hash===r && document.querySelector('#content')?.innerText.length>0",arg=route)
     page.wait_for_timeout(130)
 def main():
     srv=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)))

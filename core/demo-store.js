@@ -45,11 +45,12 @@
     instruments:[
       {id:'i-seed-1',programId:'p1',kind:'reflexao-guiada',title:'Meu estilo de comunicação',instructions:'Registre uma situação fictícia de comunicação. Não é um teste psicológico nem produz perfil DISC.',visibility:'compartilhado',status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',assignedAt:iso(-1)}
     ],
+    presentationLinks:[],
     discLinks:[],
     discAssignments:[{id:'disc-seed-1',programId:'p1',clientId:'c1',visibility:'compartilhado',status:'atribuido',assignedAt:iso(-1),completedAt:null,answers:null,scores:null,selfAdjectives:null,perceivedAdjectives:null,selfScores:null,perceivedScores:null,feedback:'',feedbackVisibility:'privado'}],
     audit:[]
   };}
-  function valid(d) {return d && d.version===VERSION && ['clients','programs','goals','sessions','actions','guidance','reflections','wheelAssessments','instruments','discLinks','discAssignments','audit'].every(k=>Array.isArray(d[k]));}
+  function valid(d) {return d && d.version===VERSION && ['clients','programs','goals','sessions','actions','guidance','reflections','wheelAssessments','instruments','presentationLinks','discLinks','discAssignments','audit'].every(k=>Array.isArray(d[k]));}
   // Preparação de sessão: estrutura interna, opcional, nunca compartilhada no portal.
   const PREP_FIELDS=['goal','reality','options','wayForward'];
   function normalizeSessionPreparation(input){
@@ -198,6 +199,14 @@
       if(!d.goals.some(g=>g.id===i.goalId&&g.programId===i.programId))i.goalId=d.goals.find(g=>g.programId===i.programId)?.id||null;
       if(i.feedbackVisibility!=='compartilhado'||!i.feedback)i.feedbackVisibility='privado';
     }
+    // V11.1: somente slides sanitizados e autorizados, nunca arquivos ou notas privadas.
+    if(!Array.isArray(d.presentationLinks))d.presentationLinks=[];
+    d.presentationLinks=d.presentationLinks.filter(x=>x&&
+      d.sessions.some(s=>s.id===x.sessionId&&s.programId===x.programId)&&
+      typeof x.deckId==='string'&&Array.isArray(x.slides))
+      .map(x=>({...x,visibility:x.visibility==='compartilhado'&&
+        d.sessions.some(s=>s.id===x.sessionId&&s.visibility==='compartilhado')?'compartilhado':'privado',
+        slides:normalizePresentationSlides(x.slides)}));
     if(!Array.isArray(d.discLinks))d.discLinks=[];
     if(!Array.isArray(d.discAssignments))d.discAssignments=[];
     for(const task of d.discAssignments)if(task.visibility!=='compartilhado')task.visibility='privado';
@@ -283,6 +292,11 @@
       // Tela cliente não recebe respostas nem gráficos pelo contrato de visualização.
       discAssignments:d.discAssignments.filter(x=>ids.has(x.programId)&&x.clientId===clientId&&x.visibility==='compartilhado')
        .map(({answers,scores,selfAdjectives,perceivedAdjectives,selfScores,perceivedScores,feedbackVisibility,feedback,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
+      presentationMaterials:d.presentationLinks
+        .filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'&&
+          d.sessions.some(s=>s.id===x.sessionId&&s.programId===x.programId&&s.visibility==='compartilhado'))
+        .map(x=>({id:x.id,programId:x.programId,sessionId:x.sessionId,title:x.title,
+          publishedAt:x.publishedAt,slides:normalizePresentationSlides(x.slides)})),
       reflections:d.reflections.filter(x=>x.clientId===clientId),
     });
   }
@@ -361,7 +375,48 @@
     s.recapVisibility=s.clientRecap&&visibility==='compartilhado'&&s.visibility==='compartilhado'?'compartilhado':'privado';
     s.recapUpdatedAt=new Date().toISOString();return true;
   }
+  // V11.1 — liga apresentações a sessões sem copiar arquivos, anotações ou estados da projeção.
+  // Este contrato opera SOMENTE nos dados fictícios do localStorage; não substitui RLS/autorização.
+  const PRESENTATION_KINDS=new Set(['cover','text','question','library']);
+  function normalizePresentationSlides(raw){
+    if(!Array.isArray(raw))return [];
+    const arr=[];
+    for(const item of raw.slice(0,40)){
+      if(!item||!PRESENTATION_KINDS.has(item.kind))continue;
+      arr.push({kind:item.kind,title:String(item.title||'').slice(0,130),
+        subtitle:String(item.subtitle||'').slice(0,280),body:String(item.body||'').slice(0,1200),
+        theme:['ocean','light','dark'].includes(item.theme)?item.theme:'ocean'});
+    }
+    return arr.slice(0,12);
+  }
+  function linkPresentationToSession(d,sessionId,deckId,title){
+    const s=d.sessions.find(x=>x.id===sessionId),p=d.programs.find(x=>x.id===s?.programId&&x.status!=='finalizado');
+    title=String(title||'').trim();
+    if(!s||!p||typeof deckId!=='string'||!/^[-a-zA-Z0-9_]{8,100}$/.test(deckId)||title.length<3||title.length>100)return null;
+    const existing=d.presentationLinks.find(x=>x.sessionId===sessionId&&x.deckId===deckId);
+    if(existing){existing.title=title;return existing;}
+    const record={id:freshId('presentation'),programId:p.id,sessionId:s.id,deckId,title,
+      visibility:'privado',slides:[],createdAt:new Date().toISOString(),publishedAt:''};
+    d.presentationLinks.push(record);return record;
+  }
+  function publishPresentationSlides(d,linkId,rawSlides){
+    const link=d.presentationLinks.find(x=>x.id===linkId),s=d.sessions.find(x=>x.id===link?.sessionId),
+      p=d.programs.find(x=>x.id===s?.programId);
+    if(!link||!s||!p||p.id!==link.programId||p.status==='finalizado'||s.visibility!=='compartilhado')return false;
+    const slides=normalizePresentationSlides(rawSlides);
+    if(!slides.length)return false;
+    link.slides=slides;link.visibility='compartilhado';link.publishedAt=new Date().toISOString();return true;
+  }
+  function withdrawPresentation(d,linkId){
+    const link=d.presentationLinks.find(x=>x.id===linkId);
+    if(!link)return false;
+    link.visibility='privado';link.publishedAt='';return true;
+  }
+  function unlinkPresentation(d,linkId){
+    const i=d.presentationLinks.findIndex(x=>x.id===linkId);
+    if(i<0)return false;d.presentationLinks.splice(i,1);return true;
+  }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,linkPresentationToSession,publishPresentationSlides,withdrawPresentation,unlinkPresentation,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

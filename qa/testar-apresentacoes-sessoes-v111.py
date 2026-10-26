@@ -58,15 +58,7 @@ def main():
             pro=ctx.new_page()
             pro.on('pageerror',lambda e:errors.append('profissional '+str(e)))
             pro.goto(origin+'/profissional/index.html#cliente=c1&tab=sessoes&program=p1&session=s1',wait_until='domcontentloaded')
-            pro.wait_for_timeout(450)
-            print('DEBUG sessão profissional',pro.evaluate("""() => ({
-                route:location.hash,
-                page:document.querySelector('#content')?.innerText.slice(0,1100),
-                available:!!document.querySelector('.rt-v111-session-presentations'),
-                sessionLinks:RTDemoStore.load().presentationLinks.map(x=>({title:x.title,sessionId:x.sessionId})),
-                pageHtml:document.querySelector('#content')?.innerHTML.slice(-400)
-            })"""),'errors',errors,flush=True)
-            pro.wait_for_function("document.querySelector('.rt-v111-session-presentations')?.innerText.includes('Conversa de desenvolvimento')",timeout=5000)
+            pro.wait_for_function("document.querySelector('.rt-v111-session-presentations')?.innerText.includes('Sessão de desenvolvimento')",timeout=7000)
             assert pro.locator('.rt-v111-session-link').count()==1
             url=pro.locator('.rt-v111-session-link a').first.get_attribute('href')
             assert 'session=s1' in url and 'deck=' in url

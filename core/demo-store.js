@@ -299,6 +299,14 @@
     if(!p||title.length<4)return false;
     d.goals.push({id:freshId('goal'),programId,title,status:'ativo',createdAt:new Date().toISOString()});return true;
   }
+  function updateGoal(d,goalId,title){
+    const g=(d.goals||[]).find(x=>x.id===goalId);
+    const p=d.programs.find(x=>x.id===g?.programId&&x.status!=='finalizado');
+    title=String(title||'').trim();
+    if(!g||!p||title.length<4||title.length>160)return false;
+    g.title=title;g.updatedAt=new Date().toISOString();
+    return true;
+  }
   function linkActionGoal(d,actionId,goalId){
     const a=d.actions.find(a=>a.id===actionId),g=d.goals.find(g=>g.id===goalId);
     if(!a||!g||a.programId!==g.programId)return false;
@@ -330,5 +338,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

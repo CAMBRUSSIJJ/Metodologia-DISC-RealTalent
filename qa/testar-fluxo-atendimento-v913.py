@@ -80,6 +80,7 @@ def main():
         page.locator("#rt-v913-question-search").fill("fatos")
         assert page.locator('[data-v913-question]:visible').count()>=1
         page.locator("#rt-v913-question-search").fill("sem-resultado-qa")
+        print("DEBUG V913 SEARCH",page.evaluate("""()=>({query:document.querySelector("#rt-v913-question-search")?.value,rows:[...document.querySelectorAll("[data-v913-question]")].slice(0,4).map(el=>({hidden:el.hidden,display:getComputedStyle(el).display,dataset:el.dataset.search?.slice(0,45)})),visible:[...document.querySelectorAll("[data-v913-question]")].filter(el=>getComputedStyle(el).display!=="none").length})"""),flush=True)
         assert page.locator('[data-v913-question]:visible').count()==0
         page.locator("#rt-v913-question-search").fill("")
         page.locator('[data-act="rt-v913-toggle-question"][data-id="cq-11"]').first.click()

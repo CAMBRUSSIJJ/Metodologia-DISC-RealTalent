@@ -77,6 +77,8 @@ def main():
         page.locator('[data-act="rt-v913-toggle-question"][data-id="cq-01"]').first.click()
         assert "cq-01" in result(page,"RTDemoStore.load().sessions.find(s=>s.id==='s1').coachingQuestionIds")
         page.locator('a[href*="phase=realidade"]').first.click()
+        page.wait_for_function("location.hash.includes('phase=realidade') && Boolean(document.querySelector('#rt-v913-question-search'))")
+        page.wait_for_timeout(120)  # Aguarda render da rota antes de preencher o campo
         page.locator("#rt-v913-question-search").fill("fatos")
         assert page.locator('[data-v913-question]:visible').count()>=1
         page.locator("#rt-v913-question-search").fill("sem-resultado-qa")

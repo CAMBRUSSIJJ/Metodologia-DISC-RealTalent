@@ -1,9 +1,9 @@
 {
-  "version": "9.17.0",
-  "product": "RealTalent DISC/ACER — Ciclo de Atividades Guiadas",
-  "base": "9.16.0",
+  "version": "10.0.0-beta",
+  "product": "RealTalent DISC/ACER — Fundação Segura Isolada (sem banco conectado)",
+  "base": "9.17.0",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "0fca03f5c4ea71ca0b32ec3fa075a66eb1063d9b0dbab2854e1ed4e99fee3937",
+    ".github/workflows/v913-session-e2e.yml": "bb4f00941f8fa9e79cb2e5491b875ec50d960f893103a110a8802e8968ed313d",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -121,7 +121,7 @@
     "qa/testar-sidebar-v91.py": "be6b9f622e7ac9907e5b07f235064b4254b97ad9177d86c349f13b1d19b201df",
     "qa/testar-workflow-v97.py": "c1544f3dc77e2532a1fe9e5de2f16322260ab9c11dc07acdbcbedc5f7929fccb",
     "qa/testar-workspace-v93.py": "bb1e990ed4fb1a0ed6d7fdfb0f306e165da9723dddb431ce4ea2a55acac0bb4f",
-    "README.md": "99b5a23d09f78e3f5665bb1e72984602c4b474eb672a576e02fe8c18414639b0",
+    "README.md": "44334c0dd36e292d132766ca70b167e3f60c23dd05398b3597e5967e787be5b8",
     "realtalent-graficos.html": "e0492b20a955cfc3d783eabe47c1a3a36e15cb9570db574d265b96b836bc9f34",
     "scripts/server.py": "6b24dadaa6b3aa820597018db63f5364313578bf02163a79e880bbff7d09c861",
     "scripts/verify-build.py": "3bb06c4049bdc380ccd0a8b84ca7790f1991dd56808bacc7226ba7f0aee6567a",
@@ -142,6 +142,13 @@
     "docs/V9_16_DESENVOLVIMENTO_E_ACOES.md": "24ea5f28682706ec3ab5a55b4829e58ae1b36f4aea63cd94d557f359e17328e2",
     "qa/testar-ciclo-atividades-v917.js": "97795eab527e697325f45e3bd8b56365b485bc09724e344e86232d08ac3e8c8d",
     "qa/testar-ciclo-atividades-v917.py": "967eafb822c18c5287cafc9939336ee60b4d269c27f82aed186901639adaa103",
-    "docs/V9_17_CICLO_ATIVIDADES.md": "60660c6c7cc425907e7d09761f9b15ff6541a3ae12b7da6eb1d6b0dc8b564415"
+    "docs/V9_17_CICLO_ATIVIDADES.md": "60660c6c7cc425907e7d09761f9b15ff6541a3ae12b7da6eb1d6b0dc8b564415",
+    "seguro/config.js": "860bbc9485b8afe590fb7ca01cfb1d966488f1337cfa7e6c218b36fcd161738b",
+    "seguro/index.html": "d71bcafa46ff97c0fd9c0c213a56f879fecebc639ba88d02d05974561b77783b",
+    "seguro/app.mjs": "262f599e86fb956928b9ef7718394c16c214b78aaf251b45b64a7e592d3f13bb",
+    "seguro/secure.css": "0aba67ac37092d2df3123859e318f23f6c8fa4beca88c8ee1bbbb2b6304db1f2",
+    "supabase/migrations/20261026170000_realtalent_secure_foundation.sql": "f252f9ef43859329126f61291766f313c692492127dc8fbe277c0041ba2c50f5",
+    "qa/testar-seguranca-v10.js": "83024b73db95f7bbfcd1e45f6b016822fae59f0ec16d3310d66c20972d141caf",
+    "docs/V10_BASE_SEGURA.md": "7a5e6928cc926d71c7dd5f74c559a58d9c25ec8004e663f2b268739f694dd720"
   }
 }

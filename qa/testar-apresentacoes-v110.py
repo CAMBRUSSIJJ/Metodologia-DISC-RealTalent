@@ -86,7 +86,16 @@ def main():
             page.reload(wait_until='domcontentloaded')
             page.locator('#deck-list .deck-card').first.get_by_role('button',name='Abrir').click()
             page.locator('#slides-list .slide-list-item').last.click()
-            page.wait_for_function("Boolean(document.querySelector('#stage img')?.src?.startsWith('blob:'))")
+            page.wait_for_timeout(600)
+            print('DEBUG recarregamento',page.evaluate("""async () => ({
+                stage:document.querySelector('#stage')?.innerText,
+                kind:state.decks.find(d=>d.id===state.current)?.slides[state.selected]?.kind,
+                fileId:state.decks.find(d=>d.id===state.current)?.slides[state.selected]?.fileId,
+                cached:state.fileUrls.size,
+                objectPresent:!!document.querySelector('#stage img'),
+                dbValue:await getFile(state.decks.find(d=>d.id===state.current)?.slides[state.selected]?.fileId).then(f=>f?.type||'ausente').catch(e=>'erro: '+e.message)
+            })"""),flush=True)
+            page.wait_for_function("Boolean(document.querySelector('#stage img')?.src?.startsWith('blob:'))",timeout=5000)
             print('OK 04 — arquivos de imagem mantidos em IndexedDB após recarga',flush=True)
 
             page.locator('#slide-kind').select_option('tool')

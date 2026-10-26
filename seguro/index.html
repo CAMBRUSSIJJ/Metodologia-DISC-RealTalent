@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; form-action 'self'; base-uri 'none'">
-<title>RealTalent — Acesso Seguro (Beta)</title>
+<title>RealTalent — Acesso Seguro e Apresentações (Beta)</title>
 <link rel="stylesheet" href="./secure.css">
 <script src="./config.js" defer></script>
 <script src="./app.mjs" type="module"></script>
@@ -34,8 +34,10 @@
 <label class="check"><input type="checkbox" name="share"> Compartilhar explicitamente com o participante vinculado</label>
 <button type="submit">Salvar registro</button></form>
 <div id="record-list" class="entries"></div></section></div>
+<section id="secure-presentations-professional" class="panel" aria-label="Apresentações protegidas do processo"></section>
 </div>
-<div id="participant" hidden><section class="panel"><h3>Minha Jornada — registros compartilhados</h3><p class="hint">Você vê apenas os materiais liberados para sua conta.</p><div id="participant-list" class="entries"></div></section></div>
+<div id="participant" hidden><section class="panel"><h3>Minha Jornada — registros compartilhados</h3><p class="hint">Você vê apenas os materiais liberados para sua conta.</p><div id="participant-list" class="entries"></div></section><section id="secure-presentations-participant" class="panel" aria-label="Apresentações disponibilizadas"></section>
+</div>
 </section>
 </main>
 <footer class="footer">Beta restrito · Sem migração automática da demonstração · Nunca usar dados reais antes da revisão de segurança e LGPD.</footer>

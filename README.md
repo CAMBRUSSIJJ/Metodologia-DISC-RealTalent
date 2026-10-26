@@ -1,3 +1,38 @@
+# RealTalent V9.16 — Desenvolvimento e Plano de Ação (PREVIEW)
+
+Objetivos editáveis, compromissos vinculados a objetivos e sessões, filtros por processo e objetivo, privacidade por padrão e continuidade entre encontros. Preservada a V9.15.
+
+Veja [documentação V9.16](docs/V9_16_DESENVOLVIMENTO_E_ACOES.md).
+
+**Somente dados fictícios. Não insira registros pessoais ou clínicos reais.**
+
+---
+
+# RealTalent V9.15 — Jornada do Processo (PREVIEW)
+
+Em **Profissional → Clientes → Visão geral**, uma única jornada reúne
+**Objetivos, Sessões, Ações combinadas e Atividades** usando os registros
+originais do processo. Os indicadores mostram pendências concretas, sem
+tratar execução de tarefas como evolução psicológica. O histórico existente,
+as seis abas internas e o Atendimento V9.14 permanecem.
+
+Guia: [V9.15 — Jornada Profissional](docs/V9_15_JORNADA_PROFISSIONAL.md).
+QA: `python3 qa/testar-jornada-profissional-v915.py`.
+
+**Somente demonstração e dados fictícios. Não usar registros reais ou sigilosos.**
+
+---
+
+# RealTalent Professional V9.14 — Atendimento Profissional 2.0
+
+A aba **Sessões** agora organiza os encontros numa agenda clara. Ao clicar em **Abrir atendimento**, o profissional entra em um espaço único de três momentos: **Antes** (contexto e GROW), **Durante** (perguntas, temporizador e notas internas) e **Depois** (conclusão, resumo autorizado e compromissos já vinculados).
+
+A V9.14 preserva a V9.13, sem criar cadastros ou ações duplicadas. Veja [o guia V9.14](docs/V9_14_ATENDIMENTO_PROFISSIONAL.md) e os testes Playwright em `qa/testar-atendimento-integrado-v914.py`.
+
+**Somente demonstração local, exclusivamente para dados fictícios.** Não existe autenticação real ou proteção adequada de informações clínicas/pessoais.
+
+---
+
 # RealTalent DISC/ACER V9.13 — Perguntas e Temporizador de Sessão (DEMONSTRAÇÃO)
 
 **Novo na V9.13:** banco com **30 perguntas abertas** por etapa de coaching/desenvolvimento, com seleção de até 12 perguntas por sessão; temporizador de sessão com quatro fases e duração configuráveis, pausa/retomada e avanço manual. Acesse **Profissional → Ferramentas → Perguntas de Coaching / Temporizador**, ou use os atalhos em **Clientes → Sessões → Detalhes**.

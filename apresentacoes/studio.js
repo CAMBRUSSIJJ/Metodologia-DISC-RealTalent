@@ -5,11 +5,14 @@ const $=id=>document.getElementById(id);
 const STORE='rt-presentation-studio-v11-demo';
 const FILEDB='rt-presentation-files-v11-demo';
 const MAX_DECKS=60, MAX_SLIDES=100, MAX_FILE=16*1024*1024;
+const urlParams=new URLSearchParams(location.search);
+const demoStore=()=>window.RTDemoStore||null;
+const shareableSlideKinds=new Set(['cover','text','question','library']);
 const kindNames={cover:'Capa',text:'Texto e ideias',question:'Pergunta interativa',tool:'Ferramenta',library:'Biblioteca',document:'Documento'};
 const themes=['ocean','light','dark'];
 const categories=['Visão geral','Conhecimento','Ferramentas','Sessões','Workshop'];
 const libraryUrl='../biblioteca/data/indice_pesquisa.json';
-const state={decks:[],current:null,selected:0,presenting:false,presentIndex:0,started:0,interval:null,library:[],fileUrls:new Map(),choices:new Map(),toastTimer:null};
+const state={decks:[],current:null,selected:0,presenting:false,presentIndex:0,started:0,interval:null,library:[],fileUrls:new Map(),choices:new Map(),toastTimer:null,sessionId:urlParams.get('session')||''};
 const uid=()=>typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():'demo-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
 const make=(tag,cls='',text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n};
 function clear(node){node.replaceChildren()}
@@ -83,8 +86,110 @@ function button(label,callback,cls='subtle'){
 function renderEditor(){
   const d=deck();if(!d)return;
   $('deck-title').value=d.title;$('slide-total').textContent=d.slides.length+'/'+MAX_SLIDES;
-  renderSlides();renderInspector();renderStage();
+  renderSlides();renderInspector();renderStage();renderSessionControls();
 }
+
+function sessionLink(d){
+  return d?.presentationLinks?.find(x=>x.sessionId===state.sessionId&&x.deckId===state.current)||null;
+}
+function getSessionData(){
+  const store=demoStore();
+  if(!store)return {store:null,d:null,s:null,p:null,link:null};
+  const d=store.load(),s=d.sessions.find(x=>x.id===state.sessionId)||null;
+  return {store,d,s,p:d.programs.find(p=>p.id===s?.programId)||null,link:sessionLink(d)};
+}
+function syncSessionChoices(){
+  const {d}=getSessionData(),select=$('presentation-session');
+  if(!select||!d)return;
+  select.replaceChildren(new Option('Selecionar sessão',''));
+  for(const s of d.sessions){
+    const p=d.programs.find(p=>p.id===s.programId),c=d.clients.find(c=>c.id===p?.clientId);
+    if(!p||!c)continue;
+    select.add(new Option(c.name+' · '+s.date+' · '+(s.clientTopic||'Sessão'),s.id));
+  }
+  if(d.sessions.some(s=>s.id===state.sessionId))select.value=state.sessionId;
+  else state.sessionId='';
+}
+function renderSessionControls(){
+  if(!deck())return;
+  syncSessionChoices();
+  const {d,s,p,link}=getSessionData();
+  $('session-workflow').hidden=!link;
+  $('unlink-session').hidden=!link;
+  $('link-session').hidden=!!link;
+  $('link-session').disabled=!s||p?.status==='finalizado';
+  $('link-status').textContent=!s?'Selecione uma sessão fictícia para relacionar a apresentação.':
+    !link?'Sessão selecionada · vínculo ainda não criado.':
+    'Apresentação vinculada · '+(link.visibility==='compartilhado'?'material compartilhado':'somente profissional');
+  if(!link)return;
+  const goals=d.goals.filter(g=>g.programId===p?.id),sel=$('presentation-goal');
+  const old=sel.value;sel.replaceChildren();
+  for(const g of goals)sel.add(new Option(g.title,g.id));
+  if(goals.some(g=>g.id===old))sel.value=old;
+  const choices=$('publish-slides'),selected=[...choices.querySelectorAll('input:checked')].map(x=>x.value);
+  choices.replaceChildren();
+  deck().slides.forEach((slide,index)=>{
+    if(!shareableSlideKinds.has(slide.kind))return;
+    const label=make('label','publish-choice'),input=make('input');
+    input.type='checkbox';input.value=slide.id;input.checked=selected.includes(slide.id);
+    label.append(input,make('span','',(index+1)+'. '+(slide.title||'Slide sem título')));
+    choices.append(label);
+  });
+  if(!choices.children.length)choices.append(make('p','muted','Adicione slides de texto, capa, pergunta ou Biblioteca.'));
+  const shared=link.visibility==='compartilhado';
+  $('withdraw-slides').hidden=!shared;
+  $('publish-status').textContent=shared?'Compartilhados '+link.slides.length+' slide(s). Alterações no editor exigem nova publicação.':
+    'Ainda não disponibilizado ao participante. Selecione slides e publique explicitamente.';
+  $('publish-slides-btn').disabled=!s||s.visibility!=='compartilhado'||p?.status==='finalizado';
+  if(s&&s.visibility!=='compartilhado')$('publish-status').textContent='Compartilhamento bloqueado: disponibilize primeiro a sessão no espaço profissional.';
+}
+function commitDemo(action,id,fn){
+  const {d,store}=getSessionData();
+  if(!d||!store)return false;
+  const result=fn(d,store);
+  if(!result)return false;
+  store.log(d,'profissional',action,id);
+  store.save(d);
+  renderSessionControls();
+  return result;
+}
+function linkToSession(){
+  const d=deck(),{s,p}=getSessionData();
+  if(!d||!s||p?.status==='finalizado')return note('Selecione uma sessão de processo ativo.');
+  if(!commitDemo('presentation-link',d.id,(db,store)=>store.linkPresentationToSession(db,s.id,d.id,d.title)))return note('Não foi possível vincular a apresentação.');
+  note('Apresentação associada à sessão, privada por padrão.');
+}
+function publishSlides(){
+  const {link}=getSessionData();if(!link)return note('Vincule esta apresentação a uma sessão.');
+  const selected=new Set([...$('publish-slides').querySelectorAll('input:checked')].map(x=>x.value));
+  const items=deck().slides.filter(s=>selected.has(s.id)&&shareableSlideKinds.has(s.kind));
+  if(!items.length||items.length>12)return note('Selecione de 1 a 12 slides educativos.');
+  if(!confirm('Compartilhar '+items.length+' slide(s) com o participante fictício? Anotações e documentos não serão incluídos.'))return;
+  if(!commitDemo('presentation-publish',link.id,(db,store)=>store.publishPresentationSlides(db,link.id,items)))return note('Não foi possível publicar. A sessão deve estar compartilhada e o processo ativo.');
+  note('Slides publicados na Minha Jornada demonstrativa.');
+}
+function withdrawSlides(){
+  const {link}=getSessionData();if(!link)return;
+  if(!commitDemo('presentation-withdraw',link.id,(db,store)=>store.withdrawPresentation(db,link.id)))return note('Não foi possível retirar o material.');
+  note('Material recolhido da Minha Jornada.');
+}
+function unlinkSession(){
+  const {link}=getSessionData();if(!link||!confirm('Desvincular a apresentação e retirar os materiais desta sessão?'))return;
+  if(!commitDemo('presentation-unlink',link.id,(db,store)=>store.unlinkPresentation(db,link.id)))return note('Erro ao desvincular.');
+  note('Apresentação desvinculada do atendimento.');
+}
+function createCommitment(event){
+  event.preventDefault();
+  const {s,p,link}=getSessionData();if(!s||!p||!link)return;
+  const form=event.currentTarget,values=new FormData(form);
+  const action=commitDemo('presentation-agreement',s.id,(db,store)=>
+    store.createSessionAgreement(db,s.id,{goalId:String(values.get('goal')||''),title:String(values.get('title')||''),
+      due:String(values.get('due')||''),visibility:String(values.get('visibility')||'privado')}));
+  if(!action)return note('Preencha um objetivo válido, ação concreta e prazo.');
+  $('commitment-status').textContent='Compromisso registrado no Plano de Ação · '+(action.visibility==='compartilhado'?'compartilhado':'privado');
+  form.querySelector('[name=title]').value='';note('Compromisso associado à sessão e ao objetivo.');
+}
+
 function renderSlides(){
   const d=deck(),list=$('slides-list');if(!d)return;clear(list);
   d.slides.forEach((slide,index)=>{
@@ -305,6 +410,13 @@ function attach(){
   $('new-deck').addEventListener('click',()=>addDeck());
   document.querySelectorAll('[data-template]').forEach(b=>b.addEventListener('click',()=>addDeck(b.dataset.template==='session'?'Sessão de desenvolvimento':'Workshop de comunicação',b.dataset.template==='session'?templateSession:templateWorkshop)));
   $('editor-back').addEventListener('click',goHome);
+  $('presentation-session').addEventListener('change',e=>{state.sessionId=e.target.value;renderSessionControls();});
+  $('link-session').addEventListener('click',linkToSession);
+  $('unlink-session').addEventListener('click',unlinkSession);
+  $('publish-slides-btn').addEventListener('click',publishSlides);
+  $('withdraw-slides').addEventListener('click',withdrawSlides);
+  $('presentation-action-form').addEventListener('submit',createCommitment);
+  $('presenter-action').addEventListener('click',()=>{exitPresentation();$('session-panel').scrollIntoView({block:'center'});$('presentation-action-form [name=title]').focus();});
   $('deck-title').addEventListener('input',e=>{const d=deck();if(!d)return;d.title=safeText(e.target.value,100);d.updatedAt=new Date().toISOString();save();});
   $('duplicate-deck').addEventListener('click',duplicateDeck);$('delete-deck').addEventListener('click',removeDeck);
   $('add-slide').addEventListener('click',() => addSlide($('slide-kind').value));
@@ -336,3 +448,5 @@ function attach(){
   if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>measure()).observe($('main'));
 }
 load();attach();renderHome();void loadLibrary();measure();
+if(urlParams.get('deck')&&state.decks.some(d=>d.id===urlParams.get('deck')))openDeck(urlParams.get('deck'));
+else if(state.sessionId){const assigned=demoStore()?.load()?.presentationLinks?.find(x=>x.sessionId===state.sessionId);if(assigned&&state.decks.some(d=>d.id===assigned.deckId))openDeck(assigned.deckId);}

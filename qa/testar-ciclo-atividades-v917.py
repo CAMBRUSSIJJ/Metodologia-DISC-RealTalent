@@ -29,7 +29,7 @@ def main():
             pro.wait_for_function("typeof RTDemoStore==='object'&&typeof render==='function'")
             pro.evaluate('RTDemoStore.reset();db=RTDemoStore.load();render()')
             go(pro,'#cliente=c1&tab=atividades&program=p1&view=todas')
-            pro.locator('[data-act="new-instrument-for"]').first.click()
+            pro.locator('[data-act="new-instrument-for"]:visible').first.click()
             assert pro.locator('#f-programId').input_value()=='p1'
             assert pro.locator('#f-goalId').input_value()=='goal-p1'
             assert pro.locator('#f-visibility').input_value()=='privado'

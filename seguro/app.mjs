@@ -208,7 +208,7 @@ async function start(){
     return;
   }
   try{
-    const {createClient}=await import('https://esm.sh/@supabase/supabase-js@2.110.0');
+    const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.0/+esm');
     db=createClient(config.url,config.publishableKey,{auth:{
       storage:sessionStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true
     }});

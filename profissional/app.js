@@ -229,6 +229,15 @@ function ws94SelectedSession(s,id,pid){
  return ws94Panel('Detalhes do encontro',details+`<div class="rt-v911-shortcut rt-v913-session-shortcuts"><a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar com GROW →</a><a class="btn-secondary" href="${rt96Href('perguntas','session='+encodeURIComponent(s.id))}">Banco de perguntas →</a><a class="btn-secondary" href="${rt96Href('temporizador','session='+encodeURIComponent(s.id))}">Temporizador →</a></div>`+privateNotes+(canClose?`<div class="rt-v94-inline-actions">${btn('Concluir encontro','close-session',s.id,'btn-primary')}</div>`:'')+commitments+recaps+carry,'Preparação, acordos e continuidade no mesmo processo.','','rt-v94-detail rt-v910-session-detail');
 }
 
+// V11.1 — associação à sessão demonstrativa, sem duplicar compromissos ou distribuir arquivos privados.
+function rt111SessionPresentations(s){
+  const p=program(s?.programId),links=(db.presentationLinks||[]).filter(x=>x.sessionId===s.id);
+  const href='../apresentacoes/index.html?session='+encodeURIComponent(s.id);
+  return '<section class="card rt-v111-session-presentations" aria-label="Apresentações deste atendimento"><div class="card-head"><div><h2>Apresentações do atendimento</h2><p class="muted">Use um roteiro de desenvolvimento e registre compromissos na mesma sessão.</p></div><a class="btn-secondary" target="_blank" rel="noopener noreferrer" href="'+href+'">Abrir estúdio ↗</a></div>'+
+    (links.length?links.map(x=>'<div class="rt-v111-session-link"><div><strong>'+esc(x.title)+'</strong><small>'+(x.visibility==='compartilhado'?'Slides educativos compartilhados':'Material interno')+' · '+x.slides.length+' slide(s) liberado(s)</small></div><a href="'+href+'&deck='+encodeURIComponent(x.deckId)+'" target="_blank" rel="noopener noreferrer" class="line-button">Abrir roteiro</a></div>').join(''):
+     '<p class="inline-note">Nenhuma apresentação vinculada. Abra o estúdio e escolha esta sessão para associar um roteiro.</p>')+
+    '<p class="inline-note">Somente demonstração local. Notas privadas e arquivos não são distribuídos ao participante.</p></section>';
+}
 function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
  const c=client(id);if(!c)return showClients();let ps=db.programs.filter(p=>p.clientId===id);
  const p=ps.find(x=>x.id===programId)||ps.find(x=>x.status==='em andamento')||ps[0]||null;
@@ -269,6 +278,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   const primary=focused||pending[0]||nextSession;
   if(focused){
    body=RTSessionWorkspace.render(db,focused,{esc,dateFmt,wsUrl,btn,today,moment:ws94Query().get('moment'),filter:ws94Query().get('phase')});
+   body+=rt111SessionPresentations(focused);
   }else{
   body=ws94TabIntro(id,pid,chosen,'Escolha um encontro para preparar, conduzir e acompanhar em uma única tela.',[
    {label:'Próximo encontro',value:nextSession?dateFmt(nextSession.date):'Não agendado',hint:nextSession?nextSession.time:'Agendar novo'},

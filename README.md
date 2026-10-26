@@ -1,3 +1,15 @@
+# RealTalent V10 — Fundação Segura (Beta isolado)
+
+Esta branch acrescenta `/seguro/`, uma base **separada** da demonstração DISC/ACER, com autenticação Supabase Auth (OTP), papéis de profissional e participante, tabelas PostgreSQL com RLS, compartilhamento explícito e respostas vinculadas a atividades.
+
+**Não está conectada a um banco de produção.** O ambiente seguro permanece desativado até provisionamento de um **Supabase exclusivo** e aprovação de testes de autorização. Nenhum registro da demonstração foi importado. Os bancos de outros projetos não foram modificados.
+
+[Arquitetura, instruções e matriz obrigatória de homologação](docs/V10_BASE_SEGURA.md).
+
+**Não utilizar dados pessoais ou clínicos reais nesta etapa.**
+
+---
+
 # RealTalent V9.17 — Ciclo de Atividades Guiadas (PREVIEW)
 
 Atribuição profissional vinculada a objetivos, resposta na Minha Jornada, revisão e compartilhamento explícito, com o mesmo registro e privacidade por padrão.

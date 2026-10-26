@@ -57,7 +57,7 @@ function workspaceButton(label,id,tab='geral',pid='',cl='line-button'){
  return `<a class="${cl}" href="${wsUrl(id,tab,pid)}">${label}</a>`;
 }
 function showHome(){
- const ss=db.sessions.filter(s=>s.status==='agendada'&&s.date>=today()).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+ const ss=db.sessions.filter(s=>s.status==='agendada'&&!isElapsedAppointment(s)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
  const daySessions=ss.filter(s=>s.date===today());const attention=attentionQueue();
  const due=db.actions.filter(a=>a.status==='pendente');
  return head('PAINEL DE TRABALHO','Visão geral','Suas próximas sessões e o que precisa da sua atenção.',btn('+ Novo cliente','new-client','','btn-primary')+(ss.length?`<a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(ss[0].id))}">Preparar próxima sessão →</a>`:''))+
@@ -79,7 +79,7 @@ const clientStatusLabel=v=>clientStates.find(([key])=>key===v)?.[1]||'Ativo';
 function clientsQuery(){const h=location.hash.split('?')[1]||'';return new URLSearchParams(h);}
 function clientsFilters(){return clientsQuery().get('filter')||'todos';}
 function clientProcesses(id){return db.programs.filter(p=>p.clientId===id);}
-function nextClientSession(id){const ids=new Set(clientProcesses(id).map(p=>p.id));return db.sessions.filter(x=>ids.has(x.programId)&&x.status==='agendada'&&x.date>=today()).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];}
+function nextClientSession(id){const ids=new Set(clientProcesses(id).map(p=>p.id));return db.sessions.filter(x=>ids.has(x.programId)&&x.status==='agendada'&&!isElapsedAppointment(x)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];}
 function clientPendingCount(id){const ids=new Set(clientProcesses(id).map(p=>p.id));return db.actions.filter(a=>ids.has(a.programId)&&a.status==='pendente').length+db.discAssignments.filter(t=>ids.has(t.programId)&&t.status==='respondido'&&!t.feedback).length+db.instruments.filter(t=>ids.has(t.programId)&&t.responses&&!t.feedback).length;}
 function clientRecentDate(id){const ids=new Set(clientProcesses(id).map(p=>p.id));const found=[client(id)?.updatedAt,client(id)?.created,...clientProcesses(id).map(p=>p.start),...db.sessions.filter(s=>ids.has(s.programId)&&s.date<=today()).map(s=>s.date),...db.discAssignments.filter(t=>ids.has(t.programId)).map(t=>t.completedAt||t.assignedAt),...db.instruments.filter(i=>ids.has(i.programId)).map(i=>i.answeredAt||i.assignedAt)].filter(Boolean).map(x=>String(x).slice(0,10)).sort();return found.at(-1)||'';}
 function clientListRows(){const opts=clientsQuery(),filter=opts.get('filter')||'todos',sort=opts.get('sort')||'nome';
@@ -166,18 +166,37 @@ function v93Priority(id,pid){
  return `<section class="rt-v92-next-action rt-v93-priority" data-tone="${esc(item.tone||'standard')}" aria-label="Ação que precisa de atenção"><div class="rt-v93-priority-copy"><div class="rt-v93-overline"><span class="rt-v93-indicator" aria-hidden="true"></span> Atenção ao acompanhamento</div><h2>${esc(item.title)}</h2><p>${esc(item.sub)}</p></div><div class="rt-v93-priority-action">${action}</div></section>`;
 }
 function v93Summary(id,pid,sessions,actions,tasks,instruments,p){
- const upcoming=sessions.filter(s=>s.status==='agendada'&&!isElapsedAppointment(s)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
- const attention=actions.filter(x=>x.status==='pendente').length +
-  instruments.filter(x=>x.responses&&!x.feedback).length +
-  tasks.filter(x=>x.status==='respondido'&&!x.feedback).length;
- const count=tasks.length+instruments.length;
- const summary=[
-  {label:'Etapa atual',value:p.stage,detail:'Ver desenvolvimento',tab:'desenvolvimento'},
-  {label:'Próxima sessão',value:upcoming?dateFmt(upcoming.date)+' · '+upcoming.time:'Não agendada',detail:'Ver sessões',tab:'sessoes'},
-  {label:'Atividades e ações',value:attention?attention+' para acompanhar':'Sem pendências',detail:'Ver pendências',tab:(instruments.some(x=>x.responses&&!x.feedback)||tasks.some(x=>x.status==='respondido'&&!x.feedback))?'atividades':'desenvolvimento'},
-  {label:'Instrumentos',value:count+' atribuídos',detail:'Ver atividades',tab:'atividades'}
+ const goals=RTDemoStore.goalsOf(db,pid);
+ const scheduled=sessions.filter(x=>x.status==='agendada'&&!isElapsedAppointment(x))
+  .sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')));
+ const unconfirmed=sessions.filter(isElapsedAppointment).length;
+ const held=sessions.filter(x=>x.status==='concluida').length;
+ const openActions=actions.filter(x=>x.status==='pendente');
+ const lateActions=openActions.filter(x=>x.due&&x.due<today()).length;
+ const reviewed=tasks.filter(x=>x.status==='respondido'&&!x.feedback).length+
+   instruments.filter(x=>x.responses&&!x.feedback).length;
+ const assigned=tasks.length+instruments.length;
+ const steps=[
+  {id:'objetivos',name:'Objetivos',tab:'desenvolvimento',
+   value:goals.length?goals.length+' acordado'+(goals.length===1?'':'s'):'A definir',
+   hint:goals.length?'Ver objetivos e etapa':'Definir objetivo do processo'},
+  {id:'sessoes',name:'Sessões',tab:'sessoes',attention:unconfirmed>0,
+   value:unconfirmed?unconfirmed+' sem confirmação':scheduled[0]?dateFmt(scheduled[0].date)+' · '+(scheduled[0].time||''):held?held+' realizada'+(held===1?'':'s'):'Não agendada',
+   hint:unconfirmed?'Verificar encontros':scheduled.length?'Preparar próximo encontro':'Ver agenda e histórico'},
+  {id:'acoes',name:'Ações combinadas',tab:'desenvolvimento',attention:lateActions>0,
+   value:lateActions?lateActions+' com prazo vencido':openActions.length?openActions.length+' pendente'+(openActions.length===1?'':'s'):actions.length?actions.length+' concluída'+(actions.length===1?'':'s'):'Nenhuma ação',
+   hint:lateActions?'Revisar prazos':'Acompanhar compromissos'},
+  {id:'atividades',name:'Atividades',tab:'atividades',attention:reviewed>0,
+   value:reviewed?reviewed+' para revisar':assigned?assigned+' atribuída'+(assigned===1?'':'s'):'Nenhuma atividade',
+   hint:reviewed?'Revisar respostas':'Ver exercícios e DISC/ACER'}
  ];
- return `<section class="rt-v93-summary" aria-labelledby="rt-v93-summary-title"><div class="rt-v93-summary-head"><h2 id="rt-v93-summary-title">Em resumo</h2><span>Processo selecionado</span></div><div class="rt-v93-summary-grid">${summary.map(x=>`<a href="${wsUrl(id,x.tab,pid)}" class="rt-v93-summary-item"><span>${esc(x.label)}</span><strong>${esc(x.value)}</strong><small>${esc(x.detail)} <span aria-hidden="true">↗</span></small></a>`).join('')}</div></section>`;
+ return `<section class="rt-v93-summary rt-v915-journey" aria-labelledby="rt-v93-summary-title">
+ <div class="rt-v93-summary-head"><div><h2 id="rt-v93-summary-title">Jornada do processo</h2><p>Os quatro pontos de acompanhamento usam os mesmos registros de cada aba.</p></div><span>Não representa evolução psicológica</span></div>
+ <nav class="rt-v93-summary-grid" aria-label="Áreas da jornada de desenvolvimento">
+ ${steps.map((step,index)=>`<a href="${wsUrl(id,step.tab,pid)}" data-v915-step="${step.id}" data-attention="${step.attention?'true':'false'}" class="rt-v93-summary-item">
+ <span class="rt-v915-step-label"><span class="rt-v915-step-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>${esc(step.name)}</span>
+ <strong>${esc(step.value)}</strong><small>${esc(step.hint)} <span aria-hidden="true">→</span></small></a>`).join('')}
+ </nav></section>`;
 }
 // V9.4: hierarquia consistente por tarefa. Estado/filtros vêm sempre dos registros originais.
 function ws94Query(){
@@ -231,7 +250,9 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
  else if(chosen==='geral'){
   const open=actions.filter(a=>a.status==='pendente').sort((a,b)=>String(a.due||'9999').localeCompare(String(b.due||'9999')));
   body=`${v93Priority(id,pid)}${v93Summary(id,pid,sessions,actions,tasks,instruments,p)}
-  <div class="rt-v93-overview-layout"><div class="rt-v93-history">${showTimeline(id,pid)}</div><aside class="rt-v93-context-column" aria-label="Contexto do processo"><section class="rt-v93-aside-card"><div class="rt-v93-aside-label">Objetivo do processo</div><h2>${esc(p.goal)}</h2><p>Iniciado em ${dateFmt(p.start)}</p><a href="${wsUrl(id,'desenvolvimento',pid)}">Ver desenvolvimento →</a></section>
+  <div class="rt-v93-overview-layout"><div class="rt-v93-history">${showTimeline(id,pid)}</div><aside class="rt-v93-context-column" aria-label="Contexto do processo"><section class="rt-v93-aside-card rt-v915-goals" aria-label="Objetivos deste processo"><div class="rt-v93-aside-head"><h2>Objetivos acordados</h2><a href="${wsUrl(id,'desenvolvimento',pid)}">Gerenciar →</a></div>
+ ${RTDemoStore.goalsOf(db,pid).length?`<ul class="rt-v915-goals-list">${RTDemoStore.goalsOf(db,pid).slice(0,3).map(g=>`<li><strong>${esc(g.title)}</strong><small>${actions.filter(a=>a.goalId===g.id).length} ação(ões) vinculada(s)</small></li>`).join('')}</ul>${RTDemoStore.goalsOf(db,pid).length>3?`<p class="rt-v915-goals-more">+${RTDemoStore.goalsOf(db,pid).length-3} objetivo(s) em Desenvolvimento</p>`:''}`:empty('Nenhum objetivo específico','Defina objetivos na aba Desenvolvimento.')}
+ </section>
   <section class="rt-v93-aside-card"><div class="rt-v93-aside-head"><h2>Ações combinadas</h2><a href="${wsUrl(id,'desenvolvimento',pid)}">Ver todas</a></div>${open.length?`<ul class="rt-v93-action-list">${open.slice(0,3).map(a=>`<li><span>${esc(a.title)}</span><small>${a.due?'Até '+dateFmt(a.due):'Sem prazo definido'}</small></li>`).join('')}</ul>`:`<p>Sem ações pendentes neste processo.</p>`}</section>
   <details class="rt-v93-aside-card rt-v93-process-details"><summary>Detalhes e situação do processo <span aria-hidden="true">⌄</span></summary><dl><div><dt>Etapa</dt><dd>${esc(p.stage)}</dd></div><div><dt>Situação</dt><dd>${esc(p.status)}</dd></div><div><dt>Ações concluídas</dt><dd>${actions.filter(a=>a.status==='concluido').length} de ${actions.length}</dd></div></dl>${btn(p.status==='finalizado'?'Reabrir processo':'Finalizar processo',p.status==='finalizado'?'reopen-process':'finish-process',pid,'line-button')}</details></aside></div>`;
  }
@@ -246,7 +267,10 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   const ordered=shown.slice().sort((a,b)=>((a.date+a.time).localeCompare(b.date+b.time))*(view==='historico'?-1:1));
   const nextSession=next.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
   const primary=focused||pending[0]||nextSession;
-  body=ws94TabIntro(id,pid,chosen,'Prepare encontros, confirme o que ocorreu e consulte os registros sem perder o contexto.',[
+  if(focused){
+   body=RTSessionWorkspace.render(db,focused,{esc,dateFmt,wsUrl,btn,today,moment:ws94Query().get('moment'),filter:ws94Query().get('phase')});
+  }else{
+  body=ws94TabIntro(id,pid,chosen,'Escolha um encontro para preparar, conduzir e acompanhar em uma única tela.',[
    {label:'Próximo encontro',value:nextSession?dateFmt(nextSession.date):'Não agendado',hint:nextSession?nextSession.time:'Agendar novo'},
    {label:'Sem confirmação',value:pending.length,hint:'Horário transcorrido'},
    {label:'Realizados',value:completed.length,hint:'Histórico deste processo'}],btn('+ Agendar sessão','new-session-for',pid,'btn-primary'))+
@@ -254,6 +278,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   `<div class="rt-v94-layout"><div class="rt-v94-main">${ws94Filters(id,pid,chosen,[['proximos','Agendados',sessions.filter(x=>x.status==='agendada').length],['historico','Realizados',completed.length],['todos','Todos',sessions.length]],view)}`+
   ws94Panel(view==='historico'?'Histórico de encontros':view==='todos'?'Todos os encontros':'Encontros agendados',ordered.map(s=>ws94Row(s.clientTopic||'Sessão de acompanhamento',`${dateFmt(s.date)} · ${s.time}`,isElapsedAppointment(s)?'Aguardando confirmação':s.status==='concluida'?'Realizada':s.status,`<a class="btn-secondary" href="${wsUrl(id,'sessoes',pid,'session='+encodeURIComponent(s.id))}">Detalhes</a>`,focused?.id===s.id?'selected':'')).join('')||empty(view==='historico'?'Nenhuma sessão realizada':'Nenhuma sessão neste filtro','Agende um encontro ou altere o filtro.'),'Cada registro mantém sua pauta e situação.')+'</div>'+
   `<aside class="rt-v94-aside">${ws94SelectedSession(primary,id,pid)}${ws94Panel('Acompanhamento após a sessão',`<p class="rt-v94-aside-copy">Cada encontro pode gerar compromissos vinculados ao objetivo, exibidos no Plano de ação e, quando compartilhados, na Minha Jornada.</p><a class="rt-v94-text-link" href="${wsUrl(id,'desenvolvimento',pid)}">Ver ações combinadas →</a>`,'Continuidade do trabalho.')}</aside></div>`;
+  }
  }
  else if(chosen==='atividades'){
   const review=instruments.filter(x=>x.responses&&!x.feedback);
@@ -343,14 +368,30 @@ function showDevelopmentPlans(){
  `<div class="rt-v91-cards">${ps.map(p=>{const aa=db.actions.filter(a=>a.programId===p.id);const done=aa.filter(a=>a.status==='concluido').length;return `<section class="card rt-v91-process-card"><div class="card-head"><div><small class="eyebrow">${esc(clientOf(p))}</small><h2>${esc(p.goal)}</h2></div>${status(p.status)}</div><p class="muted">${esc(p.stage)} · ${done} de ${aa.length} ações concluídas</p><div class="progress-track"><span style="width:${aa.length?100*done/aa.length:0}%"></span></div>${aa.slice(0,3).map(a=>`<div class="rt-v9-dash-row"><div class="item-main"><strong>${esc(a.title)}</strong><p>${a.status==='concluido'?'Concluída':'Prazo: '+dateFmt(a.due)}</p></div>${btn(a.status==='concluido'?'Reabrir':'Concluir','toggle-action',a.id)}</div>`).join('')||empty('Sem ações','Adicione uma ação ao plano deste processo.')}<div class="rt-v91-card-footer">${btn('+ Ação','new-action-for',p.id,'btn-secondary')}${workspaceButton('Abrir plano →',p.clientId,'desenvolvimento',p.id,'btn-primary')}</div></section>`}).join('')||empty('Nenhum plano disponível','Crie um processo de desenvolvimento para começar.')}</div>`;
 }
 function showAgenda(){
- const opts=[['todos','Todos'],['hoje','Hoje'],['proximos','Próximos'],['concluidas','Concluídas']];const filter=new URLSearchParams(location.hash.split('?')[1]||'').get('filter')||'proximos';
- const ss=db.sessions.filter(s=>filter==='hoje'?s.date===today():filter==='concluidas'?s.status==='concluida':filter==='proximos'?s.status==='agendada'&&s.date>=today():true).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
- return head('COMPROMISSOS','Sessões','Encontros organizados por cliente e processo.',btn('+ Agendar sessão','new-session','','btn-primary'))+
- `<div class="rt-v9-filter-group rt-v9-agenda-filter" role="group" aria-label="Filtrar agenda">${opts.map(([k,label])=>`<a class="filter ${filter===k?'active':''}" href="#sessoes?filter=${k}" ${filter===k?'aria-current="page"':''}>${label}</a>`).join('')}</div>`+
- cardList('Sessões',ss.map(s=>{const p=program(s.programId);return `<div class="rt-v9-dash-row"><div class="datebox"><strong>${day(s.date)}</strong>${month(s.date)}</div><div class="item-main"><strong>${esc(pgName(s.programId))}</strong><p>${dateFmt(s.date)} · ${esc(s.time)} · ${esc(s.clientTopic||'Encontro')}</p></div>${status(s.status)}${p?`<a class="line-button" href="${wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id))}">Abrir</a><a class="line-button" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar</a>`:''}</div>`}).join('')||empty('Nenhuma sessão neste filtro','Agende um encontro para visualizar aqui.'));
+ const opts=[['proximos','Próximos'],['hoje','Hoje'],['sem-confirmacao','Sem confirmação'],['concluidas','Concluídas'],['todos','Todos']];
+ const query=new URLSearchParams(location.hash.split('?')[1]||''),requested=query.get('filter')||'proximos';
+ const filter=opts.some(([id])=>id===requested)?requested:'proximos';
+ const all=db.sessions.filter(s=>program(s.programId)&&client(program(s.programId).clientId));
+ const shown=all.filter(s=>filter==='hoje'?s.date===today():filter==='sem-confirmacao'?isElapsedAppointment(s):filter==='concluidas'?s.status==='concluida':filter==='proximos'?s.status==='agendada'&&!isElapsedAppointment(s):true)
+  .sort((a,b)=>((a.date||'')+(a.time||'')).localeCompare((b.date||'')+(b.time||''))*(filter==='concluidas'?-1:1));
+ const future=all.filter(s=>s.status==='agendada'&&!isElapsedAppointment(s)).length;
+ const unconfirmed=all.filter(s=>isElapsedAppointment(s)).length;
+ const finished=all.filter(s=>s.status==='concluida').length;
+ const cards=shown.map(s=>{
+  const p=program(s.programId),name=client(p.clientId)?.name||'Cliente';
+  const href=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id));
+  return '<article class="rt-v914-agenda-card"><div class="rt-v914-agenda-date"><strong>'+esc(day(s.date))+'</strong><span>'+esc(month(s.date))+'</span></div>'+
+   '<div class="rt-v914-agenda-title"><span>'+(s.status==='concluida'?'Realizado':isElapsedAppointment(s)?'Aguardando confirmação':'Agendado')+'</span>'+
+   '<h3>'+esc(name)+'</h3><p>'+esc(s.clientTopic||'Acompanhamento individual')+' · '+dateFmt(s.date)+' às '+esc(s.time||'')+'</p><small>'+esc(p.goal)+'</small></div>'+
+   '<div class="rt-v914-agenda-cta"><a class="btn-primary" href="'+href+'">Abrir atendimento →</a></div></article>';
+ }).join('');
+ return head('ATENDIMENTO PROFISSIONAL','Sessões','Escolha um encontro e acompanhe as etapas Antes, Durante e Depois.',btn('+ Agendar sessão','new-session','','btn-primary'))+
+ '<nav class="rt-v914-agenda-summary" aria-label="Resumo e atalhos da agenda"><a href="#sessoes?filter=proximos"'+(filter==='proximos'?' aria-current="page"':'')+'><span>Próximos encontros</span><strong>'+future+'</strong><small>Ver agenda →</small></a><a href="#sessoes?filter=sem-confirmacao"'+(filter==='sem-confirmacao'?' aria-current="page"':'')+'><span>Sem confirmação</span><strong>'+unconfirmed+'</strong><small>Revisar horários →</small></a><a href="#sessoes?filter=concluidas"'+(filter==='concluidas'?' aria-current="page"':'')+'><span>Concluídos</span><strong>'+finished+'</strong><small>Ver histórico →</small></a></nav>'+
+ '<nav class="rt-v914-agenda-filters" aria-label="Filtrar sessões">'+opts.map(([id,label])=>'<a href="#sessoes?filter='+id+'"'+(filter===id?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>'+
+ '<div class="rt-v914-agenda-list">'+(cards||'<div class="rt-v914-empty">Nenhum encontro neste filtro. <a href="#sessoes?filter=todos">Ver todas as sessões →</a></div>')+'</div>';
 }
-function showProcesses(){return head('PROCESSOS ACOMPANHADOS','Processo de desenvolvimento','Defina objetivos verificáveis, etapas, sessões e ações. Cada processo é conduzido pelo profissional.',btn('+ Novo processo','new-process','','btn-primary'))+
- `<div class="workflow">${[['01','Acordo','Finalidade e limites'],['02','Objetivos','Metas contextualizadas'],['03','Sessões','Planejamento conjunto'],['04','Prática','Ações entre encontros'],['05','Revisão','Evolução e fechamento']].map(([n,t,d])=>`<div class="step"><span>${n}</span><strong>${t}</strong><small>${d}</small></div>`).join('')}</div><div class="card"><div class="card-head"><h2>Processos registrados · ${db.programs.length}</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>CLIENTE</th><th>OBJETIVO</th><th>ETAPA</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>${db.programs.map(p=>`<tr><td><b>${esc(clientOf(p))}</b></td><td>${esc(p.goal)}</td><td>${esc(p.stage)}</td><td>${status(p.status)}</td><td>${btn('Ver processo','process-detail',p.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty('Sem processos','Crie seu primeiro processo demonstrativo.')}</td></tr>`}</tbody></table></div></div>`;}
+function showProcesses(){return head('PROCESSOS ACOMPANHADOS','Processo de desenvolvimento','Acesse cada processo em um só lugar: objetivos, atendimentos, atividades e compromissos.',btn('+ Novo processo','new-process','','btn-primary'))+
+ `<details class="rt-v915-process-guide"><summary>Como funciona um processo de desenvolvimento</summary><p>Etapas de referência, não um indicador automático de evolução.</p><div class="workflow">${[['01','Acordo','Finalidade e limites'],['02','Objetivos','Metas contextualizadas'],['03','Sessões','Planejamento conjunto'],['04','Prática','Ações entre encontros'],['05','Revisão','Acompanhamento e fechamento']].map(([n,t,d])=>`<div class="step"><span>${n}</span><strong>${t}</strong><small>${d}</small></div>`).join('')}</div></details><div class="card"><div class="card-head"><h2>Processos registrados · ${db.programs.length}</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>CLIENTE</th><th>OBJETIVO</th><th>ETAPA</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>${db.programs.map(p=>`<tr><td><b>${esc(clientOf(p))}</b></td><td>${esc(p.goal)}</td><td>${esc(p.stage)}</td><td>${status(p.status)}</td><td>${btn('Abrir jornada','process-detail',p.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty('Sem processos','Crie seu primeiro processo demonstrativo.')}</td></tr>`}</tbody></table></div></div>`;}
 function showProcessDetail(id){let p=program(id);if(!p)return showProcesses();let ss=db.sessions.filter(s=>s.programId===id).sort((a,b)=>a.date.localeCompare(b.date));let aa=db.actions.filter(a=>a.programId===id);let done=aa.filter(a=>a.status==='concluido').length;
  return head('PROCESSO DE DESENVOLVIMENTO',esc(clientOf(p)),esc(p.goal),btn('← Processos','go','processos','btn-secondary')+btn('+ Agendar sessão','new-session-for',id,'btn-primary'))+
  `<div class="grid2"><div class="stack"><div class="card"><h2>Objetivos e condução</h2><div class="detail-grid"><div class="detail"><small>Objetivo acordado</small><b>${esc(p.goal)}</b></div><div class="detail"><small>Etapa atual</small><b>${esc(p.stage)}</b></div><div class="detail"><small>Início</small><b>${dateFmt(p.start)}</b></div><div class="detail"><small>Situação</small>${status(p.status)}</div></div>${btn('Atualizar etapa','edit-stage',p.id)} ${p.status!=='finalizado'?btn('Finalizar processo','finish-process',p.id):btn('Reabrir processo','reopen-process',p.id)}<p class="inline-note">Nenhum perfil comportamental é definido automaticamente. O profissional seleciona e interpreta os recursos de apoio.</p></div>
@@ -579,6 +620,8 @@ const pgOpts=()=>db.programs.filter(x=>x.status!=='finalizado').map(p=>[p.id,`${
 const goalOptions=pid=>RTDemoStore.goalsOf(db,pid).map(g=>[g.id,g.title]);
 
 function openModal(kind,id){
+ if(kind==='new-session'&&!pgOpts().length){toast('Crie primeiro um processo de desenvolvimento ativo.');location.hash='#clientes';return;}
+ if(kind==='new-process'&&!db.clients.length){toast('Cadastre primeiro um cliente fictício.');openModal('new-client','');return;}
  const m=$('#modal');const field=$('#modal-fields');const form=$('#modal-form');let name='';let html='';let save='Salvar';
  switch(kind){
   case 'new-client':name='Cadastrar cliente fictício';html='<p class="inline-note">Cadastre apenas o essencial. O processo pode ser criado depois. Não utilize dados pessoais reais.</p>'+inp('name','Identificação fictícia','','text',true,'maxlength="70" placeholder="Ex.: Cliente demonstrativo 04"')+inp('focus','Objetivo inicial (opcional)','','text',false,'maxlength="140"')+sel('contact','Modalidade',[['Atendimento individual','Atendimento individual'],['Grupo demonstrativo','Grupo demonstrativo'],['A definir','A definir']]);break;
@@ -623,17 +666,17 @@ function saveModal(e){e.preventDefault();let f=e.target;let d=new FormData(f);le
  if(kind==='edit-client'){const c=client(id);if(c){c.name=get('name').slice(0,70);c.focus=get('focus').slice(0,140);c.contact=get('contact');c.status=clientStates.some(x=>x[0]===get('status'))?get('status'):'ativo';c.updatedAt=today();}}
  if(kind==='new-process'){db.programs.push({id:newid('p'),clientId:get('clientId'),goal:get('goal'),stage:get('stage'),status:'em andamento',start:today()});location.hash=wsUrl(get('clientId'),'geral',db.programs[db.programs.length-1].id);}
  if(kind==='new-goal'){if(!RTDemoStore.createGoal(db,id,get('title'))){toast('Objetivo inválido.');return;}location.hash=wsUrl(program(id)?.clientId||'','desenvolvimento',id);}
- if(kind==='new-session'){db.sessions.push({id:newid('s'),programId:get('programId'),date:get('date'),time:get('time'),focus:get('focus'),status:'agendada',summary:'',clientTopic:get('clientTopic'),visibility:get('visibility')});location.hash=wsUrl(program(get('programId'))?.clientId||'', 'sessoes',get('programId'));}
+ if(kind==='new-session'){const p=program(get('programId'));if(!p||p.status==='finalizado'){toast('Escolha um processo de desenvolvimento ativo.');return;}const s={id:newid('s'),programId:p.id,date:get('date'),time:get('time'),focus:get('focus'),status:'agendada',summary:'',clientTopic:get('clientTopic'),visibility:get('visibility')};db.sessions.push(s);location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id)+'&moment=antes');}
  if(kind==='new-session-action'){
    const a=RTDemoStore.createSessionAgreement(db,id,{title:get('title'),goalId:get('goalId'),due:get('due'),visibility:get('visibility')});
    if(!a){toast('Informe um objetivo, compromisso e prazo válidos.');return;}
    const s=db.sessions.find(s=>s.id===id),p=program(s?.programId);
-   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id));
+   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id)+(ws94Query().get('moment')?'&moment='+encodeURIComponent(ws94Query().get('moment')):''));
  }
  if(kind==='edit-session-recap'){
    if(!RTDemoStore.updateSessionRecap(db,id,get('clientRecap'),get('recapVisibility'))){toast('Não foi possível salvar o resumo.');return;}
    const s=db.sessions.find(s=>s.id===id),p=program(s?.programId);
-   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id));
+   if(p)location.hash=wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(id)+(ws94Query().get('moment')?'&moment='+encodeURIComponent(ws94Query().get('moment')):''));
  }
  if(kind==='new-action'){const onBoard=location.hash.startsWith('#plano-acao');db.actions.push({id:newid('a'),programId:get('programId'),goalId:db.goals.find(g=>g.id===get('goalId')&&g.programId===get('programId'))?.id||RTDemoStore.goalsOf(db,get('programId'))[0]?.id,title:get('title').slice(0,500),due:get('due'),resource:get('resource'),status:'pendente',visibility:get('visibility')==='compartilhado'?'compartilhado':'privado',createdAt:new Date().toISOString()});if(!onBoard)location.hash=wsUrl(program(get('programId'))?.clientId||'', 'desenvolvimento',get('programId'));else location.hash='#plano-acao?filter=abertas&program='+encodeURIComponent(get('programId'));}
  if(kind==='edit-action'){const a=db.actions.find(x=>x.id===id);if(a){a.title=get('title').slice(0,500);a.due=get('due');a.resource=get('resource');RTDemoStore.linkActionGoal(db,a.id,get('goalId'));a.visibility=get('visibility')==='compartilhado'?'compartilhado':'privado';a.updatedAt=new Date().toISOString();}}
@@ -660,29 +703,32 @@ function render(){
  if(page==='cliente')output=showClientWorkspace(cid,new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('tab')||'geral',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('program')||'',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('session')||'');
  $('#content').innerHTML='<div class="demo-strip"><strong>Modo demonstrativo</strong> · Somente dados fictícios neste navegador. Não há autenticação nem proteção para uso profissional real.</div>'+(output||showHome());
  $('#crumb').textContent=page==='cliente'?`Clientes / ${client(cid)?.name||'Cliente'}`:(pages[page]||'Visão geral');
- if(page==='ferramentas'&&rt96Params().get('tab')==='temporizador'){
-   const selected=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
-   RTSessionAssist.armTimerSession(selected);
- }else RTSessionAssist.armTimerSession(null);
+ const sessionId=page==='cliente'?ws94Query().get('session'):rt96Params().get('session');
+ const useTimer=page==='ferramentas'&&rt96Params().get('tab')==='temporizador'||
+   page==='cliente'&&ws94Query().get('tab')==='sessoes'&&ws94Query().get('moment')==='durante';
+ if(useTimer)RTSessionAssist.armTimerSession(RTSessionAssist.choose(db,sessionId||'',today()).s);
+ else RTSessionAssist.armTimerSession(null);
  document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===(page==='cliente'?'clientes':page);a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  $('#side').classList.remove('open');$('#shade').classList.remove('open');$('#menu-btn').setAttribute('aria-expanded','false');
 }
 function runAction(act,id){
    if(act==='rt-v913-toggle-question'){
      if(!RTSessionAssist.questions.some(q=>q.id===id))return;
-     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     const activeId=location.hash.startsWith('#cliente=')?ws94Query().get('session'):rt96Params().get('session');
+     const s=RTSessionAssist.choose(db,activeId||'',today()).s;
      if(!s)return;
      const selected=(s.coachingQuestionIds||[]).slice();
      const next=selected.includes(id)?selected.filter(x=>x!==id):selected.concat(id);
      if(next.length>12){toast('Selecione no máximo 12 perguntas por sessão.');return;}
      if(!RTDemoStore.setSessionQuestionIds(db,s.id,next)){toast('Seleção inválida para esta sessão.');return;}
      persist('profissional','select-coaching-question',s.id);
-     location.hash=rt96Href('perguntas','session='+encodeURIComponent(s.id)+'&phase='+encodeURIComponent(rt96Params().get('phase')||'todas'));
+     if(!location.hash.startsWith('#cliente='))location.hash=rt96Href('perguntas','session='+encodeURIComponent(s.id)+'&phase='+encodeURIComponent(rt96Params().get('phase')||'todas'));
      render();toast(next.includes(id)?'Pergunta associada à sessão.':'Pergunta removida da sessão.');
      return;
    }
    if(act==='rt-v913-timer'){
-     const s=RTSessionAssist.choose(db,rt96Params().get('session')||'',today()).s;
+     const activeId=location.hash.startsWith('#cliente=')?ws94Query().get('session'):rt96Params().get('session');
+     const s=RTSessionAssist.choose(db,activeId||'',today()).s;
      if(s&&RTSessionAssist.timerCommand(s,id)){render();}
      return;
    }
@@ -725,6 +771,15 @@ function runAction(act,id){
  if(act==='reset'){if(window.confirm('Reiniciar todos os dados fictícios desta demonstração?')){db=RTDemoStore.reset();location.hash='#inicio';render();toast('Dados fictícios restaurados neste navegador.')}return;}
 }
 document.addEventListener('submit',e=>{
+ const f=e.target.closest('#rt-v914-live-form');if(!f)return;
+ e.preventDefault();
+ const data=new FormData(f),sid=String(data.get('sessionId')||''),notes=String(data.get('liveNotes')||'');
+ const focused=db.sessions.find(x=>x.id===sid);
+ if(!focused||!location.hash.startsWith('#cliente=')||ws94Query().get('session')!==sid){toast('Abra a sessão correta para salvar.');return;}
+ if(!RTDemoStore.updateSessionLiveNotes(db,sid,notes)){toast('Notas inválidas ou excedem 1.600 caracteres.');return;}
+ persist('profissional','save-session-live-notes',sid);render();toast('Anotações internas salvas nesta demonstração.');
+});
+document.addEventListener('submit',e=>{
  const f=e.target.closest('#rt-v913-timer-form');if(!f)return;
  e.preventDefault();const data=new FormData(f),sid=String(data.get('sessionId')||'');
  const ids=['abertura','exploracao','pratica','fechamento'];
@@ -733,7 +788,7 @@ document.addEventListener('submit',e=>{
  persist('profissional','configure-session-timer',sid);
  const s=db.sessions.find(x=>x.id===sid);
  if(s)RTSessionAssist.timerCommand(s,'reset');
- location.hash=rt96Href('temporizador','session='+encodeURIComponent(sid));render();
+ if(!location.hash.startsWith('#cliente='))location.hash=rt96Href('temporizador','session='+encodeURIComponent(sid));render();
  toast('Etapas salvas. Temporizador reiniciado nesta aba.');
 });
 document.addEventListener('submit',e=>{

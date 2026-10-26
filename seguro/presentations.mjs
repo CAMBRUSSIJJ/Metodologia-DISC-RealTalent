@@ -33,6 +33,14 @@ async function request(query){
 }
 function clean(text,n){return String(text??'').trim().slice(0,n);}
 function announce(report,error){report(error?.message||String(error),true);}
+export function sanitizeSlideDraft(raw){
+  if(!raw||!Object.hasOwn(TYPES,raw.kind))throw new Error('Tipo de slide não autorizado.');
+  const title=clean(raw.title,130);
+  if(!title)throw new Error('Título do slide obrigatório.');
+  return {kind:raw.kind,title,subtitle:clean(raw.subtitle,280),
+    body:clean(raw.body,1200),theme:Object.hasOwn(THEMES,raw.theme)?raw.theme:'ocean'};
+}
+
 async function querySlides(db,presentationId,caseId){
   return await request(db.from(TABLES.slides)
     .select('id,position,kind,title,subtitle,body,theme')
@@ -126,10 +134,10 @@ async function showEditor({db,user,caseId,caseStatus,root,report,deck,sessions})
       try{
         if(slides.length>=40)throw new Error('Limite de 40 slides por apresentação.');
         const position=slides.length?Math.max(...slides.map(x=>x.position))+1:1;
+        const draft=sanitizeSlideDraft({kind:kind.value,title:title.value,
+          subtitle:subtitle.value,body:body.value,theme:theme.value});
         await request(db.from(TABLES.slides).insert({
-          case_id:caseId,presentation_id:deck.id,position,kind:kind.value,
-          title:clean(title.value,130),subtitle:clean(subtitle.value,280),
-          body:clean(body.value,1200),theme:theme.value
+          case_id:caseId,presentation_id:deck.id,position,...draft
         }));
         report('Slide salvo no banco.');await showProfessionalPresentations({db,user,caseId,caseStatus,root,report});
       }catch(err){announce(report,err)}

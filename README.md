@@ -1,3 +1,13 @@
+# RealTalent V11.1 — Apresentações nas Sessões (PREVIEW)
+
+Vínculo entre apresentações e atendimentos, compartilhamento **explícito e seletivo** de slides educativos com Minha Jornada e registro de compromissos no Plano de Ação existente. Materiais privados, notas do apresentador e arquivos permanecem fora do conteúdo publicado.
+
+[Guia, testes e restrições](docs/V11_1_APRESENTACOES_SESSOES.md).
+
+**Protótipo local. Não utilizar dados reais. A V10 segura ainda precisa de Supabase dedicado e testes RLS.**
+
+---
+
 # RealTalent V11.0 — Estúdio de Apresentações (PREVIEW)
 
 Nova aba **Apresentações** no RealTalent Professional. Crie roteiros visuais, apresente em tela cheia, integre slides da Biblioteca DISC/ACER, utilize ferramentas de reflexão interativas e importe PDFs/imagens demonstrativos, preservados neste navegador.

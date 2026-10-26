@@ -66,6 +66,13 @@
     s.preparationUpdatedAt=new Date().toISOString();
     return true;
   }
+  // V9.14: notas estritamente internas da condução; campo opcional no registro existente.
+  function updateSessionLiveNotes(d,sessionId,raw){
+    const s=d.sessions.find(s=>s.id===sessionId),p=d.programs.find(p=>p.id===s?.programId);
+    if(!s||!p||!d.clients.some(c=>c.id===p.clientId)||typeof raw!=='string'||raw.length>1600)return false;
+    s.liveNotes=raw.trim();s.liveNotesUpdatedAt=new Date().toISOString();
+    return true;
+  }
   // V9.13: banco de perguntas e agenda temporal da sessão são sempre internos.
   const TIMER_DEFAULT=[{id:'abertura',label:'Abertura',minutes:5},{id:'exploracao',label:'Exploração',minutes:25},{id:'pratica',label:'Prática',minutes:15},{id:'fechamento',label:'Fechamento',minutes:5}];
   function defaultTimerPlan(){return TIMER_DEFAULT.map(x=>({...x}));}
@@ -179,6 +186,7 @@
       if(a.fiveWTwoH){const normalized=normalizeFiveWTwoH(a.fiveWTwoH);if(normalized)a.fiveWTwoH=normalized;else delete a.fiveWTwoH;}
     }
     for(const s of d.sessions){
+      s.liveNotes=typeof s.liveNotes==='string'?s.liveNotes.slice(0,1600):'';
       s.coachingQuestionIds=normalizeSessionQuestionIds(s.coachingQuestionIds);
       s.timerPlan=normalizeTimerPlan(s.timerPlan)||defaultTimerPlan();
       s.preparation=normalizeSessionPreparation(s.preparation);
@@ -186,6 +194,10 @@
       if(s.recapVisibility!=='compartilhado'||s.visibility!=='compartilhado'||s.status!=='concluida'||!s.clientRecap)s.recapVisibility='privado';
     }
     if(!Array.isArray(d.instruments))d.instruments=[];
+    for(const i of d.instruments){
+      if(!d.goals.some(g=>g.id===i.goalId&&g.programId===i.programId))i.goalId=d.goals.find(g=>g.programId===i.programId)?.id||null;
+      if(i.feedbackVisibility!=='compartilhado'||!i.feedback)i.feedbackVisibility='privado';
+    }
     if(!Array.isArray(d.discLinks))d.discLinks=[];
     if(!Array.isArray(d.discAssignments))d.discAssignments=[];
     for(const task of d.discAssignments)if(task.visibility!=='compartilhado')task.visibility='privado';
@@ -264,7 +276,7 @@
     const c=d.clients.find(x=>x.id===clientId);if(!c)return null;
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
-      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
+      sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,liveNotes,liveNotesUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
       actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
@@ -275,6 +287,27 @@
     });
   }
   // Confere vínculo e estado. Exemplo ilustrativo no mesmo navegador; NÃO É uma autorização de servidor.
+  // Ciclo de uma atividade guiada, com vínculo explícito ao objetivo no mesmo processo.
+  function assignGuidedActivity(d,input){
+    const p=d.programs.find(p=>p.id===input?.programId&&p.status!=='finalizado');
+    const g=d.goals.find(g=>g.id===input?.goalId&&g.programId===p?.id);
+    const title=String(input?.title||'').trim(),instructions=String(input?.instructions||'').trim();
+    if(!p||!g||title.length<4||title.length>110||instructions.length>250)return null;
+    const item={id:freshId('inst'),programId:p.id,goalId:g.id,kind:'reflexao-guiada',title,
+      instructions,visibility:input?.visibility==='compartilhado'?'compartilhado':'privado',
+      status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',
+      assignedAt:new Date().toISOString()};
+    d.instruments.push(item);return item;
+  }
+  function reviewGuidedActivity(d,id,raw,visibility){
+    const item=d.instruments.find(i=>i.id===id),p=d.programs.find(p=>p.id===item?.programId);
+    const feedback=String(raw||'').trim();
+    if(!item||!p||!Array.isArray(item.responses)||item.responses.length!==3||feedback.length>250)return false;
+    item.feedback=feedback;
+    item.feedbackVisibility=feedback&&visibility==='compartilhado'?'compartilhado':'privado';
+    item.status=feedback?'devolvido':'respondido';
+    item.reviewedAt=new Date().toISOString();return true;
+  }
   function submitInstrument(d,clientId,instrumentId,answers) {
     const v=clientView(d,clientId),entry=v?.instruments.find(x=>x.id===instrumentId);
     if(!entry||entry.status!=='atribuido'||!Array.isArray(answers)||answers.length!==3)return false;
@@ -290,6 +323,14 @@
     title=String(title||'').trim().slice(0,160);
     if(!p||title.length<4)return false;
     d.goals.push({id:freshId('goal'),programId,title,status:'ativo',createdAt:new Date().toISOString()});return true;
+  }
+  function updateGoal(d,goalId,title){
+    const g=(d.goals||[]).find(x=>x.id===goalId);
+    const p=d.programs.find(x=>x.id===g?.programId&&x.status!=='finalizado');
+    title=String(title||'').trim();
+    if(!g||!p||title.length<4||title.length>160)return false;
+    g.title=title;g.updatedAt=new Date().toISOString();
+    return true;
   }
   function linkActionGoal(d,actionId,goalId){
     const a=d.actions.find(a=>a.id===actionId),g=d.goals.find(g=>g.id===goalId);
@@ -322,5 +363,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,linkActionGoal,updateSessionPreparation,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

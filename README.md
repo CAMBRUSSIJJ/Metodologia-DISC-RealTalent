@@ -1,3 +1,13 @@
+# RealTalent V11.2 — Publicação de Apresentações com RLS (Beta isolada)
+
+A V11.2 incorpora um **editor textual autenticado** na área `/seguro/` com apresentações vinculadas a sessões e autorização PostgreSQL por profissional, participante e processo. A publicação e a revogação dependem do banco. O antigo Estúdio V11.1 continua sendo demonstração local separada.
+
+**Atenção:** não existe ainda Supabase exclusivo provisionado para o DISC/ACER; a área segura está desativada por padrão. Não usar dados reais nem alterar as produções existentes.
+
+[Arquitetura, limitações e matriz obrigatória de homologação](docs/V11_2_APRESENTACOES_SEGURAS.md).
+
+---
+
 # RealTalent V11.1 — Apresentações nas Sessões (PREVIEW)
 
 Vínculo entre apresentações e atendimentos, compartilhamento **explícito e seletivo** de slides educativos com Minha Jornada e registro de compromissos no Plano de Ação existente. Materiais privados, notas do apresentador e arquivos permanecem fora do conteúdo publicado.

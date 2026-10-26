@@ -158,7 +158,7 @@ function renderSlide(node,s,isPresent){
   }else if(s.kind==='document'){
     const doc=make('div','slide-document');stage.append(doc);
     if(!s.fileId)doc.append(make('p','slide-file-missing','Importe um PDF ou imagem demonstrativa no painel de propriedades.'));
-    else void showFile(doc,s);
+    else queueMicrotask(()=>{void showFile(doc,s)});
   }
   node.append(stage);
 }

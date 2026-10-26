@@ -114,7 +114,9 @@ create policy rt_records_professional_delete on public.rt_secure_records
 create policy rt_responses_member_read on public.rt_secure_responses
   for select to authenticated
   using (
-    participant_user_id=(select auth.uid())
+    (participant_user_id=(select auth.uid())
+      and exists(select 1 from public.rt_secure_cases c
+        where c.id=case_id and c.participant_user_id=(select auth.uid())))
     or exists(select 1 from public.rt_secure_cases c
       where c.id=case_id and c.professional_user_id=(select auth.uid()))
   );

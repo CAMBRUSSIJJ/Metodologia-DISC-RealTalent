@@ -1,4 +1,4 @@
-name: RealTalent V9.13–V10 — Integração e Segurança (Preview)
+name: RealTalent V9.13–V11 — Integração, Segurança e Apresentações
 on:
   pull_request:
     branches: [main]
@@ -11,12 +11,14 @@ on:
       - 'build-manifest.json'
       - 'seguro/**'
       - 'supabase/**'
+      - 'apresentacoes/**'
       - '.github/workflows/v913-session-e2e.yml'
   push:
     branches:
       - 'feature/v9-11-kit-profissional'
       - 'feature/v9-17-guided-activities-cycle'
       - 'feature/v10-secure-foundation'
+      - 'feature/v11-presentation-studio'
   workflow_dispatch:
 permissions:
   contents: read
@@ -46,10 +48,18 @@ jobs:
         run: |
           node --check seguro/app.mjs
           node qa/testar-seguranca-v10.js
+      - name: Estúdio V11 — contratos e sintaxe
+        run: |
+          node --check apresentacoes/studio.js
+          node qa/testar-apresentacoes-v110.js
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Playwright E2E — V11 estúdio
+        run: python qa/testar-apresentacoes-v110.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V10 beta sem configuração
         run: python qa/testar-acesso-seguro-v10.py
       - name: Playwright E2E — V9.13

@@ -40,3 +40,6 @@
 @media(max-width:1030px){.rt-v94-layout{grid-template-columns:minmax(0,1.3fr) minmax(230px,.8fr)}}
 @media(max-width:880px){.rt-v94-layout{grid-template-columns:1fr}.rt-v94-aside{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.rt-v94-tab-head{align-items:stretch;flex-direction:column}.rt-v94-tab-actions>*{width:100%}.rt-v94-stats{grid-template-columns:1fr}.rt-v94-stat{border-right:0;border-bottom:1px solid var(--rt-line);padding:13px 16px;gap:4px}.rt-v94-stat:last-child{border-bottom:0}.rt-v94-stat strong{font-size:17px}.rt-v94-aside{grid-template-columns:1fr}.rt-v94-panel-header{padding:16px 16px 12px}.rt-v94-panel-body{padding:0 16px 14px}.rt-v94-row{align-items:flex-start}.rt-v94-row-action{max-width:46%;flex-wrap:wrap}.rt-v94-row-action>*{max-width:100%;white-space:normal}.rt-v94-attention{flex-direction:column;align-items:stretch}.rt-v94-attention>a{width:100%;text-align:center}.rt-v94-result .rt-v81-analysis{grid-template-columns:1fr}.rt-v94-feedback{flex-direction:column}.rt-v94-inline-actions{justify-content:flex-start}.rt-v94-goal{flex-direction:column}.rt-v94-goal button{width:100%}}
+
+/* V9.17 — objetivo legível no painel de atividades */
+.rt-v917-goal-ref{font-size:11px!important;color:var(--rt-muted)!important;line-height:1.5;overflow-wrap:anywhere}

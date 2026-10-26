@@ -1,0 +1,22 @@
+/* RealTalent V11.1 — integração da apresentação aos atendimentos e Minha Jornada. */
+.rt-v111-session-presentations{margin-top:18px;display:grid;gap:13px}
+.rt-v111-session-presentations .card-head{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap}
+.rt-v111-session-presentations .card-head h2{font-size:16px;margin:0 0 5px}
+.rt-v111-session-presentations .card-head p{font-size:12px;line-height:1.5}
+.rt-v111-session-link{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;border:1px solid var(--rt-line,#d9e3f0);border-radius:10px;background:var(--rt-panel,#fafcff)}
+.rt-v111-session-link>div{display:grid;gap:5px;min-width:180px}
+.rt-v111-session-link strong{font-size:13px;overflow-wrap:anywhere}
+.rt-v111-session-link small{font-size:11px;color:var(--rt-muted,#6d7a89)}
+.rt-v111-session-link a{font-size:11px;text-decoration:none}
+.rt-v111-material{border:1px solid var(--rt-line,#d9e3f0);border-radius:13px;margin:12px 0;padding:15px;background:var(--rt-panel,#fafcff);min-width:0}
+.rt-v111-material>div:first-child{display:grid;gap:5px}
+.rt-v111-material h3{font-size:15px;margin:0;line-height:1.4}
+.rt-v111-material p{color:var(--rt-muted,#596d84);font-size:12px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.rt-v111-material small,.rt-v111-material-slide small{color:var(--rt-muted,#596d84);font-size:10px;letter-spacing:.05em;font-weight:700}
+.rt-v111-material details{border-top:1px solid var(--rt-line,#d9e3f0);margin-top:12px;padding-top:12px}
+.rt-v111-material summary{font-size:12px;font-weight:750;cursor:pointer;min-height:32px}
+.rt-v111-material-slides{display:grid;gap:11px;margin-top:13px}
+.rt-v111-material-slide{padding:17px;border-radius:10px;border:1px solid var(--rt-line,#d9e3f0);background:var(--rt-surface,#fff)}
+.rt-v111-material-slide h4{font-size:16px;margin:8px 0;overflow-wrap:anywhere}
+.rt-v111-material-slide .rt-v111-slide-body{color:var(--rt-text,#20334d);white-space:pre-wrap}
+@media(max-width:650px){.rt-v111-session-link,.rt-v111-session-presentations .card-head{align-items:flex-start;flex-direction:column}.rt-v111-session-link a{max-width:100%}}

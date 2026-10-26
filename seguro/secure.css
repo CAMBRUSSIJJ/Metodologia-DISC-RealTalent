@@ -1,0 +1,42 @@
+:root{color-scheme:light;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f6f8fc;color:#152d4b}
+*{box-sizing:border-box}body{margin:0;min-width:300px;line-height:1.5}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.6;cursor:wait}
+[hidden]{display:none!important}.skip{position:absolute;left:-10000px;top:0}.skip:focus{left:12px;top:12px;background:white;padding:12px;z-index:4}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px max(22px,calc((100vw - 1100px)/2));background:white;border-bottom:1px solid #e4eaf2}
+.brand{font-size:20px;font-weight:780;letter-spacing:-.04em;color:#1452ad}.brand span{font-size:12px;color:#697b8f;letter-spacing:0;margin-left:12px}
+.main{max-width:1144px;padding:32px 22px 60px;margin:auto}.intro{max-width:760px;margin-bottom:26px}
+.eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#2c68bb}h1{font-size:clamp(24px,4vw,37px);letter-spacing:-.04em;margin:6px 0}h2{font-size:22px;margin:0 0 15px}h3{font-size:17px;margin:0 0 14px}h4{font-size:15px;margin:0 0 14px}p{overflow-wrap:anywhere;margin:8px 0;color:#50647c}
+.panel{border:1px solid #e1e8f1;background:#fff;border-radius:15px;padding:22px;margin:16px 0;box-shadow:0 6px 24px rgba(24,62,114,.035)}
+label{font-weight:650;font-size:12px;display:grid;gap:7px;margin:13px 0;color:#35516e}
+input:not([type=checkbox]),textarea,select{width:100%;min-width:0;max-width:100%;border-radius:9px;border:1px solid #b8cadf;padding:11px 12px;color:#152d4b;background:white}
+button{border:1px solid #1454ac;background:#1454ac;color:white;border-radius:9px;padding:10px 14px;min-height:42px;font-weight:700;font-size:12px}
+button.secondary{background:white;color:#1454ac}button:hover{filter:brightness(.95)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #659ae0;outline-offset:2px}
+.check{display:flex;gap:9px;align-items:center}.check input{accent-color:#1454ac}
+.hint{font-size:12px;color:#66798e;line-height:1.6}
+#status{padding:13px 17px;background:#edf4ff;border:1px solid #b8d4fb;border-radius:11px;min-height:44px;font-size:12px;font-weight:650;margin:15px 0}
+#status.error{background:#fff7f3;border-color:#e3bb9f;color:#8e3a13}
+.workspace-head{margin:25px 0 10px}.workspace-head h2{margin-bottom:2px}
+.columns{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(320px,1.7fr);gap:17px}
+.entries{display:grid;gap:10px}.entry{border:1px solid #e2eaf4;border-radius:12px;padding:15px;display:grid;gap:7px;background:#fbfcfe}
+.entry p{font-size:13px;white-space:pre-wrap;margin:3px 0}.entry strong{font-size:14px;overflow-wrap:anywhere}.entry small{color:#6a7f96;font-size:11px}
+.entry button{justify-self:start}.entry button[aria-pressed=true]{border-color:#2f72c5;background:#eaf3ff}
+.case{margin-bottom:22px}.response{border-left:3px solid #b6d3fa;padding-left:12px}
+.response-form{border-top:1px solid #e1e8f1;margin-top:8px}
+.footer{text-align:center;font-size:11px;color:#687f97;background:white;border-top:1px solid #e4eaf2;padding:22px}
+@media(max-width:760px){.header{padding:16px 18px}.brand span{display:block;margin:0}.main{padding:22px 14px 45px}.panel{padding:17px;margin:13px 0}.columns{grid-template-columns:1fr}.workspace-head{margin-top:16px}.entry button{width:100%}}
+
+/* V11.2 — apresentações seguras como seção da área autenticada */
+.secure-present-form,.secure-slide-form{display:grid;gap:12px;padding:15px;border:1px solid #e2eaf4;border-radius:12px;background:#fafcfe;margin:17px 0}
+.secure-present-form label,.secure-slide-form label{display:grid;gap:6px;min-width:0}
+.secure-present-form button,.secure-slide-form button{justify-self:start}
+.secure-deck-editor{margin-top:18px;border-top:1px solid #dce7f3;padding-top:17px;display:grid;gap:11px}
+.secure-slide{border:1px solid #e1eaf4;border-radius:10px;padding:13px;background:#fff;display:grid;gap:7px;overflow-wrap:anywhere}
+.secure-slide strong{font-size:13px}
+.secure-slide small{font-size:10px;color:#61768f;font-weight:700}
+.secure-slide p{white-space:pre-wrap;font-size:12px}
+.secure-slide-text{font-size:13px!important;color:#2d4562!important}
+.secure-presentation-row{overflow-wrap:anywhere}
+.secure-presentation-controls{display:flex;flex-wrap:wrap;gap:9px;padding:11px 0}
+.secure-presentation-controls button{max-width:100%;white-space:normal}
+#secure-presentations-professional,#secure-presentations-participant{min-width:0}
+@media(max-width:670px){.secure-presentation-controls{flex-direction:column;align-items:stretch}.secure-present-form button,.secure-slide-form button{width:100%}}

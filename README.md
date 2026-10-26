@@ -1,3 +1,90 @@
+# RealTalent V11.2 — Publicação de Apresentações com RLS (Beta isolada)
+
+A V11.2 incorpora um **editor textual autenticado** na área `/seguro/` com apresentações vinculadas a sessões e autorização PostgreSQL por profissional, participante e processo. A publicação e a revogação dependem do banco. O antigo Estúdio V11.1 continua sendo demonstração local separada.
+
+**Atenção:** não existe ainda Supabase exclusivo provisionado para o DISC/ACER; a área segura está desativada por padrão. Não usar dados reais nem alterar as produções existentes.
+
+[Arquitetura, limitações e matriz obrigatória de homologação](docs/V11_2_APRESENTACOES_SEGURAS.md).
+
+---
+
+# RealTalent V11.1 — Apresentações nas Sessões (PREVIEW)
+
+Vínculo entre apresentações e atendimentos, compartilhamento **explícito e seletivo** de slides educativos com Minha Jornada e registro de compromissos no Plano de Ação existente. Materiais privados, notas do apresentador e arquivos permanecem fora do conteúdo publicado.
+
+[Guia, testes e restrições](docs/V11_1_APRESENTACOES_SESSOES.md).
+
+**Protótipo local. Não utilizar dados reais. A V10 segura ainda precisa de Supabase dedicado e testes RLS.**
+
+---
+
+# RealTalent V11.0 — Estúdio de Apresentações (PREVIEW)
+
+Nova aba **Apresentações** no RealTalent Professional. Crie roteiros visuais, apresente em tela cheia, integre slides da Biblioteca DISC/ACER, utilize ferramentas de reflexão interativas e importe PDFs/imagens demonstrativos, preservados neste navegador.
+
+[Guia da V11 e limites de segurança](docs/V11_ESTUDIO_APRESENTACOES.md).
+
+**Somente dados fictícios.** Não há sincronização segura ou permissões para documentos reais. A infraestrutura V10 continua isolada e desativada.
+
+---
+
+# RealTalent V10 — Fundação Segura (Beta isolado)
+
+Esta branch acrescenta `/seguro/`, uma base **separada** da demonstração DISC/ACER, com autenticação Supabase Auth (OTP), papéis de profissional e participante, tabelas PostgreSQL com RLS, compartilhamento explícito e respostas vinculadas a atividades.
+
+**Não está conectada a um banco de produção.** O ambiente seguro permanece desativado até provisionamento de um **Supabase exclusivo** e aprovação de testes de autorização. Nenhum registro da demonstração foi importado. Os bancos de outros projetos não foram modificados.
+
+[Arquitetura, instruções e matriz obrigatória de homologação](docs/V10_BASE_SEGURA.md).
+
+**Não utilizar dados pessoais ou clínicos reais nesta etapa.**
+
+---
+
+# RealTalent V9.17 — Ciclo de Atividades Guiadas (PREVIEW)
+
+Atribuição profissional vinculada a objetivos, resposta na Minha Jornada, revisão e compartilhamento explícito, com o mesmo registro e privacidade por padrão.
+
+[Documentação e limites V9.17](docs/V9_17_CICLO_ATIVIDADES.md).
+
+**Uso demonstrativo, exclusivamente com dados fictícios.**
+
+---
+
+# RealTalent V9.16 — Desenvolvimento e Plano de Ação (PREVIEW)
+
+Objetivos editáveis, compromissos vinculados a objetivos e sessões, filtros por processo e objetivo, privacidade por padrão e continuidade entre encontros. Preservada a V9.15.
+
+Veja [documentação V9.16](docs/V9_16_DESENVOLVIMENTO_E_ACOES.md).
+
+**Somente dados fictícios. Não insira registros pessoais ou clínicos reais.**
+
+---
+
+# RealTalent V9.15 — Jornada do Processo (PREVIEW)
+
+Em **Profissional → Clientes → Visão geral**, uma única jornada reúne
+**Objetivos, Sessões, Ações combinadas e Atividades** usando os registros
+originais do processo. Os indicadores mostram pendências concretas, sem
+tratar execução de tarefas como evolução psicológica. O histórico existente,
+as seis abas internas e o Atendimento V9.14 permanecem.
+
+Guia: [V9.15 — Jornada Profissional](docs/V9_15_JORNADA_PROFISSIONAL.md).
+QA: `python3 qa/testar-jornada-profissional-v915.py`.
+
+**Somente demonstração e dados fictícios. Não usar registros reais ou sigilosos.**
+
+---
+
+# RealTalent Professional V9.14 — Atendimento Profissional 2.0
+
+A aba **Sessões** agora organiza os encontros numa agenda clara. Ao clicar em **Abrir atendimento**, o profissional entra em um espaço único de três momentos: **Antes** (contexto e GROW), **Durante** (perguntas, temporizador e notas internas) e **Depois** (conclusão, resumo autorizado e compromissos já vinculados).
+
+A V9.14 preserva a V9.13, sem criar cadastros ou ações duplicadas. Veja [o guia V9.14](docs/V9_14_ATENDIMENTO_PROFISSIONAL.md) e os testes Playwright em `qa/testar-atendimento-integrado-v914.py`.
+
+**Somente demonstração local, exclusivamente para dados fictícios.** Não existe autenticação real ou proteção adequada de informações clínicas/pessoais.
+
+---
+
 # RealTalent DISC/ACER V9.13 — Perguntas e Temporizador de Sessão (DEMONSTRAÇÃO)
 
 **Novo na V9.13:** banco com **30 perguntas abertas** por etapa de coaching/desenvolvimento, com seleção de até 12 perguntas por sessão; temporizador de sessão com quatro fases e duração configuráveis, pausa/retomada e avanço manual. Acesse **Profissional → Ferramentas → Perguntas de Coaching / Temporizador**, ou use os atalhos em **Clientes → Sessões → Detalhes**.

@@ -503,10 +503,11 @@ function showActionPlan(){
  const programFilter=db.programs.some(p=>p.id===qs.get('program'))?qs.get('program'):'todos';
  const qsTo=(f=filter,p=programFilter)=>`#plano-acao?filter=${encodeURIComponent(f)}&program=${encodeURIComponent(p)}`;
  const all=db.actions.filter(a=>program(a.programId));
- const pending=all.filter(a=>a.status!=='concluido');
+ const scope=all.filter(a=>programFilter==='todos'||a.programId===programFilter);
+ const pending=scope.filter(a=>a.status!=='concluido');
  const overdue=pending.filter(a=>actionState(a)==='atrasado');
- const finished=all.filter(a=>a.status==='concluido');
- let visible=all.filter(a=>programFilter==='todos'||a.programId===programFilter).filter(a=>{
+ const finished=scope.filter(a=>a.status==='concluido');
+ let visible=scope.filter(a=>{
   const st=actionState(a);
   return filter==='todas'||(filter==='abertas'&&st!=='concluido')||(filter==='atrasadas'&&st==='atrasado')||(filter==='concluidas'&&st==='concluido');
  });
@@ -515,15 +516,15 @@ function showActionPlan(){
   return rank[actionState(a)]-rank[actionState(b)]||String(a.due||'9999-99-99').localeCompare(b.due||'9999-99-99')||a.title.localeCompare(b.title);
  });
  const filters=[['abertas','Em aberto'],['atrasadas','Atrasadas'],['concluidas','Concluídas'],['todas','Todas']];
- const countBy={abertas:pending.length,atrasadas:overdue.length,concluidas:finished.length,todas:all.length};
+ const countBy={abertas:pending.length,atrasadas:overdue.length,concluidas:finished.length,todas:scope.length};
  const rows=visible.map(a=>{
   const p=program(a.programId);if(!p)return '';
-  const st=actionState(a);
+  const st=actionState(a),goal=db.goals.find(g=>g.id===a.goalId&&g.programId===a.programId),source=db.sessions.find(s=>s.id===a.sessionId&&s.programId===a.programId);
   return `<article class="rt-v95-action" data-action-id="${esc(a.id)}">
    <div class="rt-v95-action-info"><div class="rt-v95-action-top">${actionBadge(st)}<span class="rt-v95-visibility">${a.visibility==='compartilhado'?'◉ Visível na Minha Jornada':'◌ Somente profissional'}</span></div>
    <h3>${esc(a.title)}</h3>
    <p><strong>${esc(clientOf(p))}</strong><span aria-hidden="true"> · </span>${esc(p.goal)}</p>
-   <div class="rt-v95-action-meta"><span>${a.due?'Prazo: '+dateFmt(a.due):'Sem prazo'}</span>${a.resource&&a.resource!=='Nenhum'?`<span>Recurso: ${esc(a.resource)}</span>`:''}</div></div>
+   <div class="rt-v95-action-meta"><span>${a.due?'Prazo: '+dateFmt(a.due):'Sem prazo'}</span><span>Objetivo: ${esc(goal?.title||'Não relacionado')}</span>${source?`<a href="${wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(source.id))}">Sessão de origem: ${dateFmt(source.date)} →</a>`:''}${a.resource&&a.resource!=='Nenhum'?`<span>Recurso: ${esc(a.resource)}</span>`:''}</div></div>
    <div class="rt-v95-action-buttons">${btn('Editar','edit-action',a.id,'btn-secondary')}${btn(st==='concluido'?'Reabrir':'Concluir','toggle-action',a.id,'btn-primary')}${workspaceButton('Ver cliente →',p.clientId,'desenvolvimento',p.id,'line-button')}</div>
   </article>`;
  }).join('');
@@ -537,7 +538,7 @@ function showActionPlan(){
  `<section class="rt-v95-board" aria-label="Ações do processo"><div class="rt-v95-board-top"><div><h2>Ações registradas</h2><p>Prioridade para os prazos vencidos e os compromissos em aberto.</p></div><label for="rt-v95-process">Processo <select id="rt-v95-process" aria-label="Filtrar ações por processo">`+
  `<option value="todos">Todos os clientes e processos</option>${db.programs.map(p=>`<option value="${esc(p.id)}" ${programFilter===p.id?'selected':''}>${esc(clientOf(p))} — ${esc(p.goal)}</option>`).join('')}</select></label></div>`+
  `<nav class="rt-v95-filters" aria-label="Filtrar ações por situação">${filters.map(([k,label])=>`<a class="rt-v95-filter ${filter===k?'selected':''}" href="${qsTo(k)}" ${filter===k?'aria-current="page"':''}>${label}<span>${countBy[k]}</span></a>`).join('')}</nav>`+
- `<div class="rt-v95-list">${rows||empty('Nenhuma ação neste filtro',all.length?'Experimente outro filtro ou selecione outro processo.':'Crie um processo e registre o primeiro compromisso concreto.')}</div></section>`+
+ `<div class="rt-v95-list">${rows||empty('Nenhuma ação neste filtro',scope.length?'Experimente outro filtro ou selecione outro processo.':'Crie um processo e registre o primeiro compromisso concreto.')}</div></section>`+
  `<p class="rt-v95-disclaimer">Marcar uma ação como concluída registra a execução do compromisso. Não representa, isoladamente, melhora psicológica nem validação do DISC/ACER. Nesta demonstração, as alterações ficam somente no navegador.</p>`;
 }
 function showMethodPage(page){

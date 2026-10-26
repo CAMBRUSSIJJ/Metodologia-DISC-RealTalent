@@ -96,9 +96,16 @@
 .rt-v914-picked small,.rt-v914-picked p{font-size:12px;color:var(--v914-muted);line-height:1.5}
 .rt-v914-picked ol{padding-left:19px;font-size:12px;line-height:1.55}.rt-v914-picked li{margin-top:10px}
 .rt-v914-agenda-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 16px}
-.rt-v914-agenda-summary>div{background:var(--rt-surface,#fff);border:1px solid var(--rt-line,#ddd);border-radius:13px;padding:16px;display:grid;gap:8px}
+.rt-v914-agenda-summary>a{background:var(--rt-surface,#fff);border:1px solid var(--rt-line,#ddd);border-radius:13px;padding:16px;display:grid;gap:8px}
 .rt-v914-agenda-summary span{font-size:12px;color:var(--rt-muted)}
 .rt-v914-agenda-summary strong{font-size:29px;font-weight:800;color:var(--rt-text)}
+.rt-v914-agenda-summary>a{color:var(--rt-text);text-decoration:none;min-width:0}
+.rt-v914-agenda-summary>a:hover{border-color:var(--rt-purple,#6243bc)}
+.rt-v914-agenda-summary>a[aria-current="page"]{border-color:var(--rt-purple,#6243bc);background:var(--rt-highlight,#f0eafa)}
+.rt-v914-agenda-summary>a:focus-visible,.rt-v914-stage-next a:focus-visible{outline:3px solid var(--rt-purple,#6243bc);outline-offset:3px}
+.rt-v914-agenda-summary small{font-size:11px;color:var(--rt-purple,#6243bc);font-weight:700}
+.rt-v914-stage-next{display:flex;justify-content:flex-end;padding:2px 0 4px;gap:10px;flex-wrap:wrap}
+.rt-v914-stage-next .btn-secondary{min-height:42px}
 .rt-v914-agenda-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .rt-v914-agenda-filters a{padding:9px 13px;border-radius:10px;border:1px solid var(--rt-line,#ddd);background:var(--rt-surface,#fff);font-size:12px;font-weight:750;text-decoration:none;color:var(--rt-muted,#666)}
 .rt-v914-agenda-filters a[aria-current="page"]{background:var(--rt-highlight,#eee6ff);color:var(--rt-purple,#6243bc);border-color:var(--rt-purple,#6243bc)}
@@ -140,7 +147,7 @@
  .rt-v914-two-col,.rt-v914-question-layout,.rt-v914-rail,.rt-v914-grow{grid-template-columns:1fr}
  .rt-v914-rail-card:last-child{grid-column:auto}
  .rt-v914-agenda-summary{gap:7px}
- .rt-v914-agenda-summary>div{padding:10px}
+ .rt-v914-agenda-summary>a{padding:10px}
  .rt-v914-agenda-summary span{font-size:10px}
  .rt-v914-agenda-summary strong{font-size:23px}
  .rt-v914-agenda-card{flex-wrap:wrap;gap:11px;padding:12px}

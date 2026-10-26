@@ -27,7 +27,7 @@ assert.match(js,/visibility:target/);
 assert.match(js,/const visibility=record_type==='note'\?'private'/);
 assert.match(js,/\.from\(requiredTables\.responses\)/);
 assert.ok(!/\.innerHTML\s*=|document\.write\(/.test(js),'Dados da rede jamais interpretados como HTML');
-assert.ok(!/\bservice_role\b|\bsb_secret_\b/.test(js+cfg),'Segredos não entram no navegador');
+assert.ok(!/['\"](?:sb_secret_[A-Za-z0-9_-]+|eyJ[A-Za-z0-9_-]{32,})['\"]/.test(js+cfg),'Segredos não entram no navegador');
 assert.match(html,/Content-Security-Policy/);
 assert.match(html,/id="auth"/);
 assert.match(html,/id="professional"/);

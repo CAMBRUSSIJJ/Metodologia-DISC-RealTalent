@@ -1,3 +1,4 @@
+import {showProfessionalPresentations,showParticipantPresentations} from './presentations.mjs';
 // RealTalent V10 Secure Beta — isolamento pelo banco, nunca pela UI.
 // Chaves de serviço e segredos jamais entram neste arquivo ou no navegador.
 const byId = id => document.getElementById(id);
@@ -54,6 +55,21 @@ async function hydrate(){
     await loadCases();
   }catch(err){notice(humanError(err),true);}
 }
+async function refreshPresentationPanel(){
+  if(!db||!currentProfile||!currentUser)return;
+  const report=(message,error=false)=>notice(message,error);
+  if(currentProfile.role==='professional'){
+    const c=cases.find(x=>x.id===selectedCase);
+    await showProfessionalPresentations({
+      db,user:currentUser,caseId:c?.id||null,caseStatus:c?.status||'closed',
+      root:byId('secure-presentations-professional'),report
+    });
+  }else if(currentProfile.role==='participant'){
+    await showParticipantPresentations({
+      db,cases,root:byId('secure-presentations-participant'),report
+    });
+  }
+}
 async function loadCases(){
   const {data,error}=await db.from(requiredTables.cases)
     .select('id,label,status,created_at').order('created_at',{ascending:false});
@@ -61,8 +77,8 @@ async function loadCases(){
   cases=data||[];
   if(currentProfile.role==='professional'){
     if(!cases.some(c=>c.id===selectedCase))selectedCase=cases[0]?.id||null;
-    renderCases();await loadRecords();
-  }else{await loadParticipant();}
+    renderCases();await loadRecords();await refreshPresentationPanel();
+  }else{await loadParticipant();await refreshPresentationPanel();}
 }
 function renderCases(){
   const container=byId('case-list');container.replaceChildren();
@@ -70,7 +86,7 @@ function renderCases(){
   for(const row of cases){
     const wrap=make('div','','entry');
     const select=button(row.label,async()=>{
-      selectedCase=row.id;renderCases();await loadRecords();
+      selectedCase=row.id;renderCases();await loadRecords();await refreshPresentationPanel();
     },true);
     select.setAttribute('aria-pressed',String(row.id===selectedCase));
     wrap.append(select,make('small',row.status==='closed'?'Encerrado':'Ativo'));

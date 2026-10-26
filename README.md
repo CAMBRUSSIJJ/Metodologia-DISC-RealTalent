@@ -1,3 +1,13 @@
+# RealTalent V9.16 — Desenvolvimento e Plano de Ação (PREVIEW)
+
+Objetivos editáveis, compromissos vinculados a objetivos e sessões, filtros por processo e objetivo, privacidade por padrão e continuidade entre encontros. Preservada a V9.15.
+
+Veja [documentação V9.16](docs/V9_16_DESENVOLVIMENTO_E_ACOES.md).
+
+**Somente dados fictícios. Não insira registros pessoais ou clínicos reais.**
+
+---
+
 # RealTalent V9.15 — Jornada do Processo (PREVIEW)
 
 Em **Profissional → Clientes → Visão geral**, uma única jornada reúne

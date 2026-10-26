@@ -3,7 +3,7 @@
   "product": "RealTalent DISC/ACER — Ciclo de Atividades Guiadas",
   "base": "9.16.0",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "fd557590899026ec59b9a364b537ae3d92bb52bae78a9bd2c96b2b1957e1525e",
+    ".github/workflows/v913-session-e2e.yml": "d666359efb73764913cf8ba46b0185f6874180a2001a113f69a6e8a54577075e",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -58,7 +58,7 @@
     "biblioteca/README.md": "5d2c55e21fc33425b387d52cfc8c15f79be7a12c2bece6983283ca73ecd3f869",
     "cliente/app.css": "39314597775a6cec713e8f10a7f8e17453f18e557bc5acbfb0c000e8506d84eb",
     "cliente/app.js": "7dd20d683423093e8bff99ce318d87c473791f9a9e4d73faee01c21b99b99ac5",
-    "cliente/index.html": "62a4230acbca76c501a9524616fa82dc441d31bdb24167a6ae3339fede6e23ce",
+    "cliente/index.html": "d21494b0ce812d3d6d2fd2c668abece68cf45b5cda56e4af9a4bac6e41022973",
     "colaborador.html": "a59df6c7765eadbc3b18a9aa202688091cc5180f5f912db6372d2f4b9e1dcd33",
     "core/demo-store.js": "5269ffbb0a552d1c27010a006a2225ae62f84657676124baea24049206148b14",
     "core/disc-questions.js": "213451eb1b318f67a1506282c3d8ce88ef0854127ccbcf14be9995ecf4d758b3",
@@ -121,7 +121,7 @@
     "qa/testar-sidebar-v91.py": "be6b9f622e7ac9907e5b07f235064b4254b97ad9177d86c349f13b1d19b201df",
     "qa/testar-workflow-v97.py": "c1544f3dc77e2532a1fe9e5de2f16322260ab9c11dc07acdbcbedc5f7929fccb",
     "qa/testar-workspace-v93.py": "bb1e990ed4fb1a0ed6d7fdfb0f306e165da9723dddb431ce4ea2a55acac0bb4f",
-    "README.md": "5f4258b86000a1cbe0861b62e6c40db8be8618ab3b8b7d6e730f77e96acd8b1d",
+    "README.md": "99b5a23d09f78e3f5665bb1e72984602c4b474eb672a576e02fe8c18414639b0",
     "realtalent-graficos.html": "e0492b20a955cfc3d783eabe47c1a3a36e15cb9570db574d265b96b836bc9f34",
     "scripts/server.py": "6b24dadaa6b3aa820597018db63f5364313578bf02163a79e880bbff7d09c861",
     "scripts/verify-build.py": "3bb06c4049bdc380ccd0a8b84ca7790f1991dd56808bacc7226ba7f0aee6567a",
@@ -139,6 +139,9 @@
     "docs/V9_15_JORNADA_PROFISSIONAL.md": "3552c60447341ca04deba0a64bcd176d4045e7ba915362a8a4977dcd1e1701da",
     "qa/testar-v916-vinculos.js": "7af04179dbd6ce903e0b7bbb16740a32a4ff150b7816dba80acde4bd875873a6",
     "qa/testar-objetivos-acoes-v916.py": "154d867fe4cb26679dd13cde050a351d69021b1e21285990d056ac1412005b81",
-    "docs/V9_16_DESENVOLVIMENTO_E_ACOES.md": "24ea5f28682706ec3ab5a55b4829e58ae1b36f4aea63cd94d557f359e17328e2"
+    "docs/V9_16_DESENVOLVIMENTO_E_ACOES.md": "24ea5f28682706ec3ab5a55b4829e58ae1b36f4aea63cd94d557f359e17328e2",
+    "qa/testar-ciclo-atividades-v917.js": "97795eab527e697325f45e3bd8b56365b485bc09724e344e86232d08ac3e8c8d",
+    "qa/testar-ciclo-atividades-v917.py": "2ce99568eaf401dcf18d8914fd95711dd0030004b5930fce2dd16f93f6353dcc",
+    "docs/V9_17_CICLO_ATIVIDADES.md": "60660c6c7cc425907e7d09761f9b15ff6541a3ae12b7da6eb1d6b0dc8b564415"
   }
 }

@@ -291,7 +291,7 @@ async function importFile(event){
   if(!['application/pdf','image/jpeg','image/png','image/webp'].includes(f.type))return note('Somente PDF, JPEG, PNG ou WebP são suportados.');
   if(f.size>MAX_FILE)return note('O arquivo precisa ter no máximo 16 MB.');
   const id=uid();
-  try{await putFile(id,f);update(s=>{s.fileId=id;s.fileName=safeText(f.name,180);s.fileType=f.type;if(!s.title||s.title==='Documento de apoio')s.title=safeText(f.name.replace(/\.[^.]+$/,''),130);},'all');
+  try{await putFile(id,f);state.fileUrls.set(id,URL.createObjectURL(f));update(s=>{s.fileId=id;s.fileName=safeText(f.name,180);s.fileType=f.type;if(!s.title||s.title==='Documento de apoio')s.title=safeText(f.name.replace(/\.[^.]+$/,''),130);},'all');
     note('Arquivo importado no navegador demonstrativo. Não há sincronização.');}
   catch{note('Não foi possível salvar o arquivo localmente. Verifique o espaço disponível.');}
 }

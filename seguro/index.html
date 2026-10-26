@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; form-action 'self'; base-uri 'none'">
+<title>RealTalent — Acesso Seguro (Beta)</title>
+<link rel="stylesheet" href="./secure.css">
+<script src="./config.js" defer></script>
+<script src="./app.mjs" type="module"></script>
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+<header class="header"><div class="brand">RealTalent <span>Acesso Seguro · Beta</span></div><button id="logout" type="button" hidden>Sair</button></header>
+<main id="main" class="main">
+<section class="intro"><p class="eyebrow">DISC / ACER · Desenvolvimento profissional</p><h1>Um espaço com acesso individual</h1><p>Registros privados e materiais compartilhados somente com autorização. Este ambiente beta exige um projeto Supabase próprio, além de usuários provisionados pelo administrador.</p></section>
+<div id="status" role="status" aria-live="polite"></div>
+<section id="auth" class="panel" hidden aria-labelledby="auth-title">
+<h2 id="auth-title">Entrar na plataforma</h2>
+<form id="email-form"><label>E-mail de acesso<input name="email" type="email" autocomplete="email" required maxlength="255" placeholder="voce@exemplo.com"></label><button type="submit">Enviar código</button></form>
+<form id="otp-form" hidden><label>Código recebido por e-mail<input name="token" inputmode="numeric" pattern="[0-9]{6,8}" autocomplete="one-time-code" required placeholder="000000"></label><button type="submit">Confirmar acesso</button></form>
+<p class="hint">Somente contas autorizadas. Sem cadastro público. Não informe dados clínicos neste beta.</p>
+</section>
+<section id="workspace" hidden aria-label="Área autenticada">
+<div class="workspace-head"><div><h2 id="profile-title">Área de trabalho</h2><p id="profile-subtitle"></p></div></div>
+<div id="professional" hidden>
+<form id="case-form" class="panel"><h3>Novo processo</h3><label>Identificação demonstrativa do processo<input name="label" required minlength="2" maxlength="160" placeholder="Ex.: Processo demonstrativo"></label><button type="submit">Criar processo</button><p class="hint">Vinculação de participantes será feita por um administrador, em uma etapa separada e auditável.</p></form>
+<div class="columns"><section class="panel"><h3>Meus processos</h3><div id="case-list" class="entries"></div></section>
+<section class="panel"><h3 id="record-heading">Registros do processo</h3><form id="record-form" hidden>
+<label>Tipo<select name="record_type"><option value="goal">Objetivo</option><option value="session">Sessão</option><option value="action">Compromisso</option><option value="activity">Atividade guiada</option><option value="feedback">Devolutiva</option><option value="note">Nota interna</option></select></label>
+<label>Título<input name="title" required minlength="2" maxlength="160"></label>
+<label>Descrição / orientação<textarea name="body" maxlength="4000" rows="4"></textarea></label>
+<label class="check"><input type="checkbox" name="share"> Compartilhar explicitamente com o participante vinculado</label>
+<button type="submit">Salvar registro</button></form>
+<div id="record-list" class="entries"></div></section></div>
+</div>
+<div id="participant" hidden><section class="panel"><h3>Minha Jornada — registros compartilhados</h3><p class="hint">Você vê apenas os materiais liberados para sua conta.</p><div id="participant-list" class="entries"></div></section></div>
+</section>
+</main>
+<footer class="footer">Beta restrito · Sem migração automática da demonstração · Nunca usar dados reais antes da revisão de segurança e LGPD.</footer>
+</body>
+</html>

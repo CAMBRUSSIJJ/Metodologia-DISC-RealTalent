@@ -1,4 +1,4 @@
-name: RealTalent V9.13 — Session E2E QA
+name: RealTalent V9.13–V10 — Integração e Segurança (Preview)
 on:
   pull_request:
     branches: [main]
@@ -9,10 +9,14 @@ on:
       - 'assets/**'
       - 'qa/**'
       - 'build-manifest.json'
+      - 'seguro/**'
+      - 'supabase/**'
       - '.github/workflows/v913-session-e2e.yml'
   push:
     branches:
       - 'feature/v9-11-kit-profissional'
+      - 'feature/v9-17-guided-activities-cycle'
+      - 'feature/v10-secure-foundation'
   workflow_dispatch:
 permissions:
   contents: read
@@ -36,19 +40,41 @@ jobs:
           node qa/testar-kit-profissional-v911.js
           node qa/testar-ferramentas-desenvolvimento-v912.js
           node qa/testar-perguntas-temporizador-v913.js
+          node qa/testar-v916-vinculos.js
+          node qa/testar-ciclo-atividades-v917.js
+      - name: Segurança V10 — contratos estáticos e sintaxe
+        run: |
+          node --check seguro/app.mjs
+          node qa/testar-seguranca-v10.js
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Playwright E2E — V10 beta sem configuração
+        run: python qa/testar-acesso-seguro-v10.py
       - name: Playwright E2E — V9.13
         run: python qa/testar-fluxo-atendimento-v913.py
+      - name: Playwright E2E — V9.14
+        run: python qa/testar-atendimento-integrado-v914.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V9.15 jornada profissional
+        run: python qa/testar-jornada-profissional-v915.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V9.16 objetivos e ações
+        run: python qa/testar-objetivos-acoes-v916.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V9.17 ciclo das atividades
+        run: python qa/testar-ciclo-atividades-v917.py
         env:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Evidências (screenshots)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v913-e2e-screenshots
+          name: v913-v914-e2e-screenshots
           path: /tmp/realtalent-v913-qa/
           if-no-files-found: ignore
           retention-days: 7

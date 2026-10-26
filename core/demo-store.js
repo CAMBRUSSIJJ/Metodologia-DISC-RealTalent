@@ -194,6 +194,10 @@
       if(s.recapVisibility!=='compartilhado'||s.visibility!=='compartilhado'||s.status!=='concluida'||!s.clientRecap)s.recapVisibility='privado';
     }
     if(!Array.isArray(d.instruments))d.instruments=[];
+    for(const i of d.instruments){
+      if(!d.goals.some(g=>g.id===i.goalId&&g.programId===i.programId))i.goalId=d.goals.find(g=>g.programId===i.programId)?.id||null;
+      if(i.feedbackVisibility!=='compartilhado'||!i.feedback)i.feedbackVisibility='privado';
+    }
     if(!Array.isArray(d.discLinks))d.discLinks=[];
     if(!Array.isArray(d.discAssignments))d.discAssignments=[];
     for(const task of d.discAssignments)if(task.visibility!=='compartilhado')task.visibility='privado';
@@ -283,6 +287,27 @@
     });
   }
   // Confere vínculo e estado. Exemplo ilustrativo no mesmo navegador; NÃO É uma autorização de servidor.
+  // Ciclo de uma atividade guiada, com vínculo explícito ao objetivo no mesmo processo.
+  function assignGuidedActivity(d,input){
+    const p=d.programs.find(p=>p.id===input?.programId&&p.status!=='finalizado');
+    const g=d.goals.find(g=>g.id===input?.goalId&&g.programId===p?.id);
+    const title=String(input?.title||'').trim(),instructions=String(input?.instructions||'').trim();
+    if(!p||!g||title.length<4||title.length>110||instructions.length>250)return null;
+    const item={id:freshId('inst'),programId:p.id,goalId:g.id,kind:'reflexao-guiada',title,
+      instructions,visibility:input?.visibility==='compartilhado'?'compartilhado':'privado',
+      status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',
+      assignedAt:new Date().toISOString()};
+    d.instruments.push(item);return item;
+  }
+  function reviewGuidedActivity(d,id,raw,visibility){
+    const item=d.instruments.find(i=>i.id===id),p=d.programs.find(p=>p.id===item?.programId);
+    const feedback=String(raw||'').trim();
+    if(!item||!p||!Array.isArray(item.responses)||item.responses.length!==3||feedback.length>250)return false;
+    item.feedback=feedback;
+    item.feedbackVisibility=feedback&&visibility==='compartilhado'?'compartilhado':'privado';
+    item.status=feedback?'devolvido':'respondido';
+    item.reviewedAt=new Date().toISOString();return true;
+  }
   function submitInstrument(d,clientId,instrumentId,answers) {
     const v=clientView(d,clientId),entry=v?.instruments.find(x=>x.id===instrumentId);
     if(!entry||entry.status!=='atribuido'||!Array.isArray(answers)||answers.length!==3)return false;
@@ -338,5 +363,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

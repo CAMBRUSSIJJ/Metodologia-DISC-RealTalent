@@ -1,3 +1,13 @@
+# RealTalent V11.0 — Estúdio de Apresentações (PREVIEW)
+
+Nova aba **Apresentações** no RealTalent Professional. Crie roteiros visuais, apresente em tela cheia, integre slides da Biblioteca DISC/ACER, utilize ferramentas de reflexão interativas e importe PDFs/imagens demonstrativos, preservados neste navegador.
+
+[Guia da V11 e limites de segurança](docs/V11_ESTUDIO_APRESENTACOES.md).
+
+**Somente dados fictícios.** Não há sincronização segura ou permissões para documentos reais. A infraestrutura V10 continua isolada e desativada.
+
+---
+
 # RealTalent V10 — Fundação Segura (Beta isolado)
 
 Esta branch acrescenta `/seguro/`, uma base **separada** da demonstração DISC/ACER, com autenticação Supabase Auth (OTP), papéis de profissional e participante, tabelas PostgreSQL com RLS, compartilhamento explícito e respostas vinculadas a atividades.

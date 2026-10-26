@@ -76,6 +76,7 @@ def main():
             page.locator(".rt-v915-process-guide summary").click()
             assert page.locator(".rt-v915-process-guide[open]").count()==1
             page.locator('[data-act="process-detail"]').first.click()
+            page.wait_for_function("location.hash.includes('tab=geral') && Boolean(document.querySelector('.rt-v915-journey'))")
             assert "tab=geral" in page.url and page.locator(".rt-v915-journey").is_visible()
             print("OK 05 — processos levam à jornada e guia fica recolhido",flush=True)
 

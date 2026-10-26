@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f6f9fd">
 <title>RealTalent · Estúdio de Apresentações</title>
-<link rel="stylesheet" href="./studio.css"><script src="./studio.js" defer></script>
+<link rel="stylesheet" href="./studio.css"><script src="../core/demo-store.js" defer></script><script src="./studio.js" defer></script>
 </head><body>
 <a href="#main" class="skip">Ir ao conteúdo</a>
 <header class="studio-header">
@@ -50,6 +50,33 @@
           <label>Anotações privadas do apresentador<textarea id="slide-notes" rows="4" maxlength="2000" placeholder="Somente no editor, nunca na tela de apresentação"></textarea></label>
           <p class="muted privacy-note">Os campos são salvos automaticamente. As anotações não aparecem no modo apresentação.</p>
         </div>
+        <section id="session-panel" class="session-panel" aria-labelledby="session-panel-title">
+          <div class="panel-head"><strong id="session-panel-title">Vincular ao atendimento</strong></div>
+          <p class="muted">Associe esta apresentação a uma sessão fictícia. O vínculo é privado por padrão.</p>
+          <label>Sessão<select id="presentation-session" aria-label="Sessão associada"><option value="">Selecionar sessão</option></select></label>
+          <div class="session-actions"><button id="link-session" type="button" class="secondary">Vincular apresentação</button><button id="unlink-session" type="button" class="subtle danger-text" hidden>Desvincular</button></div>
+          <p class="muted" id="link-status" role="status">Nenhuma sessão vinculada.</p>
+          <div id="session-workflow" hidden>
+            <div class="session-divider"></div>
+            <h3>Material para Minha Jornada</h3>
+            <p class="muted">Escolha apenas slides educativos. PDF, imagem, ferramentas dinâmicas e notas privadas não são compartilhados.</p>
+            <div id="publish-slides" class="publish-slides" role="group" aria-label="Selecionar slides para compartilhar"></div>
+            <button id="publish-slides-btn" type="button" class="secondary">Compartilhar slides selecionados</button>
+            <button id="withdraw-slides" type="button" class="subtle danger-text" hidden>Retirar da Minha Jornada</button>
+            <p id="publish-status" class="muted" role="status"></p>
+            <div class="session-divider"></div>
+            <h3>Compromisso do atendimento</h3>
+            <p class="muted">Um compromisso é criado no Plano de Ação já existente, vinculado ao objetivo e à sessão.</p>
+            <form id="presentation-action-form">
+              <label>Objetivo<select name="goal" id="presentation-goal" required></select></label>
+              <label>Ação acordada<textarea name="title" rows="2" maxlength="500" minlength="4" required placeholder="Ex.: testar uma nova abordagem de comunicação"></textarea></label>
+              <label>Prazo<input type="date" name="due" required></label>
+              <label>Visibilidade<select name="visibility"><option value="privado">Somente profissional (padrão)</option><option value="compartilhado">Disponibilizar na Minha Jornada</option></select></label>
+              <button type="submit" class="primary">Registrar compromisso</button>
+            </form>
+            <p id="commitment-status" class="muted" role="status"></p>
+          </div>
+        </section>
       </aside>
     </div>
   </section>
@@ -63,7 +90,7 @@
   <div id="presentation-stage" class="presentation-stage"></div>
   <div class="presenter-controls">
     <div class="presenter-meta"><span class="presenter-dot"></span><span id="presenter-count">Slide 1 de 1</span><span id="presenter-time">00:00</span></div>
-    <div class="presenter-buttons"><button type="button" id="previous" aria-label="Slide anterior">←</button><button type="button" id="next" aria-label="Próximo slide">→</button><button type="button" id="toggle-fullscreen" title="Tela cheia">⛶ Tela cheia</button><button type="button" id="exit-presenter" title="Esc">✕ Encerrar</button></div>
+    <div class="presenter-buttons"><button type="button" id="previous" aria-label="Slide anterior">←</button><button type="button" id="next" aria-label="Próximo slide">→</button><button type="button" id="presenter-action" title="Registrar compromisso na sessão">+ Compromisso</button><button type="button" id="toggle-fullscreen" title="Tela cheia">⛶ Tela cheia</button><button type="button" id="exit-presenter" title="Esc">✕ Encerrar</button></div>
   </div>
   <div id="presenter-progress" class="presenter-progress"></div>
 </div>

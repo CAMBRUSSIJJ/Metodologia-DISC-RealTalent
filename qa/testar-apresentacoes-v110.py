@@ -73,7 +73,16 @@ def main():
             page.locator('#add-slide').click()
             sample=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jR1cAAAAASUVORK5CYII=')
             page.locator('#upload-file').set_input_files({'name':'imagem-demonstrativa.png','mimeType':'image/png','buffer':sample})
-            page.wait_for_function("Boolean(document.querySelector('#stage img')?.src?.startsWith('blob:'))")
+            page.wait_for_timeout(500)
+            print('DEBUG arquivo',page.evaluate("""() => ({
+                stage:document.querySelector('#stage')?.innerText,
+                imported:document.querySelector('#selected-file')?.innerText,
+                toast:document.querySelector('#toast')?.innerText,
+                fileId:(state.decks.find(d=>d.id===state.current)?.slides[state.selected]||{}).fileId,
+                cached:state.fileUrls.size,
+                objectPresent:!!document.querySelector('#stage img'),
+            })"""),flush=True)
+            page.wait_for_function("Boolean(document.querySelector('#stage img')?.src?.startsWith('blob:'))",timeout=5000)
             page.reload(wait_until='domcontentloaded')
             page.locator('#deck-list .deck-card').first.get_by_role('button',name='Abrir').click()
             page.locator('#slides-list .slide-list-item').last.click()

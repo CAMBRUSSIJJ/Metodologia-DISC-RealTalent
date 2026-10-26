@@ -1,3 +1,18 @@
+# RealTalent V9.15 — Jornada do Processo (PREVIEW)
+
+Em **Profissional → Clientes → Visão geral**, uma única jornada reúne
+**Objetivos, Sessões, Ações combinadas e Atividades** usando os registros
+originais do processo. Os indicadores mostram pendências concretas, sem
+tratar execução de tarefas como evolução psicológica. O histórico existente,
+as seis abas internas e o Atendimento V9.14 permanecem.
+
+Guia: [V9.15 — Jornada Profissional](docs/V9_15_JORNADA_PROFISSIONAL.md).
+QA: `python3 qa/testar-jornada-profissional-v915.py`.
+
+**Somente demonstração e dados fictícios. Não usar registros reais ou sigilosos.**
+
+---
+
 # RealTalent Professional V9.14 — Atendimento Profissional 2.0
 
 A aba **Sessões** agora organiza os encontros numa agenda clara. Ao clicar em **Abrir atendimento**, o profissional entra em um espaço único de três momentos: **Antes** (contexto e GROW), **Durante** (perguntas, temporizador e notas internas) e **Depois** (conclusão, resumo autorizado e compromissos já vinculados).

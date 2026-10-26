@@ -166,18 +166,37 @@ function v93Priority(id,pid){
  return `<section class="rt-v92-next-action rt-v93-priority" data-tone="${esc(item.tone||'standard')}" aria-label="Ação que precisa de atenção"><div class="rt-v93-priority-copy"><div class="rt-v93-overline"><span class="rt-v93-indicator" aria-hidden="true"></span> Atenção ao acompanhamento</div><h2>${esc(item.title)}</h2><p>${esc(item.sub)}</p></div><div class="rt-v93-priority-action">${action}</div></section>`;
 }
 function v93Summary(id,pid,sessions,actions,tasks,instruments,p){
- const upcoming=sessions.filter(s=>s.status==='agendada'&&!isElapsedAppointment(s)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
- const attention=actions.filter(x=>x.status==='pendente').length +
-  instruments.filter(x=>x.responses&&!x.feedback).length +
-  tasks.filter(x=>x.status==='respondido'&&!x.feedback).length;
- const count=tasks.length+instruments.length;
- const summary=[
-  {label:'Etapa atual',value:p.stage,detail:'Ver desenvolvimento',tab:'desenvolvimento'},
-  {label:'Próxima sessão',value:upcoming?dateFmt(upcoming.date)+' · '+upcoming.time:'Não agendada',detail:'Ver sessões',tab:'sessoes'},
-  {label:'Atividades e ações',value:attention?attention+' para acompanhar':'Sem pendências',detail:'Ver pendências',tab:(instruments.some(x=>x.responses&&!x.feedback)||tasks.some(x=>x.status==='respondido'&&!x.feedback))?'atividades':'desenvolvimento'},
-  {label:'Instrumentos',value:count+' atribuídos',detail:'Ver atividades',tab:'atividades'}
+ const goals=RTDemoStore.goalsOf(db,pid);
+ const scheduled=sessions.filter(x=>x.status==='agendada'&&!isElapsedAppointment(x))
+  .sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')));
+ const unconfirmed=sessions.filter(isElapsedAppointment).length;
+ const held=sessions.filter(x=>x.status==='concluida').length;
+ const openActions=actions.filter(x=>x.status==='pendente');
+ const lateActions=openActions.filter(x=>x.due&&x.due<today()).length;
+ const reviewed=tasks.filter(x=>x.status==='respondido'&&!x.feedback).length+
+   instruments.filter(x=>x.responses&&!x.feedback).length;
+ const assigned=tasks.length+instruments.length;
+ const steps=[
+  {id:'objetivos',name:'Objetivos',tab:'desenvolvimento',
+   value:goals.length?goals.length+' acordado'+(goals.length===1?'':'s'):'A definir',
+   hint:goals.length?'Ver objetivos e etapa':'Definir objetivo do processo'},
+  {id:'sessoes',name:'Sessões',tab:'sessoes',attention:unconfirmed>0,
+   value:unconfirmed?unconfirmed+' sem confirmação':scheduled[0]?dateFmt(scheduled[0].date)+' · '+(scheduled[0].time||''):held?held+' realizada'+(held===1?'':'s'):'Não agendada',
+   hint:unconfirmed?'Verificar encontros':scheduled.length?'Preparar próximo encontro':'Ver agenda e histórico'},
+  {id:'acoes',name:'Ações combinadas',tab:'desenvolvimento',attention:lateActions>0,
+   value:lateActions?lateActions+' com prazo vencido':openActions.length?openActions.length+' pendente'+(openActions.length===1?'':'s'):actions.length?actions.length+' concluída'+(actions.length===1?'':'s'):'Nenhuma ação',
+   hint:lateActions?'Revisar prazos':'Acompanhar compromissos'},
+  {id:'atividades',name:'Atividades',tab:'atividades',attention:reviewed>0,
+   value:reviewed?reviewed+' para revisar':assigned?assigned+' atribuída'+(assigned===1?'':'s'):'Nenhuma atividade',
+   hint:reviewed?'Revisar respostas':'Ver exercícios e DISC/ACER'}
  ];
- return `<section class="rt-v93-summary" aria-labelledby="rt-v93-summary-title"><div class="rt-v93-summary-head"><h2 id="rt-v93-summary-title">Em resumo</h2><span>Processo selecionado</span></div><div class="rt-v93-summary-grid">${summary.map(x=>`<a href="${wsUrl(id,x.tab,pid)}" class="rt-v93-summary-item"><span>${esc(x.label)}</span><strong>${esc(x.value)}</strong><small>${esc(x.detail)} <span aria-hidden="true">↗</span></small></a>`).join('')}</div></section>`;
+ return `<section class="rt-v93-summary rt-v915-journey" aria-labelledby="rt-v93-summary-title">
+ <div class="rt-v93-summary-head"><div><h2 id="rt-v93-summary-title">Jornada do processo</h2><p>Os quatro pontos de acompanhamento usam os mesmos registros de cada aba.</p></div><span>Não representa evolução psicológica</span></div>
+ <nav class="rt-v93-summary-grid" aria-label="Áreas da jornada de desenvolvimento">
+ ${steps.map((step,index)=>`<a href="${wsUrl(id,step.tab,pid)}" data-v915-step="${step.id}" data-attention="${step.attention?'true':'false'}" class="rt-v93-summary-item">
+ <span class="rt-v915-step-label"><span class="rt-v915-step-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>${esc(step.name)}</span>
+ <strong>${esc(step.value)}</strong><small>${esc(step.hint)} <span aria-hidden="true">→</span></small></a>`).join('')}
+ </nav></section>`;
 }
 // V9.4: hierarquia consistente por tarefa. Estado/filtros vêm sempre dos registros originais.
 function ws94Query(){
@@ -231,7 +250,9 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
  else if(chosen==='geral'){
   const open=actions.filter(a=>a.status==='pendente').sort((a,b)=>String(a.due||'9999').localeCompare(String(b.due||'9999')));
   body=`${v93Priority(id,pid)}${v93Summary(id,pid,sessions,actions,tasks,instruments,p)}
-  <div class="rt-v93-overview-layout"><div class="rt-v93-history">${showTimeline(id,pid)}</div><aside class="rt-v93-context-column" aria-label="Contexto do processo"><section class="rt-v93-aside-card"><div class="rt-v93-aside-label">Objetivo do processo</div><h2>${esc(p.goal)}</h2><p>Iniciado em ${dateFmt(p.start)}</p><a href="${wsUrl(id,'desenvolvimento',pid)}">Ver desenvolvimento →</a></section>
+  <div class="rt-v93-overview-layout"><div class="rt-v93-history">${showTimeline(id,pid)}</div><aside class="rt-v93-context-column" aria-label="Contexto do processo"><section class="rt-v93-aside-card rt-v915-goals" aria-label="Objetivos deste processo"><div class="rt-v93-aside-head"><h2>Objetivos acordados</h2><a href="${wsUrl(id,'desenvolvimento',pid)}">Gerenciar →</a></div>
+ ${RTDemoStore.goalsOf(db,pid).length?`<ul class="rt-v915-goals-list">${RTDemoStore.goalsOf(db,pid).slice(0,3).map(g=>`<li><strong>${esc(g.title)}</strong><small>${actions.filter(a=>a.goalId===g.id).length} ação(ões) vinculada(s)</small></li>`).join('')}</ul>${RTDemoStore.goalsOf(db,pid).length>3?`<p class="rt-v915-goals-more">+${RTDemoStore.goalsOf(db,pid).length-3} objetivo(s) em Desenvolvimento</p>`:''}`:empty('Nenhum objetivo específico','Defina objetivos na aba Desenvolvimento.')}
+ </section>
   <section class="rt-v93-aside-card"><div class="rt-v93-aside-head"><h2>Ações combinadas</h2><a href="${wsUrl(id,'desenvolvimento',pid)}">Ver todas</a></div>${open.length?`<ul class="rt-v93-action-list">${open.slice(0,3).map(a=>`<li><span>${esc(a.title)}</span><small>${a.due?'Até '+dateFmt(a.due):'Sem prazo definido'}</small></li>`).join('')}</ul>`:`<p>Sem ações pendentes neste processo.</p>`}</section>
   <details class="rt-v93-aside-card rt-v93-process-details"><summary>Detalhes e situação do processo <span aria-hidden="true">⌄</span></summary><dl><div><dt>Etapa</dt><dd>${esc(p.stage)}</dd></div><div><dt>Situação</dt><dd>${esc(p.status)}</dd></div><div><dt>Ações concluídas</dt><dd>${actions.filter(a=>a.status==='concluido').length} de ${actions.length}</dd></div></dl>${btn(p.status==='finalizado'?'Reabrir processo':'Finalizar processo',p.status==='finalizado'?'reopen-process':'finish-process',pid,'line-button')}</details></aside></div>`;
  }
@@ -369,8 +390,8 @@ function showAgenda(){
  '<nav class="rt-v914-agenda-filters" aria-label="Filtrar sessões">'+opts.map(([id,label])=>'<a href="#sessoes?filter='+id+'"'+(filter===id?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>'+
  '<div class="rt-v914-agenda-list">'+(cards||'<div class="rt-v914-empty">Nenhum encontro neste filtro. <a href="#sessoes?filter=todos">Ver todas as sessões →</a></div>')+'</div>';
 }
-function showProcesses(){return head('PROCESSOS ACOMPANHADOS','Processo de desenvolvimento','Defina objetivos verificáveis, etapas, sessões e ações. Cada processo é conduzido pelo profissional.',btn('+ Novo processo','new-process','','btn-primary'))+
- `<div class="workflow">${[['01','Acordo','Finalidade e limites'],['02','Objetivos','Metas contextualizadas'],['03','Sessões','Planejamento conjunto'],['04','Prática','Ações entre encontros'],['05','Revisão','Evolução e fechamento']].map(([n,t,d])=>`<div class="step"><span>${n}</span><strong>${t}</strong><small>${d}</small></div>`).join('')}</div><div class="card"><div class="card-head"><h2>Processos registrados · ${db.programs.length}</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>CLIENTE</th><th>OBJETIVO</th><th>ETAPA</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>${db.programs.map(p=>`<tr><td><b>${esc(clientOf(p))}</b></td><td>${esc(p.goal)}</td><td>${esc(p.stage)}</td><td>${status(p.status)}</td><td>${btn('Ver processo','process-detail',p.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty('Sem processos','Crie seu primeiro processo demonstrativo.')}</td></tr>`}</tbody></table></div></div>`;}
+function showProcesses(){return head('PROCESSOS ACOMPANHADOS','Processo de desenvolvimento','Acesse cada processo em um só lugar: objetivos, atendimentos, atividades e compromissos.',btn('+ Novo processo','new-process','','btn-primary'))+
+ `<details class="rt-v915-process-guide"><summary>Como funciona um processo de desenvolvimento</summary><p>Etapas de referência, não um indicador automático de evolução.</p><div class="workflow">${[['01','Acordo','Finalidade e limites'],['02','Objetivos','Metas contextualizadas'],['03','Sessões','Planejamento conjunto'],['04','Prática','Ações entre encontros'],['05','Revisão','Acompanhamento e fechamento']].map(([n,t,d])=>`<div class="step"><span>${n}</span><strong>${t}</strong><small>${d}</small></div>`).join('')}</div></details><div class="card"><div class="card-head"><h2>Processos registrados · ${db.programs.length}</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>CLIENTE</th><th>OBJETIVO</th><th>ETAPA</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>${db.programs.map(p=>`<tr><td><b>${esc(clientOf(p))}</b></td><td>${esc(p.goal)}</td><td>${esc(p.stage)}</td><td>${status(p.status)}</td><td>${btn('Abrir jornada','process-detail',p.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty('Sem processos','Crie seu primeiro processo demonstrativo.')}</td></tr>`}</tbody></table></div></div>`;}
 function showProcessDetail(id){let p=program(id);if(!p)return showProcesses();let ss=db.sessions.filter(s=>s.programId===id).sort((a,b)=>a.date.localeCompare(b.date));let aa=db.actions.filter(a=>a.programId===id);let done=aa.filter(a=>a.status==='concluido').length;
  return head('PROCESSO DE DESENVOLVIMENTO',esc(clientOf(p)),esc(p.goal),btn('← Processos','go','processos','btn-secondary')+btn('+ Agendar sessão','new-session-for',id,'btn-primary'))+
  `<div class="grid2"><div class="stack"><div class="card"><h2>Objetivos e condução</h2><div class="detail-grid"><div class="detail"><small>Objetivo acordado</small><b>${esc(p.goal)}</b></div><div class="detail"><small>Etapa atual</small><b>${esc(p.stage)}</b></div><div class="detail"><small>Início</small><b>${dateFmt(p.start)}</b></div><div class="detail"><small>Situação</small>${status(p.status)}</div></div>${btn('Atualizar etapa','edit-stage',p.id)} ${p.status!=='finalizado'?btn('Finalizar processo','finish-process',p.id):btn('Reabrir processo','reopen-process',p.id)}<p class="inline-note">Nenhum perfil comportamental é definido automaticamente. O profissional seleciona e interpreta os recursos de apoio.</p></div>

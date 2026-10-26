@@ -1,9 +1,9 @@
 {
-  "version": "10.0.0-beta",
-  "product": "RealTalent DISC/ACER — Fundação Segura Isolada (sem banco conectado)",
-  "base": "9.17.0",
+  "version": "11.0.0-preview",
+  "product": "RealTalent DISC/ACER — Estúdio de Apresentações",
+  "base": "10.0.0-beta",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "3b51195c98a0ed1f49291ca0f4ff6455e068ba65a4a1c0e72672c18675b8af0a",
+    ".github/workflows/v913-session-e2e.yml": "fcdcf4d7ec438245c82cbede3716e2c68b45f8400c0cedccf23ce6e8ff4ca2ba",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -101,8 +101,8 @@
     "login.html": "6d5989d9c9d12495fb1a20465ff33422dfdcc8f4f9a036b07a2cfc35a6455422",
     "originais/RealTalent_SISTEMA_FUNCIONAL_ORIGINAL.html": "0d473b7c83500c3cce799a227c45c4b6a1c093773cbc01fd8bc3eadda71bf1d5",
     "profissional/app.css": "d2e99bdd3cdff367a1747b69e82b8583df021fc48ec7d6aa89bb4cbf0f725662",
-    "profissional/app.js": "e457c5bf2ab9517f3a2ce0f331b0d50ee5244fba0f2c73123850f3f27362d39b",
-    "profissional/index.html": "49c0ad7c456dca116a29f7ccb133e013003255563cf5ba743ae3fd2fdd64b289",
+    "profissional/app.js": "5011b611f613f812d8ab545657bf9d93cfec2b5e4867bdbf0fbfb6ec306113a4",
+    "profissional/index.html": "c463a03c6e29bb848130fff82241255e68b20a40a54134a7e6d57e828748b37f",
     "qa/testar_minhas_atividades_v98.py": "0d6e9eebf2bc583c55dddae7923f3c0e4ff375677173851775fe5953b39757ba",
     "qa/testar-abas-cliente-v94.py": "fa9d108cb289837622db879ac36855c4d1d9f052d53a3e4aad21141f0628561d",
     "qa/testar-atendimento-integrado-v914.py": "e3f255d6c68a3a88138bb3b2becbfac2adc66cbe8a29fe9420763d87760bccc5",
@@ -121,7 +121,7 @@
     "qa/testar-sidebar-v91.py": "be6b9f622e7ac9907e5b07f235064b4254b97ad9177d86c349f13b1d19b201df",
     "qa/testar-workflow-v97.py": "c1544f3dc77e2532a1fe9e5de2f16322260ab9c11dc07acdbcbedc5f7929fccb",
     "qa/testar-workspace-v93.py": "bb1e990ed4fb1a0ed6d7fdfb0f306e165da9723dddb431ce4ea2a55acac0bb4f",
-    "README.md": "44334c0dd36e292d132766ca70b167e3f60c23dd05398b3597e5967e787be5b8",
+    "README.md": "7f4cf05593eedf45f2fad10c9646348d6749e087276694a6d5667796eabc9805",
     "realtalent-graficos.html": "e0492b20a955cfc3d783eabe47c1a3a36e15cb9570db574d265b96b836bc9f34",
     "scripts/server.py": "6b24dadaa6b3aa820597018db63f5364313578bf02163a79e880bbff7d09c861",
     "scripts/verify-build.py": "3bb06c4049bdc380ccd0a8b84ca7790f1991dd56808bacc7226ba7f0aee6567a",
@@ -150,6 +150,12 @@
     "supabase/migrations/20261026170000_realtalent_secure_foundation.sql": "6aaa7cd5d2283080b3a895df6eb40baa674bd641e1662b5b1abb1aa2b257015c",
     "qa/testar-seguranca-v10.js": "c5b0fdb8a01eeb6ccaf480ea75013ca858af41275e0110e51b3f3cf0314ca8a0",
     "docs/V10_BASE_SEGURA.md": "7a5e6928cc926d71c7dd5f74c559a58d9c25ec8004e663f2b268739f694dd720",
-    "qa/testar-acesso-seguro-v10.py": "3192878140c1015b7cbe8c06653545969ee09b5b44cdbde331c719088d1956ee"
+    "qa/testar-acesso-seguro-v10.py": "3192878140c1015b7cbe8c06653545969ee09b5b44cdbde331c719088d1956ee",
+    "apresentacoes/index.html": "46eb119ef9da55cba8987bb816efcd266e313475cef27f713fc5b2a33a65593a",
+    "apresentacoes/studio.css": "afc419c7bdd190b2992a99a13d990adf4c3bc9b7c125ecb94a46e120e09629c2",
+    "apresentacoes/studio.js": "eaa8274c6993c67afd937d1da31b8c75a009ae3b82b4cba0f5de7d4019317a2a",
+    "qa/testar-apresentacoes-v110.py": "ae60aef0e50044f98da98e3942b45d3cf8e9cf4d1eec092185359e42fd8df7e3",
+    "qa/testar-apresentacoes-v110.js": "344198ce5440d65179804fdc4d960a617cda5fb26d3394b70f82fa71ac13cdb3",
+    "docs/V11_ESTUDIO_APRESENTACOES.md": "bfa08936fc3b47e7553d115e6c145cb25403c29a6f8b97aa7539f01e3c68b41d"
   }
 }

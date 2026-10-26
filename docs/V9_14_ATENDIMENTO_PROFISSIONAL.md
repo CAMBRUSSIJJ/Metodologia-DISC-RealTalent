@@ -45,3 +45,12 @@ python3 qa/testar-fluxo-atendimento-v913.py
 python3 qa/testar-atendimento-integrado-v914.py
 ```
 O workflow `.github/workflows/v913-session-e2e.yml` executa os testes com Chromium no GitHub Actions e arquiva capturas de tela para desktop, tablet e mobile. Não publicar V9.14 em Production se a suíte E2E falhar.
+
+
+## Consolidação UX da agenda e continuidade
+- Próximos e Sem confirmação são separados por data e horário, não somente pela data.
+- Indicadores do topo da agenda agora são links com estado selecionado e foco visível.
+- Criar cliente → processo → sessão abre diretamente a preparação do encontro recém-criado.
+- Agendamento exige processo ativo; sem cliente, criação de processo orienta primeiro cadastro.
+- Durante permite avançar a Depois; encerramento oferece agendar próximo encontro em processos ativos.
+- A suíte E2E abrange o novo fluxo e os filtros temporais. Tudo continua estritamente demonstrativo.

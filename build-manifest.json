@@ -3,7 +3,7 @@
   "product": "RealTalent DISC/ACER — Ciclo de Atividades Guiadas",
   "base": "9.16.0",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "d666359efb73764913cf8ba46b0185f6874180a2001a113f69a6e8a54577075e",
+    ".github/workflows/v913-session-e2e.yml": "0fca03f5c4ea71ca0b32ec3fa075a66eb1063d9b0dbab2854e1ed4e99fee3937",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",

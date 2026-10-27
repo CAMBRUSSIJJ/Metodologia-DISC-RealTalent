@@ -1,0 +1,18 @@
+/* RealTalent V11.3 — arquivos e ação Apresentar integrados à Biblioteca */
+.rt-v113-files{padding-bottom:34px}
+.rt-v113-upload{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--surface,#1d2340);border:1px solid var(--border,#3e4b64);border-radius:16px;padding:22px 24px;margin:24px 0 10px}
+.rt-v113-upload h2{margin:0 0 9px;font-size:18px}.rt-v113-upload p{margin:0;max-width:600px;line-height:1.6}
+.rt-v113-import-actions{flex-shrink:0}
+.rt-v113-upload-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:11px 17px;border-radius:9px;background:#2366bf;color:white;cursor:pointer;font-size:13px;font-weight:750;border:1px solid #3682df;white-space:nowrap}
+.rt-v113-upload-btn:hover{background:#1a54a1}.rt-v113-upload-btn:focus-within{outline:3px solid #85b4f2;outline-offset:3px}
+.rt-v113-upload-btn input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.rt-v113-tip{padding:12px 15px;border-radius:10px;border:1px solid var(--border,#3e4b64);background:var(--surface,#1d2340);font-size:12px;color:var(--muted,#a2afc7)}
+.rt-v113-tip p{margin:0;line-height:1.65}.rt-v113-count{font-size:12px;color:var(--muted,#a2afc7)}
+.rt-v113-search{width:100%;max-width:370px;min-height:41px;padding:9px 12px;border:1px solid var(--border,#3e4b64);border-radius:8px;background:var(--surface,#1d2340);color:inherit;margin:9px 0 17px}
+.rt-v113-list{display:grid;gap:12px}.rt-v113-file{display:flex;align-items:center;gap:15px;min-width:0;background:var(--surface,#1d2340);border:1px solid var(--border,#3e4b64);border-radius:13px;padding:17px}
+.rt-v113-file-icon{width:53px;min-width:53px;height:58px;background:rgba(47,121,207,.16);color:#5da9fa;border:1px solid rgba(96,157,227,.3);font-size:13px;font-weight:850;display:grid;place-items:center;border-radius:9px}
+.rt-v113-file-info{flex:1;min-width:0}.rt-v113-file-info h3{font-size:15px;margin:0 0 6px;word-break:break-word}.rt-v113-file-info p{margin:0;word-break:break-all;font-size:11px}
+.rt-v113-card-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.rt-v113-card-actions .btn{white-space:nowrap;font-size:12px;min-height:35px}
+.rt-v113-empty{padding:47px 22px;border:1px dashed var(--border,#3e4b64);border-radius:12px;text-align:center;color:var(--muted,#a2afc7)}
+.rt-v113-empty h3{font-size:17px;margin:0 0 9px}.rt-v113-empty p{margin:auto;max-width:480px;line-height:1.7}
+@media(max-width:750px){.rt-v113-upload{align-items:stretch;flex-direction:column}.rt-v113-file{align-items:flex-start;flex-wrap:wrap}.rt-v113-card-actions{width:100%}.rt-v113-file-info{flex:1 1 calc(100% - 70px)}}

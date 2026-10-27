@@ -1,4 +1,4 @@
-name: RealTalent V9.13–V11.6 — Publicação Segura e Regressão
+name: RealTalent V9.13–V11.7 — Publicação Segura e Regressão
 on:
   pull_request:
     branches: [main]
@@ -25,6 +25,7 @@ on:
       - 'feature/v11-4-apresentador-profissional-2'
       - 'feature/v11-5-biblioteca-profissional'
       - 'feature/v11-6-acoes-ferramentas-ux'
+      - 'feature/v11-7-construtor-ferramentas'
   workflow_dispatch:
 permissions:
   contents: read
@@ -92,6 +93,15 @@ jobs:
           node --check assets/rt-v116-custom-tools.js
           node qa/testar-professional-v116.mjs
           python -m py_compile qa/testar-professional-v116.py
+      - name: V11.7 — formulários personalizados e validação de respostas
+        run: |
+          node --check assets/rt-v116-custom-tools.js
+          node --check assets/rt-v117-tool-builder.js
+          node --check core/demo-store.js
+          node --check profissional/app.js
+          node --check cliente/app.js
+          node qa/testar-ferramentas-v117.mjs
+          python -m py_compile qa/testar-ferramentas-v117.py
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0
@@ -102,6 +112,10 @@ jobs:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V11.3 Biblioteca e Apresentador
         run: python qa/testar-apresentador-v113.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V11.7 Criar, atribuir e responder formulário
+        run: python qa/testar-ferramentas-v117.py
         env:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V11.6 Plano de ação, Kit contextual e ferramentas

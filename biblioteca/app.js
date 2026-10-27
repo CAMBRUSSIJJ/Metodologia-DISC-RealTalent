@@ -11,7 +11,7 @@ const embedded = qs.get('embedded')==='1';
 const KEY = 'rt-disc-acer-library-v2'; // mantém progresso do v2
 const VIEWS = [
  ['inicio','⌂','Início'], ['conhecimento','▤','Conhecimento'], ['ferramentas','◇','Ferramentas'],
- ['laboratorio','✦','Communication Lab'], ['aprender','◈','Aprender'], ['minha','☆','Minha biblioteca'], ['referencias','⌘','Referências']
+ ['laboratorio','✦','Communication Lab'], ['aprender','◈','Aprender'], ['arquivos','▣','Meus arquivos'], ['minha','☆','Minha biblioteca'], ['referencias','⌘','Referências']
 ];
 const GROUPS = [
  ['Todos','Tudo'],['Perfis','Perfis'],['Combinações','Combinações'],['conceitos','Fundamentos'],
@@ -190,7 +190,8 @@ function drawReader(root){let r=getRecord(state.selected);if(!r){openView('conhe
  buttons.append(action(read?'✓ Estudado':'✓ Marcar como estudado',()=>{read?local.read.delete(r.id):local.read.add(r.id);persist();render();notice(read?'Marcação desfeita':'Progresso atualizado')},'btn small '+(read?'active':'')));
  buttons.append(action('↗ Compartilhar',async()=>{let url=new URL(location.href);url.searchParams.delete('embedded');url.hash='item='+encodeURIComponent(r.id);notice(await copyText(url.toString())?'Link copiado':'Não foi possível copiar o link')},'btn small'));
  buttons.append(el('span','action-divider','|'));buttons.append(action('A−',()=>scaleFont(-1),'btn small font-action'),action('A+',()=>scaleFont(1),'btn small font-action'));
- buttons.append(action('↔ Modo leitura',()=>{document.body.classList.toggle('focus-reading');notice(document.body.classList.contains('focus-reading')?'Modo leitura ativado':'Modo leitura desativado')},'btn small'));
+ buttons.append(action('▶ Apresentar',()=>openPresenter({record:r.id}),'btn small primary'));
+  buttons.append(action('↔ Modo leitura',()=>{document.body.classList.toggle('focus-reading');notice(document.body.classList.contains('focus-reading')?'Modo leitura ativado':'Modo leitura desativado')},'btn small'));
  doc.append(buttons);
  if(r.kind==='Perfis'){let p=PROFILES.find(x=>'perfil:'+x.sigla===r.id);if(p)addProfile(doc,p);}
  else {doc.append(paragraph(r.body||'','reader-lead'));(r.details||[]).forEach(d=>doc.append(listBlock(d.head,d.text)));if(r.points?.length)doc.append(listBlock('Como aplicar',r.points));}
@@ -400,9 +401,75 @@ function drawLab(root){
  },'lab-reset');w.append(reset);root.append(w);
 }
 
+
+/* V11.3 — a Biblioteca guarda materiais; o Apresentador apenas os exibe. */
+const presentationStore=window.RTPresentationLibrary;
+function openPresenter(selection){
+ if(!presentationStore)return notice('Apresentador indisponível. Atualize esta página.');
+ const session=qs.get('session')||'';
+ const url=presentationStore.presenterURL({...selection,session});
+ const w=window.open(url,'_blank','noopener,noreferrer');
+ if(!w)notice('Permita a abertura de uma nova aba para apresentar este material.');
+}
+async function importPresentationFiles(files){
+ if(!presentationStore)return notice('Armazenamento indisponível.');
+ const {items,errors}=await presentationStore.importFiles(files);
+ if(items.length)notice(items.length+' arquivo(s) importado(s) somente neste navegador.');
+ if(errors.length)window.alert(errors.join('\n'));
+ render();
+}
+function drawFiles(root){
+ const w=el('div','page-layout rt-v113-files');
+ w.append(pageHead('ACERVO DO PROFISSIONAL','Meus arquivos','Importe documentos prontos para apresentar. Não é necessário recriar slides ou modificar o arquivo original.'));
+ const panel=el('section','rt-v113-upload');
+ const intro=el('div');intro.append(title('Trazer materiais para a Biblioteca',2),paragraph('PDF, PNG, JPEG ou WebP · até 25 MB por arquivo · armazenamento somente neste navegador.','muted'));
+ const controls=el('div','rt-v113-import-actions');
+ const label=el('label','rt-v113-upload-btn','+ Importar materiais');
+ const input=el('input');input.type='file';input.multiple=true;input.accept='.pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp';
+ input.setAttribute('aria-label','Importar arquivos para apresentar');
+ input.addEventListener('change',e=>{const files=[...e.target.files];e.target.value='';void importPresentationFiles(files);});
+ label.append(input);controls.append(label);
+ panel.append(intro,controls);w.append(panel);
+ const noticePanel=el('div','rt-v113-tip');
+ noticePanel.append(paragraph('PowerPoint (PPTX): exporte para PDF antes de importar, preservando a diagramação. Arquivos ficam neste dispositivo, sem sincronização ou proteção adequada para dados reais.'));
+ w.append(noticePanel);
+ const entries=presentationStore?.metadata()||[];
+ const heading=sectionLabel('ARQUIVOS IMPORTADOS','Materiais disponíveis',el('span','rt-v113-count',entries.length+' arquivo(s)'));
+ w.append(heading);
+ if(!entries.length){
+  const empty=el('div','rt-v113-empty');
+  empty.append(title('Nenhum material importado',3),paragraph('Adicione uma apresentação em PDF ou imagem. Depois clique em Apresentar para abrir o visualizador profissional.'));
+  w.append(empty);
+ }else{
+  const search=el('input','rt-v113-search');search.type='search';search.placeholder='Filtrar materiais...';search.setAttribute('aria-label','Filtrar materiais importados');
+  w.append(search);
+  const grid=el('div','rt-v113-list');w.append(grid);
+  function fill(){
+   grid.replaceChildren();
+   const q=norm(search.value);
+   const matching=entries.filter(x=>norm(x.title+' '+x.fileName).includes(q));
+   if(!matching.length){grid.append(paragraph('Nenhum arquivo corresponde à pesquisa.','muted'));return;}
+   for(const item of matching){
+    const card=el('article','rt-v113-file');
+    const ico=el('div','rt-v113-file-icon',item.mime==='application/pdf'?'PDF':'IMG');
+    const info=el('div','rt-v113-file-info');
+    info.append(title(item.title,3),paragraph(item.fileName+' · '+Math.max(1,Math.round(item.size/1024))+' KB','muted'));
+    const actions=el('div','rt-v113-card-actions');
+    actions.append(action('▶ Apresentar',()=>openPresenter({file:item.id}),'btn primary'));
+    actions.append(action(item.favorite?'★':'☆',()=>{presentationStore.change(item.id,{favorite:!item.favorite});render();},'btn small'));
+    actions.append(action('Renomear',()=>{const name=window.prompt('Título do material',item.title);if(name&&name.trim()){presentationStore.change(item.id,{title:name});render();}},'btn small'));
+    actions.append(action('Excluir',async()=>{if(!window.confirm('Excluir este arquivo local da Biblioteca? Essa ação não pode ser desfeita.'))return;
+      try{await presentationStore.remove(item.id);render();notice('Arquivo excluído do navegador.');}catch{notice('Não foi possível excluir o arquivo.');}},'btn small'));
+    card.append(ico,info,actions);grid.append(card);
+   }
+  }search.addEventListener('input',fill);fill();
+ }
+ root.append(w);
+}
+
 function render(){drawNav();$('location-name').textContent=VIEWS.find(x=>x[0]===state.view)?.[2]||'Início';let root=$('screen');root.replaceChildren();
  if(state.reader&&state.selected){drawReader(root);return}
- ({inicio:drawHome,conhecimento:drawKnowledge,ferramentas:drawTools,aprender:drawLearn,laboratorio:drawLab,minha:drawMine,referencias:drawRefs}[state.view]||drawHome)(root);
+ ({inicio:drawHome,conhecimento:drawKnowledge,ferramentas:drawTools,aprender:drawLearn,laboratorio:drawLab,arquivos:drawFiles,minha:drawMine,referencias:drawRefs}[state.view]||drawHome)(root);
 }
 function fromHash(){let h=location.hash.slice(1);if(h.startsWith('item=')){let id;try{id=decodeURIComponent(h.slice(5))}catch{};if(valid.has(id)){state.reader=true;state.view='conhecimento';state.selected=id;return}}
  if(h.startsWith('view=')){let view=h.slice(5);if(VIEWS.some(x=>x[0]===view)){state.view=view;state.reader=false;state.selected=null}}}

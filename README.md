@@ -1,3 +1,15 @@
+# RealTalent V11.3 — Biblioteca → Apresentador (PREVIEW)
+
+O profissional agora importa PDF e imagens em **Biblioteca → Meus arquivos** e clica **Apresentar** no material. O documento original abre em um visualizador profissional com modo foco, fullscreen, zoom, navegação, laser, caneta, marca-texto, cronômetro, notas temporárias e atalhos de ferramentas.
+
+A aba **Apresentações** reúne favoritos e recentes; não exige criação de slides. Roteiros do Estúdio anterior permanecem acessíveis só para compatibilidade.
+
+**Somente demonstração com arquivos fictícios:** armazenamento local sem acesso seguro, sem sincronização, e integração V11.2 isolada. PPTX precisa ser convertido para PDF. Anotações no painel são visíveis a quem olha a mesma tela.
+
+[Fluxos, restrições e testes](docs/V11_3_BIBLIOTECA_APRESENTADOR.md) · `node qa/testar-apresentador-v113.mjs`.
+
+---
+
 # RealTalent V11.2 — Publicação de Apresentações com RLS (Beta isolada)
 
 A V11.2 incorpora um **editor textual autenticado** na área `/seguro/` com apresentações vinculadas a sessões e autorização PostgreSQL por profissional, participante e processo. A publicação e a revogação dependem do banco. O antigo Estúdio V11.1 continua sendo demonstração local separada.

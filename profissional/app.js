@@ -683,20 +683,20 @@ function textArea(n,label,val='',max=250){return `<div class="form-field"><label
 function optionalArea(n,label,value='',max=700){
  return '<div class="form-field"><label for="f-'+n+'">'+esc(label)+'</label><textarea id="f-'+n+'" name="'+n+'" maxlength="'+max+'" rows="3">'+esc(value)+'</textarea></div>';
 }
-function actionExtra(a={}){
+function actionExtra(a={},expanded=false){
  const prior=[['normal','Normal'],['alta','Alta'],['baixa','Baixa']];
  const owners=[['participante','Participante'],['profissional','Profissional'],['conjunto','Em conjunto']];
  const progress=[['0','0% — Não iniciada'],['25','25% — Iniciada'],['50','50% — Metade'],['75','75% — Adiantada'],['90','90% — Quase concluída']];
  const current=a.status==='concluido'?90:Math.min(90,Number(a.progress)||0);
  const normalized=progress.findLast(x=>Number(x[0])<=current)?.[0]||'0';
- return '<div class="rt-v116-form-section"><h3>Acompanhamento</h3>'+
+ return '<details class="rt-v116-form-section"'+(expanded?' open':'')+'><summary>Acompanhamento · prioridade, avanço e revisões</summary>'+
   sel('priority','Prioridade',prior,a.priority||'normal')+
   sel('owner','Responsável',owners,a.owner||'participante')+
   sel('progress','Execução registrada',progress,normalized)+
   inp('reviewOn','Próxima revisão (opcional)',a.reviewOn||'','date',false)+
   inp('successCriteria','Como reconhecer a conclusão? (opcional)',a.successCriteria||'','text',false,'maxlength="180"')+
   inp('nextStep','Próximo passo (opcional)',a.nextStep||'','text',false,'maxlength="180"')+
-  optionalArea('internalNotes','Nota interna do profissional (não compartilhada)',a.internalNotes||'',900)+'</div>';
+  optionalArea('internalNotes','Nota interna do profissional (não compartilhada)',a.internalNotes||'',900)+'</details>';
 }
 function sel(n,label,opts,selected=''){return `<div class="form-field"><label for="f-${n}">${label}</label><select id="f-${n}" name="${n}" required>${opts.map(o=>`<option value="${esc(o[0])}" ${o[0]===selected?'selected':''}>${esc(o[1])}</option>`).join('')}</select></div>`;}
 const pgOpts=()=>db.programs.filter(x=>x.status!=='finalizado').map(p=>[p.id,`${clientOf(p)} — ${p.goal}`]);
@@ -730,7 +730,7 @@ function openModal(kind,id,preferredGoal=''){
    name='Revisar avanço da ação';
    html='<p class="inline-note">Registre o avanço e programe a próxima revisão. Marque Concluir no cartão apenas quando a execução for efetivamente realizada.</p>'+
     '<div class="rt-v116-review-name"><strong>'+esc(a.title)+'</strong><small>Prazo: '+dateFmt(a.due)+'</small></div>'+
-    actionExtra(a);
+    actionExtra(a,true);
    save='Registrar revisão';break;
   }
   case 'new-session-action':{

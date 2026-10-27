@@ -27,6 +27,19 @@ function clean(){
  for(const url of ui.urls)URL.revokeObjectURL(url);ui.urls.clear();
  if(ui.previewURL){URL.revokeObjectURL(ui.previewURL);ui.previewURL=null;}
 }
+function positionModal(d){
+ // A Biblioteca é apresentada em um iframe cujo tamanho cresce com o conteúdo.
+ // Posicionar o modal onde o profissional está olhando, não no centro do iframe inteiro.
+ try{
+  const frame=window.frameElement;if(!frame||window.parent===window)return;
+  const rect=frame.getBoundingClientRect();
+  const visibleHeight=Math.max(360,window.parent.innerHeight||720);
+  d.style.position='absolute';
+  d.style.margin='0 auto';
+  d.style.top=Math.max(18,(-rect.top)+Math.min(54,visibleHeight*.07))+'px';
+  d.style.maxHeight=Math.max(300,visibleHeight-90)+'px';
+ }catch{/* Mantém posicionamento padrão em outros contextos. */}
+}
 function dialog(title,explain,fields,onSave){
  const d=el('dialog','rt-v115-dialog'),form=el('form');form.method='dialog';
  form.append(el('h2','',title),el('p','rt-v115-dialog-copy',explain));
@@ -47,7 +60,7 @@ function dialog(title,explain,fields,onSave){
  });
  d.append(form);ui.root.append(d);
  d.addEventListener('close',()=>{d.remove();});
- d.showModal();
+ positionModal(d);d.showModal();
  const first=form.querySelector('input,select');first?.focus();
 }
 function createFolder(){
@@ -249,7 +262,9 @@ function showPreview(file){
  const stage=el('div','rt-v115-preview-stage', 'Carregando arquivo...');
  const bottom=el('div','rt-v115-preview-actions');
  bottom.append(btn('▶ Apresentar',()=>{d.close();ui.callbacks.present({file:file.id});},'btn primary'));
- d.append(head,stage,bottom);ui.root.append(d);d.showModal();
+ d.append(head,stage,bottom);ui.root.append(d);positionModal(d);
+ if(window.frameElement&&window.parent!==window){try{d.style.height=Math.max(360,window.parent.innerHeight-95)+'px';}catch{}}
+ d.showModal();
  let url=null;
  d.addEventListener('close',()=>{if(url){ui.urls.delete(url);URL.revokeObjectURL(url);}d.remove();});
  void (async()=>{

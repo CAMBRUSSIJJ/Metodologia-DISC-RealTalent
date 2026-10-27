@@ -1,7 +1,7 @@
 {
-  "version": "11.2.0-beta",
-  "product": "RealTalent DISC/ACER — Apresentações com autorização RLS (Beta isolada)",
-  "base": "11.1.0-preview",
+  "version": "11.3.0-preview",
+  "product": "RealTalent DISC/ACER — Biblioteca e Apresentador Profissional (Preview)",
+  "base": "11.2.0-beta",
   "files": {
     ".github/workflows/v913-session-e2e.yml": "36f2c5f26d2304cd930acc749893f4071606b7da5818be2fc1bc611b724a0361",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
@@ -33,7 +33,7 @@
     "assets/rt-v98-client.css": "b5d634dfd30085e2214369709b82897de84ba787139afe6f67df1f81335da06e",
     "assets/rt-v99-integrated.css": "aa19d3abd404683d4769513c89f1fd193bbd4ec1446b16bea3eac24a0b719d4c",
     "biblioteca/app.css": "058d37f3801c3814b361235f4859513d0c3c987771a3626b4dad554c7c22c015",
-    "biblioteca/app.js": "f8ff79014d559399c0d15e2903f4477bf89fb26bb428e6600e405dfbfbeaa612",
+    "biblioteca/app.js": "cd91941cbe70831994a81bb76492ce8d9f3acfe80bedef875d38e36af23f7efb",
     "biblioteca/atualizar-dados.py": "31794844f3d5fa35bd0d78bddc9ed0e9576fab9df35c2c4ff229af61ed845b30",
     "biblioteca/build_library.py": "13658d54c81116df77df35a5065f2010d8f013f43ce331551fa8b308dd23cb67",
     "biblioteca/data/artigos.json": "cfed1208a1c7f3917962cee760d3a511b278ee7ba7ca3a182294344bda9c9b83",
@@ -53,7 +53,7 @@
     "biblioteca/data/trilhas_aprendizagem.json": "73140f5515d1824b0660ae13f314f665f4830a7bb47f859f7b19165fe0710683",
     "biblioteca/guias/INTEGRACAO_AGENT_CRM.md": "f9e05fbb25d9021ac1d95b3667057a07c6d499a9948454df6e719d9c7d8e051c",
     "biblioteca/guias/VALIDACAO_INSTRUMENTO.md": "078dcf6d5c5e63136bc268a3a7e0f1cd06f2b1ebb6cab672a110012c77ed2d0d",
-    "biblioteca/index.html": "292175b35e6e0bbf9d313ea9b1e2c2671789eddf262b5a17c0f669e090b82a4b",
+    "biblioteca/index.html": "593747c53a7dc27963fe6863efdb495217e58574ebadb414755cf6b86bf68fd1",
     "biblioteca/original/instrumento_extraido.json": "8d106d6970c7bd5469d778e17fbcf5539ab5b862dc420bf59def141ac44163e9",
     "biblioteca/README.md": "5d2c55e21fc33425b387d52cfc8c15f79be7a12c2bece6983283ca73ecd3f869",
     "cliente/app.css": "39314597775a6cec713e8f10a7f8e17453f18e557bc5acbfb0c000e8506d84eb",
@@ -101,7 +101,7 @@
     "login.html": "6d5989d9c9d12495fb1a20465ff33422dfdcc8f4f9a036b07a2cfc35a6455422",
     "originais/RealTalent_SISTEMA_FUNCIONAL_ORIGINAL.html": "0d473b7c83500c3cce799a227c45c4b6a1c093773cbc01fd8bc3eadda71bf1d5",
     "profissional/app.css": "d2e99bdd3cdff367a1747b69e82b8583df021fc48ec7d6aa89bb4cbf0f725662",
-    "profissional/app.js": "20458cba68ff355ad5c38ed39c10bae22069c39ee8fcee78bb90d316a976829c",
+    "profissional/app.js": "c0c821b72dfce0ddbea4380da89ee0e2255d0a154f1b9600380941b7e25698e0",
     "profissional/index.html": "779ea0898615a10f714b819fe79f58d372e5bff43c4bd76cb9d2ea45b5fe8c06",
     "qa/testar_minhas_atividades_v98.py": "0d6e9eebf2bc583c55dddae7923f3c0e4ff375677173851775fe5953b39757ba",
     "qa/testar-abas-cliente-v94.py": "fa9d108cb289837622db879ac36855c4d1d9f052d53a3e4aad21141f0628561d",
@@ -121,7 +121,7 @@
     "qa/testar-sidebar-v91.py": "be6b9f622e7ac9907e5b07f235064b4254b97ad9177d86c349f13b1d19b201df",
     "qa/testar-workflow-v97.py": "c1544f3dc77e2532a1fe9e5de2f16322260ab9c11dc07acdbcbedc5f7929fccb",
     "qa/testar-workspace-v93.py": "bb1e990ed4fb1a0ed6d7fdfb0f306e165da9723dddb431ce4ea2a55acac0bb4f",
-    "README.md": "f36f263054a652ee6f7e5a9d5f88f16a50d24f3b5a16895704777466b02e8617",
+    "README.md": "2620f857263113e555277721c3f12c5feeef0798abe9775c5dbfa5542a917eb4",
     "realtalent-graficos.html": "e0492b20a955cfc3d783eabe47c1a3a36e15cb9570db574d265b96b836bc9f34",
     "scripts/server.py": "6b24dadaa6b3aa820597018db63f5364313578bf02163a79e880bbff7d09c861",
     "scripts/verify-build.py": "3bb06c4049bdc380ccd0a8b84ca7790f1991dd56808bacc7226ba7f0aee6567a",
@@ -165,6 +165,15 @@
     "supabase/tests/presentation_materials_rls.test.sql": "0b7690a6b5254ed45b3f117f074d3f97019532e58a30ff4fcab7ad719058edc2",
     "seguro/presentations.mjs": "7fc5bdefa3e37a38527617e3d66b9b59202b3cb3478710ad9a87619758e7cd4a",
     "qa/testar-apresentacoes-seguras-v112.mjs": "c7f2391a9b55a20b6a8ad5abae82d84f85aa254ace26052ee6a51860332846de",
-    "docs/V11_2_APRESENTACOES_SEGURAS.md": "584bd6db7e5b8871418646e447a02ff0ef2d4a37f6970105befc3f87a6e16e29"
+    "docs/V11_2_APRESENTACOES_SEGURAS.md": "584bd6db7e5b8871418646e447a02ff0ef2d4a37f6970105befc3f87a6e16e29",
+    "assets/rt-presentation-library-v113.js": "0d7139af22f803ef19b14d6c181016e1d187c3fe51cabdec9c3556f8c85f02bd",
+    "apresentacoes/central.html": "4fffa6eadf71614381bbb20727bdd9968e456fa1814d655628d12589bb2c01a4",
+    "apresentacoes/central.js": "ded2f231dfd8a7fa2ab2593db95feed13cb59926475996c93cc237ea9a76eae9",
+    "apresentacoes/visualizador.html": "9a7970867246d86fb3a0b61c562a54dd9bfaac1551ebdb776377e33472bbabc1",
+    "apresentacoes/visualizador.css": "a94c4202f7a7ba5eb1ec209822d87dd1ba0ab64b21143e66e0337a71a666a371",
+    "apresentacoes/visualizador.js": "2a12aa3730144832ccc8090134d8e64d873fcb66c385763c5b49f3a9fed3b33e",
+    "biblioteca/presentation-files.css": "b980b6f8d8126ec5418d74b9f0d6610529485203e864399897630611a61f61fa",
+    "docs/V11_3_BIBLIOTECA_APRESENTADOR.md": "d4718d383e82a80a5622b046930d58e96f12f21adbb44bbda8805a6197177f5a",
+    "qa/testar-apresentador-v113.mjs": "7bdb3d4bfb9de5c95eeddfa28e00f7d9e1000d58111a2ab4708813697c4339ab"
   }
 }

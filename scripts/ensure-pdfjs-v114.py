@@ -42,7 +42,7 @@ def main():
         with os.fdopen(fd,"wb") as f:
             f.write(body)
         os.replace(path,DEST/name)
-    (DEST/"version.txt").write_text(VERSION+"\\n")
+    (DEST/"version.txt").write_text(VERSION)
     print(f"PDF.js {VERSION} instalado localmente: {len(data)} módulos, uso sem CDN após instalar.")
     return 0
 

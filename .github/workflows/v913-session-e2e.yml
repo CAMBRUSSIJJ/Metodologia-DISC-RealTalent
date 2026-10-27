@@ -75,6 +75,10 @@ jobs:
         run: python qa/testar-apresentacoes-sessoes-v111.py
         env:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V11.3 Biblioteca e Apresentador
+        run: python qa/testar-apresentador-v113.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V11 estúdio
         run: python qa/testar-apresentacoes-v110.py
         env:

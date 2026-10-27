@@ -1,3 +1,15 @@
+# RealTalent V11.5 — Biblioteca Profissional (PREVIEW)
+
+**Organize na Biblioteca e apresente diretamente**, sem recriar slides. A V11.5 acrescenta pastas, categorias e etiquetas personalizáveis; visualização em grade/lista, busca e filtros, ordenação, visões salvas e importação por arrastar/soltar. Inclui miniaturas de imagem e primeira página do PDF via PDF.js, além de uma pré-visualização do arquivo original.
+
+Os materiais já importados nas V11.3/V11.4 são lidos pelo mesmo armazenamento e recebem metadados padrão (Sem pasta / Sem categoria) sem duplicação. Excluir uma pasta move os arquivos para **Sem pasta** sem apagar os dados.
+
+[Guia e limitações V11.5](docs/V11_5_BIBLIOTECA_PROFISSIONAL.md) · Testes: `node qa/testar-biblioteca-v115.mjs` e `python3 qa/testar-biblioteca-v115.py`.
+
+**Somente demonstração com materiais fictícios.** Não usar prontuários ou documentos pessoais. PDF.js exige módulos locais instalados pelo inicializador Linux ou conexão para carregar a dependência. Não há importação PPTX nem backend seguro de arquivos nesta etapa.
+
+---
+
 # RealTalent V11.4 — Apresentador Profissional 2.0 (PREVIEW)
 
 PDF.js integrado ao visualizador: navegação precisa por página, total de páginas, miniaturas sob demanda, zoom e ajuste à tela/largura. Caneta e marca-texto passam a usar coordenadas relativas à página; as marcações permanecem ao navegar, podem ser desfeitas/refeitas e exportadas **separadamente em JSON**. O PDF original não é modificado.

@@ -561,7 +561,7 @@ function showTools(){
  const activeView=(new URLSearchParams(location.hash.split('?')[1]||'').get('view')||'inicio');
  const allowedViews=['inicio','conhecimento','ferramentas','laboratorio','aprender','arquivos','referencias'];
  const view=allowedViews.includes(activeView)?activeView:'inicio';
- return head('MATERIAIS E PRÁTICAS','Biblioteca','Conhecimento, perfis, referências e simulações integrados ao espaço profissional.')+
+ return head('ACERVO E RECURSOS','Biblioteca','Organize documentos, conteúdos DISC/ACER e ferramentas; apresente materiais prontos sem recriar slides.')+
  `<div class="rt-v8-tabs rt-v8-subtabs" role="tablist" aria-label="Seções da biblioteca">${[['inicio','Visão geral'],['conhecimento','Conhecimento'],['ferramentas','Ferramentas'],['laboratorio','Communication Lab'],['aprender','Trilhas'],['arquivos','Meus arquivos'],['referencias','Referências']].map(([key,title],i)=>`<button type="button" data-lib-view="${key}" aria-selected="${key===view}">${title}</button>`).join('')}</div>`+
  moduleFrame('library','../biblioteca/index.html?embedded=1#view='+view,'Biblioteca e Communication Lab')+
  `<p class="inline-note">Biblioteca educacional com recursos contextualizados. O profissional continua responsável por selecionar o que é adequado à sua atuação.</p>`;

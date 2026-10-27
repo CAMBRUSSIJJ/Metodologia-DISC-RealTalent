@@ -1,4 +1,4 @@
-name: RealTalent V9.13–V11.3 — Publicação Segura e Regressão
+name: RealTalent V9.13–V11.4 — Publicação Segura e Regressão
 on:
   pull_request:
     branches: [main]
@@ -22,6 +22,7 @@ on:
       - 'feature/v11-1-session-presentations'
       - 'feature/v11-2-secure-presentations'
       - 'feature/v11-3-biblioteca-apresentador'
+      - 'feature/v11-4-apresentador-profissional-2'
   workflow_dispatch:
 permissions:
   contents: read
@@ -67,6 +68,16 @@ jobs:
           node --check apresentacoes/central.js
           node --check assets/rt-presentation-library-v113.js
           node qa/testar-apresentador-v113.mjs
+      - name: V11.4 — estrutura e sintaxe do PDF.js integrado
+        run: |
+          node --check apresentacoes/visualizador.js
+          node qa/testar-apresentador-v114.mjs
+          python -m py_compile scripts/ensure-pdfjs-v114.py qa/testar-apresentador-v114.py
+      - name: Instalar PDF.js pinado no runner
+        run: |
+          python scripts/ensure-pdfjs-v114.py
+          test -s vendor/pdfjs/pdf.mjs
+          test -s vendor/pdfjs/pdf.worker.mjs
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0
@@ -77,6 +88,10 @@ jobs:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V11.3 Biblioteca e Apresentador
         run: python qa/testar-apresentador-v113.py
+        env:
+          REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
+      - name: Playwright E2E — V11.4 PDF real e anotações por página
+        run: python qa/testar-apresentador-v114.py
         env:
           REALTALENT_QA_OUTPUT: /tmp/realtalent-v913-qa
       - name: Playwright E2E — V11 estúdio

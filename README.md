@@ -1,3 +1,15 @@
+# RealTalent V11.4 — Apresentador Profissional 2.0 (PREVIEW)
+
+PDF.js integrado ao visualizador: navegação precisa por página, total de páginas, miniaturas sob demanda, zoom e ajuste à tela/largura. Caneta e marca-texto passam a usar coordenadas relativas à página; as marcações permanecem ao navegar, podem ser desfeitas/refeitas e exportadas **separadamente em JSON**. O PDF original não é modificado.
+
+No Linux, `abrir-linux.sh` verifica a integridade do pacote e tenta instalar automaticamente uma versão fixa do PDF.js em `vendor/pdfjs/`. Sem acesso à rede na primeira execução, o aplicativo tenta usar o CDN versionado; se este estiver inacessível, mantém somente a visualização nativa básica.
+
+**Demonstração local, sem dados reais.** Ainda não oferece modo de duas telas com notas privadas, sincronização segura nem importação PPTX.
+
+[Detalhes da V11.4](docs/V11_4_APRESENTADOR_PROFISSIONAL.md) · `node qa/testar-apresentador-v114.mjs`.
+
+---
+
 # RealTalent V11.3 — Biblioteca → Apresentador (PREVIEW)
 
 O profissional agora importa PDF e imagens em **Biblioteca → Meus arquivos** e clica **Apresentar** no material. O documento original abre em um visualizador profissional com modo foco, fullscreen, zoom, navegação, laser, caneta, marca-texto, cronômetro, notas temporárias e atalhos de ferramentas.

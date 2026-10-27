@@ -41,7 +41,7 @@ def main():
             assert viewer.locator('#doc-title').inner_text()=='apresentacao-ficticia'
             assert viewer.locator('#document img').get_attribute('src').startswith('blob:')
             viewer.locator('#zoom-in').click()
-            assert viewer.locator('#zoom-value').inner_text()=='110%'
+            assert viewer.locator('#zoom-value').inner_text().endswith('110%')
             viewer.locator('[data-tool="pen"]').click()
             assert viewer.locator('#ink').is_visible()
             viewer.locator('#clear-ink').click()

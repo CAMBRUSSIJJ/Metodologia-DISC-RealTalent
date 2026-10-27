@@ -5,9 +5,10 @@ PORT="${REALTALENT_PORT:-8810}"
 if ! command -v python3 >/dev/null 2>&1; then echo 'Instale Python 3: sudo apt install python3' >&2; exit 1; fi
 cd "$DIR"
 echo '══════════════════════════════════════════════════'
-echo '  RealTalent DISC/ACER V9.10 — SESSÕES E CONTINUIDADE'
+echo '  RealTalent DISC/ACER V11.4 — APRESENTADOR PROFISSIONAL'
 echo '══════════════════════════════════════════════════'
 python3 scripts/verify-build.py
+python3 scripts/ensure-pdfjs-v114.py
 printf 'Diretório: %s\n' "$DIR"
 printf 'Entrada: http://127.0.0.1:%s/index.html\n' "$PORT"
 printf 'Professional: http://127.0.0.1:%s/profissional/index.html\n' "$PORT"

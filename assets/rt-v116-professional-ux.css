@@ -71,3 +71,16 @@
 @media(max-width:940px){.rt-v116-action-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.rt-v116-board-heading{align-items:stretch;flex-direction:column}.rt-v116-board-heading label{max-width:100%;width:100%}}
 @media(max-width:700px){.rt-v116-action-list{padding:0 12px 14px}.rt-v116-action{padding:14px;flex-direction:column}.rt-v116-action-actions{flex-direction:row;flex:0 0 auto;flex-wrap:wrap}.rt-v116-action-actions>*{flex:1 1 110px}.rt-v116-activities .rt-v94-panel-body{padding:14px}.rt-v116-tool-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.rt-v116-action *, .rt-v116-tool *{transition:none!important}}
+
+/* UX: divulgar complexidade sob demanda e melhorar leitura em 1280×720. */
+#modal details.rt-v116-form-section{display:block;border:1px solid var(--rt-line,#43395e);background:var(--rt-panel,#241c3e);border-radius:11px;padding:0 13px;margin:14px 0}
+#modal .rt-v116-form-section>summary{cursor:pointer;padding:13px 3px;font-size:12px;font-weight:780;line-height:1.4;color:var(--rt-text,#f6f3ff)}
+#modal .rt-v116-form-section[open]>summary{border-bottom:1px solid var(--rt-line,#43395e);margin-bottom:12px}
+#modal .rt-v116-form-section>.form-field{margin:0 0 12px}
+.rt-v116-activities .rt-v94-panel h3{font-size:16px;letter-spacing:-.02em}
+.rt-v116-activities .rt-v94-resource strong,.rt-v116-activities .rt-v94-row strong{font-size:13px;line-height:1.5}
+.rt-v116-activities .rt-v94-row-copy p{font-size:12px;line-height:1.6;margin-top:5px}
+.rt-v116-activities .rt-v94-panel{border-radius:13px}
+.rt-v116-activities .rt-v94-resource{padding:17px 18px;border-radius:10px}
+.rt-v116-action-actions>button:focus-visible,.rt-v116-tool button:focus-visible{outline:3px solid var(--rt-purple,#9278eb);outline-offset:2px}
+@media(max-width:750px){.rt-v116-action-summary{gap:8px}.rt-v116-summary-item{padding:13px}.rt-v116-action-facts{gap:6px 13px}}

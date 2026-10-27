@@ -3,7 +3,7 @@
   "product": "RealTalent DISC/ACER — Biblioteca e Apresentador Profissional (Preview)",
   "base": "11.2.0-beta",
   "files": {
-    ".github/workflows/v913-session-e2e.yml": "09d4131b53346bd169b9bd6477780567f0d2b58595e037b9eeac315450af2124",
+    ".github/workflows/v913-session-e2e.yml": "c2b5923ea1ce3dbc085a62ddc20d6c5a6210ba9412c5ec46e5c126475298b020",
     "abrir-linux.sh": "a936be81d5cc14934fe14e9e1356eff613b4c165ca2bb9433a5a3c9f0834dfcf",
     "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
@@ -154,8 +154,8 @@
     "apresentacoes/index.html": "790b46e164f648c745bd0e8b78fc7f677899d43d94870f88285c2e77b7d68251",
     "apresentacoes/studio.css": "8943077795fdea8a3c1955c70340c7643b219d98208be5519bf768cfee39448b",
     "apresentacoes/studio.js": "41be4d9391dfedd2a4d9f23d5518bef6ed694b7ccc7bba23875b11e0dd15e57c",
-    "qa/testar-apresentacoes-v110.py": "e8d1b78f0b9f1b00b8d4fa79237eec33c50d9e07a19f2994880ea6f519e42590",
-    "qa/testar-apresentacoes-v110.js": "344198ce5440d65179804fdc4d960a617cda5fb26d3394b70f82fa71ac13cdb3",
+    "qa/testar-apresentacoes-v110.py": "4c364e10ee84587cc7b126e5f8aabdbfaeb1a00ab07a2e2c4f623eb0067936ad",
+    "qa/testar-apresentacoes-v110.js": "37237752e063fa3001800de481ee41c1785280c31b700904f81136576063341e",
     "docs/V11_ESTUDIO_APRESENTACOES.md": "bfa08936fc3b47e7553d115e6c145cb25403c29a6f8b97aa7539f01e3c68b41d",
     "assets/rt-v111-presentations.css": "fb9a22a97222efc7d0c111a1b70511d21eb5f13ed97e5e09a34799d1d60b298c",
     "qa/testar-apresentacoes-sessoes-v111.js": "b5d2007beea3a8365a25cf64db6f7e56bf48ed3f9a9d52ae7593ec32e6b02705",
@@ -173,7 +173,8 @@
     "apresentacoes/visualizador.css": "a94c4202f7a7ba5eb1ec209822d87dd1ba0ab64b21143e66e0337a71a666a371",
     "apresentacoes/visualizador.js": "2a12aa3730144832ccc8090134d8e64d873fcb66c385763c5b49f3a9fed3b33e",
     "biblioteca/presentation-files.css": "b980b6f8d8126ec5418d74b9f0d6610529485203e864399897630611a61f61fa",
-    "docs/V11_3_BIBLIOTECA_APRESENTADOR.md": "d4718d383e82a80a5622b046930d58e96f12f21adbb44bbda8805a6197177f5a",
-    "qa/testar-apresentador-v113.mjs": "7bdb3d4bfb9de5c95eeddfa28e00f7d9e1000d58111a2ab4708813697c4339ab"
+    "docs/V11_3_BIBLIOTECA_APRESENTADOR.md": "16a36fabbe3de068a1a1efaf1c3767c4f09874377792a8c63ebb9817d6d237dc",
+    "qa/testar-apresentador-v113.mjs": "7bdb3d4bfb9de5c95eeddfa28e00f7d9e1000d58111a2ab4708813697c4339ab",
+    "qa/testar-apresentador-v113.py": "0ed50ba5a43b676ad61695a8e43964fc391f12ab5d54208eb1f9ef286ad18623"
   }
 }

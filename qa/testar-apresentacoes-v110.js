@@ -28,7 +28,7 @@ assert.match(html,/id="slide-notes"/);
 assert.match(html,/application\/pdf,image\/jpeg,image\/png,image\/webp/);
 assert.match(index,/data-page="apresentacoes"/);
 assert.match(professional,/apresentacoes:showPresentations/);
-assert.match(professional,/allow="fullscreen" allowfullscreen/);
+assert.match(professional,/apresentacoes\\/central\\.html/);
 assert.match(css,/\.presenter\{/);
 assert.match(css,/@media\(max-width:690px\)/);
 console.log('V11.0 contratos OK — 16:9, acervo, editor, persistência local, notas privadas e navegação.');

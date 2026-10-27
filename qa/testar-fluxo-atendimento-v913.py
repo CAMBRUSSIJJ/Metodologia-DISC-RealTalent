@@ -50,7 +50,8 @@ def main():
         steps.append("01: cliente/sessão e acesso às ferramentas OK")
 
         # Preparação GROW — preenchida na sessão existente, nunca no portal.
-        if is_v914:go(page,"#ferramentas?tab=kit&session=s1")
+        # Desde V11.6 o Kit fica exclusivamente dentro da sessão do cliente.
+        if is_v914:go(page,"#cliente=c1&tab=sessoes&program=p1&session=s1&moment=antes")
         else:page.locator('a[href*="tab=kit&session=s1"]').first.click()
         form=page.locator("#rt-v911-prep-form")
         try:
@@ -168,7 +169,7 @@ def main():
         for width in [1440,390]:
             page.set_viewport_size({"width":width,"height":844})
             for tab in ["kit","perguntas","temporizador"]:
-                go(page,"#ferramentas?tab="+tab+"&session=s1")
+                go(page,("#cliente=c1&tab=sessoes&program=p1&session=s1&moment=antes" if tab=="kit" else "#ferramentas?tab="+tab+"&session=s1"))
                 assert page.locator("#content").is_visible()
                 overflow=page.evaluate("Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-innerWidth")
                 assert overflow<=5, f"Overflow horizontal {overflow}px na aba {tab}, viewport {width}px"

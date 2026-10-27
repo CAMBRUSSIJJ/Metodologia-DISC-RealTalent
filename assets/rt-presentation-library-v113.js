@@ -53,16 +53,26 @@ function validate(file){
  if(file.size<1||file.size>MAX_BYTES)throw new Error('Cada documento deve ter entre 1 byte e 25 MB.');
  return mime;
 }
+async function validSignature(file,mime){
+ const bytes=new Uint8Array(await file.slice(0,16).arrayBuffer());
+ const text=String.fromCharCode(...bytes);
+ if(mime==='application/pdf')return text.startsWith('%PDF-');
+ if(mime==='image/png')return bytes[0]===137&&text.slice(1,4)==='PNG';
+ if(mime==='image/jpeg')return bytes[0]===255&&bytes[1]===216&&bytes[2]===255;
+ if(mime==='image/webp')return text.startsWith('RIFF')&&text.slice(8,12)==='WEBP';
+ return false;
+}
 async function importFiles(fileList){
  const result=[],errors=[];
  for(const file of Array.from(fileList||[])){
   try{
    const mime=validate(file),items=metadata();
+   if(!await validSignature(file,mime))throw new Error('Conteúdo incompatível com o formato indicado. Verifique ou exporte novamente o arquivo.');
    if(items.length>=MAX_FILES)throw new Error('Limite de 60 documentos neste navegador.');
    const entry={id:id(),title:String(file.name).replace(/\.[^.]+$/,'').slice(0,120),
     fileName:String(file.name).slice(0,160),mime,size:file.size,createdAt:new Date().toISOString(),
     lastOpened:null,favorite:false};
-   await storeFile(entry.id,file);
+   await storeFile(entry.id,new Blob([file],{type:mime}));
    try{persist([entry,...items]);}
    catch(e){await deleteFile(entry.id).catch(()=>{});throw e;}
    result.push(entry);

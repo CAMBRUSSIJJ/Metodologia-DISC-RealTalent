@@ -555,11 +555,12 @@ function showActionPlan(){
   const priority=['alta','normal','baixa'].includes(a.priority)?a.priority:'normal';
   const owner=a.owner==='profissional'?'Profissional':a.owner==='conjunto'?'Conjunto':'Participante';
   const history=(Array.isArray(a.history)?a.history:[]).slice(-4).reverse();
+  const source=a.sessionId?db.sessions.find(s=>s.id===a.sessionId&&s.programId===a.programId):null;
   return `<article class="rt-v116-action" data-action-id="${esc(a.id)}">
    <div class="rt-v116-action-main">
     <div class="rt-v116-action-overline">${actionBadge(st)}<span class="rt-v116-priority rt-v116-priority-${priority}">Prioridade ${esc(priority)}</span><span class="rt-v116-vis">${a.visibility==='compartilhado'?'Compartilhada':'Privada'}</span></div>
     <h3>${esc(a.title)}</h3>
-    <div class="rt-v116-action-context"><strong>${esc(clientOf(p))}</strong><span>${esc(goal?.title||p.goal)}</span></div>
+    <div class="rt-v116-action-context"><strong>${esc(clientOf(p))}</strong><span>${esc(goal?.title||p.goal)}</span>${source?`<a class="rt-v116-action-source" href="${wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(source.id))}">Sessão de origem</a>`:''}</div>
     <div class="rt-v116-action-progress"><div class="rt-v116-progress-head"><span>Execução registrada</span><strong>${progress}%</strong></div>
      <div class="rt-v116-progress-track" role="progressbar" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da ação"><span style="width:${progress}%"></span></div></div>
     <dl class="rt-v116-action-facts"><div><dt>Prazo</dt><dd>${dateFmt(a.due)}</dd></div><div><dt>Responsável</dt><dd>${owner}</dd></div><div><dt>Próxima revisão</dt><dd>${a.reviewOn?dateFmt(a.reviewOn):'Não marcada'}</dd></div></dl>

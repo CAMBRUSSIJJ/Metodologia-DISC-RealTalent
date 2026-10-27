@@ -309,7 +309,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   body=ws94TabIntro(id,pid,chosen,'Acompanhe o que foi enviado, as respostas recebidas e o que precisa ser revisado.',[
    {label:'Para revisar',value:review.length+discReview.length,hint:'Respostas sem devolutiva'},
    {label:'Aguardando resposta',value:pendingInstruments.length+pendingDisc.length,hint:'Instrumentos e exercícios'},
-   {label:'Total atribuído',value:instruments.length+tasks.length,hint:'Neste processo'}],btn('+ Atribuir exercício','new-instrument-for',pid,'btn-primary'))+
+   {label:'Total atribuído',value:instruments.length+tasks.length,hint:'Neste processo'}],btn('+ Atribuir exercício','new-instrument-for',pid,'btn-primary')+(RTCustomTools.list().length?btn('Atribuir ferramenta própria','assign-custom-tool',pid,'btn-secondary'):''))+
   (review.length+discReview.length?`<div class="rt-v94-attention"><div><strong>Respostas aguardando análise</strong><p>${review.length+discReview.length} atividade(s) pronta(s) para sua revisão profissional.</p></div><a class="btn-secondary" href="${wsUrl(id,'atividades',pid,'view=respondidas')}">Ver respostas</a></div>`:'')+
   ws94Filters(id,pid,chosen,[['acompanhar','Em acompanhamento',pendingInstruments.length+pendingDisc.length+review.length+discReview.length],['respondidas','Respondidas',instruments.filter(x=>x.responses).length+tasks.filter(x=>x.status==='respondido').length],['todas','Todas',tasks.length+instruments.length]],view)+
   `<div class="rt-v94-layout rt-v116-activities"><div class="rt-v94-main">`+
@@ -695,6 +695,28 @@ function openModal(kind,id,preferredGoal=''){
     break;
   }
   case 'new-action':{const pid=pgOpts().some(x=>x[0]===id)?id:pgOpts()[0]?.[0]||'';const gs=goalOptions(pid);const selected=gs.some(g=>g[0]===preferredGoal)?preferredGoal:gs.some(g=>g[0]===ws94Query().get('goal'))?ws94Query().get('goal'):gs[0]?.[0]||'';name='Criar ação de desenvolvimento';html='<p class="inline-note">O compromisso é privado por padrão. Escolha o objetivo e compartilhe apenas quando desejar.</p>'+sel('programId','Processo',pgOpts(),pid)+sel('goalId','Objetivo relacionado',gs,selected)+textArea('title','Ação concreta acordada')+inp('due','Prazo',plus(7),'date')+sel('resource','Recurso de apoio',[['Nenhum','Nenhum'],['Biblioteca DISC/ACER','Biblioteca DISC/ACER'],['Communication Lab','Communication Lab'],['Plano de desenvolvimento','Plano de desenvolvimento']])+sel('visibility','Disponibilidade',[['privado','Somente profissional (padrão)'],['compartilhado','Compartilhar na Minha Jornada']]);break;}
+  case 'new-custom-tool':
+  case 'edit-custom-tool':{
+   const tool=kind==='edit-custom-tool'?RTCustomTools.list().find(x=>x.id===id):null;
+   if(kind==='edit-custom-tool'&&!tool)return;
+   name=tool?'Editar ferramenta própria':'Criar ferramenta própria';
+   html='<p class="inline-note">Crie roteiros educativos reutilizáveis. Não são testes psicológicos ou diagnósticos.</p>'+
+    inp('title','Nome da ferramenta',tool?.title||'','text',true,'maxlength="110"')+
+    sel('category','Tipo',[['Reflexão guiada','Reflexão guiada'],['Coaching','Coaching'],['Desenvolvimento','Desenvolvimento'],['Comunicação','Comunicação'],['Outros','Outros']],tool?.category||'Reflexão guiada')+
+    inp('purpose','Finalidade resumida (opcional)',tool?.purpose||'','text',false,'maxlength="260"')+
+    textArea('instructions','Orientações para utilização',tool?.instructions||'',1800);
+   save=tool?'Salvar ferramenta':'Criar ferramenta';break;
+  }
+  case 'assign-custom-tool':{
+   const tools=RTCustomTools.list(),p=program(id);
+   if(!p||!tools.length){toast('Crie uma ferramenta própria e abra um cliente com processo ativo.');return;}
+   name='Atribuir ferramenta própria';
+   html='<p class="inline-note">Reflexão vinculada somente a este cliente e objetivo. Usa a experiência de atividades já existente na Minha Jornada.</p>'+
+    sel('toolId','Ferramenta',tools.map(x=>[x.id,x.title]))+
+    sel('goalId','Objetivo relacionado',goalOptions(id))+
+    sel('visibility','Disponibilização',[['privado','Rascunho interno'],['compartilhado','Liberar na Minha Jornada']]);
+   save='Atribuir ferramenta';break;
+  }
   case 'new-disc':name='Atribuir mapeamento DISC/ACER';html='<p class="inline-note">Questionário educativo original de 20 perguntas. O participante verá a atividade após o compartilhamento explícito.</p>'+sel('programId','Processo do cliente',pgOpts(),id||'')+sel('visibility','Disponibilização',[['privado','Manter rascunho interno'],['compartilhado','Liberar na Minha Jornada']]);break;
   case 'disc-feedback':{const t=db.discAssignments.find(x=>x.id===id&&x.status==='respondido');if(!t)return;name='Devolutiva DISC/ACER';html='<p class="inline-note">A devolutiva é privada por padrão. Evite diagnósticos e interpretações sem respaldo.</p>'+textArea('feedback','Comentário profissional',t.feedback||'',1600)+sel('feedbackVisibility','Disponibilizar ao participante?', [['privado','Não, manter privado'],['compartilhado','Sim, compartilhar devolutiva']],t.feedbackVisibility||'privado');break;}
   case 'new-instrument':{const pid=pgOpts().some(p=>p[0]===id)?id:pgOpts()[0]?.[0]||'';if(!pid){toast('Crie primeiro um processo de desenvolvimento ativo.');return;}name='Atribuir reflexão guiada';html='<p class="inline-note">Vincule a atividade a um objetivo do processo. Privada por padrão; não é avaliação psicológica.</p>'+sel('programId','Processo de desenvolvimento',pgOpts(),pid)+sel('goalId','Objetivo relacionado',goalOptions(pid))+inp('title','Título da atividade','Meu estilo de comunicação','text',true,'maxlength="110"')+textArea('instructions','Orientação ao participante')+sel('visibility','Disponibilização',[['privado','Manter como rascunho interno (padrão)'],['compartilhado','Liberar para Minha Jornada']]);break;}
@@ -727,7 +749,19 @@ function saveModal(e){e.preventDefault();let f=e.target;let d=new FormData(f);le
  }
  if(kind==='new-action'){const onBoard=location.hash.startsWith('#plano-acao');const p=program(get('programId')),g=db.goals.find(x=>x.id===get('goalId')&&x.programId===p?.id),title=get('title');if(!p||p.status==='finalizado'||!g||title.length<4||!get('due')){toast('Selecione um processo e objetivo válidos, com compromisso e prazo.');return;}db.actions.push({id:newid('a'),programId:p.id,goalId:g.id,title:title.slice(0,500),due:get('due'),resource:get('resource'),status:'pendente',visibility:get('visibility')==='compartilhado'?'compartilhado':'privado',createdAt:new Date().toISOString()});if(!onBoard)location.hash=wsUrl(p.clientId,'desenvolvimento',p.id,'view=pendentes&goal='+encodeURIComponent(g.id));else location.hash='#plano-acao?filter=abertas&program='+encodeURIComponent(p.id);}
  if(kind==='edit-action'){const a=db.actions.find(x=>x.id===id);if(a){a.title=get('title').slice(0,500);a.due=get('due');a.resource=get('resource');RTDemoStore.linkActionGoal(db,a.id,get('goalId'));a.visibility=get('visibility')==='compartilhado'?'compartilhado':'privado';a.updatedAt=new Date().toISOString();}}
- if(kind==='new-disc'){if(!RTDemoStore.assignDisc(db,get('programId'),get('visibility'))){toast('Já existe um questionário pendente neste processo.');return;}location.hash=location.hash.startsWith('#ferramentas')?rt96Href('aplicacoes'):wsUrl(program(get('programId'))?.clientId||'', 'atividades',get('programId'));}
+ if(kind==='new-custom-tool'||kind==='edit-custom-tool'){
+   try{RTCustomTools.upsert({title:get('title'),category:get('category'),purpose:get('purpose'),instructions:get('instructions')},kind==='edit-custom-tool'?id:'');}
+   catch(error){toast(error.message);return;}
+   location.hash=rt96Href('minhas');
+  }
+  if(kind==='assign-custom-tool'){
+   const p=program(id),t=RTCustomTools.list().find(x=>x.id===get('toolId'));
+   if(!p||!t){toast('Ferramenta ou processo inválido.');return;}
+   const assigned=RTDemoStore.assignGuidedActivity(db,{programId:p.id,goalId:get('goalId'),title:t.title,instructions:t.instructions,visibility:get('visibility')});
+   if(!assigned){toast('Confira objetivo, ferramenta e processo ativo.');return;}
+   assigned.customToolId=t.id;location.hash=wsUrl(p.clientId,'atividades',p.id);
+  }
+  if(kind==='new-disc'){if(!RTDemoStore.assignDisc(db,get('programId'),get('visibility'))){toast('Já existe um questionário pendente neste processo.');return;}location.hash=location.hash.startsWith('#ferramentas')?rt96Href('aplicacoes'):wsUrl(program(get('programId'))?.clientId||'', 'atividades',get('programId'));}
  if(kind==='disc-feedback'){const t=db.discAssignments.find(x=>x.id===id&&x.status==='respondido');if(t){t.feedback=get('feedback').slice(0,1600);t.feedbackVisibility=t.feedback&&get('feedbackVisibility')==='compartilhado'?'compartilhado':'privado';}location.hash=location.hash.startsWith('#ferramentas')?rt96Href('resultados','result='+encodeURIComponent(id)):wsUrl(program(t?.programId)?.clientId||'', 'resultados',t?.programId||'');}
  if(kind==='new-instrument'){const i=RTDemoStore.assignGuidedActivity(db,{programId:get('programId'),goalId:get('goalId'),title:get('title'),instructions:get('instructions'),visibility:get('visibility')});if(!i){toast('Selecione um processo ativo, um objetivo e um título válidos.');return;}location.hash=wsUrl(program(i.programId).clientId,'atividades',i.programId);}
  if(kind==='review-instrument'){const i=db.instruments.find(x=>x.id===id);if(!RTDemoStore.reviewGuidedActivity(db,id,get('feedback'),get('feedbackVisibility'))){toast('Devolutiva inválida ou atividade sem resposta.');return;}location.hash=wsUrl(program(i.programId).clientId,'atividades',i.programId);}
@@ -813,6 +847,14 @@ function runAction(act,id){
  if(['new-client','edit-client','new-process','new-goal','edit-goal','new-session','new-action','edit-action','edit-stage','close-session','new-guidance','new-instrument','review-instrument','new-disc','disc-feedback','new-session-action','edit-session-recap'].includes(act)){openModal(act,id);return;}
  if(act==='toggle-instrument'){const i=db.instruments.find(x=>x.id===id);if(i){i.visibility=i.visibility==='compartilhado'?'privado':'compartilhado';persist('profissional',act,id);render();toast('Compartilhamento atualizado (somente nesta demonstração).')}return;}
  if(act==='new-instrument-for'){openModal('new-instrument',id);return;}
+  if(act==='assign-custom-tool'){openModal('assign-custom-tool',id);return;}
+  if(act==='new-custom-tool'){openModal('new-custom-tool','');return;}
+  if(act==='edit-custom-tool'){openModal('edit-custom-tool',id);return;}
+  if(act==='delete-custom-tool'){
+   const tool=RTCustomTools.list().find(x=>x.id===id);
+   if(!tool||!confirm('Excluir a ferramenta '+tool.title+'? Atribuições anteriores permanecerão no cliente.'))return;
+   RTCustomTools.remove(id);render();toast('Ferramenta removida do catálogo.');return;
+  }
  if(act==='toggle-share-action'){let x=db.actions.find(a=>a.id===id);if(x){x.visibility=x.visibility==='privado'?'compartilhado':'privado';persist('profissional',act,id);render();toast('Visibilidade atualizada na demonstração.')}return;}
  if(act==='toggle-action'){let x=db.actions.find(a=>a.id===id);if(x){x.status=x.status==='pendente'?'concluido':'pendente';x.completedAt=x.status==='concluido'?new Date().toISOString():null;persist('profissional',act,id);render();toast('Atividade atualizada no navegador.')}return;}
  if(act==='finish-process'||act==='reopen-process'){let p=program(id);if(p){p.status=act==='finish-process'?'finalizado':'em andamento';persist('profissional',act,id);render();toast('Processo atualizado no navegador.')}return;}
@@ -930,7 +972,11 @@ document.addEventListener('change',e=>{
   location.hash=rt96Href('5w2h','program='+encodeURIComponent(pid)+(e.target.value?'&action='+encodeURIComponent(e.target.value):''));
   render();return;
  }
- if(e.target.id==='rt-v911-session-select'){location.hash=rt96Href('kit','session='+encodeURIComponent(e.target.value));render();return;}
+ if(e.target.id==='rt-v911-session-select'){
+   const selected=db.sessions.find(x=>x.id===e.target.value),p=program(selected?.programId);
+   if(p)location.hash=wsUrl(p.clientId,'kit',p.id,'session='+encodeURIComponent(selected.id));
+   render();return;
+  }
  if(e.target.name==='programId'&&['new-action','new-instrument'].includes(e.target.closest('#modal-form')?.dataset.kind)){const goalField=document.querySelector('#f-goalId');if(goalField)goalField.innerHTML=goalOptions(e.target.value).map(([id,title])=>`<option value="${esc(id)}">${esc(title)}</option>`).join('');}
  if(e.target.id==='rt-v95-process'){const current=new URLSearchParams(location.hash.split('?')[1]||'');location.hash='#plano-acao?filter='+encodeURIComponent(current.get('filter')||'abertas')+'&program='+encodeURIComponent(e.target.value);return;}
  if(e.target.id==='ws-process-select')location.hash=wsUrl(e.target.dataset.clientId,e.target.dataset.tab,e.target.value);

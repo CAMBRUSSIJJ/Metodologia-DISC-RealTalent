@@ -43,8 +43,9 @@ async function loadPdfLib(){
  const localMain=new URL('../vendor/pdfjs/pdf.mjs',location.href);
  const localWorker=new URL('../vendor/pdfjs/pdf.worker.mjs',location.href);
  try{
-  const checks=await Promise.all([fetch(localMain,{method:'HEAD'}),fetch(localWorker,{method:'HEAD'})]);
-  if(checks.every(x=>x.ok)){
+  const marker=new URL('../vendor/pdfjs/version.txt',location.href);
+  const checks=await Promise.all([fetch(localMain,{method:'HEAD'}),fetch(localWorker,{method:'HEAD'}),fetch(marker,{cache:'no-store'})]);
+  if(checks.every(x=>x.ok)&&(await checks[2].text()).trim()===VERSION){
    const lib=await import(localMain.href);lib.GlobalWorkerOptions.workerSrc=localWorker.href;
    return lib;
   }
@@ -185,6 +186,7 @@ async function showPage(){
  if(state.kind==='pdf')await renderPdf(serial);
  else if(state.kind==='image')renderImage();
  else renderArticle();
+ if(serial!==state.renderSerial)return;
  // Always redraw saved annotations after navigating or zooming.
  resizeInk();updateCounter();
 }

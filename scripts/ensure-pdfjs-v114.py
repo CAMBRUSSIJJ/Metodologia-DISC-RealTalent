@@ -17,7 +17,8 @@ def ok(path:Path)->bool:
 
 def main():
     DEST.mkdir(parents=True,exist_ok=True)
-    if all(ok(DEST/f) for f in FILES) and (DEST/"version.txt").read_text().strip()==VERSION if (DEST/"version.txt").exists() else False:
+    marker=DEST/"version.txt"
+    if marker.exists() and all(ok(DEST/f) for f in FILES) and marker.read_text().strip()==VERSION:
         print(f"PDF.js {VERSION} local disponível.")
         return 0
     data={}

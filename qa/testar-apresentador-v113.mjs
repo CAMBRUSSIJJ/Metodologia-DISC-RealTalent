@@ -21,7 +21,7 @@ assert.match(files,/MAX_BYTES=25\*1024\*1024/);
 assert.match(files,/indexedDB\.open\(DB,1\)/);
 assert.match(files,/application\/pdf/);
 assert.match(files,/deleteFile\(fileId\)/);
-assert.match(viewer,/#page=/);
+assert.match(viewer,/getPage\(state\.page\)/);
 for(const tool of ['laser','pen','marker','eraser'])assert.match(html,new RegExp('data-tool="'+tool+'"'));
 for(const feature of ['fullscreen','notes','resources','zoom-in','zoom-out','clock'])assert.match(html,new RegExp('id="'+feature+'"'));
 assert.match(professional,/apresentacoes\/central\.html/);

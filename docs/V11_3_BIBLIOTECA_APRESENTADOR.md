@@ -47,6 +47,7 @@ com roteiros demonstrativos anteriores; não é a experiência principal.
 ```bash
 node qa/testar-apresentador-v113.mjs
 python3 scripts/verify-build.py
+python3 qa/testar-apresentador-v113.py  # requer Playwright Chromium
 ```
 Teste manual no Firefox e Chromium:
 - Importar PDF de teste, imagem e arquivo acima do limite; verificar mensagens.

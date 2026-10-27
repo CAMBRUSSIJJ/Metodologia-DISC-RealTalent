@@ -17,7 +17,7 @@ def ok(path:Path)->bool:
 
 def main():
     DEST.mkdir(parents=True,exist_ok=True)
-    if all(ok(DEST/f) for f in FILES):
+    if all(ok(DEST/f) for f in FILES) and (DEST/"version.txt").read_text().strip()==VERSION if (DEST/"version.txt").exists() else False:
         print(f"PDF.js {VERSION} local disponível.")
         return 0
     data={}
@@ -41,6 +41,7 @@ def main():
         with os.fdopen(fd,"wb") as f:
             f.write(body)
         os.replace(path,DEST/name)
+    (DEST/"version.txt").write_text(VERSION+"\\n")
     print(f"PDF.js {VERSION} instalado localmente: {len(data)} módulos, uso sem CDN após instalar.")
     return 0
 

@@ -408,8 +408,9 @@ function openPresenter(selection){
  if(!presentationStore)return notice('Apresentador indisponível. Atualize esta página.');
  const session=qs.get('session')||'';
  const url=presentationStore.presenterURL({...selection,session});
- const w=window.open(url,'_blank','noopener,noreferrer');
- if(!w)notice('Permita a abertura de uma nova aba para apresentar este material.');
+ const w=window.open(url,'_blank');
+ if(w)w.opener=null;
+ else notice('Permita a abertura de uma nova aba para apresentar este material.');
 }
 async function importPresentationFiles(files){
  if(!presentationStore)return notice('Armazenamento indisponível.');

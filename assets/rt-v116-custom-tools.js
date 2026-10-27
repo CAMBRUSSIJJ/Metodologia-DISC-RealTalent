@@ -22,7 +22,7 @@ function normalizeSections(input,strict=false){
    if(!label||ids.has(questionId))throw Error('As perguntas precisam de texto e identificadores únicos.');
    ids.add(questionId);
    const choices=(type==='unica'||type==='multipla')?
-    String(Array.isArray(q?.options)?q.options.join('\\n'):q?.options||'').split(/\\r?\\n/).map(x=>trim(x,90)).filter(Boolean):[];
+    (Array.isArray(q?.options)?q.options:String(q?.options||'').split(String.fromCharCode(10))).map(x=>trim(x,90)).filter(Boolean):[];
    if((type==='unica'||type==='multipla')&&(choices.length<2||choices.length>8||new Set(choices).size!==choices.length))
     throw Error('Perguntas de escolha precisam de 2 a 8 opções diferentes.');
    return {id:questionId,label,type,required:q?.required!==false,options:choices};

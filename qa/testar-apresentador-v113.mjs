@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 'use strict';
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
-const vm=require('node:vm');
-const root=path.resolve(__dirname,'..');
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const jsFiles=['assets/rt-presentation-library-v113.js','apresentacoes/visualizador.js',
  'apresentacoes/central.js','biblioteca/app.js','profissional/app.js'];

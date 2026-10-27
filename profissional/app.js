@@ -232,10 +232,11 @@ function ws94SelectedSession(s,id,pid){
 // V11.1 — associação à sessão demonstrativa, sem duplicar compromissos ou distribuir arquivos privados.
 function rt111SessionPresentations(s){
   const p=program(s?.programId),links=(db.presentationLinks||[]).filter(x=>x.sessionId===s.id);
-  const href='../apresentacoes/index.html?session='+encodeURIComponent(s.id);
-  return '<section class="card rt-v111-session-presentations" aria-label="Apresentações deste atendimento"><div class="card-head"><div><h2>Apresentações do atendimento</h2><p class="muted">Use um roteiro de desenvolvimento e registre compromissos na mesma sessão.</p></div><a class="btn-secondary" target="_blank" rel="noopener noreferrer" href="'+href+'">Abrir estúdio ↗</a></div>'+
-    (links.length?links.map(x=>'<div class="rt-v111-session-link"><div><strong>'+esc(x.title)+'</strong><small>'+(x.visibility==='compartilhado'?'Slides educativos compartilhados':'Material interno')+' · '+x.slides.length+' slide(s) liberado(s)</small></div><a href="'+href+'&deck='+encodeURIComponent(x.deckId)+'" target="_blank" rel="noopener noreferrer" class="line-button">Abrir roteiro</a></div>').join(''):
-     '<p class="inline-note">Nenhuma apresentação vinculada. Abra o estúdio e escolha esta sessão para associar um roteiro.</p>')+
+  const href='../biblioteca/index.html?embedded=1&session='+encodeURIComponent(s.id)+'#view=arquivos';
+  const legacy='../apresentacoes/index.html?session='+encodeURIComponent(s.id);
+  return '<section class="card rt-v111-session-presentations" aria-label="Apresentações deste atendimento"><div class="card-head"><div><h2>Apresentações do atendimento</h2><p class="muted">Abra na Biblioteca o arquivo que deseja apresentar. O documento original não é editado.</p></div><a class="btn-secondary" target="_blank" rel="noopener noreferrer" href="'+href+'">Escolher arquivo na Biblioteca ↗</a></div>'+
+    (links.length?links.map(x=>'<div class="rt-v111-session-link"><div><strong>'+esc(x.title)+'</strong><small>'+(x.visibility==='compartilhado'?'Slides educativos compartilhados':'Material interno')+' · '+x.slides.length+' slide(s) liberado(s)</small></div><a href="'+legacy+'&deck='+encodeURIComponent(x.deckId)+'" target="_blank" rel="noopener noreferrer" class="line-button">Abrir roteiro anterior</a></div>').join(''):
+     '<p class="inline-note">Nenhuma apresentação anterior vinculada. Apresente PDFs ou imagens pela Biblioteca; esse novo modo não compartilha arquivos automaticamente com clientes.</p>')+
     '<p class="inline-note">Somente demonstração local. Notas privadas e arquivos não são distribuídos ao participante.</p></section>';
 }
 function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
@@ -558,19 +559,19 @@ function showMethodPage(page){
 }
 function showTools(){
  const activeView=(new URLSearchParams(location.hash.split('?')[1]||'').get('view')||'inicio');
- const allowedViews=['inicio','conhecimento','ferramentas','laboratorio','aprender','referencias'];
+ const allowedViews=['inicio','conhecimento','ferramentas','laboratorio','aprender','arquivos','referencias'];
  const view=allowedViews.includes(activeView)?activeView:'inicio';
  return head('MATERIAIS E PRÁTICAS','Biblioteca','Conhecimento, perfis, referências e simulações integrados ao espaço profissional.')+
- `<div class="rt-v8-tabs rt-v8-subtabs" role="tablist" aria-label="Seções da biblioteca">${[['inicio','Visão geral'],['conhecimento','Conhecimento'],['ferramentas','Ferramentas'],['laboratorio','Communication Lab'],['aprender','Trilhas'],['referencias','Referências']].map(([key,title],i)=>`<button type="button" data-lib-view="${key}" aria-selected="${key===view}">${title}</button>`).join('')}</div>`+
+ `<div class="rt-v8-tabs rt-v8-subtabs" role="tablist" aria-label="Seções da biblioteca">${[['inicio','Visão geral'],['conhecimento','Conhecimento'],['ferramentas','Ferramentas'],['laboratorio','Communication Lab'],['aprender','Trilhas'],['arquivos','Meus arquivos'],['referencias','Referências']].map(([key,title],i)=>`<button type="button" data-lib-view="${key}" aria-selected="${key===view}">${title}</button>`).join('')}</div>`+
  moduleFrame('library','../biblioteca/index.html?embedded=1#view='+view,'Biblioteca e Communication Lab')+
  `<p class="inline-note">Biblioteca educacional com recursos contextualizados. O profissional continua responsável por selecionar o que é adequado à sua atuação.</p>`;
 }
-// V11.0 — Estúdio de Apresentações integrado ao workspace sem recriar a Biblioteca.
+// V11.3 — a Biblioteca recebe os documentos; aqui apenas apresentamos materiais prontos.
 function showPresentations(){
-  return head('FACILITAÇÃO E APRENDIZAGEM','Apresentações','Transforme conteúdos da Biblioteca em roteiros visuais, exercícios e apresentações em tela cheia.',
-    '<a class="btn-secondary" href="../apresentacoes/index.html" target="_blank" rel="noopener noreferrer">Abrir estúdio em nova janela ↗</a>')+
-    '<div class="rt-v8-frame-wrap"><iframe class="rt-v8-frame" data-rt-module="presentations" src="../apresentacoes/index.html" title="Estúdio de Apresentações RealTalent" loading="eager" allow="fullscreen" allowfullscreen referrerpolicy="no-referrer" scrolling="no" style="min-height:900px"></iframe></div>'+
-    '<p class="inline-note">Versão demonstrativa: apresentações e arquivos ficam apenas neste navegador. Não utilize dados de clientes reais.</p>';
+ return head('FACILITAÇÃO PROFISSIONAL','Apresentações','Apresente arquivos importados na Biblioteca. Encontre favoritos e materiais recentes sem criar slides novamente.',
+   '<a class="btn-secondary" href="#biblioteca?view=arquivos">Ir à Biblioteca de arquivos ↗</a>')+
+   moduleFrame('presentations','../apresentacoes/central.html','Central de Apresentações RealTalent')+
+   '<p class="inline-note">Arquivos PDF e imagens ficam neste navegador de demonstração. Não utilizar dados reais de clientes.</p>';
 }
 // V9.6 — central de ferramentas NATIVA. Os registros DISC são os mesmos do
 // workspace individual e do portal demonstrativo, sem outro estado duplicado.

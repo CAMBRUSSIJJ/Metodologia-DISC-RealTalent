@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d1526">
+<title>RealTalent · Apresentador Profissional</title>
+<link rel="stylesheet" href="./visualizador.css">
+<script defer src="../assets/rt-presentation-library-v113.js"></script><script defer src="./visualizador.js"></script>
+</head><body>
+<a class="skip" href="#presentation-content">Ir ao documento</a>
+<div class="viewer" id="viewer">
+ <header class="topbar" id="topbar">
+  <div class="identity"><a href="../profissional/index.html#biblioteca" class="back" aria-label="Voltar à Biblioteca">←</a>
+   <div class="identity-text"><span class="eyebrow">REALTALENT / APRESENTADOR</span><h1 id="doc-title">Abrindo material...</h1></div>
+  </div>
+  <div class="top-actions"><span class="demo-badge">DEMONSTRAÇÃO · SEM DADOS REAIS</span>
+   <span id="session-label" class="context" hidden>Contexto de sessão</span>
+   <button type="button" id="focus" title="Ocultar barras e concentrar no documento" aria-pressed="false">Modo foco</button>
+   <button type="button" id="fullscreen">⛶ Tela cheia</button>
+  </div>
+ </header>
+ <div class="viewer-body">
+  <main id="presentation-content" class="content" tabindex="-1" aria-label="Documento em apresentação">
+   <div class="canvas-wrap" id="canvas-wrap">
+    <div class="document" id="document" aria-label="Conteúdo do material">
+     <div class="loading" id="loading" role="status">Carregando material da Biblioteca...</div>
+    </div>
+    <canvas id="ink" class="ink" aria-label="Camada de anotações temporárias" hidden></canvas>
+    <div id="laser" class="laser" aria-hidden="true" hidden></div>
+    <div class="empty-error" id="error" role="alert" hidden><strong>Não foi possível abrir este material</strong><p id="error-text"></p>
+      <a href="../profissional/index.html#biblioteca">Voltar à Biblioteca</a></div>
+   </div>
+  </main>
+  <aside id="notes" class="notes" hidden aria-label="Notas temporárias"><div class="notes-head"><strong>Anotações temporárias</strong><button id="close-notes" type="button" aria-label="Fechar notas">✕</button></div>
+   <p>Visíveis nesta tela, mas não sobre o documento. Não utilize dados reais. O texto será perdido ao fechar a página.</p>
+   <textarea id="notes-text" rows="13" maxlength="2500" placeholder="Roteiro e lembretes durante a apresentação..."></textarea>
+   <button id="clear-notes" type="button">Limpar anotações</button>
+  </aside>
+  <aside id="resources" class="resources" hidden aria-label="Ferramentas profissionais"><div class="notes-head"><strong>Ferramentas de atendimento</strong><button id="close-resources" type="button" aria-label="Fechar ferramentas">✕</button></div>
+   <p>As ferramentas abrem em outra aba, sem alterar o arquivo apresentado.</p>
+   <a href="../profissional/index.html#ferramentas" target="_blank" rel="noopener noreferrer">Ferramentas de desenvolvimento ↗</a>
+   <a href="../profissional/index.html#sessoes" target="_blank" rel="noopener noreferrer">Sessões e GROW ↗</a>
+   <a href="../profissional/index.html#plano-acao" target="_blank" rel="noopener noreferrer">Plano de Ação ↗</a>
+   <a href="../profissional/index.html#biblioteca" target="_blank" rel="noopener noreferrer">Biblioteca ↗</a>
+  </aside>
+ </div>
+ <footer class="toolbar" id="toolbar" role="toolbar" aria-label="Ferramentas de apresentação">
+  <div class="tool-group navigation"><button id="prev" title="Anterior" type="button" aria-label="Página anterior">←</button>
+   <span id="page-info" class="page-info" aria-live="polite">—</span><button id="next" title="Próximo" type="button" aria-label="Próxima página">→</button></div>
+  <div class="tool-divider"></div>
+  <div class="tool-group" role="group" aria-label="Ferramentas de anotação">
+   <button class="selected" data-tool="none" type="button" aria-pressed="true" title="Usar documento">Cursor</button>
+   <button data-tool="laser" type="button" aria-pressed="false">Laser</button>
+   <button data-tool="pen" type="button" aria-pressed="false">Caneta</button>
+   <button data-tool="marker" type="button" aria-pressed="false">Marca-texto</button>
+   <button data-tool="eraser" type="button" aria-pressed="false">Borracha</button>
+   <button id="clear-ink" type="button" title="Apagar marcas desta página">Limpar</button>
+  </div>
+  <div class="tool-divider"></div>
+  <div class="tool-group" role="group" aria-label="Ampliação"><button id="zoom-out" type="button" aria-label="Reduzir zoom">−</button><span id="zoom-value">100%</span><button id="zoom-in" type="button" aria-label="Aumentar zoom">+</button></div>
+  <div class="tool-divider"></div>
+  <div class="tool-group extras"><span id="clock" title="Duração da apresentação">00:00</span>
+   <button id="notes-toggle" type="button" aria-pressed="false">Notas</button><button id="resources-toggle" type="button" aria-pressed="false">Ferramentas</button>
+   <button id="reset-focus" type="button" hidden>Mostrar controles</button></div>
+ </footer>
+ <button type="button" id="focus-exit" class="focus-exit">Mostrar controles</button>
+ <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</div>
+</body></html>

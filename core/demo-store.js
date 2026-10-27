@@ -286,7 +286,7 @@
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
       sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,liveNotes,liveNotesUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
-      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
+      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,internalNotes,history,reviewOn,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
       // Tela cliente não recebe respostas nem gráficos pelo contrato de visualização.
@@ -306,7 +306,7 @@
     const p=d.programs.find(p=>p.id===input?.programId&&p.status!=='finalizado');
     const g=d.goals.find(g=>g.id===input?.goalId&&g.programId===p?.id);
     const title=String(input?.title||'').trim(),instructions=String(input?.instructions||'').trim();
-    if(!p||!g||title.length<4||title.length>110||instructions.length>250)return null;
+    if(!p||!g||title.length<4||title.length>110||instructions.length>1800)return null;
     const item={id:freshId('inst'),programId:p.id,goalId:g.id,kind:'reflexao-guiada',title,
       instructions,visibility:input?.visibility==='compartilhado'?'compartilhado':'privado',
       status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',

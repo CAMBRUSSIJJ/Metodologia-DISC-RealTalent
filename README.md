@@ -1,3 +1,17 @@
+# RealTalent V11.6 — Planos de Ação e Ferramentas Próprias (PREVIEW)
+
+**Tela Atividades**: removida a coluna lateral "Como funciona" para priorizar atividades e DISC/ACER.
+
+**Kit de atendimento**: disponível apenas em **Clientes → Kit da sessão**, usando o processo e as sessões do cliente selecionado. A aba global Ferramentas agora apresenta **Minhas ferramentas**, onde é possível criar, editar e excluir roteiros de reflexão próprios e atribuí-los como atividades guiadas dentro de um cliente.
+
+**Plano de ação**: cartões de compromissos com prazo, prioridade, progresso, responsável e revisão programada; filtros úteis; revisão do avanço; histórico interno. As notas internas são excluídas da visão de Minha Jornada.
+
+**Somente demonstração com dados fictícios**, sem prontuário, autenticação adequada ou autorização para registros reais. Material da Biblioteca e Apresentador seguem preservados.
+
+[Guia da V11.6](docs/V11_6_PLANO_ACAO_FERRAMENTAS_UX.md) · `node qa/testar-professional-v116.mjs` · `python3 qa/testar-professional-v116.py`.
+
+---
+
 # RealTalent V11.5 — Biblioteca Profissional (PREVIEW)
 
 **Organize na Biblioteca e apresente diretamente**, sem recriar slides. A V11.5 acrescenta pastas, categorias e etiquetas personalizáveis; visualização em grade/lista, busca e filtros, ordenação, visões salvas e importação por arrastar/soltar. Inclui miniaturas de imagem e primeira página do PDF via PDF.js, além de uma pré-visualização do arquivo original.

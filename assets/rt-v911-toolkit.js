@@ -3,7 +3,7 @@ window.RTProfessionalKit = (function kitFactory(){
  'use strict';
  function render(db,selectedId,ui){
   const {esc,dateFmt,wsUrl,today}=ui;
-  const sessions=(db.sessions||[]).filter(s=>db.programs.some(p=>p.id===s.programId)&&db.clients.some(c=>c.id===db.programs.find(p=>p.id===s.programId)?.clientId))
+  const sessions=(db.sessions||[]).filter(s=>(!ui.contextProgramId||s.programId===ui.contextProgramId)&&db.programs.some(p=>p.id===s.programId)&&db.clients.some(c=>c.id===db.programs.find(p=>p.id===s.programId)?.clientId))
     .slice().sort((a,b)=>(a.date+'T'+(a.time||'00:00')).localeCompare(b.date+'T'+(b.time||'00:00')));
   const s=sessions.find(x=>x.id===selectedId)||sessions.find(x=>x.status==='agendada'&&x.date>=today())||sessions[sessions.length-1];
   if(!s)return '<section class="rt-v911-empty"><h2>Prepare seu próximo encontro</h2><p>Este kit usa sessões que já existem. Agende uma sessão em um processo para montar a pauta e revisar os compromissos, sem criar cadastros duplicados.</p><a class="btn-primary" href="#sessoes">Ir para sessões →</a></section>';
@@ -34,7 +34,7 @@ window.RTProfessionalKit = (function kitFactory(){
    '<section class="rt-v911-card"><div class="rt-v911-card-head"><h3>02 · Compromissos para retomar</h3><span>'+open.length+' em aberto</span></div><ul class="rt-v911-actions">'+actionMarkup(open)+'</ul><p class="rt-v911-foot">'+tied.length+' acordo(s) já associado(s) a esta sessão.</p><a class="rt-v911-link" href="'+wsUrl(c.id,'desenvolvimento',p.id)+'">Ver plano de ação →</a></section></div>'+
    '<section class="rt-v911-card rt-v911-work"><div class="rt-v911-card-head"><div><h3>03 · Roteiro GROW</h3><p>Estrutura opcional de perguntas para organização do encontro, não um protocolo clínico.</p></div><span class="rt-v911-pill">'+filled+'/4 blocos</span></div>'+
    '<form id="rt-v911-prep-form" autocomplete="off"><input type="hidden" name="sessionId" value="'+esc(s.id)+'"/><div class="rt-v911-fields">'+items.map(([key,title,label,placeholder])=>'<label><strong>'+title+'</strong><span>'+label+'</span><textarea name="'+key+'" rows="4" maxlength="650" placeholder="'+esc(placeholder)+'">'+esc(prep[key]||'')+'</textarea></label>').join('')+'</div><div class="rt-v911-save"><p>Salvo apenas nesta demonstração local. Nunca inclua registros clínicos ou informações reais.</p><button class="btn-primary" type="submit">Salvar preparação</button></div></form></section>'+
-   '<div class="rt-v911-guidance"><strong>Como usar sem sobrecarregar a rotina</strong><p>Antes: revise o contexto e os compromissos. Durante: utilize apenas as perguntas pertinentes. Depois: registre os acordos na sessão existente. O roteiro não cria tarefas nem compartilha conteúdo automaticamente.</p></div></section>';
+   '</section>';
  }
  return Object.freeze({render});
 })();

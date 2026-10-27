@@ -1,4 +1,4 @@
-name: RealTalent V9.13–V11.2 — Publicação Segura e Regressão
+name: RealTalent V9.13–V11.3 — Publicação Segura e Regressão
 on:
   pull_request:
     branches: [main]
@@ -21,6 +21,7 @@ on:
       - 'feature/v11-presentation-studio'
       - 'feature/v11-1-session-presentations'
       - 'feature/v11-2-secure-presentations'
+      - 'feature/v11-3-biblioteca-apresentador'
   workflow_dispatch:
 permissions:
   contents: read
@@ -60,6 +61,12 @@ jobs:
         run: |
           node --check seguro/presentations.mjs
           node qa/testar-apresentacoes-seguras-v112.mjs
+      - name: V11.3 — contratos de Biblioteca e Apresentador
+        run: |
+          node --check apresentacoes/visualizador.js
+          node --check apresentacoes/central.js
+          node --check assets/rt-presentation-library-v113.js
+          node qa/testar-apresentador-v113.mjs
       - name: Instalar Playwright
         run: |
           python -m pip install playwright==1.57.0

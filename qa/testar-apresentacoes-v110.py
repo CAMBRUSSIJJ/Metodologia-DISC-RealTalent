@@ -112,9 +112,9 @@ def main():
             professional.goto(f'http://127.0.0.1:{server.server_port}/profissional/index.html#apresentacoes',wait_until='domcontentloaded')
             professional.wait_for_function("document.querySelector('[data-rt-module=presentations]')!==null")
             assert professional.locator('[data-page="apresentacoes"]').get_attribute('aria-current')=='page'
-            assert professional.locator('[data-rt-module="presentations"]').get_attribute('allowfullscreen') is not None
+            assert professional.locator('[data-rt-module="presentations"]').get_attribute('src')=='../apresentacoes/central.html'
             embedded=professional.frame_locator('[data-rt-module="presentations"]')
-            assert embedded.get_by_role('heading',name='Apresentações com propósito').is_visible()
+            assert embedded.get_by_role('heading',name='Apresentações',exact=True).is_visible()
             print('OK 07 — nova aba integrada à navegação e iframe com tela cheia',flush=True)
             assert not errors,errors
             context.close();browser.close()

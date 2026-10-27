@@ -60,7 +60,7 @@ function showHome(){
  const ss=db.sessions.filter(s=>s.status==='agendada'&&!isElapsedAppointment(s)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
  const daySessions=ss.filter(s=>s.date===today());const attention=attentionQueue();
  const due=db.actions.filter(a=>a.status==='pendente');
- return head('PAINEL DE TRABALHO','Visão geral','Suas próximas sessões e o que precisa da sua atenção.',btn('+ Novo cliente','new-client','','btn-primary')+(ss.length?`<a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(ss[0].id))}">Preparar próxima sessão →</a>`:''))+
+ return head('PAINEL DE TRABALHO','Visão geral','Suas próximas sessões e o que precisa da sua atenção.',btn('+ Novo cliente','new-client','','btn-primary')+(ss.length?`<a class="btn-secondary" href="${wsUrl(program(ss[0].programId).clientId,'kit',ss[0].programId,'session='+encodeURIComponent(ss[0].id))}">Preparar próxima sessão →</a>`:''))+
  `<div class="rt-v9-search-shortcut"><label for="home-search">Acesso rápido ao cliente</label><div><input class="searchbar" id="home-search" type="search" placeholder="Digite o nome ou objetivo..." autocomplete="off" aria-label="Pesquisar cliente" /><a class="btn-secondary" href="#clientes">Ver todos os clientes</a></div><div class="rt-v9-quick-results" id="home-search-results" aria-live="polite"></div></div>`+
  `<div class="rt-v9-kpis">
  <a class="rt-v9-kpi" href="#sessoes?filter=hoje"><span>Sessões de hoje</span><strong>${daySessions.length}</strong><small>Ver sessões →</small></a>
@@ -98,7 +98,7 @@ function showClients(){const q=clientsQuery();const filter=q.get('filter')||'tod
  return `<tr data-v92-client-row="${esc(c.id)}"><td><div class="profile"><span class="circle-initial">${esc(c.name.slice(0,2).toUpperCase())}</span><div><b>${esc(c.name)}</b><small class="rt-v9-secondary">${esc(c.contact||'Modalidade não definida')}</small></div></div></td><td><span class="rt-v92-cell-clip">${esc(p?.goal||c.focus||'Sem processo')}</span></td><td>${s?dateFmt(s.date)+' · '+esc(s.time):'<span class="muted">Não agendada</span>'}</td><td>${pending?`<span class="rt-v92-pending">${pending} pendente${pending===1?'':'s'}</span>`:'<span class="muted">Em dia</span>'}</td><td>${status(clientStatusLabel(c.status||'ativo'))}</td><td><div class="rt-v92-row-buttons">${workspaceButton('Abrir',c.id,'geral',p?.id||'','btn-secondary')}${btn('Editar','edit-client',c.id,'line-button')}</div></td></tr>`;
  }).join('')||`<tr><td colspan="6">${empty('Nenhum cliente neste filtro','Escolha outro filtro ou cadastre um cliente demonstrativo.')}</td></tr>`}</tbody></table></div><div class="rt-v92-list-footer"><span id="rt-v92-visible-count">${rows.length} clientes exibidos</span><span>O arquivamento preserva o histórico demonstrativo.</span></div></div>`;
 }
-const WSTABS=[['geral','Visão geral'],['sessoes','Sessões'],['atividades','Atividades'],['resultados','Resultados'],['desenvolvimento','Desenvolvimento'],['documentos','Documentos']];
+const WSTABS=[['geral','Visão geral'],['sessoes','Sessões'],['kit','Kit da sessão'],['atividades','Atividades'],['resultados','Resultados'],['desenvolvimento','Desenvolvimento'],['documentos','Documentos']];
 function cardList(headline,body,action=''){return `<section class="card"><div class="card-head"><h2>${headline}</h2>${action}</div>${body}</section>`;}
 function timelineEvents(id,pid){
  const p=program(pid);if(!p||p.clientId!==id)return [];
@@ -226,7 +226,7 @@ function ws94SelectedSession(s,id,pid){
  const recaps=`<div class="rt-v910-recap"><div class="rt-v910-between"><strong>Resumo para Minha Jornada</strong><span class="rt-v910-state">${s.clientRecap&&s.recapVisibility==='compartilhado'?'Compartilhado':'Restrito'}</span></div>${s.clientRecap?`<p>${esc(s.clientRecap)}</p>`:'<p>Prepare um resumo simples dos acordos quando o encontro for concluído.</p>'}${s.status==='concluida'?btn('Editar resumo e compartilhamento','edit-session-recap',s.id,'btn-secondary'):''}${s.visibility==='privado'?'<small>Encontro interno: o resumo não pode ser compartilhado enquanto a agenda estiver restrita.</small>':''}</div>`;
  const commitments=`<div class="rt-v910-commitments"><div class="rt-v910-between"><strong>Compromissos deste encontro</strong>${btn('+ Novo acordo','new-session-action',s.id,'btn-secondary')}</div>${tied.length?tied.map(a=>`<div class="rt-v910-agreement"><span class="rt-v910-dot ${a.status==='concluido'?'done':''}" aria-hidden="true"></span><div><strong>${esc(a.title)}</strong><small>${a.due?'Prazo: '+dateFmt(a.due):'Sem prazo'} · ${a.status==='concluido'?'Registrado':'Em aberto'} · ${a.visibility==='compartilhado'?'Compartilhado':'Restrito'}</small>${a.experience?`<p>${esc(a.experience.outcome==='tentada'?'Tentou e encontrou dificuldades':'Realizou')}${a.experience.note?' — '+esc(a.experience.note):''}</p>`:''}</div></div>`).join(''):'<p class="rt-v910-muted">Nenhum acordo registrado para este encontro.</p>'}</div>`;
  const carry=`<div class="rt-v910-carry"><strong>Para retomar neste encontro</strong>${previous.length?previous.slice(0,5).map(a=>`<div class="rt-v910-carry-row"><span class="rt-v910-dot" aria-hidden="true"></span><div><strong>${esc(a.title)}</strong><small>${a.due?'Até '+dateFmt(a.due):'Sem prazo'} · Aguardando retorno</small></div></div>`).join(''):'<p class="rt-v910-muted">Sem compromissos anteriores em aberto.</p>'}<small>Registros do mesmo processo. Ações continuam ligadas ao plano e não são duplicadas.</small></div>`;
- return ws94Panel('Detalhes do encontro',details+`<div class="rt-v911-shortcut rt-v913-session-shortcuts"><a class="btn-secondary" href="${rt96Href('kit','session='+encodeURIComponent(s.id))}">Preparar com GROW →</a><a class="btn-secondary" href="${rt96Href('perguntas','session='+encodeURIComponent(s.id))}">Banco de perguntas →</a><a class="btn-secondary" href="${rt96Href('temporizador','session='+encodeURIComponent(s.id))}">Temporizador →</a></div>`+privateNotes+(canClose?`<div class="rt-v94-inline-actions">${btn('Concluir encontro','close-session',s.id,'btn-primary')}</div>`:'')+commitments+recaps+carry,'Preparação, acordos e continuidade no mesmo processo.','','rt-v94-detail rt-v910-session-detail');
+ return ws94Panel('Detalhes do encontro',details+`<div class="rt-v911-shortcut rt-v913-session-shortcuts"><a class="btn-secondary" href="${wsUrl(id,'kit',pid,'session='+encodeURIComponent(s.id))}">Kit da sessão →</a></div>`+privateNotes+(canClose?`<div class="rt-v94-inline-actions">${btn('Concluir encontro','close-session',s.id,'btn-primary')}</div>`:'')+commitments+recaps+carry,'Preparação, acordos e continuidade no mesmo processo.','','rt-v94-detail rt-v910-session-detail');
 }
 
 // V11.1 — associação à sessão demonstrativa, sem duplicar compromissos ou distribuir arquivos privados.
@@ -265,6 +265,12 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
  </section>
   <section class="rt-v93-aside-card"><div class="rt-v93-aside-head"><h2>Ações combinadas</h2><a href="${wsUrl(id,'desenvolvimento',pid)}">Ver todas</a></div>${open.length?`<ul class="rt-v93-action-list">${open.slice(0,3).map(a=>`<li><span>${esc(a.title)}</span><small>${a.due?'Até '+dateFmt(a.due):'Sem prazo definido'}</small></li>`).join('')}</ul>`:`<p>Sem ações pendentes neste processo.</p>`}</section>
   <details class="rt-v93-aside-card rt-v93-process-details"><summary>Detalhes e situação do processo <span aria-hidden="true">⌄</span></summary><dl><div><dt>Etapa</dt><dd>${esc(p.stage)}</dd></div><div><dt>Situação</dt><dd>${esc(p.status)}</dd></div><div><dt>Ações concluídas</dt><dd>${actions.filter(a=>a.status==='concluido').length} de ${actions.length}</dd></div></dl>${btn(p.status==='finalizado'?'Reabrir processo':'Finalizar processo',p.status==='finalizado'?'reopen-process':'finish-process',pid,'line-button')}</details></aside></div>`;
+ }
+ else if(chosen==='kit'){
+  const selected=sessions.find(x=>x.id===ws94Query().get('session'))||sessions.find(x=>x.status==='agendada'&&x.date>=today())||sessions[0];
+  body=ws94TabIntro(id,pid,chosen,'Prepare o atendimento com o contexto específico deste cliente.',[],
+    selected?'<a class="btn-secondary" href="'+wsUrl(id,'sessoes',pid,'session='+encodeURIComponent(selected.id))+'">Abrir sessão →</a>':'')+
+    RTProfessionalKit.render(db,selected?.id||'',{esc,dateFmt,wsUrl,today,contextProgramId:pid});
  }
  else if(chosen==='sessoes'){
   const next=sessions.filter(x=>x.status==='agendada'&&!isElapsedAppointment(x));
@@ -587,8 +593,15 @@ function rt96ProgressLine(t){
 function showInstrumentsCenter(){
  const active=rt96Params().get('tab')||'visao';
  const choice='<nav class="rt-v911-chooser rt-v912-tool-nav" aria-label="Tipos de ferramentas">'+[
-  ['kit','Kit de atendimento'],['perguntas','Perguntas de Coaching'],['temporizador','Temporizador'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
- ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['kit','perguntas','temporizador','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+  ['minhas','Minhas ferramentas'],['perguntas','Perguntas de Coaching'],['temporizador','Temporizador'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
+ ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['minhas','perguntas','temporizador','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+ if(active==='minhas'){
+  const own=RTCustomTools.list();
+  return head('FERRAMENTAS AUTORAIS','Minhas ferramentas','Crie roteiros reutilizáveis e atribua-os nas atividades dos clientes.',
+    btn('+ Nova ferramenta','new-custom-tool','','btn-primary'))+choice+
+    '<div class="rt-v116-tool-grid">'+(own.length?own.map(t=>'<article class="rt-v116-tool"><small>'+esc(t.category)+'</small><h2>'+esc(t.title)+'</h2><p>'+esc(t.purpose||'Reflexão orientada')+'</p><div class="rt-v116-tool-actions">'+btn('Editar','edit-custom-tool',t.id,'btn-secondary')+btn('Excluir','delete-custom-tool',t.id,'line-button')+'</div></article>').join(''):'<div class="rt-v116-tool"><h2>Crie sua primeira ferramenta</h2><p>O roteiro ficará disponível para atribuição nos clientes.</p></div>')+'</div>';
+ }
+ if(active==='kit')return head('FERRAMENTAS','Kit da sessão','O kit está disponível dentro do contexto do cliente.')+'<section class="card"><a class="btn-primary" href="#clientes">Abrir clientes →</a></section>';
  if(active==='perguntas'){
   return head('APOIO À CONDUÇÃO','Banco de Perguntas','Perguntas abertas por etapa para apoiar sessões de coaching e desenvolvimento.')+
     choice+RTSessionAssist.renderQuestions(db,rt96Params().get('session')||'',rt96Params().get('phase')||'todas',{esc,dateFmt,wsUrl,today});
@@ -604,10 +617,6 @@ function showInstrumentsCenter(){
  if(active==='5w2h'){
   return head('PLANEJAMENTO DE AÇÕES','Matriz 5W2H','Converta uma decisão concreta em uma ação do Plano de Ação existente.')+
     choice+RTDevelopmentToolkit.renderFive(db,rt96Params().get('program')||'',rt96Params().get('action')||'',{esc,dateFmt,wsUrl,today});
- }
- if(rt96Params().get('tab')==='kit'){
-   return head('APOIO À CONDUÇÃO','Kit do profissional','Prepare encontros, recupere compromissos e organize perguntas de coaching sem duplicar registros.')+
-     choice+RTProfessionalKit.render(db,rt96Params().get('session')||'',{esc,dateFmt,wsUrl,today});
  }
  const tab=rt96DiscTab(),tasks=db.discAssignments.filter(t=>program(t.programId));
  const responded=tasks.filter(t=>t.status==='respondido'&&t.scores);

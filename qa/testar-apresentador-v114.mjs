@@ -17,7 +17,7 @@ assert.match(viewer,/pdf\.numPages/);
 assert.match(viewer,/renderTask\.promise/);
 assert.match(viewer,/await import\(localMain\.href\)/);
 assert.match(viewer,/pdf\.worker\.min\.mjs/);
-assert.match(viewer,/state\.inkPages=new Map/);
+assert.match(viewer,/inkPages:new Map/);
 assert.match(viewer,/function thumbnailPdf\(/);
 assert.match(viewer,/function exportInk\(/);
 assert.match(viewer,/function undo\(/);

@@ -71,7 +71,7 @@ def main():
             assert board.count()==1
             assert 'Objetivo de comunicação V916 revisado' in board.inner_text()
             assert board.get_by_role('link',name='Sessão de origem').count()==1
-            assert page.locator('.rt-v95-summary strong').first.inner_text()==str(page.evaluate("RTDemoStore.load().actions.filter(a=>a.programId==='p1'&&a.status!=='concluido').length"))
+            assert page.locator('.rt-v116-action-summary .rt-v116-summary-item strong').first.inner_text()==str(page.evaluate("RTDemoStore.load().actions.filter(a=>a.programId==='p1'&&a.status!=='concluido').length"))
             print('OK 05 — painel global aplica totais do processo escolhido',flush=True)
             go(page,'#cliente=c2&tab=desenvolvimento&program=p2')
             assert 'Compromisso privado V916 para teste' not in page.locator('#content').inner_text()

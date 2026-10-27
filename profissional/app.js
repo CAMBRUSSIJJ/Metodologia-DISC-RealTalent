@@ -239,6 +239,16 @@ function rt111SessionPresentations(s){
      '<p class="inline-note">Nenhuma apresentação anterior vinculada. Apresente PDFs ou imagens pela Biblioteca; esse novo modo não compartilha arquivos automaticamente com clientes.</p>')+
     '<p class="inline-note">Somente demonstração local. Notas privadas e arquivos não são distribuídos ao participante.</p></section>';
 }
+function activityResponses(t){
+ if(t.kind==='formulario-personalizado'&&Array.isArray(t.sections)&&Array.isArray(t.responses)){
+  const answers=new Map(t.responses.map(x=>[x.id,x.value]));
+  return t.sections.map(section=>'<div class="rt-v117-review-section"><h4>'+esc(section.title)+'</h4>'+section.questions.map(q=>{
+   const value=answers.get(q.id),shown=Array.isArray(value)?value.join(', '):String(value||'');
+   return '<p><b>'+esc(q.label)+'</b><br>'+esc(shown||'Não respondida')+'</p>';
+  }).join('')+'</div>').join('');
+ }
+ return ['Situação observada','Minha reação','Próxima prática'].map((q,j)=>'<p><b>'+q+':</b> '+esc(t.responses[j])+'</p>').join('');
+}
 function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
  const c=client(id);if(!c)return showClients();let ps=db.programs.filter(p=>p.clientId===id);
  const p=ps.find(x=>x.id===programId)||ps.find(x=>x.status==='em andamento')||ps[0]||null;
@@ -313,7 +323,7 @@ function showClientWorkspace(id,tab='geral',programId='',sessionId=''){
   (review.length+discReview.length?`<div class="rt-v94-attention"><div><strong>Respostas aguardando análise</strong><p>${review.length+discReview.length} atividade(s) pronta(s) para sua revisão profissional.</p></div><a class="btn-secondary" href="${wsUrl(id,'atividades',pid,'view=respondidas')}">Ver respostas</a></div>`:'')+
   ws94Filters(id,pid,chosen,[['acompanhar','Em acompanhamento',pendingInstruments.length+pendingDisc.length+review.length+discReview.length],['respondidas','Respondidas',instruments.filter(x=>x.responses).length+tasks.filter(x=>x.status==='respondido').length],['todas','Todas',tasks.length+instruments.length]],view)+
   `<div class="rt-v94-layout rt-v116-activities"><div class="rt-v94-main">`+
-  ws94Panel('Exercícios e reflexões',activeInstruments.length?activeInstruments.map(t=>`<article class="rt-v94-resource" data-v917-instrument="${esc(t.id)}"><div class="rt-v94-row"><div class="rt-v94-row-copy"><strong>${esc(t.title)}</strong><p>${t.responses?'Resposta recebida':'Aguardando resposta'} · ${t.visibility==='compartilhado'?'Visível na Minha Jornada':'Interna'}</p><p class="rt-v917-goal-ref">Objetivo: ${esc(RTDemoStore.goalsOf(db,pid).find(g=>g.id===t.goalId)?.title||'Objetivo do processo')}</p>${t.feedback?`<small>Devolutiva ${t.feedbackVisibility==='compartilhado'?'compartilhada':'restrita'}</small>`:t.responses?'<small>Aguardando análise profissional</small>':''}</div><div class="rt-v94-row-action">${t.responses?btn('Revisar','review-instrument',t.id,'btn-secondary'):btn(t.visibility==='compartilhado'?'Restringir':'Disponibilizar','toggle-instrument',t.id,'btn-secondary')}</div></div>${t.responses?`<details class="rt-v94-answer"><summary>Ler resposta do exercício</summary>${['Situação observada','Minha reação','Próxima prática'].map((q,j)=>`<p><b>${q}:</b> ${esc(t.responses[j])}</p>`).join('')}</details>`:''}</article>`).join(''):empty('Nenhum exercício neste filtro','Atribua um exercício ou ajuste o filtro.'),'Atividades educativas vinculadas ao processo.')+
+  ws94Panel('Exercícios e reflexões',activeInstruments.length?activeInstruments.map(t=>`<article class="rt-v94-resource" data-v917-instrument="${esc(t.id)}"><div class="rt-v94-row"><div class="rt-v94-row-copy"><strong>${esc(t.title)}</strong><p>${t.responses?'Resposta recebida':'Aguardando resposta'} · ${t.visibility==='compartilhado'?'Visível na Minha Jornada':'Interna'}</p><p class="rt-v917-goal-ref">Objetivo: ${esc(RTDemoStore.goalsOf(db,pid).find(g=>g.id===t.goalId)?.title||'Objetivo do processo')}</p>${t.feedback?`<small>Devolutiva ${t.feedbackVisibility==='compartilhado'?'compartilhada':'restrita'}</small>`:t.responses?'<small>Aguardando análise profissional</small>':''}</div><div class="rt-v94-row-action">${t.responses?btn('Revisar','review-instrument',t.id,'btn-secondary'):btn(t.visibility==='compartilhado'?'Restringir':'Disponibilizar','toggle-instrument',t.id,'btn-secondary')}</div></div>${t.responses?`<details class="rt-v94-answer"><summary>Ler resposta do exercício</summary>${activityResponses(t)}</details>`:''}</article>`).join(''):empty('Nenhum exercício neste filtro','Atribua um exercício ou ajuste o filtro.'),'Atividades educativas vinculadas ao processo.')+
   ws94Panel('DISC/ACER',activeDisc.map(t=>ws94Row('Mapeamento DISC/ACER',t.status==='respondido'?'Questionário concluído':t.status==='cancelado'?'Aplicação cancelada':t.startedAt?'Em andamento':'Aguardando resposta',t.visibility==='compartilhado'?'Disponível no portal':'Rascunho interno',t.status==='respondido'?`<a class="btn-secondary" href="${wsUrl(id,'resultados',pid)}">Ver gráficos</a>`:t.status==='cancelado'?'<span class="rt-v94-state">Aplicação encerrada</span>':btn(t.visibility==='compartilhado'?'Restringir':'Disponibilizar','toggle-disc',t.id,'btn-secondary'))).join('')||empty('Nenhum DISC/ACER neste filtro','Atribua um mapeamento ou altere o filtro.'),'As respostas são analisadas no ambiente profissional.',btn('+ Atribuir DISC','new-disc',pid,'btn-secondary'))+'</div>'+
   `<div class="rt-v116-activity-footer"><a href="#biblioteca">Consultar materiais da Biblioteca →</a></div></div>`;
  }
@@ -545,11 +555,12 @@ function showActionPlan(){
   const priority=['alta','normal','baixa'].includes(a.priority)?a.priority:'normal';
   const owner=a.owner==='profissional'?'Profissional':a.owner==='conjunto'?'Conjunto':'Participante';
   const history=(Array.isArray(a.history)?a.history:[]).slice(-4).reverse();
+  const source=a.sessionId?db.sessions.find(s=>s.id===a.sessionId&&s.programId===a.programId):null;
   return `<article class="rt-v116-action" data-action-id="${esc(a.id)}">
    <div class="rt-v116-action-main">
     <div class="rt-v116-action-overline">${actionBadge(st)}<span class="rt-v116-priority rt-v116-priority-${priority}">Prioridade ${esc(priority)}</span><span class="rt-v116-vis">${a.visibility==='compartilhado'?'Compartilhada':'Privada'}</span></div>
     <h3>${esc(a.title)}</h3>
-    <div class="rt-v116-action-context"><strong>${esc(clientOf(p))}</strong><span>${esc(goal?.title||p.goal)}</span></div>
+    <div class="rt-v116-action-context"><strong>${esc(clientOf(p))}</strong><span>${esc(goal?.title||p.goal)}</span>${source?`<a class="rt-v116-action-source" href="${wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(source.id))}">Sessão de origem</a>`:''}</div>
     <div class="rt-v116-action-progress"><div class="rt-v116-progress-head"><span>Execução registrada</span><strong>${progress}%</strong></div>
      <div class="rt-v116-progress-track" role="progressbar" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da ação"><span style="width:${progress}%"></span></div></div>
     <dl class="rt-v116-action-facts"><div><dt>Prazo</dt><dd>${dateFmt(a.due)}</dd></div><div><dt>Responsável</dt><dd>${owner}</dd></div><div><dt>Próxima revisão</dt><dd>${a.reviewOn?dateFmt(a.reviewOn):'Não marcada'}</dd></div></dl>
@@ -613,14 +624,15 @@ function rt96ProgressLine(t){
 }
 function showInstrumentsCenter(){
  const active=rt96Params().get('tab')||'visao';
+ if(active==='editor')return RTToolBuilder.render(rt96Params().get('tool')||'');
  const choice='<nav class="rt-v911-chooser rt-v912-tool-nav" aria-label="Tipos de ferramentas">'+[
   ['minhas','Minhas ferramentas'],['perguntas','Perguntas de Coaching'],['temporizador','Temporizador'],['roda','Roda da Vida'],['5w2h','Matriz 5W2H'],['visao','DISC / ACER']
  ].map(([key,label])=>'<a href="'+rt96Href(key)+'"'+((key==='visao'?!['minhas','perguntas','temporizador','roda','5w2h'].includes(active):key===active)?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
  if(active==='minhas'){
   const own=RTCustomTools.list();
   return head('FERRAMENTAS AUTORAIS','Minhas ferramentas','Crie roteiros reutilizáveis e atribua-os nas atividades dos clientes.',
-    btn('+ Nova ferramenta','new-custom-tool','','btn-primary'))+choice+
-    '<div class="rt-v116-tool-grid">'+(own.length?own.map(t=>'<article class="rt-v116-tool"><small>'+esc(t.category)+'</small><h2>'+esc(t.title)+'</h2><p>'+esc(t.purpose||'Reflexão orientada')+'</p><div class="rt-v116-tool-actions">'+btn('Editar','edit-custom-tool',t.id,'btn-secondary')+btn('Excluir','delete-custom-tool',t.id,'line-button')+'</div></article>').join(''):'<div class="rt-v116-tool"><h2>Crie sua primeira ferramenta</h2><p>O roteiro ficará disponível para atribuição nos clientes.</p></div>')+'</div>';
+    '<a class="btn-primary" href="'+rt96Href('editor')+'">+ Criar formulário</a>')+choice+
+    '<div class="rt-v116-tool-grid">'+(own.length?own.map(t=>'<article class="rt-v116-tool"><small>'+esc(t.category)+'</small><h2>'+esc(t.title)+'</h2><p>'+esc(t.purpose||'Reflexão orientada')+'</p><p class="rt-v117-tool-count">'+(t.sections?.length?t.sections.length+' seção(ões) · '+t.sections.reduce((n,s)=>n+s.questions.length,0)+' pergunta(s)':'Roteiro legado')+'</p><div class="rt-v116-tool-actions">'+'<a class="btn-secondary" href="'+rt96Href('editor','tool='+encodeURIComponent(t.id))+'">Editar formulário</a>'+btn('Excluir','delete-custom-tool',t.id,'line-button')+'</div></article>').join(''):'<div class="rt-v116-tool"><h2>Crie sua primeira ferramenta</h2><p>O roteiro ficará disponível para atribuição nos clientes.</p></div>')+'</div>';
  }
  if(active==='kit')return head('FERRAMENTAS','Kit da sessão','O kit está disponível dentro do contexto do cliente.')+'<section class="card"><a class="btn-primary" href="#clientes">Abrir clientes →</a></section>';
  if(active==='perguntas'){
@@ -768,7 +780,7 @@ function openModal(kind,id,preferredGoal=''){
    const tools=RTCustomTools.list(),p=program(id);
    if(!p||!tools.length){toast('Crie uma ferramenta própria e abra um cliente com processo ativo.');return;}
    name='Atribuir ferramenta própria';
-   html='<p class="inline-note">Reflexão vinculada somente a este cliente e objetivo. Usa a experiência de atividades já existente na Minha Jornada.</p>'+
+   html='<p class="inline-note">A ferramenta será atribuída ao cliente selecionado. As perguntas ficam registradas como uma cópia deste formulário.</p>'+
     sel('toolId','Ferramenta',tools.map(x=>[x.id,x.title]))+
     sel('goalId','Objetivo relacionado',goalOptions(id))+
     sel('visibility','Disponibilização',[['privado','Rascunho interno'],['compartilhado','Liberar na Minha Jornada']]);
@@ -841,6 +853,19 @@ function saveModal(e){e.preventDefault();let f=e.target;let d=new FormData(f);le
    applyActionFields(a,get);
    actionHistory(a,kind==='edit-action'?'Compromisso editado · '+a.progress+'%':'Progresso revisado · '+a.progress+'%');
   }
+ }
+ if(kind==='new-custom-tool'||kind==='edit-custom-tool'){
+  try{RTCustomTools.upsert({title:get('title'),category:get('category'),purpose:get('purpose'),instructions:get('instructions')},kind==='edit-custom-tool'?id:'');}
+  catch(error){toast(error.message);return;}
+  location.hash=rt96Href('minhas');
+ }
+ if(kind==='assign-custom-tool'){
+  const p=program(id),tool=RTCustomTools.list().find(x=>x.id===get('toolId'));
+  if(!p||!tool){toast('Processo ou ferramenta indisponível.');return;}
+  const input={programId:p.id,goalId:get('goalId'),title:tool.title,instructions:tool.instructions,sections:tool.sections,toolId:tool.id,visibility:get('visibility')};
+  const assigned=tool.sections?.length?RTDemoStore.assignCustomForm(db,input):RTDemoStore.assignGuidedActivity(db,input);
+  if(!assigned){toast('Confira objetivo, formulário e processo ativo.');return;}
+  assigned.customToolId=tool.id;location.hash=wsUrl(p.clientId,'atividades',p.id);
  }
  if(kind==='new-disc'){if(!RTDemoStore.assignDisc(db,get('programId'),get('visibility'))){toast('Já existe um questionário pendente neste processo.');return;}location.hash=location.hash.startsWith('#ferramentas')?rt96Href('aplicacoes'):wsUrl(program(get('programId'))?.clientId||'', 'atividades',get('programId'));}
  if(kind==='disc-feedback'){const t=db.discAssignments.find(x=>x.id===id&&x.status==='respondido');if(t){t.feedback=get('feedback').slice(0,1600);t.feedbackVisibility=t.feedback&&get('feedbackVisibility')==='compartilhado'?'compartilhado':'privado';}location.hash=location.hash.startsWith('#ferramentas')?rt96Href('resultados','result='+encodeURIComponent(id)):wsUrl(program(t?.programId)?.clientId||'', 'resultados',t?.programId||'');}

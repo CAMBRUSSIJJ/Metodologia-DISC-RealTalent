@@ -286,7 +286,7 @@
     const ps=d.programs.filter(p=>p.clientId===c.id),ids=new Set(ps.map(p=>p.id));
     return clone({client:c,programs:ps,goals:d.goals.filter(g=>ids.has(g.programId)),
       sessions:d.sessions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({summary,focus,clientRecap,recapVisibility,preparation,preparationUpdatedAt,liveNotes,liveNotesUpdatedAt,coachingQuestionIds,timerPlan,timerPlanUpdatedAt,...s})=>({...s,focus:s.clientTopic||'Encontro de acompanhamento',clientRecap:s.status==='concluida'&&recapVisibility==='compartilhado'?clientRecap:''})),
-      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
+      actions:d.actions.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({fiveWTwoH,internalNotes,history,reviewOn,...a})=>({...a,sessionId:d.sessions.some(s=>s.id===a.sessionId&&s.visibility==='compartilhado')?a.sessionId:null})),
       guidance:d.guidance.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado'),
       instruments:d.instruments.filter(x=>ids.has(x.programId)&&x.visibility==='compartilhado').map(({feedback,feedbackVisibility,...item})=>({...item,feedback:feedbackVisibility==='compartilhado'?feedback:''})),
       // Tela cliente não recebe respostas nem gráficos pelo contrato de visualização.

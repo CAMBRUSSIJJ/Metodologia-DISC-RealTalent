@@ -130,7 +130,7 @@ function togglePanel(id){
 function focus(enabled){
  $('viewer').classList.toggle('focus-mode',enabled);
  $('focus').setAttribute('aria-pressed',String(enabled));
- if(enabled){$('notes').hidden=true;$('resources').hidden=true;setTool('none');$('presentation-content').focus();}
+ if(enabled){$('notes').hidden=true;$('resources').hidden=true;$('notes-toggle').setAttribute('aria-pressed','false');$('resources-toggle').setAttribute('aria-pressed','false');setTool('none');$('presentation-content').focus();}
  $('focus').textContent=enabled?'Mostrar controles':'Modo foco';
 }
 function clock(){const seconds=Math.floor((Date.now()-state.started)/1000);$('clock').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');}
@@ -163,6 +163,7 @@ $('zoom-in').addEventListener('click',()=>setZoom(10));$('zoom-out').addEventLis
 $('fullscreen').addEventListener('click',()=>void fullscreen());
 $('focus').addEventListener('click',()=>focus(!$('viewer').classList.contains('focus-mode')));
 $('reset-focus').addEventListener('click',()=>focus(false));
+$('focus-exit').addEventListener('click',()=>focus(false));
 $('notes-toggle').addEventListener('click',()=>togglePanel('notes'));
 $('resources-toggle').addEventListener('click',()=>togglePanel('resources'));
 $('close-notes').addEventListener('click',()=>togglePanel('notes'));

@@ -1,0 +1,171 @@
+/* RealTalent DISC/ACER V11.7 — Processo de desenvolvimento
+   Adaptação visual do mockup realtalent_processos.tsx.
+   Componentes e dados da tabela continuam sendo renderizados pelo app.js.
+   Escopo intencional: somente #content.rt-v117-processos. */
+#content.rt-v117-processos{max-width:1280px!important}
+#content.rt-v117-processos .page-head{margin-bottom:22px!important;align-items:end!important}
+#content.rt-v117-processos .page-head .eyebrow{
+  color:var(--rt-muted)!important;font-size:10px!important;letter-spacing:.085em!important;
+  font-weight:770!important;line-height:1.5!important
+}
+#content.rt-v117-processos .page-head .page-title{
+  color:var(--rt-text)!important;font-size:clamp(25px,2.4vw,31px)!important;
+  letter-spacing:-.035em!important;margin:9px 0 7px!important
+}
+#content.rt-v117-processos .page-head .lead{
+  color:var(--rt-muted)!important;font-size:12.5px!important;
+  line-height:1.65!important;max-width:750px!important
+}
+#content.rt-v117-processos .page-head .btn-primary{
+  background:#4f46e5!important;border:1px solid #6366f1!important;
+  box-shadow:0 7px 20px #4f46e52c!important;color:#fff!important;
+  font-size:12px!important;font-weight:750!important;border-radius:8px!important;
+  padding:11px 16px!important;min-height:40px
+}
+#content.rt-v117-processos .page-head .btn-primary:hover{background:#6366f1!important}
+#content.rt-v117-processos .rt-v915-process-guide{
+  margin:0 0 20px!important;
+  background:var(--rt-side-bg,var(--rt-surface))!important;
+  border:1px solid var(--rt-line)!important;
+  border-radius:10px!important;
+  padding:0 16px!important;
+  box-shadow:none!important;
+  overflow:hidden
+}
+#content.rt-v117-processos .rt-v915-process-guide>summary{
+  color:var(--rt-text)!important;
+  font-size:12.5px!important;font-weight:670!important;
+  display:flex!important;align-items:center!important;
+  gap:11px;min-height:53px;line-height:1.5;list-style:none!important;
+  padding:9px 0!important;margin:0!important;cursor:pointer
+}
+#content.rt-v117-processos .rt-v915-process-guide>summary::-webkit-details-marker{display:none}
+#content.rt-v117-processos .rt-v915-process-guide>summary:before{
+  content:"";width:0;height:0;flex:none;
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+  border-left:6px solid var(--rt-muted);
+  transition:transform .18s ease
+}
+#content.rt-v117-processos .rt-v915-process-guide[open]>summary:before{transform:rotate(90deg)}
+#content.rt-v117-processos .rt-v915-process-guide>p{
+  margin:0 0 13px 16px!important;color:var(--rt-muted)!important;
+  font-size:11.5px!important;line-height:1.6!important
+}
+#content.rt-v117-processos .rt-v915-process-guide .workflow{
+  margin:0 0 17px!important;gap:9px!important
+}
+#content.rt-v117-processos .rt-v915-process-guide .step{
+  background:var(--rt-panel)!important;border-color:var(--rt-line)!important;
+  border-radius:9px!important;box-shadow:none!important
+}
+#content.rt-v117-processos>.card{
+  margin:0!important;overflow:hidden!important;padding:0!important;
+  background:var(--rt-side-bg,var(--rt-surface))!important;
+  border:1px solid var(--rt-line)!important;border-radius:12px!important;
+  box-shadow:none!important
+}
+#content.rt-v117-processos>.card>.card-head{
+  padding:18px 24px!important;
+  border-bottom:1px solid var(--rt-line)!important;
+  margin:0!important;min-height:65px;
+  display:flex;align-items:center;justify-content:space-between
+}
+#content.rt-v117-processos>.card>.card-head h2{
+  font-size:14px!important;color:var(--rt-text)!important;
+  font-weight:750!important;letter-spacing:-.01em!important;
+  margin:0!important
+}
+#content.rt-v117-processos>.card>.table-wrap{
+  overflow-x:auto!important;overflow-y:visible!important;
+  width:100%;max-width:100%;border:0!important;
+  background:transparent!important;border-radius:0!important;
+}
+#content.rt-v117-processos .table{
+  width:100%!important;min-width:785px!important;
+  border-collapse:collapse!important;
+  border:0!important;background:transparent!important;
+  table-layout:auto!important
+}
+#content.rt-v117-processos .table thead{
+  background:transparent!important
+}
+#content.rt-v117-processos .table th{
+  color:var(--rt-muted)!important;
+  background:transparent!important;
+  border:0!important;border-bottom:1px solid var(--rt-line)!important;
+  font-size:10.5px!important;font-weight:780!important;
+  letter-spacing:.065em!important;
+  padding:15px 22px!important;line-height:1.5!important;
+  text-transform:uppercase!important;white-space:nowrap!important;
+  text-align:left!important
+}
+#content.rt-v117-processos .table th:nth-child(1){width:21%}
+#content.rt-v117-processos .table th:nth-child(2){width:34%}
+#content.rt-v117-processos .table th:nth-child(3){width:22%}
+#content.rt-v117-processos .table th:nth-child(4){width:12%}
+#content.rt-v117-processos .table th:nth-child(5){width:11%;text-align:right!important}
+#content.rt-v117-processos .table td{
+  border:0!important;border-bottom:1px solid var(--rt-line)!important;
+  padding:19px 22px!important;
+  background:transparent!important;
+  vertical-align:middle!important;line-height:1.6!important;
+  color:var(--rt-muted)!important;font-size:12px!important;
+  overflow-wrap:anywhere!important
+}
+#content.rt-v117-processos .table tbody tr:last-child td{border-bottom:0!important}
+#content.rt-v117-processos .table tbody tr:hover td{
+  background:var(--rt-panel)!important
+}
+#content.rt-v117-processos .table td:first-child b{
+  color:var(--rt-text)!important;
+  font-size:12px!important;font-weight:730!important
+}
+#content.rt-v117-processos .table td:nth-child(2){
+  color:var(--rt-text)!important;max-width:410px
+}
+#content.rt-v117-processos .table td:nth-child(5){text-align:right!important;white-space:nowrap!important}
+#content.rt-v117-processos .table td:nth-child(4) .status{
+  display:inline-flex!important;align-items:center!important;
+  font-size:9.5px!important;
+  font-weight:780!important;
+  letter-spacing:.05em!important;
+  text-transform:uppercase!important;
+  border:1px solid var(--rt-line)!important;
+  background:var(--rt-highlight)!important;
+  color:var(--rt-purple)!important;
+  border-radius:999px!important;padding:6px 10px!important;
+  white-space:nowrap!important
+}
+#content.rt-v117-processos .table td:nth-child(5) button{
+  background:var(--rt-panel)!important;
+  color:var(--rt-text)!important;
+  border:1px solid var(--rt-line)!important;
+  font-size:11px!important;font-weight:670!important;
+  border-radius:8px!important;
+  padding:9px 13px!important;min-height:35px!important;
+  white-space:nowrap!important;cursor:pointer
+}
+#content.rt-v117-processos .table td:nth-child(5) button:hover{
+  border-color:var(--rt-purple)!important;
+  background:var(--rt-raised)!important
+}
+#content.rt-v117-processos .table td:nth-child(5) button:focus-visible{
+  outline:3px solid var(--rt-focus)!important;outline-offset:2px!important
+}
+/* Estilo das abas não é alterado; o comportamento no celular mantém a tabela rolável. */
+@media(max-width:1010px){
+  #content.rt-v117-processos .page-head{align-items:flex-start!important}
+  #content.rt-v117-processos .table th,
+  #content.rt-v117-processos .table td{padding-left:16px!important;padding-right:16px!important}
+}
+@media(max-width:650px){
+  #content.rt-v117-processos .page-head{flex-direction:column!important;align-items:stretch!important}
+  #content.rt-v117-processos .page-head .page-actions{width:100%!important}
+  #content.rt-v117-processos .page-head .btn-primary{width:100%;justify-content:center}
+  #content.rt-v117-processos .rt-v915-process-guide{padding:0 13px!important}
+  #content.rt-v117-processos>.card>.card-head{padding:16px!important}
+  #content.rt-v117-processos .table{min-width:750px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #content.rt-v117-processos .rt-v915-process-guide>summary:before{transition:none}
+}

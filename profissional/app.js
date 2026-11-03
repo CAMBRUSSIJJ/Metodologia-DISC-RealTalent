@@ -885,6 +885,7 @@ function render(){
  if(key==='processo'){const p=program(raw.split('=')[1]);if(p){location.replace(wsUrl(p.clientId,'geral',p.id));return;}}
  if(key==='sessao'){const s=db.sessions.find(x=>x.id===raw.split('=')[1]);const p=program(s?.programId);if(p){location.replace(wsUrl(p.clientId,'sessoes',p.id,'session='+encodeURIComponent(s.id)));return;}}
  const page=pages[key]?key:(key==='cliente'?'cliente':'inicio');
+ $('#content').classList.toggle('rt-v117-processos',page==='processos');
  const views={inicio:showHome,clientes:showClients,processos:showProcesses,'atividades-guiadas':showGuidedActivities,'graficos-relatorios':showDiscReports,sessoes:showAgenda,'plano-desenvolvimento':showDevelopmentPlans,'plano-acao':showActionPlan,ferramentas:showInstrumentsCenter,biblioteca:showTools,apresentacoes:showPresentations,configuracoes:()=>showSettings()+`<div class="rt-v9-settings-actions">${btn('Restaurar dados fictícios','reset','','btn-secondary')}</div><details class="card rt-v9-legacy"><summary>Diretrizes profissionais e limites de uso</summary>${showPolicy()}</details>`};
  let output=views[page]?.();
  if(page==='cliente')output=showClientWorkspace(cid,new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('tab')||'geral',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('program')||'',new URLSearchParams(raw.slice(raw.indexOf('&')+1)).get('session')||'');

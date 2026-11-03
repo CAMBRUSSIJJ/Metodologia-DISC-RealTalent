@@ -47,6 +47,8 @@
 .rt-v116-vis{font-size:10px;color:var(--rt-muted,#aaa0c7)}
 .rt-v116-action-context{display:flex;gap:7px;flex-wrap:wrap;font-size:11px;color:var(--rt-muted,#aaa0c7);line-height:1.5}
 .rt-v116-action-context strong{color:var(--rt-text,#e9e4ff)}
+.rt-v116-action-source{color:var(--rt-purple,#9278eb);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.rt-v116-action-source:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px}
 .rt-v116-action-progress{margin:14px 0 12px;max-width:470px}
 .rt-v116-progress-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--rt-muted,#aaa0c7);margin-bottom:5px}
 .rt-v116-progress-head strong{color:var(--rt-text,#f4f0ff);font-variant-numeric:tabular-nums}

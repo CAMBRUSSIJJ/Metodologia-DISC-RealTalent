@@ -313,10 +313,76 @@
       assignedAt:new Date().toISOString()};
     d.instruments.push(item);return item;
   }
+  // V11.7 — esquema imutável por atribuição; nenhuma pergunta recebe execução de código.
+  function formSchema(input){
+    if(!Array.isArray(input)||input.length<1||input.length>8)return null;
+    const ids=new Set();let total=0;
+    const out=[];
+    for(const raw of input){
+      if(!raw||!Array.isArray(raw.questions)||!raw.questions.length||raw.questions.length>12)return null;
+      const title=String(raw.title||'').trim().slice(0,90);if(!title)return null;
+      const questions=[];
+      for(const q of raw.questions){
+        if(!q)return null;total++;if(total>40)return null;
+        const id=String(q.id||'').trim().slice(0,120),
+          label=String(q.label||'').trim().slice(0,180),
+          type=String(q.type||'');
+        if(!id||ids.has(id)||!label||!['curta','paragrafo','unica','multipla','escala'].includes(type))return null;
+        ids.add(id);
+        const options=['unica','multipla'].includes(type)?(Array.isArray(q.options)?q.options:[]).map(o=>String(o).trim().slice(0,90)):[];
+        if(['unica','multipla'].includes(type)&&(options.length<2||options.length>8||options.some(x=>!x)||new Set(options).size!==options.length))return null;
+        questions.push({id,label,type,required:q.required!==false,options});
+      }
+      out.push({id:String(raw.id||'').slice(0,120),title,description:String(raw.description||'').slice(0,280),questions});
+    }
+    return out;
+  }
+  function assignCustomForm(d,input){
+    const p=d.programs.find(x=>x.id===input?.programId&&x.status!=='finalizado'),
+      goal=d.goals.find(g=>g.id===input?.goalId&&g.programId===p?.id),
+      schema=formSchema(input?.sections),
+      title=String(input?.title||'').trim().slice(0,110),
+      instructions=String(input?.instructions||'').trim().slice(0,1800);
+    if(!p||!goal||!schema||title.length<4)return null;
+    const item={id:freshId('form'),programId:p.id,goalId:goal.id,kind:'formulario-personalizado',
+      toolId:String(input.toolId||'').slice(0,120),title,instructions,sections:schema,
+      visibility:input?.visibility==='compartilhado'?'compartilhado':'privado',
+      status:'atribuido',responses:null,feedback:'',feedbackVisibility:'privado',assignedAt:new Date().toISOString()};
+    d.instruments.push(item);return item;
+  }
+  function submitCustomForm(d,clientId,instrumentId,values){
+    const view=clientView(d,clientId),visible=view?.instruments.find(i=>i.id===instrumentId&&i.kind==='formulario-personalizado'&&i.status==='atribuido');
+    if(!visible||!values||typeof values!=='object'||Array.isArray(values))return false;
+    const schema=formSchema(visible.sections);if(!schema)return false;
+    const questions=schema.flatMap(section=>section.questions);
+    const ids=Object.keys(values);if(ids.length>questions.length||ids.some(k=>!questions.some(q=>q.id===k)))return false;
+    const answers=[];
+    for(const q of questions){
+      const raw=values[q.id],isMulti=q.type==='multipla';
+      if(isMulti){
+        if(raw!==undefined&&!Array.isArray(raw))return false;
+        const chosen=Array.isArray(raw)?raw:[];
+        if(chosen.length>q.options.length||new Set(chosen).size!==chosen.length||chosen.some(x=>typeof x!=='string'||!q.options.includes(x)))return false;
+        if(q.required&&!chosen.length)return false;
+        answers.push({id:q.id,value:chosen});
+      }else{
+        if(raw!==undefined&&typeof raw!=='string')return false;
+        const value=String(raw||'').trim();
+        if(q.required&&!value)return false;
+        if(['curta','paragrafo'].includes(q.type)&&value.length>(q.type==='curta'?240:1400))return false;
+        if(q.type==='unica'&&value&&!q.options.includes(value))return false;
+        if(q.type==='escala'&&value&&!['1','2','3','4','5'].includes(value))return false;
+        answers.push({id:q.id,value});
+      }
+    }
+    const item=d.instruments.find(i=>i.id===instrumentId);
+    if(!item||item.status!=='atribuido')return false;
+    item.responses=answers;item.status='respondido';item.answeredAt=new Date().toISOString();return true;
+  }
   function reviewGuidedActivity(d,id,raw,visibility){
     const item=d.instruments.find(i=>i.id===id),p=d.programs.find(p=>p.id===item?.programId);
     const feedback=String(raw||'').trim();
-    if(!item||!p||!Array.isArray(item.responses)||item.responses.length!==3||feedback.length>250)return false;
+    if(!item||!p||!Array.isArray(item.responses)|| (item.kind==='formulario-personalizado'? !formSchema(item.sections)||item.responses.length!==item.sections.flatMap(x=>x.questions).length:item.responses.length!==3)||feedback.length>250)return false;
     item.feedback=feedback;
     item.feedbackVisibility=feedback&&visibility==='compartilhado'?'compartilhado':'privado';
     item.status=feedback?'devolvido':'respondido';
@@ -418,5 +484,5 @@
   }
   function publicReflections(d,clientId){return d.reflections.filter(r=>r.clientId===clientId&&r.visibility==='compartilhado');}
   function log(d,actor,action,entityId) {d.audit.push({id:freshId('ev'),actor,action,entityId,at:new Date().toISOString()});if(d.audit.length>150)d.audit=d.audit.slice(-150);}
-  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,linkPresentationToSession,publishPresentationSlides,withdrawPresentation,unlinkPresentation,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
+  root.RTDemoStore=Object.freeze({KEY,VERSION,load,save,reset,freshId,clientView,publicReflections,goalsOf,createGoal,updateGoal,linkActionGoal,assignGuidedActivity,assignCustomForm,submitCustomForm,formSchema,reviewGuidedActivity,updateSessionPreparation,updateSessionLiveNotes,defaultTimerPlan,setSessionTimerPlan,setSessionQuestionIds,createWheelSnapshot,deleteWheelSnapshot,upsertFiveWTwoH,createSessionAgreement,linkPresentationToSession,publishPresentationSlides,withdrawPresentation,unlinkPresentation,updateSessionRecap,recordExperience,log,seed,submitInstrument,upgrade,addDiscLink,assignDisc,submitDisc,markDiscStarted,cancelDisc});
 })(window);

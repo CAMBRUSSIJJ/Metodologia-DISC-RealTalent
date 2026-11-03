@@ -32,14 +32,20 @@ def main():
             assert ids==['s1'],f'O kit não pode misturar clientes: {ids}'
             print('OK 02 — Kit de atendimento restrito ao cliente c1')
             page.goto(base+'#ferramentas?tab=minhas')
-            page.get_by_role('button',name='+ Nova ferramenta').click()
-            fields=page.locator('#modal-form')
-            fields.locator('[name=title]').fill('Roteiro de feedback fictício')
-            fields.locator('[name=purpose]').fill('Reflexão sobre comunicação')
-            fields.locator('[name=instructions]').fill('Faça perguntas abertas sobre uma conversa hipotética e registre ações observáveis.')
-            page.locator('#modal-save').click()
+            # A V11.7 substituiu o modal antigo pelo construtor de formulários.
+            # Esta regressão testa a compatibilidade dos roteiros V11.6 sem sections;
+            # a criação visual V11.7 é coberta em testar-ferramentas-v117.py.
+            page.evaluate("""() => RTCustomTools.upsert({
+                title: 'Roteiro de feedback fictício',
+                purpose: 'Reflexão sobre comunicação',
+                instructions: 'Faça perguntas abertas sobre uma conversa hipotética e registre ações observáveis.'
+            })""")
+            page.reload()
+            legacy=page.locator('.rt-v116-tool').filter(has_text='Roteiro de feedback fictício')
+            legacy.wait_for()
             assert page.locator('.rt-v116-tool').count()==1
-            print('OK 03 — ferramenta criada no catálogo')
+            assert 'Roteiro legado' in legacy.inner_text(), 'O catálogo deve preservar o roteiro V11.6'
+            print('OK 03 — roteiro V11.6 legado preservado no catálogo')
             page.goto(base+'#cliente=c1&tab=atividades&program=p1')
             page.get_by_role('button',name='Atribuir ferramenta própria').click()
             assert page.locator('#f-toolId option').count()==1

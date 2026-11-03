@@ -1,3 +1,17 @@
+# RealTalent V11.7 — Construtor de Ferramentas Personalizadas (PREVIEW)
+
+A V11.7 permite criar **formulários educativos** com seções e até cinco tipos de pergunta (texto curto, texto longo, escolha única, múltipla escolha e escala 1–5). O profissional configura a obrigatoriedade e as alternativas, organiza as perguntas, utiliza a prévia e salva o formulário em **Ferramentas → Minhas ferramentas**.
+
+A atribuição continua restrita ao contexto **Clientes → Atividades**, vinculada a processo e objetivo. A **Minha Jornada** apresenta apenas ferramentas explicitamente disponibilizadas, valida e registra as respostas. O profissional revisa a atividade e decide se compartilha a devolutiva.
+
+Edições posteriores da ferramenta não alteram formulários já atribuídos. Roteiros simples da V11.6, exercícios anteriores e as demais áreas da plataforma foram preservados.
+
+**Modo demonstrativo apenas com dados fictícios.** Não há segurança apta a registros reais, autenticação/servidor ou uso como teste psicológico validado.
+
+[Guia V11.7](docs/V11_7_FERRAMENTAS_PERSONALIZADAS.md) · `node qa/testar-ferramentas-v117.mjs` · `python3 qa/testar-ferramentas-v117.py`.
+
+---
+
 # RealTalent V11.6 — Planos de Ação e Ferramentas Próprias (PREVIEW)
 
 **Tela Atividades**: removida a coluna lateral "Como funciona" para priorizar atividades e DISC/ACER.

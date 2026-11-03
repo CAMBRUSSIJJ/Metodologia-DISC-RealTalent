@@ -30,6 +30,16 @@ const sessionsList=(v,max=20)=>upcoming(v).slice(0,max).map(s=>`<div class="row"
 const guidanceList=v=>v.guidance.slice().reverse().map(g=>`<div class="row"><div class="row-symbol">✧</div><div class="row-main"><b>Orientação do profissional</b><p>${esc(g.text)}</p><span class="muted">Compartilhada em ${dateFmt(g.created)}</span></div></div>`).join('')||empty('Nenhuma orientação compartilhada','Quando houver uma orientação liberada pelo profissional, ela aparecerá aqui.');
 function actionRow(a){return `<div class="row"><div class="row-symbol">${a.status==='concluido'?'✓':'◎'}</div><div class="row-main"><b>${esc(a.title)}</b><p>${esc(a.resource||'Atividade de desenvolvimento')} · Prazo ${dateFmt(a.due)}</p></div><span class="chip ${a.status==='concluido'?'done':'pending'}">${a.status==='concluido'?'Concluída':'Pendente'}</span>${btn(a.status==='concluido'?'Reabrir':'Concluir','toggle',a.id,'btn small')}</div>`;}
 
+function customFields(i){
+ return i.sections.map((section,index)=>'<section class="rt-v117-client-section"><span>ETAPA '+(index+1)+'</span><h3>'+esc(section.title)+'</h3>'+
+ (section.description?'<p>'+esc(section.description)+'</p>':'')+section.questions.map(q=>{
+ const label=esc(q.label)+(q.required?' <small>Obrigatória</small>':'');const name='q_'+esc(q.id);
+ if(q.type==='curta')return '<label class="field">'+label+'<input name="'+name+'" maxlength="240"'+(q.required?' required':'')+'></label>';
+ if(q.type==='paragrafo')return '<label class="field">'+label+'<textarea name="'+name+'" rows="3" maxlength="1400"'+(q.required?' required':'')+'></textarea></label>';
+ if(q.type==='escala')return '<fieldset class="rt-v117-choice"><legend>'+label+'</legend>'+[1,2,3,4,5].map(n=>'<label><input type="radio" name="'+name+'" value="'+n+'"'+(q.required?' required':'')+'> '+n+'</label>').join('')+'</fieldset>';
+ return '<fieldset class="rt-v117-choice"><legend>'+label+'</legend>'+q.options.map(opt=>'<label><input type="'+(q.type==='multipla'?'checkbox':'radio')+'" name="'+name+'" value="'+esc(opt)+'"'+(q.required&&q.type==='unica'?' required':'')+'> '+esc(opt)+'</label>').join('')+'</fieldset>';
+ }).join('')+'</section>').join('');
+}
 const prompts=['Descreva uma situação de comunicação vivida ou imaginada.','Como você costuma reagir nessa situação?','Que atitude gostaria de experimentar em uma próxima ocasião?'];
 function instrumentRow(i){return `<div class="rt-assignment"><div><strong>${esc(i.title)}</strong><p>${esc(i.instructions)}</p><span class="chip">${i.status==='atribuido'?'Pendente':i.feedback?'Devolutiva disponível':'Enviada ao profissional'}</span>${i.responses?`<p class="muted">Suas respostas foram registradas nesta demonstração.</p>`:''}${i.feedback?`<div class="rt-feedback"><b>Orientação compartilhada:</b><p>${esc(i.feedback)}</p></div>`:''}</div>${i.status==='atribuido'?btn('Responder atividade','respond-instrument',i.id,'btn solid'):''}</div>`;}
 function instrumentos(v){return heading('REFLEXÃO GUIADA','Minhas atividades guiadas','Exercícios educativos propostos pelo profissional. Não são testes psicológicos nem geram pontuação DISC/ACER.')+`<div class="columns"><div class="stack"><section class="card"><div class="card-heading"><h2>Atividades atribuídas</h2><span class="chip">${v.instruments.length}</span></div>${v.instruments.map(instrumentRow).join('')||empty('Nenhum exercício atribuído','Seu profissional poderá compartilhar uma prática guiada.')}</section></div><div class="stack"><section class="card"><h2>Antes de começar</h2><p>As respostas servem de apoio à reflexão conjunta. Use apenas exemplos fictícios nesta versão local; não insira informações pessoais ou de saúde.</p></section></div></div>`;}
@@ -66,7 +76,7 @@ function rt98Activities(v){
    result.push({kind:'DISC/ACER',name:'Mapeamento DISC/ACER',detail:'Questionário de autoconhecimento · 20 perguntas e duas etapas de adjetivos',state:finished?'concluidas':ongoing?'andamento':'fazer',due:d.assignedAt,html:finished?d.feedback?`<div class="rt98-feedback"><strong>Devolutiva compartilhada</strong><p>${esc(d.feedback)}</p></div>`:'' : '',cta:finished?'':btn(ongoing?'Continuar DISC/ACER':'Começar DISC/ACER','disc-start',d.id,'btn solid')});
  }
  for(const i of v.instruments){
-   const done=Boolean(i.responses)||i.status==='respondido'||i.status==='devolvido';const goal=rt99Goal(v,i.programId,i.goalId);result.push({kind:'Reflexão guiada',name:i.title,detail:(goal?'Objetivo: '+goal.title+' · ':'')+i.instructions,state:done?'concluidas':'fazer',due:i.assignedAt,html:done&&i.feedback?`<div class="rt98-feedback"><strong>Orientação compartilhada</strong><p>${esc(i.feedback)}</p></div>`:'',cta:done?'':btn('Responder atividade','respond-instrument',i.id,'btn solid')});
+   const done=Boolean(i.responses)||i.status==='respondido'||i.status==='devolvido';const goal=rt99Goal(v,i.programId,i.goalId);result.push({kind:i.kind==='formulario-personalizado'?'Formulário personalizado':'Reflexão guiada',name:i.title,detail:(goal?'Objetivo: '+goal.title+' · ':'')+i.instructions,state:done?'concluidas':'fazer',due:i.assignedAt,html:done&&i.feedback?`<div class="rt98-feedback"><strong>Orientação compartilhada</strong><p>${esc(i.feedback)}</p></div>`:'',cta:done?'':btn('Responder atividade','respond-instrument',i.id,'btn solid')});
  }
  for(const a of v.actions){
    const done=a.status==='concluido';result.push({kind:'Compromisso',name:a.title,detail:(rt99Goal(v,a.programId,a.goalId)?.title||'Objetivo do processo')+' · '+(a.due?'Prazo: '+dateFmt(a.due):'Sem prazo'),state:done?'concluidas':'fazer',due:a.due,html:a.experience?`<div class="rt99-experience-note"><strong>${a.experience.outcome==='tentada'?'Tentou e encontrou dificuldades':'Conseguiu realizar'}</strong>${a.experience.note?`<p>${esc(a.experience.note)}</p>`:''}</div>`:'',cta:done?'':btn('Registrar minha experiência','report-action',a.id,'btn solid')});
@@ -243,6 +253,9 @@ if(type==='activities-filter'){rt98ActivityFilter=['fazer','andamento','concluid
   $('#instrument-form').dataset.id=i.id;
   $('#instrument-name').textContent=i.title;
   $('#instrument-intro').textContent=i.instructions;
+  const fields=$('#instrument-fields');
+  fields.innerHTML=i.kind==='formulario-personalizado'?customFields(i):prompts.map((p,k)=>'<label class="field">'+esc((k+1)+'. '+p)+'<textarea name="answer'+k+'" required minlength="3" maxlength="600"></textarea></label>').join('');
+  const error=$('#rt-v117-form-error');if(error)error.textContent='';
   $('#instrument-dialog').showModal();return;
  }if(type==='new-reflection'){$('#reflection-form').dataset.goalId='';$('#reflection-dialog').showModal();$('#reflection-form').elements.title.focus();return;}if(type==='toggle'){rt98ActivityFilter='fazer';mutate('cliente','toggle-activity',id,(d,v)=>{if(!v.actions.some(x=>x.id===id))return false;const a=d.actions.find(x=>x.id===id);a.status=a.status==='concluido'?'pendente':'concluido';return true;});return;}if(type==='visibility'){mutate('cliente','reflection-visibility',id,(d,v)=>{if(!v.reflections.some(x=>x.id===id))return false;const r=d.reflections.find(x=>x.id===id);r.visibility=r.visibility==='compartilhado'?'privado':'compartilhado';return true;});return;}if(type==='delete-reflection'){if(!confirm('Excluir esta reflexão fictícia?'))return;mutate('cliente','delete-reflection',id,(d,v)=>{if(!v.reflections.some(x=>x.id===id))return false;d.reflections=d.reflections.filter(x=>x.id!==id);return true;});return;}}
 $('#rt99-experience-form').addEventListener('submit',e=>{
@@ -252,9 +265,24 @@ $('#rt99-experience-form').addEventListener('submit',e=>{
 });
 $('#rt99-experience-cancel').addEventListener('click',()=>$('#rt99-experience-dialog').close());
 $('#instrument-form').addEventListener('submit',e=>{
- e.preventDefault();const id=e.target.dataset.id,answers=prompts.map((_,ix)=>e.target.elements['answer'+ix].value.trim());
- mutate('cliente','submit-instrument',id,(d)=>S.submitInstrument(d,selected,id,answers));
+ e.preventDefault();const id=e.target.dataset.id,record=view()?.instruments.find(x=>x.id===id);
+ if(!record){toast('Atividade indisponível.');return;}
+ const d=S.load();let done=false;
+ if(record.kind==='formulario-personalizado'){
+  const data=new FormData(e.target),answers={};
+  for(const section of record.sections)for(const q of section.questions){
+   const key='q_'+q.id;
+   answers[q.id]=q.type==='multipla'?data.getAll(key).map(String):String(data.get(key)||'');
+  }
+  done=S.submitCustomForm(d,selected,id,answers);
+ }else{
+  const answers=prompts.map((_,ix)=>e.target.elements['answer'+ix]?.value.trim()||'');
+  done=S.submitInstrument(d,selected,id,answers);
+ }
+ if(!done){const e=$('#rt-v117-form-error');if(e)e.textContent='Confira as respostas obrigatórias, opções e limites dos campos.';return;}
+ S.log(d,'cliente','submit-instrument',id);S.save(d);db=d;
  $('#instrument-dialog').close();e.target.reset();rt98ActivityFilter='concluidas';location.hash='atividades';render();
+ toast('Respostas enviadas ao profissional nesta demonstração.');
 });
 $('#instrument-cancel').addEventListener('click',()=>$('#instrument-dialog').close());
 $('#demo-user').addEventListener('change',e=>chooseClient(e.target.value));

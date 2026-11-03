@@ -36,9 +36,10 @@ def main():
             for key,tab in [("objetivos","desenvolvimento"),("sessoes","sessoes"),("acoes","desenvolvimento"),("atividades","atividades")]:
                 assert f"tab={tab}" in journey.locator(f'[data-v915-step="{key}"]').get_attribute("href")
             assert "Não representa evolução psicológica" in journey.inner_text()
-            assert page.locator(".rt-v9-workspace-tabs a").count()==6
+            assert page.locator(".rt-v9-workspace-tabs a").count()==7
+            assert page.locator('.rt-v9-workspace-tabs a').filter(has_text='Kit da sessão').count()==1
             assert page.locator(".rt-v92-timeline").count()==1
-            print("OK 01 — uma jornada de quatro áreas, histórico e seis abas originais",flush=True)
+            print("OK 01 — uma jornada de quatro áreas, histórico e sete abas (Kit contextual)",flush=True)
 
             goal_names=page.evaluate("RTDemoStore.goalsOf(RTDemoStore.load(),'p1').map(g=>g.title)")
             assert goal_names

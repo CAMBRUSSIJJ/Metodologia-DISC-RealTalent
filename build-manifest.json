@@ -5,7 +5,7 @@
   "files": {
     ".github/workflows/v913-session-e2e.yml": "01643a7984dfe8f2e84e09a1bd92469419109b934167b502f166a4f762c164a6",
     "abrir-linux.sh": "4a18b075ba2c172bcd3946c15181fbf7465aa4ab3e04cd770704d448fd1087ae",
-    "acesso.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
+    "acesso.html": "ba6c631ace9f56b3dbccca6047d76026caf3834b11e20f661c2898dc569e1bb0",
     "admin (1).html": "d3a63679595f7ddd4baa08a78c7d8761c5051c5c5a3d33d0e44ea7804e64c1dd",
     "admin.html": "4ab8f12004e797b8479f7beac4e343a8aae63f3cd620bd4b79ca79cbba54963f",
     "assets/realtalent-logo.png": "bfaeefc5d3616064d4c4a5e5257e8a94ff8a842adaaf90292dbb735a83e18cee",
@@ -96,7 +96,7 @@
     "docs/V9_7_WORKFLOW_HARDENING.md": "a3e207356204237a07cf5a7b8a051bc5196426373e2158e34d75974c133358cf",
     "docs/V9_8_MINHA_JORNADA_2_0.md": "7b6ef67dc74418a0d8ff33f1e42b5c053f9f3f35135b8f0573a9d83274fd2c06",
     "docs/V9_PROFESSIONAL_WORKSPACE.md": "1a1f2cac0d087c0dff3badf88e05bc7e5debefe78d37518f5f42ec807bc4daa9",
-    "index.html": "451949548e8e3e4b3f12bb3a2e945c64ba40f01b732f133e98fc681b018441ce",
+    "index.html": "ba6c631ace9f56b3dbccca6047d76026caf3834b11e20f661c2898dc569e1bb0",
     "lider.html": "c5e2075427ff1092dffdf7a1493a033eb2bd3a54734afdbefb133dbafcb55ff7",
     "login.html": "6d5989d9c9d12495fb1a20465ff33422dfdcc8f4f9a036b07a2cfc35a6455422",
     "originais/RealTalent_SISTEMA_FUNCIONAL_ORIGINAL.html": "0d473b7c83500c3cce799a227c45c4b6a1c093773cbc01fd8bc3eadda71bf1d5",

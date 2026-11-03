@@ -102,7 +102,7 @@
     "originais/RealTalent_SISTEMA_FUNCIONAL_ORIGINAL.html": "0d473b7c83500c3cce799a227c45c4b6a1c093773cbc01fd8bc3eadda71bf1d5",
     "profissional/app.css": "d2e99bdd3cdff367a1747b69e82b8583df021fc48ec7d6aa89bb4cbf0f725662",
     "profissional/app.js": "63af6c00db431a962e390d960759fd591640157caf9b2a9334a648dbad8e2e40",
-    "profissional/index.html": "c5dee6ebbb06f207e9210bb746ea2bea0509dae9e48d78858246018522c65017",
+    "profissional/index.html": "89e898aa301daee789a2f5adac03bb015a7928a309c7e53aa0bad0575d54a83d",
     "qa/testar_minhas_atividades_v98.py": "0d6e9eebf2bc583c55dddae7923f3c0e4ff375677173851775fe5953b39757ba",
     "qa/testar-abas-cliente-v94.py": "fa9d108cb289837622db879ac36855c4d1d9f052d53a3e4aad21141f0628561d",
     "qa/testar-atendimento-integrado-v914.py": "e3f255d6c68a3a88138bb3b2becbfac2adc66cbe8a29fe9420763d87760bccc5",
@@ -194,6 +194,7 @@
     "assets/rt-v117-custom-forms.css": "435fe14ce038ced55b62026681b586e923e77b4e583ec3982134bb749cf66910",
     "qa/testar-ferramentas-v117.mjs": "707fbc4c81a53777f36b2a2d904ba9246b8f08d11c02a472f1ef2af32e7a9d2c",
     "qa/testar-ferramentas-v117.py": "fdeec28d5cdd2773a230e12e25b0c85e4407e737b090a2e88b3a9dc90a21a307",
-    "docs/V11_7_FERRAMENTAS_PERSONALIZADAS.md": "21e02f8faa52a90e0ebb3b98b5f4439a88aa04ebd65497ddfc107c83c6035ca4"
+    "docs/V11_7_FERRAMENTAS_PERSONALIZADAS.md": "21e02f8faa52a90e0ebb3b98b5f4439a88aa04ebd65497ddfc107c83c6035ca4",
+    "assets/rt-dashboard-v117.css": "cc155fcc503f8dbc690ed07be2d83522cd7882b488f7b6ccf86934fdb36b5fb6"
   }
 }
